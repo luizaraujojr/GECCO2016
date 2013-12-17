@@ -1,0 +1,908 @@
+#
+# Metamodel that represents a software development project
+#
+MODEL ProjectModel
+{
+	# -----------------------------------------------------------------------------
+	# Class that represents a developer participating in a software project
+	# -----------------------------------------------------------------------------
+	CLASS Developer
+	{
+		PROPERTY ExpAnalysis	0;		# range [0, 1]
+		PROPERTY ExpDesign	0;		# range [0, 1]
+		PROPERTY ExpCoding	0;		# range [0, 1]
+		PROPERTY ExpTesting	0;		# range [0, 1]
+		PROPERTY ExpInspection	0;		# range [0, 1]
+		PROPERTY HourlyCost	0;		# in $
+
+		# Activity to which the developer is associated
+		PROC AssociatedTask Groupmin(Bound([Activity], Team), DeveloperNeed);
+
+		# Developer's Productivity for each activity
+		PROC Cost HourlyCost * 8;
+
+		# Developer's Productivity for each activity
+		PROC  Productivity 1;
+		PROC  ProdAnalysis Productivity;
+		PROC  ProdDesign Productivity;
+		PROC  ProdCoding Productivity;
+		PROC  ProdTesting Productivity;
+		PROC  ProdInspection Productivity;
+
+		# Developer's error generation rate for each activity
+		PROC  ErrorGenerationRate 1;
+		PROC  ErrorRateAnalysis ErrorGenerationRate;
+		PROC  ErrorRateDesign ErrorGenerationRate;
+		PROC  ErrorRateCoding ErrorGenerationRate;
+	};
+
+	# -----------------------------------------------------------------------------
+	# Class that represents an activity in a software project
+	# -----------------------------------------------------------------------------
+	CLASS Activity
+	{
+		PROPERTY AnalysisTask		0;		# 0 or 1
+		PROPERTY ArchitecTask		0;		# 0 or 1
+		PROPERTY DesignTask		0;		# 0 or 1
+		PROPERTY CodingTask		0;		# 0 or 1
+		PROPERTY TestingTask		0;		# 0 or 1
+		PROPERTY InspectionTask		0;		# 0 or 1
+		PROPERTY MinimumDuration	0;		# in days
+		PROPERTY ExpectedDuration	0;		# in days
+		PROPERTY MaximumDuration	0;		# in days
+		PROPERTY Order	 		0;		# 0 or +
+
+		# Set the activity execution time
+		PROC ExpectedTime ExpectedDuration;
+		PROC MaximumTime MaximumDuration;
+		PROC MinimumTime MinimumDuration;
+		STOCK ExecutionTime ExpectedTime;
+
+		# Determine if precedent activities are concluded
+		PROC PrecConcluded AND (GroupMax (Precedences, PrecConcluded) >= 0, GroupMax (Precedences, RemainingTime) < 0.001);
+
+		# Determine if the activity is concluded
+		PROC Concluded RemainingTime < 0.001;
+
+		# Determine if the activity is ready to run
+		PROC Ready AND (PrecConcluded, NOT(Concluded));
+
+		# Determine if there are resources available for the activity
+		PROC DeveloperNeed IF (Ready, Order, 1000);
+		PROC Executing AND (Ready, Team.AssociatedTask = Order);
+
+		# Determine developer producticity
+		PROC Productivity ((AnalysisTask * Team.ProdAnalysis)  + (ArchitecTask * Team.ProdDesign) + (DesignTask * Team.ProdDesign) + (CodingTask * Team.ProdCoding) + (TestingTask * Team.ProdTesting) + (InspectionTask * Team.ProdInspection)) * DT;
+
+		# Determine activity executed time
+		STOCK ExecutedTime 0;
+		RATE (ExecutedTime) RTExecTime IF (Executing, if (OR(InspectionTask>0, TestingTask>0), MIN(RemainingTime, DT), MIN(RemainingTime, Productivity)), 0) / DT;
+		PROC RemainingTime ExecutionTime - ExecutedTime;
+
+		# Calculates conclusion time for an activity
+		STOCK ConclusionTime 0;
+		RATE (ConclusionTime) RTConclusionTime if(AND(ConclusionTime < 0.01, RemainingTime-RTExecTime*DT < 0.01), TIME/DT+1, 0);
+
+		# Accumulates activity cost
+		STOCK Cost 0;
+		RATE (Cost) RTCost if(Executing, Team.Cost, 0);
+
+		# Errors latent in the activity
+		STOCK Errors 0;
+		RATE (Errors) RTErrors 0;
+	};
+
+	# -----------------------------------------------------------------------------
+	# Class that represents a software project
+	# -----------------------------------------------------------------------------
+	CLASS Project
+	{
+		PROC Concluded GroupMin ([Activity], Concluded);
+
+		STOCK ProjectTime 0;
+		RATE (ProjectTime) RTProjectTime IF (Concluded, 0, 1);
+
+		PROC ProjectCost GROUPSUM([Activity], Cost);
+	};
+
+	# -----------------------------------------------------------------------------
+	# Relationships among classes
+	# -----------------------------------------------------------------------------
+
+	MULTIRELATION Precedences Activity, Activity (Successors);
+
+	RELATION Team Activity, Developer;
+};
+
+
+#
+# Scenario that reflects the variation in productivity due to experience
+#
+SCENARIO ProductivityDueExpertise ProjectModel
+{
+	CONNECTION TheDeveloper Developer
+	{
+		AFFECT ProdAnalysis (0.667 + ExpAnalysis * 0.666) * ProdAnalysis;
+		AFFECT ProdDesign (0.667 + ExpDesign * 0.666) * ProdDesign;
+		AFFECT ProdCoding (0.667 + ExpCoding * 0.666) * ProdCoding;
+		AFFECT ProdTesting (0.667 + ExpTesting * 0.666) * ProdTesting;
+		AFFECT ProdInspection (0.667 + ExpInspection * 0.666) * ProdInspection;
+	};
+};
+
+
+#
+# Scenario that reflects the variation in error generation rates due to experience
+#
+SCENARIO ErrorGenerationDueExpertise ProjectModel
+{
+	CONNECTION TheDeveloper Developer
+	{
+		AFFECT ErrorRateAnalysis (0.667 + (1 - ExpAnalysis) * 0.666) * ErrorRateAnalysis;
+		AFFECT ErrorRateDesign (0.667 + (1 - ExpDesign) * 0.666) * ErrorRateDesign;
+		AFFECT ErrorRateCoding (0.667 + (1 - ExpCoding) * 0.666) * ErrorRateCoding;
+	};
+};
+
+
+#
+# Scenario that reflects the gain in productivity due to learning
+#
+SCENARIO ProductivityDueLearning ProjectModel
+{
+	CONNECTION TheDeveloper Developer
+	{
+		STOCK DaysInProject 0;
+		RATE  (DaysInProject) DaysInProjectCounter 1;
+
+		PROC  DIPFactor MIN (DaysInProject / 20, 1.0);
+		PROC  DIPModifier LOOKUP (LearningTable, DIPFactor, 0, 1);
+		TABLE LearningTable 1.0, 1.0125, 1.0325, 1.055, 1.09, 1.15, 1.2, 1.22, 1.245, 1.25, 1.25;
+
+		AFFECT Productivity Productivity * DIPModifier;
+	};
+};
+
+
+#
+# Scenario that reflects the variation in productivity/error generation due to overworking
+#
+SCENARIO Overworking ProjectModel
+{
+	CONNECTION TheDeveloper Developer
+	{
+		PROPERTY WorkHours 8;		# 8 to 12 hours
+
+		STOCK DailyWorkHours WorkHours;
+		PROC  WHModifier 1 + (DailyWorkHours - 8) / (12 - 8);
+
+		PROC  SEModifier LOOKUP (SchErrorsTable, WHModifier-1, 0, 1);
+		TABLE SchErrorsTable 0.9, 0.94, 1, 1.05, 1.14, 1.24, 1.36, 1.5;
+
+		AFFECT Cost Cost * DailyWorkHours / 8;
+		AFFECT Productivity Productivity * WHModifier;
+		AFFECT ErrorGenerationRate ErrorGenerationRate * SEModifier;
+	};
+};
+
+
+#
+# Scenario that reflects the willingness to overwork due to exhaustion
+#
+SCENARIO Exhaustion ProjectModel
+{
+	CONNECTION TheDeveloper Developer
+	{
+		STOCK Exhaustion 0;
+		PROC  MaxExhaustion 50;
+		RATE  (Exhaustion) ExhaustionRate if(Resting = 1, -MaxExhaustion / 20.0, EXModifier);
+
+		PROC  EXModifier LOOKUP (ExaustionTable, DedicationFactor, 0, 1.5);
+		PROC  DedicationFactor 1 - (1 - Dedication) / 0.4;
+		PROC  Dedication 0.6 + (WHModifier - 1) * (1.2 - 0.6);
+		TABLE ExaustionTable 0.0, 0.0, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.15, 1.3, 1.6, 1.9, 2.2, 2.5;
+
+		STOCK Resting 0;
+		RATE  (Resting) RestingRate1 IF (InitResting, 1 / DT, 0);
+		RATE  (Resting) RestingRate2 IF (QuitResting, -1 / DT, 0);
+		RATE  (DailyWorkHours) DWHRate IF (Resting = 1, (8 - DailyWorkHours) / DT, 0);
+
+		PROC  InitResting AND(Resting = 0, Exhaustion > MaxExhaustion);
+		PROC  QuitResting AND(Resting = 1, Exhaustion < 0.1);
+	};
+
+	CONSTRAINT TheDeveloper, Overworking.TheDeveloper;
+};
+
+
+#
+# Scenario that allows measuring an activity in function points
+#
+SCENARIO FunctionPointMeasure ProjectModel
+{
+	CONNECTION TheActivity Activity
+	{
+		PROPERTY FunctionPoints 0;		# in FP
+	};
+};
+
+
+#
+# Scenario that estimates activity duration using function points
+#
+SCENARIO EstimationFunctionPoints ProjectModel
+{
+	CONNECTION TheActivity Activity
+	{
+		# Developer's productivity
+		PROC AvgFPMonth 27.80;
+		PROC MinFPMonth 15.41;
+		PROC MaxFPMonth 40.19;
+
+		# Evaluate the contribution of the activity type to the project
+		PROC  ContrAnalysis AnalysisTask * 4.114;
+		PROC  ContrArchitec ArchitecTask * 3.6958;
+		PROC  ContrDesign DesignTask * 11.7052;
+		PROC  ContrCoding CodingTask * 20.5459;
+		PROC  ContrTesting TestingTask * 59.9416;
+		PROC  Contribution ContrAnalysis + ContrArchitec + ContrDesign + ContrCoding + ContrTesting;
+
+		# Evaluate the expected activity execution time
+		AFFECT ExpectedTime (ExpectedTime * 0.0) + FunctionPoints * (30.0 / AvgFPMonth) * (Contribution / 100);
+		AFFECT MaximumTime (MaximumTime * 0.0) + FunctionPoints * (30.0 / MinFPMonth) * (Contribution / 100);
+		AFFECT MinimumTime (MinimumTime * 0.0) + FunctionPoints * (30.0 / MaxFPMonth) * (Contribution / 100);
+	};
+
+	CONSTRAINT TheActivity, FunctionPointMeasure.TheActivity;
+};
+
+
+#
+# Scenario that represents error generation in an activity
+#
+SCENARIO ErrorGeneration ProjectModel
+{
+	CONNECTION TheActivity Activity
+	{
+		PROC NewErrors (AnalysisTask + ArchitecTask + DesignTask + CodingTask) * ErrorGeneration;
+		PROC ErrorGen ((AnalysisTask * Team.ErrorRateAnalysis)  + (ArchitecTask * Team.ErrorRateDesign) + (DesignTask * Team.ErrorRateDesign) + (CodingTask * Team.ErrorRateCoding));
+		PROC ErrorGeneration if (ExecutionTime > 0, ErrorsFP * FunctionPoints * ErrorGen * RTExecTime / ExecutionTime, 0);
+		PROC ErrorsFP (AnalysisTask * 0.6)  + (ArchitecTask * 0.18) + (DesignTask * 0.57) + (CodingTask * 1.05);
+		AFFECT RTErrors RTErrors + NewErrors;
+	};
+
+	CONSTRAINT TheActivity, FunctionPointMeasure.TheActivity;
+};
+
+
+#
+# Scenario that represents error propagation between two sequential activities
+#
+SCENARIO ErrorPropagation ProjectModel
+{
+	CONNECTION TheActivity Activity
+	{
+		PROC SuccessorCount COUNT(Successors);
+		PROC ErrorsToGo if (SuccessorCount > 0, (Errors + RTErrors*DT) /  SuccessorCount, 0);
+
+		PROC Initializing AND (ExecutionTime > 0.0, ExecutedTime < 0.001, Executing);
+		PROC ReadyToInherit OR (AND(ExecutionTime < 0.001, PrecConcluded, Errors < 0.001), Initializing);
+		PROC InheritedErrors if (ReadyToInherit, GROUPSUM (Precedences, ErrorsToGo), 0);
+
+		AFFECT RTErrors RTErrors + InheritedErrors / DT;
+	};
+
+	CONSTRAINT TheActivity.Precedences, ErrorPropagation.TheActivity;
+};
+
+
+#
+# Scenario that represents error regeneration on sequential activities
+#
+SCENARIO ErrorRegeneration ProjectModel
+{
+	CONNECTION TheActivity Activity
+	{
+		PROC InheritedDensity InheritedErrors / FunctionPoints;
+		PROC RegenErrors (AnalysisTask + ArchitecTask + DesignTask + CodingTask) * InheritedErrors * 0.24 * RegenFactor;
+		PROC RegenFactor Max (1, LOOKUP (ActiveErrosDens, InheritedDensity , 0, 10));
+		TABLE ActiveErrosDens 1, 1.1, 1.2, 1.325, 1.45, 1.6, 2.0, 2.5, 3.25, 4.35, 6.0;
+		AFFECT RTErrors RTErrors + RegenErrors / DT;
+	};
+
+	CONSTRAINT TheActivity, ErrorPropagation.TheActivity;
+
+	CONSTRAINT TheActivity, FunctionPointMeasure.TheActivity;
+};
+
+
+#
+# Scenario that represents error correction in an activity
+#
+SCENARIO ErrorCorrection ProjectModel
+{
+	CONNECTION TheActivity Activity
+	{
+		PROPERTY Target 95.0;		# in %
+
+		# Average errors per function point
+		PROC AvgErrorFP 2.4;
+
+		# Errors corrected acummulator for the activity
+		STOCK ErrorsCorrected 0;
+		RATE (ErrorsCorrected) RTCorrection CorrErrors;
+
+		# Error correction in the activity
+		RATE (Errors) RTCorrErrors -CorrErrors;
+		PROC CorrErrors (InspectionTask + TestingTask) * RTExecTime * Productivity / (DetectionCost * DT);
+
+		# Cost to correct an error
+		PROC DetectionCost 0.28;
+
+		# Adjustment of time for testng activities
+		RATE (ExecutionTime) RTTesting if (AND(Executing, TestingTask > 0), -ExecutionTime+ExecutedTime+TestingEffort, 0) / DT;
+		PROC TestingEffort TestingDifference * DetectionCost;
+		PROC TestingDifference Max(Errors + InheritedErrors - CorrErrors - TestingTarget, 0);
+		PROC TestingTarget FunctionPoints * AvgErrorFP * (1 - Target / 100.0);
+	};
+
+	CONSTRAINT TheActivity, FunctionPointMeasure.TheActivity;
+};
+
+
+#
+# Scenario that represents the density effect over error correction
+#
+SCENARIO ErrorCorrectionDensity ProjectModel
+{
+	CONNECTION TheActivity Activity
+	{
+		PROC ErrorDensityMultiplier Max (1, LOOKUP (TableErrorDensityMultiplier, ErrorDensity, 0, 1));
+		TABLE TableErrorDensityMultiplier 8, 6.75, 5.25, 4, 3, 2, 1.8, 1.6, 1.2, 1.1, 1;
+		PROC ErrorDensity (Errors + RTErrors*DT) / FunctionPoints;
+		AFFECT DetectionCost DetectionCost * ErrorDensityMultiplier;
+	};
+
+	CONSTRAINT TheActivity, ErrorCorrection.TheActivity;
+};
+
+
+#
+# A software project model
+#
+DEFINE ControlPESC ProjectModel
+{
+   SPEC DT 0.1;
+
+   CtrlPESC = NEW Project
+
+   Grady = NEW Developer
+	SET ExpAnalysis = 0.2;
+	SET ExpDesign = 0.3;
+	SET ExpCoding = 0.5;
+	SET ExpTesting = 0.7;
+	SET ExpInspection = 0.5;
+	SET HourlyCost = 25;
+	SET WorkHours = 12;
+
+   Johnny = NEW Developer
+	SET ExpAnalysis = 0.9;
+	SET ExpDesign = 0.6;
+	SET ExpCoding = 0.3;
+	SET ExpTesting = 0.3;
+	SET ExpInspection = 0.5;
+	SET HourlyCost = 30;
+
+   Martha = NEW Developer
+	SET ExpAnalysis = 0.1;
+	SET ExpDesign = 0.7;
+	SET ExpCoding = 0.9;
+	SET ExpTesting = 0.4;
+	SET ExpInspection = 0.2;
+	SET HourlyCost = 25;
+
+   Lucille = NEW Developer
+	SET ExpAnalysis = 0.8;
+	SET ExpDesign = 0.9;
+	SET ExpCoding = 0.7;
+	SET ExpTesting = 0.3;
+	SET ExpInspection = 0.3;
+	SET HourlyCost = 35;
+
+   Elonor = NEW Developer
+	SET ExpAnalysis = 0.2;
+	SET ExpDesign = 0.3;
+	SET ExpCoding = 0.5;
+	SET ExpTesting = 0.2;
+	SET ExpInspection = 0.1;
+	SET HourlyCost = 15;
+
+   Phill = NEW Developer
+	SET ExpAnalysis = 0.3;
+	SET ExpDesign = 0.7;
+	SET ExpCoding = 0.6;
+	SET ExpTesting = 0.5;
+	SET ExpInspection = 0.4;
+	SET HourlyCost = 30;
+
+   Bobby = NEW Developer
+	SET ExpAnalysis = 0.2;
+	SET ExpDesign = 0.6;
+	SET ExpCoding = 0.8;
+	SET ExpTesting = 0.8;
+	SET ExpInspection = 0.8;
+	SET HourlyCost = 30;
+
+   UserProf_UseCases = NEW Activity
+	SET AnalysisTask = 1;
+	SET FunctionPoints = 19.71;
+	SET Order = 0;
+	LINK Team Grady;
+
+   AreaDisc_UseCases = NEW Activity
+	SET AnalysisTask = 1;
+	SET FunctionPoints = 20.44;
+	SET Order = 1;
+	LINK Team Grady;
+
+   StudRegs_UseCases = NEW Activity
+	SET AnalysisTask = 1;
+	SET FunctionPoints = 23.36;
+	SET Order = 2;
+	LINK Team Grady;
+
+   System_Architecture = NEW Activity
+	SET ArchitecTask = 1;
+	SET FunctionPoints = 63.51;
+	SET Order = 3;
+	LINK Precedences StudRegs_UseCases, AreaDisc_UseCases, UserProf_UseCases;
+	LINK Team Grady;
+
+   UserProf_Design = NEW Activity
+	SET DesignTask = 1;
+	SET FunctionPoints = 19.71;
+	SET Order = 4;
+	LINK Precedences System_Architecture;
+	LINK Team Grady;
+
+   AreaDisc_Design = NEW Activity
+	SET DesignTask = 1;
+	SET FunctionPoints = 20.44;
+	SET Order = 5;
+	LINK Precedences System_Architecture;
+	LINK Team Grady;
+
+   StudRegs_Design = NEW Activity
+	SET DesignTask = 1;
+	SET FunctionPoints = 23.36;
+	SET Order = 6;
+	LINK Precedences System_Architecture;
+	LINK Team Grady;
+
+   UserProf_Inspection = NEW Activity
+	SET InspectionTask = 1;
+	SET FunctionPoints = 19.71;
+	SET Order = 7;
+	LINK Precedences UserProf_Design;
+	LINK Team Grady;
+
+   AreaDisc_Inspection = NEW Activity
+	SET InspectionTask = 1;
+	SET FunctionPoints = 20.44;
+	SET Order = 8;
+	LINK Precedences AreaDisc_Design;
+	LINK Team Grady;
+
+   StudRegs_Inspection = NEW Activity
+	SET InspectionTask = 1;
+	SET FunctionPoints = 23.36;
+	SET Order = 9;
+	LINK Precedences StudRegs_Design;
+	LINK Team Grady;
+
+   UserProf_Coding = NEW Activity
+	SET CodingTask = 1;
+	SET FunctionPoints = 19.71;
+	SET Order = 10;
+	LINK Precedences UserProf_Inspection;
+	LINK Team Grady;
+
+   AreaDisc_Coding = NEW Activity
+	SET CodingTask = 1;
+	SET FunctionPoints = 20.44;
+	SET Order = 11;
+	LINK Precedences AreaDisc_Inspection;
+	LINK Team Grady;
+
+   StudRegs_Coding = NEW Activity
+	SET CodingTask = 1;
+	SET FunctionPoints = 23.36;
+	SET Order = 12;
+	LINK Precedences StudRegs_Inspection;
+	LINK Team Grady;
+
+   UserProf_Testing = NEW Activity
+	SET TestingTask = 1;
+	SET FunctionPoints = 19.71;
+	SET Order = 13;
+	LINK Precedences UserProf_Coding;
+	LINK Team Grady;
+
+   AreaDisc_Testing = NEW Activity
+	SET TestingTask = 1;
+	SET FunctionPoints = 20.44;
+	SET Order = 14;
+	LINK Precedences AreaDisc_Coding;
+	LINK Team Grady;
+
+   StudRegs_Testing = NEW Activity
+	SET TestingTask = 1;
+	SET FunctionPoints = 23.36;
+	SET Order = 15;
+	LINK Precedences StudRegs_Coding;
+	LINK Team Grady;
+
+
+
+    ACTIVATE ProductivityDueExpertise
+	CONNECT TheDeveloper Grady;
+
+    ACTIVATE ProductivityDueExpertise
+	CONNECT TheDeveloper Johnny;
+
+    ACTIVATE ProductivityDueExpertise
+	CONNECT TheDeveloper Martha;
+
+    ACTIVATE ProductivityDueExpertise
+	CONNECT TheDeveloper Lucille;
+
+    ACTIVATE ProductivityDueExpertise
+	CONNECT TheDeveloper Elonor;
+
+    ACTIVATE ProductivityDueExpertise
+	CONNECT TheDeveloper Phill;
+
+    ACTIVATE ProductivityDueExpertise
+	CONNECT TheDeveloper Bobby;
+
+
+
+
+    ACTIVATE ErrorGenerationDueExpertise
+	CONNECT TheDeveloper Grady;
+
+    ACTIVATE ErrorGenerationDueExpertise
+	CONNECT TheDeveloper Johnny;
+
+    ACTIVATE ErrorGenerationDueExpertise
+	CONNECT TheDeveloper Martha;
+
+    ACTIVATE ErrorGenerationDueExpertise
+	CONNECT TheDeveloper Lucille;
+
+    ACTIVATE ErrorGenerationDueExpertise
+	CONNECT TheDeveloper Elonor;
+
+    ACTIVATE ErrorGenerationDueExpertise
+	CONNECT TheDeveloper Phill;
+
+    ACTIVATE ErrorGenerationDueExpertise
+	CONNECT TheDeveloper Bobby;
+
+
+
+
+    ACTIVATE ProductivityDueLearning
+	CONNECT TheDeveloper Grady;
+
+    ACTIVATE ProductivityDueLearning
+	CONNECT TheDeveloper Johnny;
+
+    ACTIVATE ProductivityDueLearning
+	CONNECT TheDeveloper Martha;
+
+    ACTIVATE ProductivityDueLearning
+	CONNECT TheDeveloper Lucille;
+
+    ACTIVATE ProductivityDueLearning
+	CONNECT TheDeveloper Elonor;
+
+    ACTIVATE ProductivityDueLearning
+	CONNECT TheDeveloper Phill;
+
+    ACTIVATE ProductivityDueLearning
+	CONNECT TheDeveloper Bobby;
+
+
+
+
+    ACTIVATE Overworking
+	CONNECT TheDeveloper Grady;
+
+    ACTIVATE Overworking
+	CONNECT TheDeveloper Johnny;
+
+    ACTIVATE Overworking
+	CONNECT TheDeveloper Martha;
+
+    ACTIVATE Overworking
+	CONNECT TheDeveloper Lucille;
+
+    ACTIVATE Overworking
+	CONNECT TheDeveloper Elonor;
+
+    ACTIVATE Overworking
+	CONNECT TheDeveloper Phill;
+
+    ACTIVATE Overworking
+	CONNECT TheDeveloper Bobby;
+
+
+
+
+    ACTIVATE Exhaustion
+	CONNECT TheDeveloper Grady;
+
+    ACTIVATE Exhaustion
+	CONNECT TheDeveloper Johnny;
+
+    ACTIVATE Exhaustion
+	CONNECT TheDeveloper Martha;
+
+    ACTIVATE Exhaustion
+	CONNECT TheDeveloper Lucille;
+
+    ACTIVATE Exhaustion
+	CONNECT TheDeveloper Elonor;
+
+    ACTIVATE Exhaustion
+	CONNECT TheDeveloper Phill;
+
+    ACTIVATE Exhaustion
+	CONNECT TheDeveloper Bobby;
+
+
+
+    ACTIVATE FunctionPointMeasure
+	CONNECT TheActivity UserProf_UseCases;
+
+    ACTIVATE FunctionPointMeasure
+	CONNECT TheActivity AreaDisc_UseCases;
+
+    ACTIVATE FunctionPointMeasure
+	CONNECT TheActivity StudRegs_UseCases;
+
+    ACTIVATE FunctionPointMeasure
+	CONNECT TheActivity System_Architecture;
+
+    ACTIVATE FunctionPointMeasure
+	CONNECT TheActivity UserProf_Design;
+
+    ACTIVATE FunctionPointMeasure
+	CONNECT TheActivity AreaDisc_Design;
+
+    ACTIVATE FunctionPointMeasure
+	CONNECT TheActivity StudRegs_Design;
+
+    ACTIVATE FunctionPointMeasure
+	CONNECT TheActivity UserProf_Inspection;
+
+    ACTIVATE FunctionPointMeasure
+	CONNECT TheActivity AreaDisc_Inspection;
+
+    ACTIVATE FunctionPointMeasure
+	CONNECT TheActivity StudRegs_Inspection;
+
+    ACTIVATE FunctionPointMeasure
+	CONNECT TheActivity UserProf_Coding;
+
+    ACTIVATE FunctionPointMeasure
+	CONNECT TheActivity AreaDisc_Coding;
+
+    ACTIVATE FunctionPointMeasure
+	CONNECT TheActivity StudRegs_Coding;
+
+    ACTIVATE FunctionPointMeasure
+	CONNECT TheActivity UserProf_Testing;
+
+    ACTIVATE FunctionPointMeasure
+	CONNECT TheActivity AreaDisc_Testing;
+
+    ACTIVATE FunctionPointMeasure
+	CONNECT TheActivity StudRegs_Testing;
+
+
+
+    ACTIVATE EstimationFunctionPoints
+	CONNECT TheActivity UserProf_UseCases;
+
+    ACTIVATE EstimationFunctionPoints
+	CONNECT TheActivity AreaDisc_UseCases;
+
+    ACTIVATE EstimationFunctionPoints
+	CONNECT TheActivity StudRegs_UseCases;
+
+    ACTIVATE EstimationFunctionPoints
+	CONNECT TheActivity System_Architecture;
+
+    ACTIVATE EstimationFunctionPoints
+	CONNECT TheActivity UserProf_Design;
+
+    ACTIVATE EstimationFunctionPoints
+	CONNECT TheActivity AreaDisc_Design;
+
+    ACTIVATE EstimationFunctionPoints
+	CONNECT TheActivity StudRegs_Design;
+
+    ACTIVATE EstimationFunctionPoints
+	CONNECT TheActivity UserProf_Coding;
+
+    ACTIVATE EstimationFunctionPoints
+	CONNECT TheActivity AreaDisc_Coding;
+
+    ACTIVATE EstimationFunctionPoints
+	CONNECT TheActivity StudRegs_Coding;
+
+    ACTIVATE EstimationFunctionPoints
+	CONNECT TheActivity UserProf_Testing;
+
+    ACTIVATE EstimationFunctionPoints
+	CONNECT TheActivity AreaDisc_Testing;
+
+    ACTIVATE EstimationFunctionPoints
+	CONNECT TheActivity StudRegs_Testing;
+
+
+
+    ACTIVATE ErrorPropagation
+	CONNECT TheActivity UserProf_UseCases;
+
+    ACTIVATE ErrorPropagation
+	CONNECT TheActivity AreaDisc_UseCases;
+
+    ACTIVATE ErrorPropagation
+	CONNECT TheActivity StudRegs_UseCases;
+
+    ACTIVATE ErrorPropagation
+	CONNECT TheActivity System_Architecture;
+
+    ACTIVATE ErrorPropagation
+	CONNECT TheActivity UserProf_Design;
+
+    ACTIVATE ErrorPropagation
+	CONNECT TheActivity AreaDisc_Design;
+
+    ACTIVATE ErrorPropagation
+	CONNECT TheActivity StudRegs_Design;
+
+    ACTIVATE ErrorPropagation
+	CONNECT TheActivity UserProf_Inspection;
+
+    ACTIVATE ErrorPropagation
+	CONNECT TheActivity AreaDisc_Inspection;
+
+    ACTIVATE ErrorPropagation
+	CONNECT TheActivity StudRegs_Inspection;
+
+    ACTIVATE ErrorPropagation
+	CONNECT TheActivity UserProf_Coding;
+
+    ACTIVATE ErrorPropagation
+	CONNECT TheActivity AreaDisc_Coding;
+
+    ACTIVATE ErrorPropagation
+	CONNECT TheActivity StudRegs_Coding;
+
+    ACTIVATE ErrorPropagation
+	CONNECT TheActivity UserProf_Testing;
+
+    ACTIVATE ErrorPropagation
+	CONNECT TheActivity AreaDisc_Testing;
+
+    ACTIVATE ErrorPropagation
+	CONNECT TheActivity StudRegs_Testing;
+
+
+
+    ACTIVATE ErrorRegeneration
+	CONNECT TheActivity UserProf_UseCases;
+
+    ACTIVATE ErrorRegeneration
+	CONNECT TheActivity AreaDisc_UseCases;
+
+    ACTIVATE ErrorRegeneration
+	CONNECT TheActivity StudRegs_UseCases;
+
+    ACTIVATE ErrorRegeneration
+	CONNECT TheActivity System_Architecture;
+
+    ACTIVATE ErrorRegeneration
+	CONNECT TheActivity UserProf_Design;
+
+    ACTIVATE ErrorRegeneration
+	CONNECT TheActivity AreaDisc_Design;
+
+    ACTIVATE ErrorRegeneration
+	CONNECT TheActivity StudRegs_Design;
+
+    ACTIVATE ErrorRegeneration
+	CONNECT TheActivity UserProf_Coding;
+
+    ACTIVATE ErrorRegeneration
+	CONNECT TheActivity AreaDisc_Coding;
+
+    ACTIVATE ErrorRegeneration
+	CONNECT TheActivity StudRegs_Coding;
+
+
+
+    ACTIVATE ErrorGeneration
+	CONNECT TheActivity UserProf_UseCases;
+
+    ACTIVATE ErrorGeneration
+	CONNECT TheActivity AreaDisc_UseCases;
+
+    ACTIVATE ErrorGeneration
+	CONNECT TheActivity StudRegs_UseCases;
+
+    ACTIVATE ErrorGeneration
+	CONNECT TheActivity System_Architecture;
+
+    ACTIVATE ErrorGeneration
+	CONNECT TheActivity UserProf_Design;
+
+    ACTIVATE ErrorGeneration
+	CONNECT TheActivity AreaDisc_Design;
+
+    ACTIVATE ErrorGeneration
+	CONNECT TheActivity StudRegs_Design;
+
+    ACTIVATE ErrorGeneration
+	CONNECT TheActivity UserProf_Coding;
+
+    ACTIVATE ErrorGeneration
+	CONNECT TheActivity AreaDisc_Coding;
+
+    ACTIVATE ErrorGeneration
+	CONNECT TheActivity StudRegs_Coding;
+
+
+
+    ACTIVATE ErrorCorrection
+	CONNECT TheActivity UserProf_Inspection;
+
+    ACTIVATE ErrorCorrection
+	CONNECT TheActivity AreaDisc_Inspection;
+
+    ACTIVATE ErrorCorrection
+	CONNECT TheActivity StudRegs_Inspection;
+
+    ACTIVATE ErrorCorrection
+	CONNECT TheActivity UserProf_Testing;
+
+    ACTIVATE ErrorCorrection
+	CONNECT TheActivity AreaDisc_Testing;
+
+    ACTIVATE ErrorCorrection
+	CONNECT TheActivity StudRegs_Testing;
+
+
+
+    ACTIVATE ErrorCorrectionDensity
+	CONNECT TheActivity UserProf_Inspection;
+
+    ACTIVATE ErrorCorrectionDensity
+	CONNECT TheActivity AreaDisc_Inspection;
+
+    ACTIVATE ErrorCorrectionDensity
+	CONNECT TheActivity StudRegs_Inspection;
+
+    ACTIVATE ErrorCorrectionDensity
+	CONNECT TheActivity UserProf_Testing;
+
+    ACTIVATE ErrorCorrectionDensity
+	CONNECT TheActivity AreaDisc_Testing;
+
+    ACTIVATE ErrorCorrectionDensity
+	CONNECT TheActivity StudRegs_Testing;
+};

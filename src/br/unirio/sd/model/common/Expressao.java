@@ -8,30 +8,30 @@ import lombok.Setter;
  */
 public class Expressao
 {
-	private @Getter TipoOperacao tipoOperacao;
-	private @Getter Expressao esq;
-	private @Getter Expressao dir;
+	private @Getter TipoOperacao tipo;
+	private @Getter Expressao esquerda;
+	private @Getter Expressao direita;
 	private @Getter @Setter String nome;
 	private @Getter @Setter double valor;
-	private @Getter @Setter double smooth;
-	private @Getter @Setter double qart1;
-	private @Getter @Setter double qart2;
-	private @Getter @Setter double qart3;
+//	private @Getter @Setter double smooth;
+//	private @Getter @Setter double qart1;
+//	private @Getter @Setter double qart2;
+//	private @Getter @Setter double qart3;
 
 	/**
 	 * Cria um no da arvore de expressoes com uma operacao binaria
 	 */
 	public Expressao(TipoOperacao tipo, Expressao esq, Expressao dir)
 	{
-		this.tipoOperacao = tipo;
-		this.esq = esq;
-		this.dir = dir;
+		this.tipo = tipo;
+		this.esquerda = esq;
+		this.direita = dir;
 		this.nome = null;
 		this.valor = 0.0;
-		this.smooth = 0.0;
-		this.qart1 = 0.0;
-		this.qart2 = 0.0;
-		this.qart3 = 0.0;
+//		this.smooth = 0.0;
+//		this.qart1 = 0.0;
+//		this.qart2 = 0.0;
+//		this.qart3 = 0.0;
 	}
 
 	/**
@@ -57,16 +57,16 @@ public class Expressao
 	 */
 	public Expressao pegaNoVariavel(String nome)
 	{
-		if (tipoOperacao == TipoOperacao.VARIAVEL)
+		if (tipo == TipoOperacao.VARIAVEL)
 			if (this.nome.compareToIgnoreCase(nome) == 0)
 				return this;
 
 		Expressao expressao;
 
-		if ((expressao = esq.pegaNoVariavel(nome)) != null)
+		if ((expressao = esquerda.pegaNoVariavel(nome)) != null)
 			return expressao;
 
-		if ((expressao = dir.pegaNoVariavel(nome)) != null)
+		if ((expressao = direita.pegaNoVariavel(nome)) != null)
 			return expressao;
 
 		return null;
@@ -77,16 +77,16 @@ public class Expressao
 	 */
 	public Expressao clone()
 	{
-		Expressao esqClone = (esq != null) ? esq.clone() : null;
-		Expressao dirClone = (dir != null) ? dir.clone() : null;
+		Expressao esqClone = (esquerda != null) ? esquerda.clone() : null;
+		Expressao dirClone = (direita != null) ? direita.clone() : null;
 	
-		Expressao expressao = new Expressao(tipoOperacao, esqClone, dirClone);
+		Expressao expressao = new Expressao(tipo, esqClone, dirClone);
 		expressao.setNome(this.nome);
 		expressao.setValor(this.valor);
-		expressao.setSmooth(this.smooth);
-		expressao.setQart1(this.qart1);
-		expressao.setQart2(this.qart2);
-		expressao.setQart3(this.qart3);
+//		expressao.setSmooth(this.smooth);
+//		expressao.setQart1(this.qart1);
+//		expressao.setQart2(this.qart2);
+//		expressao.setQart3(this.qart3);
 		return expressao;
 	}	
 }

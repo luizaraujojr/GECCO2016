@@ -19,7 +19,7 @@ public class VerificaMetamodelo
 	 */
 	private boolean verificaMultirate (Comportamento rate)
 	{
-		return ((rate.getTipo() == TipoComportamento.RATE) && (rate.getRepositorio().getTipoOperacao() == TipoOperacao.PONTO));
+		return ((rate.getTipo() == TipoComportamento.RATE) && (rate.getRepositorio().getTipo() == TipoOperacao.PONTO));
 	}
 	
 	/**
@@ -46,16 +46,16 @@ public class VerificaMetamodelo
 		// Se o repositório for de outra classe, captura a classe desejada
 		if (verificaMultirate(rate))
 		{
-			Relacionamento relacao = metamodelo.pegaRelacionamentoNome(rate.getExpressao().getEsq().getNome());
+			Relacionamento relacao = metamodelo.pegaRelacionamentoNome(rate.getExpressao().getEsquerda().getNome());
 	
 			if (relacao == null)
-				throw new Exception("The metamodel " + metamodelo.getId() + " does not have the relation " + rate.getExpressao().getEsq().getNome() + ", as required by the rate " + rate.getId());
+				throw new Exception("The metamodel " + metamodelo.getId() + " does not have the relation " + rate.getExpressao().getEsquerda().getNome() + ", as required by the rate " + rate.getId());
 	
-			classe = pegaClasseRelacionada(metamodelo, relacao, classe, rate.getExpressao().getEsq().getNome());
+			classe = pegaClasseRelacionada(metamodelo, relacao, classe, rate.getExpressao().getEsquerda().getNome());
 		}	
 	
 		// Captura o nome do repositório, de acordo com o tipo de sua descrição
-		String nomeRepositorio = (rate.getExpressao().getTipoOperacao() == TipoOperacao.PONTO) ? rate.getExpressao().getDir().getNome() : rate.getExpressao().getNome();
+		String nomeRepositorio = (rate.getExpressao().getTipo() == TipoOperacao.PONTO) ? rate.getExpressao().getDireita().getNome() : rate.getExpressao().getNome();
 	
 		// Pega o comportamento que representa o repositório
 		Comportamento repositorio = classe.pegaComportamentoNome(nomeRepositorio);

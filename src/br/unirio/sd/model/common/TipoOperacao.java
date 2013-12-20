@@ -8,8 +8,8 @@ public enum TipoOperacao
 	VARIAVEL,
 	SOMA,
 	SUBTRACAO,
-	PRODUTO,
-	DIVISAO,
+	PRODUTO(1),
+	DIVISAO(1),
 	IGUAL,
 	DIFERENTE,
 	MAIOR,
@@ -50,14 +50,23 @@ public enum TipoOperacao
 	SELECT("select");
 	
 	private @Getter String nome;
+	private @Getter int prioridade;
 	
 	private TipoOperacao()
 	{
 		this.nome = "";
+		this.prioridade = 0;
 	}
 	
 	private TipoOperacao(String nome)
 	{
 		this.nome = nome;
+		this.prioridade = 0;
+	}
+	
+	private TipoOperacao(int prioridade)
+	{
+		this.nome = "";
+		this.prioridade = prioridade;
 	}
 }

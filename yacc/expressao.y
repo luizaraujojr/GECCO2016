@@ -1,27 +1,17 @@
+%{
+package br.unirio.sd.control.parser;
+
+import br.unirio.sd.control.lex.Lexico;
+%}
+
 /*
  * "Start Symbol" da linguagem
  */
-
 %start expr
-
-
-/*
- * Definicao da estrutura YYSTYPE
- */
-
-%union
-{
-	char 		id[MAXID + 1];
-	double		valor;
-	EXPRESSAO	*expressao;
-	void		*papel;
-}
-
 
 /*
  * Tokens retornados pelo analisador lexico
  */
-
 %token MIN
 %token MAX
 %token IF
@@ -46,241 +36,222 @@
 %token GE
 %token EQUAL
 %token SEMICOLON
-%token NORMAL
-%token UNIFORM
 %token BOUNDED
 %token ROUND
 %token LN
 %token EXP
-%token SMOOTH
-%token DELAY3
 %token DT
 %token TIME
-%token SPEC
-%token L_CHAVE
-%token R_CHAVE
 %token POINT
 %token GROUPSUM
 %token GROUPMAX
 %token GROUPMIN
-%token BETAPERT
 %token L_COLCH
 %token R_COLCH
 %token COUNT
 %token BOUND
 %token SELECT
 
-
 /*
  * Informacoes de precedencia
  */
-   
 %left	EQUAL DIF GT GE LT LE
 %left	PLUS MINUS
 %left	ASTER DIV
 %left	POTENC
 %left	UMINUS   	/* menos unario */
 
-
 %%
-
 expr	: CONST
-	{
-		$$.expressao = constroi_no_constante ($1.valor);
-	}
-	| ID
-	{
-		$$.expressao = constroi_no_variavel ($1.id);
-	}
-	| expr PLUS expr
-	{
-		$$.expressao = constroi_no (OP_SOMA, $1.expressao, $3.expressao);
-	}
-	| expr MINUS expr
-	{
-		$$.expressao = constroi_no (OP_SUBTRACAO, $1.expressao, $3.expressao);
-	}
-	| expr ASTER expr
-	{
-		$$.expressao = constroi_no (OP_PRODUTO, $1.expressao, $3.expressao);
-	}
-	| expr DIV expr
-	{
-		$$.expressao = constroi_no (OP_DIVISAO, $1.expressao, $3.expressao);
-	}
-	| MINUS expr	%prec UMINUS
-	{
-		$$.expressao = constroi_no (OP_UMINUS, $2.expressao, NULL);
-	}
-	| L_PARENT expr R_PARENT
-	{
-		$$.expressao = constroi_no (OP_PARENTESES, $2.expressao, NULL);
-	}
-	| expr EQUAL expr
-	{
-		$$.expressao = constroi_no (OP_IGUAL, $1.expressao, $3.expressao);
-	}
-	| expr DIF expr
-	{
-		$$.expressao = constroi_no (OP_DIFERENTE, $1.expressao, $3.expressao);
-	}
-	| expr GT expr
-	{
-		$$.expressao = constroi_no (OP_MAIOR, $1.expressao, $3.expressao);
-	}
-	| expr GE expr
-	{
-		$$.expressao = constroi_no (OP_MAIORIG, $1.expressao, $3.expressao);
-	}
-	| expr LT expr
-	{
-		$$.expressao = constroi_no (OP_MENOR, $1.expressao, $3.expressao);
-	}
-	| expr LE expr
-	{
-		$$.expressao = constroi_no (OP_MENORIG, $1.expressao, $3.expressao);
-	}
-	| NOT L_PARENT expr R_PARENT
-	{
-		$$.expressao = constroi_no (OP_NOT, $3.expressao, NULL);
-	}
-	| AND L_PARENT params R_PARENT
-	{
-		$$.expressao = constroi_no (OP_AND, $3.expressao, NULL);
-	}
-	| OR L_PARENT params R_PARENT
-	{
-		$$.expressao = constroi_no (OP_OR, $3.expressao, NULL);
-	}
-	| IF L_PARENT expr COMMA expr COMMA expr R_PARENT
-	{
-		$$.expressao = constroi_no (OP_COMMA, $5.expressao, $7.expressao);
-		$$.expressao = constroi_no (OP_COMMA, $3.expressao, $$.expressao);
-		$$.expressao = constroi_no (OP_IF, $$.expressao, NULL);
-	}
-	| MAX L_PARENT params R_PARENT
-	{
-		$$.expressao = constroi_no (OP_MAX, $3.expressao, NULL);
-	}
-	| MIN L_PARENT params R_PARENT
-	{
-		$$.expressao = constroi_no (OP_MIN, $3.expressao, NULL);
-	}
-	| ROUND L_PARENT expr R_PARENT
-	{
-		$$.expressao = constroi_no (OP_ROUND, $3.expressao, NULL);
-	}
-	| BETAPERT L_PARENT expr COMMA expr COMMA expr R_PARENT
-	{
-		$$.expressao = constroi_no (OP_COMMA, $5.expressao, $7.expressao);
-		$$.expressao = constroi_no (OP_BETAPERT, $3.expressao, $$.expressao);
-	}
-	| NORMAL L_PARENT expr COMMA expr R_PARENT
-	{
-		$$.expressao = constroi_no (OP_NORMAL, $3.expressao, $5.expressao);
-	}
-	| UNIFORM L_PARENT expr COMMA expr R_PARENT
-	{
-		$$.expressao = constroi_no (OP_UNIFORM, $3.expressao, $5.expressao);
-	}
-	| LOOKUP L_PARENT ID COMMA expr COMMA expr COMMA expr R_PARENT
-	{
-		EXPRESSAO *e;
-		e = constroi_no_variavel ($3.id);
-		$$.expressao = constroi_no (OP_COMMA, $7.expressao, $9.expressao);
-		$$.expressao = constroi_no (OP_COMMA, $5.expressao, $$.expressao);
-		$$.expressao = constroi_no (OP_COMMA, e, $$.expressao);
-		$$.expressao = constroi_no (OP_LOOKUP, $$.expressao, NULL);
-	}
-	| expr POTENC expr
-	{
-		$$.expressao = constroi_no (OP_POTENC, $1.expressao, $3.expressao);
-	}
-	| LN L_PARENT expr R_PARENT
-	{
-		$$.expressao = constroi_no (OP_LOGN, $3.expressao, NULL);
-	}
-	| EXP L_PARENT expr R_PARENT
-	{
-		$$.expressao = constroi_no (OP_EXPN, $3.expressao, NULL);
-	}
-	| SMOOTH L_PARENT expr COMMA expr R_PARENT
-	{
-		$$.expressao = constroi_no_complemento (OP_SMOOTH, $3.expressao, $5.expressao);
-	}
-	| DELAY3 L_PARENT expr COMMA expr R_PARENT
-	{
-		$$.expressao = constroi_no_complemento (OP_DELAY3, $3.expressao, $5.expressao);
-	}
-	| DT
-	{
-		$$.expressao = constroi_no (OP_DT, NULL, NULL);
-	}
-	| TIME
-	{
-		$$.expressao = constroi_no (OP_TIME, NULL, NULL);
-	}
-	| COUNT L_PARENT objset R_PARENT
-	{
-		$$.expressao = constroi_no (OP_COUNT, $3.expressao, NULL);
-	}
-	| GROUPSUM L_PARENT objset COMMA ID R_PARENT
-	{
-		EXPRESSAO *e1 = constroi_no_variavel ($5.id);
-		$$.expressao = constroi_no (OP_GRUPO_SOMA, $3.expressao, e1);
-	}
-	| GROUPMAX L_PARENT objset COMMA ID R_PARENT
-	{
-		EXPRESSAO *e1 = constroi_no_variavel ($5.id);
-		$$.expressao = constroi_no (OP_GRUPO_MAX, $3.expressao, e1);
-	}
-	| GROUPMIN L_PARENT objset COMMA ID R_PARENT
-	{
-		EXPRESSAO *e1;
-		e1 = constroi_no_variavel ($5.id);
-		$$.expressao = constroi_no (OP_GRUPO_MIN, $3.expressao, e1);
-	}
-	| objset POINT ID
-	{
-		EXPRESSAO *e1 = constroi_no_variavel ($1.id);
-		EXPRESSAO *e2 = constroi_no_variavel ($3.id);
-		$$.expressao = constroi_no (OP_PONTO, e1, e2);
-	}
-	;
+		{
+			$$.setExpressao(new Expressao($1.valor));
+		}
+		| ID
+		{
+			$$.setExpressao(new Expressao($1.id));
+		}
+		| expr PLUS expr
+		{
+			$$.setExpressao(new Expressao(TipoOperacao.OP_SOMA, $1.getExpressao(), $3.getExpressao()));
+		}
+		| expr MINUS expr
+		{
+			$$.setExpressao(new Expressao(TipoOperacao.OP_SUBTRACAO, $1.getExpressao(), $3.getExpressao()));
+		}
+		| expr ASTER expr
+		{
+			$$.setExpressao(new Expressao(TipoOperacao.OP_PRODUTO, $1.getExpressao(), $3.getExpressao()));
+		}
+		| expr DIV expr
+		{
+			$$.setExpressao(new Expressao(TipoOperacao.OP_DIVISAO, $1.getExpressao(), $3.getExpressao()));
+		}
+		| MINUS expr	%prec UMINUS
+		{
+			$$.setExpressao(new Expressao(TipoOperacao.OP_UMINUS, $2.getExpressao(), null));
+		}
+		| L_PARENT expr R_PARENT
+		{
+			$$.setExpressao(new Expressao(TipoOperacao.OP_PARENTESES, $2.getExpressao(), null));
+		}
+		| expr EQUAL expr
+		{
+			$$.setExpressao(new Expressao(TipoOperacao.OP_IGUAL, $1.getExpressao(), $3.getExpressao()));
+		}
+		| expr DIF expr
+		{
+			$$.setExpressao(new Expressao(TipoOperacao.OP_DIFERENTE, $1.getExpressao(), $3.getExpressao()));
+		}
+		| expr GT expr
+		{
+			$$.setExpressao(new Expressao(TipoOperacao.OP_MAIOR, $1.getExpressao(), $3.getExpressao()));
+		}
+		| expr GE expr
+		{
+			$$.setExpressao(new Expressao(TipoOperacao.OP_MAIORIG, $1.getExpressao(), $3.getExpressao()));
+		}
+		| expr LT expr
+		{
+			$$.setExpressao(new Expressao(TipoOperacao.OP_MENOR, $1.getExpressao(), $3.getExpressao()));
+		}
+		| expr LE expr
+		{
+			$$.setExpressao(new Expressao(TipoOperacao.OP_MENORIG, $1.getExpressao(), $3.getExpressao()));
+		}
+		| NOT L_PARENT expr R_PARENT
+		{
+			$$.setExpressao(new Expressao(TipoOperacao.OP_NOT, $3.getExpressao(), null));
+		}
+		| AND L_PARENT params R_PARENT
+		{
+			$$.setExpressao(new Expressao(TipoOperacao.OP_AND, $3.getExpressao(), null));
+		}
+		| OR L_PARENT params R_PARENT
+		{
+			$$.setExpressao(new Expressao(TipoOperacao.OP_OR, $3.getExpressao(), null));
+		}
+		| IF L_PARENT expr COMMA expr COMMA expr R_PARENT
+		{
+			$$.setExpressao(new Expressao(TipoOperacao.OP_COMMA, $5.getExpressao(), $7.getExpressao()));
+			$$.setExpressao(new Expressao(TipoOperacao.OP_COMMA, $3.getExpressao(), $$.getExpressao()));
+			$$.setExpressao(new Expressao(TipoOperacao.OP_IF, $$.getExpressao(), null));
+		}
+		| MAX L_PARENT params R_PARENT
+		{
+			$$.setExpressao(new Expressao(TipoOperacao.OP_MAX, $3.getExpressao(), null));
+		}
+		| MIN L_PARENT params R_PARENT
+		{
+			$$.setExpressao(new Expressao(TipoOperacao.OP_MIN, $3.getExpressao(), null));
+		}
+		| ROUND L_PARENT expr R_PARENT
+		{
+			$$.setExpressao(new Expressao(TipoOperacao.OP_ROUND, $3.getExpressao(), null));
+		}
+		| LOOKUP L_PARENT ID COMMA expr COMMA expr COMMA expr R_PARENT
+		{
+			Expressao e = new Expressao($3.id);
+			$$.setExpressao(new Expressao(TipoOperacao.OP_COMMA, $7.getExpressao(), $9.getExpressao()));
+			$$.setExpressao(new Expressao(TipoOperacao.OP_COMMA, $5.getExpressao(), $$.getExpressao()));
+			$$.setExpressao(new Expressao(TipoOperacao.OP_COMMA, e, $$.getExpressao()));
+			$$.setExpressao(new Expressao(TipoOperacao.OP_LOOKUP, $$.getExpressao(), null));
+		}
+		| expr POTENC expr
+		{
+			$$.setExpressao(new Expressao(TipoOperacao.OP_POTENC, $1.getExpressao(), $3.getExpressao()));
+		}
+		| LN L_PARENT expr R_PARENT
+		{
+			$$.setExpressao(new Expressao(TipoOperacao.OP_LOGN, $3.getExpressao(), null));
+		}
+		| EXP L_PARENT expr R_PARENT
+		{
+			$$.setExpressao(new Expressao(TipoOperacao.OP_EXPN, $3.getExpressao(), null));
+		}
+		| DT
+		{
+			$$.setExpressao(new Expressao(TipoOperacao.OP_DT, null, null));
+		}
+		| TIME
+		{
+			$$.setExpressao(new Expressao(TipoOperacao.OP_TIME, null, null));
+		}
+		| COUNT L_PARENT objset R_PARENT
+		{
+			$$.setExpressao(new Expressao(TipoOperacao.OP_COUNT, $3.getExpressao(), null));
+		}
+		| GROUPSUM L_PARENT objset COMMA ID R_PARENT
+		{
+			Expressao e1 = new Expressao($5.id);
+			$$.setExpressao(new Expressao(TipoOperacao.OP_GRUPO_SOMA, $3.getExpressao(), e1));
+		}
+		| GROUPMAX L_PARENT objset COMMA ID R_PARENT
+		{
+			Expressao e1 = new Expressao($5.id);
+			$$.setExpressao(new Expressao(TipoOperacao.OP_GRUPO_MAX, $3.getExpressao(), e1));
+		}
+		| GROUPMIN L_PARENT objset COMMA ID R_PARENT
+		{
+			Expressao e1 = new Expressao($5.id);
+			$$.setExpressao(new Expressao(TipoOperacao.OP_GRUPO_MIN, $3.getExpressao(), e1));
+		}
+		| objset POINT ID
+		{
+			Expressao e1 = new Expressao($1.id);
+			Expressao e2 = new Expressao($3.id);
+			$$.setExpressao(new Expressao(TipoOperacao.OP_PONTO, e1, e2));
+		}
+		;
 
 params	: params COMMA expr
-	{
-		$$.expressao = constroi_no (OP_COMMA, $1.expressao, $3.expressao);
-	}
-	| expr
-	{
-		$$.expressao = $1.expressao;
-	}
-	;
+		{
+			$$.setExpressao(new Expressao(TipoOperacao.OP_COMMA, $1.getExpressao(), $3.getExpressao()));
+		}
+		| expr
+		{
+			$$.setExpressao($1.getExpressao());
+		}
+		;
 
 objset	: ID
-	{
-		$$.expressao = constroi_no_variavel ($1.id);
-	}
-	| objset POINT ID
-	{
-		EXPRESSAO *e1 = constroi_no_variavel ($3.id);
-		$$.expressao = constroi_no (OP_PONTO, $1.expressao, e1);
-	}
-	| L_COLCH ID R_COLCH
-	{
-		EXPRESSAO *e1 = constroi_no_variavel ($2.id);
-		$$.expressao = constroi_no (OP_CLSSET, e1, NULL);
-	}
-	| BOUND L_PARENT objset COMMA ID R_PARENT
-	{
-		EXPRESSAO *e1 = constroi_no_variavel ($5.id);
-		$$.expressao = constroi_no (OP_BOUND, $3.expressao, e1);
-	}
-	| SELECT L_PARENT objset COMMA expr R_PARENT
-	{
-		$$.expressao = constroi_no (OP_SELECT, $3.expressao, $5.expressao);
-	}
-	;
-
+		{
+			$$.setExpressao(new Expressao($1.id);
+		}
+		| objset POINT ID
+		{
+			Expressao e1 = new Expressao($3.id);
+			$$.setExpressao(new Expressao(OP_PONTO, $1.getExpressao(), e1));
+		}
+		| L_COLCH ID R_COLCH
+		{
+			Expressao e1 = new Expressao($2.id);
+			$$.setExpressao(new Expressao(OP_CLSSET, e1, null));
+		}
+		| BOUND L_PARENT objset COMMA ID R_PARENT
+		{
+			Expressao e1 = new Expressao($5.id);
+			$$.setExpressao(new Expressao(OP_BOUND, $3.getExpressao(), e1));
+		}
+		| SELECT L_PARENT objset COMMA expr R_PARENT
+		{
+			$$.setExpressao(new Expressao(OP_SELECT, $3.getExpressao(), $5.getExpressao()));
+		}
+		;
 %%
+
+private Lexico lexico;
+
+public Parser(String s)
+{
+	this.lexico = new Lexico(s);
+}
+
+private int yylex()
+{
+	return 0;
+}
+
+private void yyerror(String message) throws ParserException
+{
+	throw new ParserException(message);
+}

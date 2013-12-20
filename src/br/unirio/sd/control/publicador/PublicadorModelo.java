@@ -18,13 +18,13 @@ public class PublicadorModelo
 	 */
 	private void imprimeRelacoes (PrintWriter out, Expressao no)
 	{
-		if (no.getTipoOperacao() == TipoOperacao.COMMA)
+		if (no.getTipo() == TipoOperacao.COMMA)
 		{
-			imprimeRelacoes(out, no.getDir());
+			imprimeRelacoes(out, no.getDireita());
 			out.print(", ");
-			imprimeRelacoes(out, no.getEsq());
+			imprimeRelacoes(out, no.getEsquerda());
 		}
-		else if (no.getTipoOperacao() == TipoOperacao.VARIAVEL)
+		else if (no.getTipo() == TipoOperacao.VARIAVEL)
 		{
 			out.print(no.getNome());
 		}

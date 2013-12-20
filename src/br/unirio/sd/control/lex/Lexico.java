@@ -22,9 +22,14 @@ public class Lexico
 	 */
 	private char leCaractere()
 	{
-		char c = conteudo.charAt(0);
-		conteudo = conteudo.substring(1);
-		return c;
+		if (conteudo.length() > 0)
+		{
+			char c = conteudo.charAt(0);
+			conteudo = conteudo.substring(1);
+			return c;
+		}
+		
+		return 0;
 	}
 	
 	/**
@@ -51,16 +56,17 @@ public class Lexico
 	/**
 	 * Trata identificadores e palavras reservadas
 	 */
-	private Token processaLetra(char carac)
+	private Token processaLetra(char c)
 	{
 		// Captura o identificador ou palavra reservada
-		String s = "" + carac;
+		String s = "" + c;
 
-		while (Character.isLetterOrDigit(carac = leCaractere())  ||  (carac == '_'))
-			s += carac;
+		while (Character.isLetterOrDigit(c = leCaractere()) || (c == '_'))
+			s += c;
 
 		// Retorna o caractere nao utilizado para o arquivo de entrada
-		volta (carac);
+		if (c != 0)
+			volta(c);
 
 		// Faz busca na tabela de primitivas
 		for (TipoToken tipo : TipoToken.values())
@@ -73,21 +79,23 @@ public class Lexico
 	/**
 	 * Trata numeros em ponto flutuante			
 	 */
-	private Token processaNumero(char carac) throws LexicoException
+	private Token processaNumero(char c) throws LexicoException
 	{
 		int npontos = 0;
-		String sValor = "" + carac;
+		String sValor = "" + c;
 	
-		while ((Character.isDigit(carac = leCaractere()) || carac == '.'))
+		while ((Character.isDigit(c = leCaractere()) || c == '.'))
 		{
-			if (carac == '.')
+			if (c == '.')
 				if (++npontos > 1)
 					throw new LexicoException("Invalid floating point number");
 	
-			sValor += carac;
+			sValor += c;
 		}	
 	
-		volta(carac);
+		if (c != 0)
+			volta(c);
+		
 		return new Token(Double.parseDouble(sValor));
 	}
 	
@@ -107,7 +115,9 @@ public class Lexico
 		    	return new Token(TipoToken.LE);
 		}
 
-		volta (c);
+		if (c != 0)
+			volta (c);
+		
 		return new Token(TipoToken.LT);
 	}
 	
@@ -117,7 +127,9 @@ public class Lexico
 	private Token processaPonto() throws LexicoException
 	{
 		char c = leCaractere();
-		volta (c);
+
+		if (c != 0)
+			volta (c);
 	
 		if (c >= '0' && c <= '9')
 			return processaNumero('.');
@@ -135,7 +147,9 @@ public class Lexico
 		if (c == '=')
 		    return new Token(TipoToken.GE);
 	
-		volta (c);
+		if (c != 0)
+			volta (c);
+		
 		return new Token(TipoToken.GT);
 	}
 
@@ -154,6 +168,9 @@ public class Lexico
 
 		switch (c)
 		{
+			case 0:
+				return null;
+				
 		    case '[':
 		    	return new Token(TipoToken.OPEN_INDEX);
 
@@ -172,29 +189,29 @@ public class Lexico
 		    case '+':
 		    	return new Token(TipoToken.PLUS);
 
-		    case ',':
-		    	return new Token(TipoToken.COMMA);
-
 		    case '-':
 		    	return new Token(TipoToken.MINUS);
 
 		    case '/':
 		    	return new Token(TipoToken.DIV);
 
+		    case '^':
+		    	return new Token(TipoToken.POWER);
+
+		    case ',':
+		    	return new Token(TipoToken.COMMA);
+
 		    case '.':
 		    	return processaPonto();
-
-		    case '<':
-		    	return processaMenor();
 
 		    case '=':
 		    	return new Token(TipoToken.EQ);
 
+		    case '<':
+		    	return processaMenor();
+
 		    case '>':
 		    	return processaMaior();
-
-		    case '^':
-		    	return new Token(TipoToken.POWER);
 
 		    case '_':
 		    	return processaLetra('_');

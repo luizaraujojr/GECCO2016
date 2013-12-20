@@ -22,7 +22,7 @@ public class PublicadorMetamodelo
 	 */
 	private void imprimeArvore(PrintWriter out, Expressao no)
 	{
-		switch (no.getTipoOperacao())
+		switch (no.getTipo())
 		{
 		    case CONSTANTE:
 		    	out.print(no.getValor());
@@ -33,208 +33,208 @@ public class PublicadorMetamodelo
 				break;
 	
 		    case SOMA:
-				imprimeArvore(out, no.getEsq());
+				imprimeArvore(out, no.getEsquerda());
 				out.print(" + ");
-				imprimeArvore(out, no.getDir());
+				imprimeArvore(out, no.getDireita());
 				break;
 	
 		    case SUBTRACAO:
-				imprimeArvore(out, no.getEsq());
+				imprimeArvore(out, no.getEsquerda());
 				out.print(" - ");
-				imprimeArvore(out, no.getDir());
+				imprimeArvore(out, no.getDireita());
 				break;
 	
 		    case PRODUTO:
-				imprimeArvore(out, no.getEsq());
+				imprimeArvore(out, no.getEsquerda());
 				out.print(" * ");
-				imprimeArvore(out, no.getDir());
+				imprimeArvore(out, no.getDireita());
 				break;
 	
 		    case DIVISAO:
-				imprimeArvore(out, no.getEsq());
+				imprimeArvore(out, no.getEsquerda());
 				out.print(" / ");
-				imprimeArvore(out, no.getDir());
+				imprimeArvore(out, no.getDireita());
 				break;
 	
 		    case POTENC:
-				imprimeArvore(out, no.getEsq());
+				imprimeArvore(out, no.getEsquerda());
 				out.print(" ^ ");
-				imprimeArvore(out, no.getDir());
+				imprimeArvore(out, no.getDireita());
 				break;
 	
 		    case IGUAL:
-				imprimeArvore(out, no.getEsq());
+				imprimeArvore(out, no.getEsquerda());
 				out.print(" = ");
-				imprimeArvore(out, no.getDir());
+				imprimeArvore(out, no.getDireita());
 				break;
 	
 		    case DIFERENTE:
-				imprimeArvore(out, no.getEsq());
+				imprimeArvore(out, no.getEsquerda());
 				out.print(" <> ");
-				imprimeArvore(out, no.getDir());
+				imprimeArvore(out, no.getDireita());
 				break;
 	
 		    case MAIOR:
-				imprimeArvore(out, no.getEsq());
+				imprimeArvore(out, no.getEsquerda());
 				out.print(" > ");
-				imprimeArvore(out, no.getDir());
+				imprimeArvore(out, no.getDireita());
 				break;
 	
 		    case MAIORIG:
-				imprimeArvore(out, no.getEsq());
+				imprimeArvore(out, no.getEsquerda());
 				out.print(" >= ");
-				imprimeArvore(out, no.getDir());
+				imprimeArvore(out, no.getDireita());
 				break;
 	
 		    case MENOR:
-				imprimeArvore(out, no.getEsq());
+				imprimeArvore(out, no.getEsquerda());
 				out.print(" < ");
-				imprimeArvore(out, no.getDir());
+				imprimeArvore(out, no.getDireita());
 				break;
 	
 		    case MENORIG:
-				imprimeArvore(out, no.getEsq());
+				imprimeArvore(out, no.getEsquerda());
 				out.print(" <= ");
-				imprimeArvore(out, no.getDir());
+				imprimeArvore(out, no.getDireita());
 				break;
 	
 		    case MAX:
 				out.print("MAX (");
-				imprimeArvore(out, no.getEsq());
+				imprimeArvore(out, no.getEsquerda());
 				out.print(")");
 				break;
 	
 		    case MIN:
 				out.print("MIN (");
-				imprimeArvore(out, no.getEsq());
+				imprimeArvore(out, no.getEsquerda());
 				out.print(")");
 				break;
 	
 		    case IF:
 				out.print("IF (");
-				imprimeArvore(out, no.getEsq());
+				imprimeArvore(out, no.getEsquerda());
 				out.print(")");
 				break;
 	
 		    case LOOKUP:
 				out.print("LOOKUP (");
-				imprimeArvore(out, no.getEsq());
+				imprimeArvore(out, no.getEsquerda());
 				out.print(")");
 				break;
 	
 		    case AND:
 				out.print("AND (");
-				imprimeArvore(out, no.getEsq());
+				imprimeArvore(out, no.getEsquerda());
 				out.print(")");
 				break;
 	
 		    case OR:
 				out.print("OR (");
-				imprimeArvore(out, no.getEsq());
+				imprimeArvore(out, no.getEsquerda());
 				out.print(")");
 				break;
 	
 		    case NOT:
 				out.print("NOT (");
-				imprimeArvore(out, no.getEsq());
+				imprimeArvore(out, no.getEsquerda());
 				out.print(")");
 				break;
 	
 		    case UMINUS:
 				out.print(" -");
-				imprimeArvore(out, no.getEsq());
+				imprimeArvore(out, no.getEsquerda());
 				break;
 	
 		    case PARENTESES:
 				out.print("(");
-				imprimeArvore(out, no.getEsq());
+				imprimeArvore(out, no.getEsquerda());
 				out.print(")");
 				break;
 	
 		    case NORMAL:
 				out.print("NORMAL (");
-				imprimeArvore(out, no.getEsq());
+				imprimeArvore(out, no.getEsquerda());
 				out.print(", ");
-				imprimeArvore(out, no.getDir());
+				imprimeArvore(out, no.getDireita());
 				out.print(")");
 				break;
 	
 		    case BETAPERT:
 		    	out.print("BETAPERT (");
-				imprimeArvore(out, no.getEsq());
+				imprimeArvore(out, no.getEsquerda());
 				out.print(", ");
-				imprimeArvore(out, no.getDir().getEsq());
+				imprimeArvore(out, no.getDireita().getEsquerda());
 				out.print(", ");
-				imprimeArvore(out, no.getDir().getDir());
+				imprimeArvore(out, no.getDireita().getDireita());
 				out.print(")");
 				break;
 	
 		    case UNIFORM:
 				out.print("UNIFORM (");
-				imprimeArvore(out, no.getEsq());
+				imprimeArvore(out, no.getEsquerda());
 				out.print(", ");
-				imprimeArvore(out, no.getDir());
+				imprimeArvore(out, no.getDireita());
 				out.print(")");
 				break;
 	
 		    case ROUND:
 				out.print("ROUND (");
-				imprimeArvore(out, no.getEsq());
+				imprimeArvore(out, no.getEsquerda());
 				out.print(")");
 				break;
 	
 		    case EXPN:
 				out.print("EXP (");
-				imprimeArvore(out, no.getEsq());
+				imprimeArvore(out, no.getEsquerda());
 				out.print(")");
 				break;
 	
 		    case LOGN:
 				out.print("LN (");
-				imprimeArvore(out, no.getEsq());
+				imprimeArvore(out, no.getEsquerda());
 				out.print(")");
 				break;
 	
 		    case GRUPO_SOMA:
 				out.print("GROUPSUM (");
-				imprimeArvore(out, no.getEsq());
+				imprimeArvore(out, no.getEsquerda());
 				out.print(", ");
-				imprimeArvore(out, no.getDir());
+				imprimeArvore(out, no.getDireita());
 				out.print(")");
 				break;
 	
 		    case GRUPO_MAX:
 				out.print("GROUPMAX (");
-				imprimeArvore(out, no.getEsq());
+				imprimeArvore(out, no.getEsquerda());
 				out.print(", ");
-				imprimeArvore(out, no.getDir());
+				imprimeArvore(out, no.getDireita());
 				out.print(")");
 				break;
 	
 		    case GRUPO_MIN:
 				out.print("GROUPMIN (");
-				imprimeArvore(out, no.getEsq());
+				imprimeArvore(out, no.getEsquerda());
 				out.print(", ");
-				imprimeArvore(out, no.getDir());
+				imprimeArvore(out, no.getDireita());
 				out.print(")");
 				break;
 	
 		    case COUNT:
 				out.print("COUNT (");
-				imprimeArvore(out, no.getEsq());
+				imprimeArvore(out, no.getEsquerda());
 				out.print(")");
 				break;
 	
 		    case PONTO:
-				imprimeArvore(out, no.getEsq());
+				imprimeArvore(out, no.getEsquerda());
 				out.print(".");
-				imprimeArvore(out, no.getDir());
+				imprimeArvore(out, no.getDireita());
 				break;
 	
 		    case COMMA:
-				imprimeArvore(out, no.getEsq());
+				imprimeArvore(out, no.getEsquerda());
 				out.print(", ");
-				imprimeArvore(out, no.getDir());
+				imprimeArvore(out, no.getDireita());
 				break;
 	
 		    case DT:

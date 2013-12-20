@@ -11,13 +11,15 @@ import br.unirio.sd.model.common.TipoOperacao;
 public class ParserExpressao
 {
 	private String sExpressao;
-	private Stack<Expressao> pilha;
+	private Stack<Expressao> pilhaExpressoes;
+	private Stack<Expressao> pilhaOperadores;
 	private Lexico lexico;
 	
 	public ParserExpressao(String sExpressao)
 	{
 		this.sExpressao = sExpressao;
-		this.pilha = new Stack<Expressao>();
+		this.pilhaExpressoes = new Stack<Expressao>();
+		this.pilhaOperadores = new Stack<Expressao>();
 		this.lexico = new Lexico(sExpressao);
 	}
 	
@@ -30,13 +32,15 @@ public class ParserExpressao
 			processaToken(token);
 			token = proximoToken(lexico);
 		}
-		
-		if (pilha.isEmpty())
+
+		processaPilha();
+	
+		if (pilhaExpressoes.isEmpty())
 			throw new ParserException("Invalid expression: " + sExpressao);
 		
-		Expressao expressao = pilha.pop();
+		Expressao expressao = pilhaExpressoes.pop();
 		
-		if (!pilha.isEmpty())
+		if (!pilhaExpressoes.isEmpty())
 			throw new ParserException("Invalid expression: " + sExpressao);
 		
 		return expressao;
@@ -59,55 +63,59 @@ public class ParserExpressao
 		switch(token.getTipo())
 		{
 			case CONST:
-				pilha.add(new Expressao(token.getValor()));
+				pilhaExpressoes.add(new Expressao(token.getValor()));
 				break;
 				
 			case ID:
-				pilha.add(new Expressao(token.getNome()));
+				pilhaExpressoes.add(new Expressao(token.getNome()));
 				break;
 				
 			case LT: 
-				processaOperador(TipoOperacao.MENOR);
+//				processaOperador(TipoOperacao.MENOR);
 				break;
 				
 			case LE: 
-				processaOperador(TipoOperacao.MENORIG);
+//				processaOperador(TipoOperacao.MENORIG);
 				break;
 				
 			case DIF: 
-				processaOperador(TipoOperacao.DIFERENTE);
+//				processaOperador(TipoOperacao.DIFERENTE);
 				break;
 				
 			case EQ:
-				processaOperador(TipoOperacao.IGUAL);
+//				processaOperador(TipoOperacao.IGUAL);
 				break;
 				
 			case GE: 
-				processaOperador(TipoOperacao.MAIORIG);
+//				processaOperador(TipoOperacao.MAIORIG);
 				break;
 				
 			case GT: 
-				processaOperador(TipoOperacao.MAIOR);
+//				processaOperador(TipoOperacao.MAIOR);
 				break;
 				
 			case ASTER:
-				processaOperador(TipoOperacao.PRODUTO);
+				adicionaOperador(TipoOperacao.PRODUTO);
+//				processaOperador(TipoOperacao.PRODUTO);
 				break;
 				
 			case PLUS:
-				processaOperador(TipoOperacao.SOMA);
+				adicionaOperador(TipoOperacao.SOMA);
+//				processaOperador(TipoOperacao.SOMA);
 				break;
 				
 			case MINUS:
-				processaOperadorSubtracao();
+				adicionaOperador(TipoOperacao.SUBTRACAO);
+//				processaOperadorSubtracao();
 				break;
 				
 			case DIV:
-				processaOperador(TipoOperacao.DIVISAO);
+				adicionaOperador(TipoOperacao.DIVISAO);
+//				processaOperador(TipoOperacao.DIVISAO);
 				break;
 				
 			case POWER:
-				processaOperador(TipoOperacao.POTENC);
+//				processaOperador(TipoOperacao.POTENC);
 				break;
 				
 			case OPEN_PARENTHESIS:
@@ -149,12 +157,6 @@ public class ParserExpressao
 			case LOOKUP:
 				break;
 			
-			case NORMAL:
-				break;
-			
-			case UNIFORM:
-				break;
-			
 			case ROUND:
 				break;
 			
@@ -162,12 +164,6 @@ public class ParserExpressao
 				break;
 			
 			case EXPN:
-				break;
-			
-			case SMOOTH:
-				break;
-			
-			case DELAY3:
 				break;
 			
 			case DT:
@@ -185,9 +181,6 @@ public class ParserExpressao
 			case GRUPO_MIN:
 				break;
 			
-			case BETAPERT:
-				break;
-			
 			case COUNT:
 				break;
 			
@@ -202,26 +195,47 @@ public class ParserExpressao
 		}
 	}
 
-	private void processaOperador(TipoOperacao operador) throws ParserException
+	private void adicionaOperador(TipoOperacao operador) throws ParserException 
 	{
-		Expressao esquerda = pilha.pop();
+		if (pilhaOperadores.isEmpty())
+		{
+			pilhaOperadores.add(new Expressao(operador, null, null));
+			return;
+		}
 		
-		if (esquerda == null)
-			throw new ParserException("Operand expected in the left-side of " + operador.name());
-
-		processaToken(proximoToken(lexico));
-
-		Expressao direita = pilha.pop();
+		Expressao topo = pilhaOperadores.peek();
 		
-		if (direita == null)
-			throw new ParserException("Operand expected in the right-side of " + operador.name());
+		if (topo.getTipo().getPrioridade() <= operador.getPrioridade())
+		{
+			pilhaOperadores.add(new Expressao(operador, null, null));
+			return;
+		}
 		
-		pilha.add(new Expressao(operador, esquerda, direita));
+		processaPilha();
+		pilhaOperadores.add(new Expressao(operador, null, null));
 	}
-
-	private void processaOperadorSubtracao()
+	
+	private void processaPilha() throws ParserException
 	{
-		// TODO Auto-generated method stub
-		
+		while (!pilhaOperadores.isEmpty())
+		{
+			Expressao operador = pilhaOperadores.pop();
+			
+			if (operador == null)
+				throw new ParserException("Operator expected");
+			
+			Expressao direita = pilhaExpressoes.pop();
+			
+			if (direita == null)
+				throw new ParserException("Operand expected in the right-side of " + operador.getTipo().name());
+	
+			if (operador == TipoOperacao.SUBTRACAO && pilhaExpressoes)
+			Expressao esquerda = pilhaExpressoes.pop();
+			
+			if (esquerda == null)
+				throw new ParserException("Operand expected in the left-side of " + operador.getTipo().name());
+			
+			pilhaExpressoes.add(new Expressao(operador.getTipo(), esquerda, direita));
+		}
 	}
 }

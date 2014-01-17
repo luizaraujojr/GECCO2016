@@ -11,6 +11,9 @@ public class MainProgram
 {
 	public static final void main(String[] args) throws Exception
 	{
+//		Project project = new ProjectReader().execute("data\\project.xml");
+//		System.out.println(project.getFunctionPoints());
+		
 		MainProgram programa = new MainProgram();
 		Metamodelo metamodelo = programa.criaMetamodelo();
 		new VerificaMetamodelo().executa(metamodelo);

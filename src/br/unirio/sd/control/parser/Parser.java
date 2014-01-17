@@ -19,8 +19,9 @@
 //#line 2 "expressao.y"
 package br.unirio.sd.control.parser;
 
-import br.unirio.sd.control.lex.Lexico;
-//#line 21 "Parser.java"
+import br.unirio.sd.model.common.Expressao;
+import br.unirio.sd.model.common.TipoOperacao;
+//#line 22 "Parser.java"
 
 
 
@@ -445,7 +446,7 @@ final static String yyrule[] = {
 "objset : SELECT L_PARENT objset COMMA expr R_PARENT",
 };
 
-//#line 243 "expressao.y"
+//#line 241 "expressao.y"
 
 private Lexico lexico;
 
@@ -454,81 +455,39 @@ public Parser(String s)
 	this.lexico = new Lexico(s);
 }
 
+public Expressao execute()
+{
+	int result = yyparse();
+	return (result != 0) ? null : yyval.obj;
+}
+
 private int yylex()
 {
+	Token token = lexico.proximo();
+	
+	if (token == null)
+		return 0;
+	
+	switch(token.getTipo())
+	{
+		case CONST:
+			yylval = new ParserVal(token.getValor());
+			return CONST;
+			
+		case ID:
+			yylval = new ParserVal(token.getNome());
+			return ID;
+			
+		default:
+			return token.getTipo();
+	}
 }
 
-private void yyerror(String message) throws ParserException
+private void yyerror(String message)
 {
-	throw new ParserException(message);
+	ErrorManager.getInstance().add(message);
 }
-
-%{
-class ParserVal
-{
-	/**
-	 * integer value of this 'union'
-	 */
-	public int ival;
-	
-	/**
-	 * double value of this 'union'
-	 */
-	public double dval;
-	
-	/**
-	 * string value of this 'union'
-	 */
-	public String sval;
-	
-	/**
-	 * object value of this 'union'
-	 */
-	public Object obj;
-	
-	//#############################################
-	//## C O N S T R U C T O R S
-	//#############################################
-	/**
-	 * Initialize me without a value
-	 */
-	public ParserVal()
-	{
-	}
-	/**
-	 * Initialize me as an int
-	 */
-	public ParserVal(int val)
-	{
-	  ival=val;
-	}
-	
-	/**
-	 * Initialize me as a double
-	 */
-	public ParserVal(double val)
-	{
-	  dval=val;
-	}
-	
-	/**
-	 * Initialize me as a string
-	 */
-	public ParserVal(String val)
-	{
-	  sval=val;
-	}
-	
-	/**
-	 * Initialize me as an Object
-	 */
-	public ParserVal(Object val)
-	{
-	  obj=val;
-	}
-}
-%}
-//#line 460 "Parser.java"
+//#line 419 "Parser.java"
 //###############################################################
 // method: yylexdebug : check lexer state
 //###############################################################
@@ -683,256 +642,253 @@ boolean doaction;
       {
 //########## USER-SUPPLIED ACTIONS ##########
 case 1:
-//#line 66 "expressao.y"
+//#line 67 "expressao.y"
 {
-			yyval.expressao = constroi_no_constante (val_peek(0).valor);
+			yyval = new ParserVal(new Expressao(val_peek(0).dval));
 		}
 break;
 case 2:
-//#line 70 "expressao.y"
+//#line 71 "expressao.y"
 {
-			yyval.expressao = constroi_no_variavel (val_peek(0).id);
+			yyval = new ParserVal(new Expressao(val_peek(0).sval));
 		}
 break;
 case 3:
-//#line 74 "expressao.y"
+//#line 75 "expressao.y"
 {
-			yyval.expressao = constroi_no (OP_SOMA, val_peek(2).expressao, val_peek(0).expressao);
+			yyval = new ParserVal(new Expressao(TipoOperacao.SOMA, val_peek(2).obj, val_peek(0).obj));
 		}
 break;
 case 4:
-//#line 78 "expressao.y"
+//#line 79 "expressao.y"
 {
-			yyval.expressao = constroi_no (OP_SUBTRACAO, val_peek(2).expressao, val_peek(0).expressao);
+			yyval = new ParserVal(new Expressao(TipoOperacao.SUBTRACAO, val_peek(2).obj, val_peek(0).obj));
 		}
 break;
 case 5:
-//#line 82 "expressao.y"
+//#line 83 "expressao.y"
 {
-			yyval.expressao = constroi_no (OP_PRODUTO, val_peek(2).expressao, val_peek(0).expressao);
+			yyval = new ParserVal(new Expressao(TipoOperacao.PRODUTO, val_peek(2).obj, val_peek(0).obj));
 		}
 break;
 case 6:
-//#line 86 "expressao.y"
+//#line 87 "expressao.y"
 {
-			yyval.expressao = constroi_no (OP_DIVISAO, val_peek(2).expressao, val_peek(0).expressao);
+			yyval = new ParserVal(new Expressao(TipoOperacao.DIVISAO, val_peek(2).obj, val_peek(0).obj));
 		}
 break;
 case 7:
-//#line 90 "expressao.y"
+//#line 91 "expressao.y"
 {
-			yyval.expressao = constroi_no (OP_UMINUS, val_peek(0).expressao, NULL);
+			yyval = new ParserVal(new Expressao(TipoOperacao.UMINUS, val_peek(0).obj, null));
 		}
 break;
 case 8:
-//#line 94 "expressao.y"
+//#line 95 "expressao.y"
 {
-			yyval.expressao = constroi_no (OP_PARENTESES, val_peek(1).expressao, NULL);
+			yyval = new ParserVal(new Expressao(TipoOperacao.PARENTESES, val_peek(1).obj, null));
 		}
 break;
 case 9:
-//#line 98 "expressao.y"
+//#line 99 "expressao.y"
 {
-			yyval.expressao = constroi_no (OP_IGUAL, val_peek(2).expressao, val_peek(0).expressao);
+			yyval = new ParserVal(new Expressao(TipoOperacao.IGUAL, val_peek(2).obj, val_peek(0).obj));
 		}
 break;
 case 10:
-//#line 102 "expressao.y"
+//#line 103 "expressao.y"
 {
-			yyval.expressao = constroi_no (OP_DIFERENTE, val_peek(2).expressao, val_peek(0).expressao);
+			yyval = new ParserVal(new Expressao(TipoOperacao.DIFERENTE, val_peek(2).obj, val_peek(0).obj));
 		}
 break;
 case 11:
-//#line 106 "expressao.y"
+//#line 107 "expressao.y"
 {
-			yyval.expressao = constroi_no (OP_MAIOR, val_peek(2).expressao, val_peek(0).expressao);
+			yyval = new ParserVal(new Expressao(TipoOperacao.MAIOR, val_peek(2).obj, val_peek(0).obj));
 		}
 break;
 case 12:
-//#line 110 "expressao.y"
+//#line 111 "expressao.y"
 {
-			yyval.expressao = constroi_no (OP_MAIORIG, val_peek(2).expressao, val_peek(0).expressao);
+			yyval = new ParserVal(new Expressao(TipoOperacao.MAIORIG, val_peek(2).obj, val_peek(0).obj));
 		}
 break;
 case 13:
-//#line 114 "expressao.y"
+//#line 115 "expressao.y"
 {
-			yyval.expressao = constroi_no (OP_MENOR, val_peek(2).expressao, val_peek(0).expressao);
+			yyval = new ParserVal(new Expressao(TipoOperacao.MENOR, val_peek(2).obj, val_peek(0).obj));
 		}
 break;
 case 14:
-//#line 118 "expressao.y"
+//#line 119 "expressao.y"
 {
-			yyval.expressao = constroi_no (OP_MENORIG, val_peek(2).expressao, val_peek(0).expressao);
+			yyval = new ParserVal(new Expressao(TipoOperacao.MENORIG, val_peek(2).obj, val_peek(0).obj));
 		}
 break;
 case 15:
-//#line 122 "expressao.y"
+//#line 123 "expressao.y"
 {
-			yyval.expressao = constroi_no (OP_NOT, val_peek(1).expressao, NULL);
+			yyval = new ParserVal(new Expressao(TipoOperacao.NOT, val_peek(1).obj, null));
 		}
 break;
 case 16:
-//#line 126 "expressao.y"
+//#line 127 "expressao.y"
 {
-			yyval.expressao = constroi_no (OP_AND, val_peek(1).expressao, NULL);
+			yyval = new ParserVal(new Expressao(TipoOperacao.AND, val_peek(1).obj, null));
 		}
 break;
 case 17:
-//#line 130 "expressao.y"
+//#line 131 "expressao.y"
 {
-			yyval.expressao = constroi_no (OP_OR, val_peek(1).expressao, NULL);
+			yyval = new ParserVal(new Expressao(TipoOperacao.OR, val_peek(1).obj, null));
 		}
 break;
 case 18:
-//#line 134 "expressao.y"
+//#line 135 "expressao.y"
 {
-			yyval.expressao = constroi_no (OP_COMMA, val_peek(3).expressao, val_peek(1).expressao);
-			yyval.expressao = constroi_no (OP_COMMA, val_peek(5).expressao, yyval.expressao);
-			yyval.expressao = constroi_no (OP_IF, yyval.expressao, NULL);
+			yyval = new ParserVal(new Expressao(TipoOperacao.COMMA, val_peek(3).obj, val_peek(1).obj));
+			yyval = new ParserVal(new Expressao(TipoOperacao.IF, val_peek(5).obj, yyval.obj));
 		}
 break;
 case 19:
 //#line 140 "expressao.y"
 {
-			yyval.expressao = constroi_no (OP_MAX, val_peek(1).expressao, NULL);
+			yyval = new ParserVal(new Expressao(TipoOperacao.MAX, val_peek(1).obj, null));
 		}
 break;
 case 20:
 //#line 144 "expressao.y"
 {
-			yyval.expressao = constroi_no (OP_MIN, val_peek(1).expressao, NULL);
+			yyval = new ParserVal(new Expressao(TipoOperacao.MIN, val_peek(1).obj, null));
 		}
 break;
 case 21:
 //#line 148 "expressao.y"
 {
-			yyval.expressao = constroi_no (OP_ROUND, val_peek(1).expressao, NULL);
+			yyval = new ParserVal(new Expressao(TipoOperacao.ROUND, val_peek(1).obj, null));
 		}
 break;
 case 22:
 //#line 152 "expressao.y"
 {
-			EXPRESSAO *e;
-			e = constroi_no_variavel (val_peek(7).id);
-			yyval.expressao = constroi_no (OP_COMMA, val_peek(3).expressao, val_peek(1).expressao);
-			yyval.expressao = constroi_no (OP_COMMA, val_peek(5).expressao, yyval.expressao);
-			yyval.expressao = constroi_no (OP_COMMA, e, yyval.expressao);
-			yyval.expressao = constroi_no (OP_LOOKUP, yyval.expressao, NULL);
+			Expressao e = new Expressao(val_peek(7).sval);
+			yyval = new ParserVal(new Expressao(TipoOperacao.COMMA, val_peek(3).obj, val_peek(1).obj));
+			yyval = new ParserVal(new Expressao(TipoOperacao.COMMA, val_peek(5).obj, yyval.obj));
+			yyval = new ParserVal(new Expressao(TipoOperacao.COMMA, e, yyval.obj));
+			yyval = new ParserVal(new Expressao(TipoOperacao.LOOKUP, yyval.obj, null));
 		}
 break;
 case 23:
-//#line 161 "expressao.y"
+//#line 160 "expressao.y"
 {
-			yyval.expressao = constroi_no (OP_POTENC, val_peek(2).expressao, val_peek(0).expressao);
+			yyval = new ParserVal(new Expressao(TipoOperacao.POTENC, val_peek(2).obj, val_peek(0).obj));
 		}
 break;
 case 24:
-//#line 165 "expressao.y"
+//#line 164 "expressao.y"
 {
-			yyval.expressao = constroi_no (OP_LOGN, val_peek(1).expressao, NULL);
+			yyval = new ParserVal(new Expressao(TipoOperacao.LOGN, val_peek(1).obj, null));
 		}
 break;
 case 25:
-//#line 169 "expressao.y"
+//#line 168 "expressao.y"
 {
-			yyval.expressao = constroi_no (OP_EXPN, val_peek(1).expressao, NULL);
+			yyval = new ParserVal(new Expressao(TipoOperacao.EXPN, val_peek(1).obj, null));
 		}
 break;
 case 26:
-//#line 173 "expressao.y"
+//#line 172 "expressao.y"
 {
-			yyval.expressao = constroi_no (OP_DT, NULL, NULL);
+			yyval = new ParserVal(new Expressao(TipoOperacao.DT, null, null));
 		}
 break;
 case 27:
-//#line 177 "expressao.y"
+//#line 176 "expressao.y"
 {
-			yyval.expressao = constroi_no (OP_TIME, NULL, NULL);
+			yyval = new ParserVal(new Expressao(TipoOperacao.TIME, null, null));
 		}
 break;
 case 28:
-//#line 181 "expressao.y"
+//#line 180 "expressao.y"
 {
-			yyval.expressao = constroi_no (OP_COUNT, val_peek(1).expressao, NULL);
+			yyval = new ParserVal(new Expressao(TipoOperacao.COUNT, val_peek(1).obj, null));
 		}
 break;
 case 29:
-//#line 185 "expressao.y"
+//#line 184 "expressao.y"
 {
-			EXPRESSAO *e1 = constroi_no_variavel (val_peek(1).id);
-			yyval.expressao = constroi_no (OP_GRUPO_SOMA, val_peek(3).expressao, e1);
+			Expressao e1 = new Expressao(val_peek(1).sval);
+			yyval = new ParserVal(new Expressao(TipoOperacao.GRUPO_SOMA, val_peek(3).obj, e1));
 		}
 break;
 case 30:
-//#line 190 "expressao.y"
+//#line 189 "expressao.y"
 {
-			EXPRESSAO *e1 = constroi_no_variavel (val_peek(1).id);
-			yyval.expressao = constroi_no (OP_GRUPO_MAX, val_peek(3).expressao, e1);
+			Expressao e1 = new Expressao(val_peek(1).sval);
+			yyval = new ParserVal(new Expressao(TipoOperacao.GRUPO_MAX, val_peek(3).obj, e1));
 		}
 break;
 case 31:
-//#line 195 "expressao.y"
+//#line 194 "expressao.y"
 {
-			EXPRESSAO *e1;
-			e1 = constroi_no_variavel (val_peek(1).id);
-			yyval.expressao = constroi_no (OP_GRUPO_MIN, val_peek(3).expressao, e1);
+			Expressao e1 = new Expressao(val_peek(1).sval);
+			yyval = new ParserVal(new Expressao(TipoOperacao.GRUPO_MIN, val_peek(3).obj, e1));
 		}
 break;
 case 32:
-//#line 201 "expressao.y"
+//#line 199 "expressao.y"
 {
-			EXPRESSAO *e1 = constroi_no_variavel (val_peek(2).id);
-			EXPRESSAO *e2 = constroi_no_variavel (val_peek(0).id);
-			yyval.expressao = constroi_no (OP_PONTO, e1, e2);
+			Expressao e1 = new Expressao(val_peek(2).sval);
+			Expressao e2 = new Expressao(val_peek(0).sval);
+			yyval = new ParserVal(new Expressao(TipoOperacao.PONTO, e1, e2));
 		}
 break;
 case 33:
-//#line 209 "expressao.y"
+//#line 207 "expressao.y"
 {
-			yyval.expressao = constroi_no (OP_COMMA, val_peek(2).expressao, val_peek(0).expressao);
+			yyval = new ParserVal(new Expressao(TipoOperacao.COMMA, val_peek(2).obj, val_peek(0).obj));
 		}
 break;
 case 34:
-//#line 213 "expressao.y"
+//#line 211 "expressao.y"
 {
-			yyval.expressao = val_peek(0).expressao;
+			yyval = new ParserVal(val_peek(0).obj);
 		}
 break;
 case 35:
-//#line 219 "expressao.y"
+//#line 217 "expressao.y"
 {
-			yyval.expressao = constroi_no_variavel (val_peek(0).id);
+			yyval = new ParserVal(new Expressao(val_peek(0).sval));
 		}
 break;
 case 36:
-//#line 223 "expressao.y"
+//#line 221 "expressao.y"
 {
-			EXPRESSAO *e1 = constroi_no_variavel (val_peek(0).id);
-			yyval.expressao = constroi_no (OP_PONTO, val_peek(2).expressao, e1);
+			Expressao e1 = new Expressao(val_peek(0).sval);
+			yyval = new ParserVal(new Expressao(TipoOperacao.PONTO, val_peek(2).obj, e1));
 		}
 break;
 case 37:
-//#line 228 "expressao.y"
+//#line 226 "expressao.y"
 {
-			EXPRESSAO *e1 = constroi_no_variavel (val_peek(1).id);
-			yyval.expressao = constroi_no (OP_CLSSET, e1, NULL);
+			Expressao e1 = new Expressao(val_peek(1).sval);
+			yyval = new ParserVal(new Expressao(TipoOperacao.CLSSET, e1, null));
 		}
 break;
 case 38:
-//#line 233 "expressao.y"
+//#line 231 "expressao.y"
 {
-			EXPRESSAO *e1 = constroi_no_variavel (val_peek(1).id);
-			yyval.expressao = constroi_no (OP_BOUND, val_peek(3).expressao, e1);
+			Expressao e1 = new Expressao(val_peek(1).sval);
+			yyval = new ParserVal(new Expressao(TipoOperacao.BOUND, val_peek(3).obj, e1));
 		}
 break;
 case 39:
-//#line 238 "expressao.y"
+//#line 236 "expressao.y"
 {
-			yyval.expressao = constroi_no (OP_SELECT, val_peek(3).expressao, val_peek(1).expressao);
+			yyval = new ParserVal(new Expressao(TipoOperacao.SELECT, val_peek(3).obj, val_peek(1).obj));
 		}
 break;
-//#line 859 "Parser.java"
+//#line 815 "Parser.java"
 //########## END OF USER-SUPPLIED ACTIONS ##########
     }//switch
     //#### Now let's reduce... ####

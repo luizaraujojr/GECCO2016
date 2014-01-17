@@ -1,4 +1,6 @@
-package br.unirio.sd.control.lex;
+package br.unirio.sd.control.parser;
+
+import java.util.HashMap;
 
 /**
  * Classe que representa um processador léxico para parser de expressões
@@ -8,6 +10,7 @@ package br.unirio.sd.control.lex;
 public class Lexico
 {
 	private String conteudo;
+	private HashMap<String, Short> palavrasReservadas;
 
 	/**
 	 * Inicializa o processador léxico
@@ -15,6 +18,25 @@ public class Lexico
 	public Lexico(String s)
 	{
 		this.conteudo = s;
+		this.palavrasReservadas = new HashMap<String, Short>();
+		this.palavrasReservadas.put("max", Parser.MAX);
+		this.palavrasReservadas.put("min", Parser.MIN);
+		this.palavrasReservadas.put("if", Parser.IF);
+		this.palavrasReservadas.put("and", Parser.AND);
+		this.palavrasReservadas.put("or", Parser.OR);
+		this.palavrasReservadas.put("not", Parser.NOT);
+		this.palavrasReservadas.put("lookup", Parser.LOOKUP);
+		this.palavrasReservadas.put("round", Parser.ROUND);
+		this.palavrasReservadas.put("ln", Parser.LN);
+		this.palavrasReservadas.put("exp", Parser.EXP);
+		this.palavrasReservadas.put("dt", Parser.DT);
+		this.palavrasReservadas.put("time", Parser.TIME);
+		this.palavrasReservadas.put("groupsum", Parser.GROUPSUM);
+		this.palavrasReservadas.put("groupmax", Parser.GROUPMAX);
+		this.palavrasReservadas.put("groupmin", Parser.GROUPMIN);
+		this.palavrasReservadas.put("count", Parser.COUNT);
+		this.palavrasReservadas.put("bound", Parser.BOUND);
+		this.palavrasReservadas.put("select", Parser.SELECT);
 	}
 	
 	/**
@@ -69,9 +91,9 @@ public class Lexico
 			volta(c);
 
 		// Faz busca na tabela de primitivas
-		for (TipoToken tipo : TipoToken.values())
-			if (tipo.getNome() != null && tipo.getNome().equalsIgnoreCase(s))
-				return new Token(tipo);
+		for (String palavraReservada : palavrasReservadas.keySet())
+			if (palavraReservada.compareToIgnoreCase(s) == 0)
+				return new Token(palavrasReservadas.get(palavraReservada));
 		
 		return new Token(s);
 	}
@@ -79,7 +101,7 @@ public class Lexico
 	/**
 	 * Trata numeros em ponto flutuante			
 	 */
-	private Token processaNumero(char c) throws LexicoException
+	private Token processaNumero(char c)
 	{
 		int npontos = 0;
 		String sValor = "" + c;
@@ -88,7 +110,10 @@ public class Lexico
 		{
 			if (c == '.')
 				if (++npontos > 1)
-					throw new LexicoException("Invalid floating point number");
+				{
+					ErrorManager.getInstance().add("Invalid floating point number");
+					return null;
+				}
 	
 			sValor += c;
 		}	
@@ -109,22 +134,22 @@ public class Lexico
 		switch (c)
 		{
 		    case '>' :
-		    	return new Token(TipoToken.DIF);
+		    	return new Token(Parser.DIF);
 	
 		    case '=' :
-		    	return new Token(TipoToken.LE);
+		    	return new Token(Parser.LE);
 		}
 
 		if (c != 0)
 			volta (c);
 		
-		return new Token(TipoToken.LT);
+		return new Token(Parser.LT);
 	}
 	
 	/**
 	 * Processa o caractere '.'
 	 */
-	private Token processaPonto() throws LexicoException
+	private Token processaPonto()
 	{
 		char c = leCaractere();
 
@@ -134,7 +159,7 @@ public class Lexico
 		if (c >= '0' && c <= '9')
 			return processaNumero('.');
 	
-		return new Token(TipoToken.POINT);
+		return new Token(Parser.POINT);
 	}
 	
 	/**
@@ -145,18 +170,18 @@ public class Lexico
 		char c = leCaractere();
 	
 		if (c == '=')
-		    return new Token(TipoToken.GE);
+		    return new Token(Parser.GE);
 	
 		if (c != 0)
 			volta (c);
 		
-		return new Token(TipoToken.GT);
+		return new Token(Parser.GT);
 	}
 
 	/**
 	 * Pega a próxima operação na expressão
 	 */
-	public Token proximo() throws LexicoException
+	public Token proximo()
 	{
 		char c = pulaNulos();
 
@@ -172,40 +197,40 @@ public class Lexico
 				return null;
 				
 		    case '[':
-		    	return new Token(TipoToken.OPEN_INDEX);
+		    	return new Token(Parser.L_COLCH);
 
 		    case ']':
-		    	return new Token(TipoToken.CLOSE_INDEX);
+		    	return new Token(Parser.R_COLCH);
 
 		    case '(':
-		    	return new Token(TipoToken.OPEN_PARENTHESIS);
+		    	return new Token(Parser.L_PARENT);
 
 		    case ')':
-		    	return new Token(TipoToken.CLOSE_PARENTHESIS);
+		    	return new Token(Parser.R_PARENT);
 
 		    case '*':
-		    	return new Token(TipoToken.ASTER);
+		    	return new Token(Parser.ASTER);
 
 		    case '+':
-		    	return new Token(TipoToken.PLUS);
+		    	return new Token(Parser.PLUS);
 
 		    case '-':
-		    	return new Token(TipoToken.MINUS);
+		    	return new Token(Parser.MINUS);
 
 		    case '/':
-		    	return new Token(TipoToken.DIV);
+		    	return new Token(Parser.DIV);
 
 		    case '^':
-		    	return new Token(TipoToken.POWER);
+		    	return new Token(Parser.POTENC);
 
 		    case ',':
-		    	return new Token(TipoToken.COMMA);
+		    	return new Token(Parser.COMMA);
 
 		    case '.':
 		    	return processaPonto();
 
 		    case '=':
-		    	return new Token(TipoToken.EQ);
+		    	return new Token(Parser.EQUAL);
 
 		    case '<':
 		    	return processaMenor();
@@ -217,7 +242,8 @@ public class Lexico
 		    	return processaLetra('_');
 
 		    default :
-		    	throw new LexicoException("Invalic token: " + c);
+		    	ErrorManager.getInstance().add("Invalic token: " + c);
+		    	return null;
 		}
 	}
 }

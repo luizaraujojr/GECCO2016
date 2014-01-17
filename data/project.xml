@@ -1,0 +1,4063 @@
+<project>
+	<datafunction name="DF0000" type="ILF">
+		<ret name="RET0000">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+			<det name="DET0008"/>
+			<det name="DET0009"/>
+			<det name="DET0010"/>
+			<det name="DET0011"/>
+			<det name="DET0012"/>
+			<det name="DET0013"/>
+			<det name="DET0014"/>
+			<det name="DET0015"/>
+			<det name="DET0016"/>
+			<det name="DET0017"/>
+			<det name="DET0018"/>
+			<det name="DET0019"/>
+			<det name="DET0020"/>
+			<det name="DET0021"/>
+			<det name="DET0022"/>
+			<det name="DET0023"/>
+			<det name="DET0024"/>
+			<det name="DET0025"/>
+			<det name="DET0026"/>
+			<det name="DET0027"/>
+			<det name="DET0028"/>
+			<det name="DET0029"/>
+			<det name="DET0030"/>
+			<det name="DET0031"/>
+			<det name="DET0032"/>
+			<det name="DET0033"/>
+			<det name="DET0034" count="n" />
+		</ret>
+		<ret name="RET0001">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006" count="n" />
+			<det name="DET0007" count="n" />
+		</ret>
+		<ret name="RET0002">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003" count="n" />
+			<det name="DET0004" count="n" />
+		</ret>
+		<ret name="RET0003">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003" count="n" />
+			<det name="DET0004" count="n" />
+		</ret>
+	</datafunction>
+	<datafunction name="DF0001" type="ILF">
+		<ret name="RET0000">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0007" count="n" />
+		</ret>
+	</datafunction>
+	<datafunction name="DF0002" type="ILF">
+		<ret name="RET0000">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+			<det name="DET0008"/>
+			<det name="DET0009"/>
+			<det name="DET0010"/>
+			<det name="DET0011"/>
+			<det name="DET0012"/>
+			<det name="DET0013"/>
+			<det name="DET0014"/>
+			<det name="DET0015"/>
+			<det name="DET0016"/>
+			<det name="DET0017"/>
+			<det name="DET0018"/>
+			<det name="DET0019"/>
+			<det name="DET0020"/>
+			<det name="DET0021"/>
+			<det name="DET0022"/>
+			<det name="DET0023"/>
+			<det name="DET0024"/>
+			<det name="DET0025"/>
+			<det name="DET0026"/>
+			<det name="DET0027"/>
+			<det name="DET0028"/>
+			<det name="DET0029"/>
+			<det name="DET0030"/>
+			<det name="DET0031"/>
+			<det name="DET0032"/>
+			<det name="DET0033"/>
+			<det name="DET0034"/>
+			<det name="DET0035"/>
+			<det name="DET0036"/>
+			<det name="DET0037"/>
+			<det name="DET0038"/>
+			<det name="DET0039"/>
+			<det name="DET0040"/>
+			<det name="DET0041"/>
+			<det name="DET0042"/>
+			<det name="DET0043"/>
+			<det name="DET0044"/>
+			<det name="DET0045"/>
+			<det name="DET0046"/>
+			<det name="DET0047"/>
+			<det name="DET0048"/>
+			<det name="DET0049"/>
+			<det name="DET0050"/>
+			<det name="DET0051"/>
+			<det name="DET0052"/>
+			<det name="DET0053"/>
+			<det name="DET0054"/>
+			<det name="DET0055"/>
+			<det name="DET0056"/>
+			<det name="DET0057"/>
+			<det name="DET0058"/>
+			<det name="DET0059"/>
+			<det name="DET0060"/>
+			<det name="DET0061"/>
+			<det name="DET0062" count="n" />
+		</ret>
+		<ret name="RET0001">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+			<det name="DET0008"/>
+			<det name="DET0009"/>
+			<det name="DET0010"/>
+			<det name="DET0011"/>
+			<det name="DET0012"/>
+			<det name="DET0013"/>
+			<det name="DET0014"/>
+			<det name="DET0015" count="n" />
+			<det name="DET0016" count="n" />
+		</ret>
+		<ret name="RET0002">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004" count="n" />
+			<det name="DET0005" count="n" />
+		</ret>
+		<ret name="RET0003">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006" count="n" />
+		</ret>
+		<ret name="RET0004">
+			<det name="DET0001"/>
+			<det name="DET0002" count="n" />
+			<det name="DET0003" count="n" />
+		</ret>
+	</datafunction>
+	<datafunction name="DF0003" type="ILF">
+		<ret name="RET0000">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0007" count="n" />
+		</ret>
+	</datafunction>
+	<datafunction name="DF0004" type="ILF">
+		<ret name="RET0000">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004" count="n" />
+		</ret>
+		<ret name="RET0001">
+			<det name="DET0001"/>
+		</ret>
+	</datafunction>
+	<datafunction name="DF0005" type="ILF">
+		<ret name="RET0000">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+			<det name="DET0008" count="n" />
+		</ret>
+	</datafunction>
+	<datafunction name="DF0006" type="ILF">
+		<ret name="RET0000">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+			<det name="DET0008" count="n" />
+		</ret>
+	</datafunction>
+	<datafunction name="DF0007" type="ILF">
+		<ret name="RET0000">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+			<det name="DET0008" count="n" />
+		</ret>
+	</datafunction>
+	<datafunction name="DF0008" type="ILF">
+		<ret name="RET0000">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+			<det name="DET0008"/>
+			<det name="DET0009"/>
+			<det name="DET0010" count="n" />
+		</ret>
+	</datafunction>
+	<datafunction name="DF0009" type="ILF">
+		<ret name="RET0000">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006" count="n" />
+		</ret>
+	</datafunction>
+	<datafunction name="DF0010" type="ILF">
+		<ret name="RET0000">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0007" count="n" />
+		</ret>
+	</datafunction>
+	<datafunction name="DF0011" type="ILF">
+		<ret name="RET0000">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+			<det name="DET0008" count="n" />
+		</ret>
+		<ret name="RET0001">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+			<det name="DET0008"/>
+			<det name="DET0009" count="n" />
+			<det name="DET0010" count="n" />
+		</ret>
+	</datafunction>
+	<datafunction name="DF0012" type="ILF">
+		<ret name="RET0000">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0007" count="n" />
+		</ret>
+	</datafunction>
+	<datafunction name="DF0013" type="ILF">
+		<ret name="RET0000">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+			<det name="DET0008"/>
+			<det name="DET0009" count="n" />
+		</ret>
+	</datafunction>
+	<datafunction name="DF0014" type="ILF">
+		<ret name="RET0000">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+			<det name="DET0008"/>
+			<det name="DET0009"/>
+			<det name="DET0010"/>
+			<det name="DET0011"/>
+			<det name="DET0012"/>
+			<det name="DET0013"/>
+			<det name="DET0014"/>
+			<det name="DET0015"/>
+			<det name="DET0016"/>
+			<det name="DET0017"/>
+			<det name="DET0018"/>
+			<det name="DET0019" count="n" />
+		</ret>
+	</datafunction>
+	<datafunction name="DF0015" type="ILF">
+		<ret name="RET0000">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+			<det name="DET0008"/>
+			<det name="DET0009"/>
+			<det name="DET0010"/>
+			<det name="DET0011"/>
+			<det name="DET0012" count="n" />
+		</ret>
+	</datafunction>
+	<datafunction name="DF0016" type="ILF">
+		<ret name="RET0000">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+			<det name="DET0008"/>
+			<det name="DET0009"/>
+			<det name="DET0010"/>
+			<det name="DET0011" count="n" />
+		</ret>
+	</datafunction>
+	<datafunction name="DF0017" type="ILF">
+		<ret name="RET0000">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+			<det name="DET0008"/>
+			<det name="DET0009" count="n" />
+		</ret>
+	</datafunction>
+	<datafunction name="DF0018" type="ILF">
+		<ret name="RET0000">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+			<det name="DET0008"/>
+			<det name="DET0009"/>
+			<det name="DET0010" count="n" />
+		</ret>
+	</datafunction>
+	<datafunction name="DF0019" type="ILF">
+		<ret name="RET0000">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+			<det name="DET0008"/>
+			<det name="DET0009"/>
+			<det name="DET0010"/>
+			<det name="DET0011"/>
+			<det name="DET0012"/>
+			<det name="DET0013"/>
+			<det name="DET0014"/>
+			<det name="DET0015"/>
+			<det name="DET0016"/>
+			<det name="DET0017"/>
+			<det name="DET0018"/>
+			<det name="DET0019"/>
+			<det name="DET0020"/>
+			<det name="DET0021"/>
+			<det name="DET0022"/>
+			<det name="DET0023"/>
+			<det name="DET0024" count="n" />
+		</ret>
+	</datafunction>
+	<datafunction name="DF0020" type="ILF">
+		<ret name="RET0000">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006" count="n" />
+		</ret>
+	</datafunction>
+	<datafunction name="DF0021" type="ILF">
+		<ret name="RET0000">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004" count="n" />
+		</ret>
+	</datafunction>
+	<datafunction name="DF0022" type="ILF">
+		<ret name="RET0000">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006" count="n" />
+		</ret>
+	</datafunction>
+	<datafunction name="DF0023" type="ILF">
+		<ret name="RET0000">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+			<det name="DET0008"/>
+			<det name="DET0009"/>
+			<det name="DET0010"/>
+			<det name="DET0011"/>
+			<det name="DET0012"/>
+			<det name="DET0013"/>
+			<det name="DET0014" count="n" />
+		</ret>
+	</datafunction>
+	<datafunction name="DF0024" type="ILF">
+		<ret name="RET0000">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+			<det name="DET0008"/>
+			<det name="DET0009"/>
+			<det name="DET0010"/>
+			<det name="DET0011" count="n" />
+		</ret>
+	</datafunction>
+	<datafunction name="DF0025" type="ILF">
+		<ret name="RET0000">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+			<det name="DET0008"/>
+			<det name="DET0009"/>
+			<det name="DET0010"/>
+			<det name="DET0011" count="n" />
+		</ret>
+	</datafunction>
+	<datafunction name="DF0026" type="ILF">
+		<ret name="RET0000">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+			<det name="DET0008" count="n" />
+		</ret>
+	</datafunction>
+	<datafunction name="DF0027" type="ILF">
+		<ret name="RET0000">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005" count="n" />
+		</ret>
+	</datafunction>
+	<datafunction name="DF0028" type="ILF">
+		<ret name="RET0000">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006" count="n" />
+		</ret>
+	</datafunction>
+	<datafunction name="DF0029" type="ILF">
+		<ret name="RET0000">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+			<det name="DET0008" count="n" />
+		</ret>
+	</datafunction>
+	<datafunction name="DF0030" type="ILF">
+		<ret name="RET0000">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006" count="n" />
+		</ret>
+	</datafunction>
+	<datafunction name="DF0031" type="ILF">
+		<ret name="RET0000">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+			<det name="DET0008"/>
+			<det name="DET0009" count="n" />
+		</ret>
+	</datafunction>
+	<datafunction name="DF0032" type="ILF">
+		<ret name="RET0000">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006" count="n" />
+		</ret>
+	</datafunction>
+	<datafunction name="DF0033" type="ILF">
+		<ret name="RET0000">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+			<det name="DET0008" count="n" />
+		</ret>
+	</datafunction>
+	<datafunction name="DF0034" type="ILF">
+		<ret name="RET0000">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006" count="n" />
+		</ret>
+	</datafunction>
+	<datafunction name="DF0035" type="ILF">
+		<ret name="RET0000">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+			<det name="DET0008" count="n" />
+		</ret>
+	</datafunction>
+	<datafunction name="DF0036" type="ILF">
+		<ret name="RET0000">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005" count="n" />
+		</ret>
+	</datafunction>
+	<datafunction name="DF0037" type="ILF">
+		<ret name="RET0000">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005" count="n" />
+		</ret>
+	</datafunction>
+	<datafunction name="DF0038" type="ILF">
+		<ret name="RET0000">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0007" count="n" />
+		</ret>
+	</datafunction>
+	<datafunction name="DF0039" type="ILF">
+		<ret name="RET0000">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004" count="n" />
+		</ret>
+	</datafunction>
+	<transactionfunction name="TF0000" type="EI">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0001" type="EI">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0000"/>
+			<det name="DET0023"/>
+			<det name="DET0024"/>
+			<det name="DET0027"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0020"/>
+			<det name="DET0025"/>
+			<det name="DET0015"/>
+			<det name="DET0019"/>
+			<det name="DET0021"/>
+			<det name="DET0022"/>
+			<det name="DET0014"/>
+			<det name="DET0026"/>
+		</ftr>
+		<ftr name="DF0003">
+			<det name="DET0001"/>
+			<det name="DET0000"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0002" type="EO">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0015"/>
+			<det name="DET0004"/>
+			<det name="DET0011"/>
+			<det name="DET0019"/>
+			<det name="DET0017"/>
+			<det name="DET0024"/>
+			<det name="DET0039"/>
+			<det name="DET0035"/>
+			<det name="DET0041"/>
+			<det name="DET0000"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0003" type="EO" extraDET="6">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+		</ftr>
+		<ftr name="DF0002">
+			<det name="DET0011"/>
+			<det name="DET0019"/>
+			<det name="DET0017"/>
+			<det name="DET0024"/>
+			<det name="DET0039"/>
+			<det name="DET0035"/>
+			<det name="DET0041"/>
+			<det name="DET0004"/>
+			<det name="DET0015"/>
+			<det name="DET0000"/>
+		</ftr>
+		<ftr name="DF0006">
+			<det name="DET0007"/>
+			<det name="DET0006"/>
+			<det name="DET0001"/>
+			<det name="DET0003"/>
+			<det name="DET0005"/>
+			<det name="DET0004"/>
+			<det name="DET0006"/>
+		</ftr>
+		<ftr name="DF0007">
+			<det name="DET0007"/>
+			<det name="DET0006"/>
+			<det name="DET0001"/>
+			<det name="DET0003"/>
+			<det name="DET0005"/>
+			<det name="DET0004"/>
+			<det name="DET0006"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0004" type="EI">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0000"/>
+			<det name="DET0060"/>
+			<det name="DET0027"/>
+		</ftr>
+		<ftr name="DF0006">
+			<det name="DET0003"/>
+			<det name="DET0005"/>
+			<det name="DET0004"/>
+			<det name="DET0001"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0005" type="EI">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0006">
+			<det name="DET0007"/>
+			<det name="DET0001"/>
+		</ftr>
+		<ftr name="DF0002">
+			<det name="DET0000"/>
+			<det name="DET0061"/>
+		</ftr>
+		<ftr name="DF0007">
+			<det name="DET0002"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0006" type="EI">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+			<det name="DET0004"/>
+			<det name="DET0002"/>
+		</ftr>
+		<ftr name="DF0006">
+			<det name="DET0007"/>
+			<det name="DET0005"/>
+			<det name="DET0004"/>
+		</ftr>
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0000"/>
+			<det name="DET0060"/>
+			<det name="DET0019"/>
+			<det name="DET0001"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0007" type="EI">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+			<det name="DET0004"/>
+			<det name="DET0002"/>
+		</ftr>
+		<ftr name="DF0006">
+			<det name="DET0007"/>
+			<det name="DET0006"/>
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+		</ftr>
+		<ftr name="DF0002">
+			<det name="DET0000"/>
+			<det name="DET0060"/>
+			<det name="DET0019"/>
+			<det name="DET0001"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+		</ftr>
+		<ftr name="DF0007">
+			<det name="DET0003"/>
+			<det name="DET0005"/>
+			<det name="DET0004"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0008" type="EI">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+			<det name="DET0004"/>
+			<det name="DET0002"/>
+		</ftr>
+		<ftr name="DF0007">
+			<det name="DET0007"/>
+			<det name="DET0006"/>
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+		</ftr>
+		<ftr name="DF0006">
+			<det name="DET0007"/>
+			<det name="DET0002"/>
+		</ftr>
+		<ftr name="DF0002">
+			<det name="DET0000"/>
+			<det name="DET0001"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0009" type="EI">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+			<det name="DET0004"/>
+			<det name="DET0002"/>
+		</ftr>
+		<ftr name="DF0007">
+			<det name="DET0007"/>
+			<det name="DET0006"/>
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+		</ftr>
+		<ftr name="DF0006">
+			<det name="DET0007"/>
+			<det name="DET0002"/>
+			<det name="DET0001"/>
+		</ftr>
+		<ftr name="DF0002">
+			<det name="DET0000"/>
+			<det name="DET0060"/>
+			<det name="DET0059"/>
+			<det name="DET0001"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0010" type="EQ" extraDET="1">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0002">
+			<det name="DET0015"/>
+			<det name="DET0004"/>
+		</ftr>
+		<ftr name="DF0006">
+			<det name="DET0007"/>
+			<det name="DET0003"/>
+			<det name="DET0005"/>
+			<det name="DET0004"/>
+			<det name="DET0000"/>
+			<det name="DET0006"/>
+		</ftr>
+		<ftr name="DF0007">
+			<det name="DET0007"/>
+			<det name="DET0003"/>
+			<det name="DET0005"/>
+			<det name="DET0004"/>
+			<det name="DET0000"/>
+			<det name="DET0006"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0011" type="EI">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+			<det name="DET0004"/>
+			<det name="DET0002"/>
+		</ftr>
+		<ftr name="DF0008">
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0006"/>
+			<det name="DET0004"/>
+			<det name="DET0007"/>
+			<det name="DET0005"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0012" type="EI">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+			<det name="DET0004"/>
+			<det name="DET0002"/>
+		</ftr>
+		<ftr name="DF0008">
+			<det name="DET0009"/>
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0006"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0013" type="EQ">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0008">
+			<det name="DET0009"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+			<det name="DET0005"/>
+			<det name="DET0000"/>
+			<det name="DET0008"/>
+			<det name="DET0004"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0014" type="EI">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0015" type="EI">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0000"/>
+			<det name="DET0060"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0016" type="EQ">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0000"/>
+			<det name="DET0060"/>
+			<det name="DET0028"/>
+			<det name="DET0089"/>
+			<det name="DET0091"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0017" type="EQ">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0000"/>
+			<det name="DET0060"/>
+			<det name="DET0028"/>
+			<det name="DET0089"/>
+			<det name="DET0091"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0018" type="EI">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0000"/>
+			<det name="DET0060"/>
+			<det name="DET0028"/>
+			<det name="DET0089"/>
+			<det name="DET0091"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0019" type="EI">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0000"/>
+			<det name="DET0091"/>
+			<det name="DET0060"/>
+			<det name="DET0028"/>
+			<det name="DET0089"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0020" type="EQ" extraDET="1">
+		<ftr name="DF0002">
+			<det name="DET0004"/>
+			<det name="DET0015"/>
+			<det name="DET0005"/>
+			<det name="DET0020"/>
+			<det name="DET0000"/>
+		</ftr>
+		<ftr name="DF0009">
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0021" type="EQ">
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0060"/>
+			<det name="DET0028"/>
+		</ftr>
+		<ftr name="DF0010">
+			<det name="DET0000"/>
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0022" type="EI">
+		<ftr name="DF0009">
+			<det name="DET0000"/>
+			<det name="DET0003"/>
+			<det name="DET0002"/>
+			<det name="DET0001"/>
+			<det name="DET0004"/>
+		</ftr>
+		<ftr name="DF0002">
+			<det name="DET0028"/>
+			<det name="DET0060"/>
+			<det name="DET0000"/>
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0002"/>
+			<det name="DET0004"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0023" type="EI">
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0060"/>
+			<det name="DET0028"/>
+			<det name="DET0000"/>
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0002"/>
+			<det name="DET0004"/>
+		</ftr>
+		<ftr name="DF0009">
+			<det name="DET0005"/>
+			<det name="DET0004"/>
+		</ftr>
+		<ftr name="DF0010">
+			<det name="DET0006"/>
+			<det name="DET0005"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0024" type="EI">
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0060"/>
+			<det name="DET0028"/>
+			<det name="DET0000"/>
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0002"/>
+			<det name="DET0004"/>
+		</ftr>
+		<ftr name="DF0010">
+			<det name="DET0004"/>
+			<det name="DET0003"/>
+			<det name="DET0006"/>
+			<det name="DET0005"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0025" type="EI">
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0060"/>
+			<det name="DET0028"/>
+			<det name="DET0000"/>
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+		</ftr>
+		<ftr name="DF0010">
+			<det name="DET0006"/>
+			<det name="DET0005"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0002"/>
+			<det name="DET0004"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0026" type="EQ" extraDET="8">
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0001"/>
+			<det name="DET0000"/>
+			<det name="DET0004"/>
+			<det name="DET0015"/>
+			<det name="DET0020"/>
+			<det name="DET0026"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0027" type="EQ" extraDET="8">
+		<ftr name="DF0002">
+			<det name="DET0000"/>
+			<det name="DET0061"/>
+			<det name="DET0001"/>
+			<det name="DET0000"/>
+			<det name="DET0004"/>
+			<det name="DET0015"/>
+			<det name="DET0020"/>
+			<det name="DET0026"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0028" type="EI">
+		<ftr name="DF0002">
+			<det name="DET0000"/>
+			<det name="DET0061"/>
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+			<det name="DET0008"/>
+			<det name="DET0009"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0015"/>
+			<det name="DET0016"/>
+			<det name="DET0017"/>
+			<det name="DET0018"/>
+			<det name="DET0020"/>
+			<det name="DET0021"/>
+			<det name="DET0022"/>
+			<det name="DET0019"/>
+			<det name="DET0010"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0004"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0029" type="EI">
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0060"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0030" type="EI">
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0060"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0031" type="EQ" extraDET="1">
+		<ftr name="DF0003">
+			<det name="DET0001"/>
+			<det name="DET0000"/>
+			<det name="DET0002"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0003"/>
+		</ftr>
+		<ftr name="DF0004">
+			<det name="DET0004"/>
+			<det name="DET0000"/>
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0032" type="EI" extraDET="9">
+		<ftr name="DF0003">
+			<det name="DET0001"/>
+			<det name="DET0000"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0033" type="EQ">
+		<ftr name="DF0002">
+			<det name="DET0076"/>
+			<det name="DET0062"/>
+			<det name="DET0000"/>
+			<det name="DET0061"/>
+			<det name="DET0077"/>
+			<det name="DET0064"/>
+			<det name="DET0065"/>
+			<det name="DET0066"/>
+			<det name="DET0067"/>
+			<det name="DET0068"/>
+			<det name="DET0069"/>
+			<det name="DET0070"/>
+			<det name="DET0071"/>
+			<det name="DET0072"/>
+			<det name="DET0073"/>
+			<det name="DET0074"/>
+			<det name="DET0075"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0034" type="EI" extraDET="1">
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0076"/>
+			<det name="DET0062"/>
+			<det name="DET0077"/>
+			<det name="DET0064"/>
+			<det name="DET0065"/>
+			<det name="DET0066"/>
+			<det name="DET0067"/>
+			<det name="DET0068"/>
+			<det name="DET0069"/>
+			<det name="DET0070"/>
+			<det name="DET0071"/>
+			<det name="DET0072"/>
+			<det name="DET0073"/>
+			<det name="DET0075"/>
+			<det name="DET0074"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0035" type="EI">
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0076"/>
+			<det name="DET0077"/>
+			<det name="DET0063"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0036" type="EI">
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0077"/>
+			<det name="DET0076"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0037" type="EI">
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0012"/>
+			<det name="DET0013"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0038" type="EI">
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0029"/>
+			<det name="DET0030"/>
+			<det name="DET0031"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0039" type="EI">
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0032"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0040" type="EI">
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0033"/>
+			<det name="DET0034"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0041" type="EI">
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0035"/>
+			<det name="DET0036"/>
+			<det name="DET0037"/>
+			<det name="DET0038"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0042" type="EI">
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0039"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0043" type="EI">
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0040"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0044" type="EI">
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0041"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0045" type="EI">
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0042"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0046" type="EI">
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0045"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0047" type="EI">
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0046"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0048" type="EI">
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0047"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0049" type="EI">
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0048"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0050" type="EI">
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0052"/>
+			<det name="DET0053"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0051" type="EI">
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0054"/>
+			<det name="DET0055"/>
+			<det name="DET0056"/>
+			<det name="DET0057"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0052" type="EI">
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0058"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0053" type="EI">
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0050"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0054" type="EI">
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0049"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0055" type="EI">
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0051"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0056" type="EI">
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0043"/>
+			<det name="DET0044"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0057" type="EI">
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0059"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0004"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0058" type="EI">
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0078"/>
+			<det name="DET0080"/>
+			<det name="DET0079"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0059" type="EQ">
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0079"/>
+			<det name="DET0080"/>
+			<det name="DET0082"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0060" type="EI">
+		<ftr name="DF0005">
+			<det name="DET0000"/>
+			<det name="DET0003"/>
+			<det name="DET0005"/>
+			<det name="DET0004"/>
+			<det name="DET0006"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0061" type="EQ">
+		<ftr name="DF0005">
+			<det name="DET0000"/>
+			<det name="DET0003"/>
+			<det name="DET0005"/>
+			<det name="DET0004"/>
+			<det name="DET0006"/>
+			<det name="DET0002"/>
+			<det name="DET0001"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0062" type="EI">
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0028"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0063" type="EI">
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0028"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0064" type="EQ">
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0088"/>
+			<det name="DET0085"/>
+			<det name="DET0084"/>
+			<det name="DET0086"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0065" type="EI">
+		<ftr name="DF0002">
+			<det name="DET0061"/>
+			<det name="DET0083"/>
+			<det name="DET0001"/>
+			<det name="DET0009"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0015"/>
+			<det name="DET0017"/>
+			<det name="DET0018"/>
+			<det name="DET0020"/>
+			<det name="DET0021"/>
+			<det name="DET0022"/>
+			<det name="DET0019"/>
+		</ftr>
+		<ftr name="DF0004">
+			<det name="DET0003"/>
+			<det name="DET0000"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0066" type="EI">
+		<ftr name="DF0002">
+			<det name="DET0088"/>
+			<det name="DET0083"/>
+			<det name="DET0061"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0067" type="EI" extraDET="1">
+		<ftr name="DF0002">
+			<det name="DET0088"/>
+			<det name="DET0083"/>
+			<det name="DET0061"/>
+			<det name="DET0087"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0068" type="EI">
+		<ftr name="DF0000">
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0028"/>
+			<det name="DET0030"/>
+			<det name="DET0044"/>
+			<det name="DET0041"/>
+			<det name="DET0042"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0069" type="EI" extraDET="3">
+		<ftr name="DF0000">
+			<det name="DET0005"/>
+			<det name="DET0029"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0070" type="EQ">
+		<ftr name="DF0000">
+			<det name="DET0004"/>
+			<det name="DET0046"/>
+			<det name="DET0048"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0071" type="EI" extraDET="2">
+		<ftr name="DF0000">
+			<det name="DET0046"/>
+			<det name="DET0045"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0072" type="EI">
+		<ftr name="DF0000">
+			<det name="DET0001"/>
+			<det name="DET0006"/>
+			<det name="DET0002"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0021"/>
+			<det name="DET0000"/>
+			<det name="DET0032"/>
+			<det name="DET0031"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0073" type="EI">
+		<ftr name="DF0000">
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0074" type="EI">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0075" type="EI">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0001"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0076" type="EI">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0002"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+			<det name="DET0009"/>
+			<det name="DET0010"/>
+			<det name="DET0011"/>
+			<det name="DET0012"/>
+			<det name="DET0013"/>
+			<det name="DET0033"/>
+			<det name="DET0040"/>
+			<det name="DET0034"/>
+			<det name="DET0035"/>
+			<det name="DET0036"/>
+			<det name="DET0037"/>
+			<det name="DET0038"/>
+			<det name="DET0020"/>
+			<det name="DET0014"/>
+			<det name="DET0015"/>
+			<det name="DET0017"/>
+			<det name="DET0018"/>
+			<det name="DET0016"/>
+			<det name="DET0008"/>
+			<det name="DET0024"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0077" type="EI">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0027"/>
+			<det name="DET0026"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0078" type="EI">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0001"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0079" type="EI">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0002"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+			<det name="DET0009"/>
+			<det name="DET0010"/>
+			<det name="DET0011"/>
+			<det name="DET0012"/>
+			<det name="DET0013"/>
+			<det name="DET0034"/>
+			<det name="DET0035"/>
+			<det name="DET0036"/>
+			<det name="DET0037"/>
+			<det name="DET0038"/>
+			<det name="DET0020"/>
+			<det name="DET0014"/>
+			<det name="DET0015"/>
+			<det name="DET0017"/>
+			<det name="DET0018"/>
+			<det name="DET0016"/>
+			<det name="DET0008"/>
+			<det name="DET0024"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0080" type="EI">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0020"/>
+			<det name="DET0014"/>
+			<det name="DET0015"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0081" type="EI">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0020"/>
+			<det name="DET0009"/>
+			<det name="DET0010"/>
+			<det name="DET0011"/>
+			<det name="DET0012"/>
+			<det name="DET0013"/>
+			<det name="DET0016"/>
+			<det name="DET0017"/>
+			<det name="DET0018"/>
+			<det name="DET0022"/>
+			<det name="DET0023"/>
+			<det name="DET0014"/>
+			<det name="DET0015"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0082" type="EI">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0027"/>
+			<det name="DET0026"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0083" type="EI">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0001"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0084" type="EI">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0009"/>
+			<det name="DET0010"/>
+			<det name="DET0011"/>
+			<det name="DET0012"/>
+			<det name="DET0013"/>
+			<det name="DET0016"/>
+			<det name="DET0017"/>
+			<det name="DET0018"/>
+			<det name="DET0022"/>
+			<det name="DET0023"/>
+			<det name="DET0020"/>
+			<det name="DET0014"/>
+			<det name="DET0015"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0085" type="EI">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0020"/>
+			<det name="DET0014"/>
+			<det name="DET0015"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0086" type="EQ" extraDET="12">
+		<ftr name="DF0000">
+			<det name="DET0002"/>
+			<det name="DET0011"/>
+			<det name="DET0012"/>
+			<det name="DET0016"/>
+			<det name="DET0007"/>
+			<det name="DET0021"/>
+			<det name="DET0006"/>
+			<det name="DET0004"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0087" type="EI">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0009"/>
+			<det name="DET0010"/>
+			<det name="DET0011"/>
+			<det name="DET0012"/>
+			<det name="DET0013"/>
+			<det name="DET0016"/>
+			<det name="DET0017"/>
+			<det name="DET0018"/>
+			<det name="DET0022"/>
+			<det name="DET0023"/>
+			<det name="DET0025"/>
+			<det name="DET0019"/>
+			<det name="DET0021"/>
+			<det name="DET0020"/>
+			<det name="DET0014"/>
+			<det name="DET0015"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0088" type="EI">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0028"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0089" type="EI">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0028"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0090" type="EQ">
+		<ftr name="DF0000">
+			<det name="DET0002"/>
+			<det name="DET0033"/>
+			<det name="DET0006"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0091" type="EI">
+		<ftr name="DF0001">
+			<det name="DET0000"/>
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0004"/>
+			<det name="DET0003"/>
+			<det name="DET0005"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0092" type="EQ">
+		<ftr name="DF0001">
+			<det name="DET0000"/>
+			<det name="DET0002"/>
+			<det name="DET0004"/>
+			<det name="DET0003"/>
+			<det name="DET0005"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0093" type="EQ" extraDET="6">
+		<ftr name="DF0015">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0094" type="EI">
+		<ftr name="DF0015">
+			<det name="DET0011"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0095" type="EI">
+		<ftr name="DF0015">
+			<det name="DET0011"/>
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+			<det name="DET0008"/>
+			<det name="DET0009"/>
+			<det name="DET0010"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0096" type="EI">
+		<ftr name="DF0015">
+			<det name="DET0011"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0097" type="EQ" extraDET="1">
+		<ftr name="DF0015">
+			<det name="DET0011"/>
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0098" type="EQ" extraDET="6">
+		<ftr name="DF0016">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0099" type="EI">
+		<ftr name="DF0016">
+			<det name="DET0010"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0100" type="EI">
+		<ftr name="DF0016">
+			<det name="DET0010"/>
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+			<det name="DET0008"/>
+			<det name="DET0009"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0101" type="EI">
+		<ftr name="DF0016">
+			<det name="DET0010"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0102" type="EQ" extraDET="1">
+		<ftr name="DF0016">
+			<det name="DET0010"/>
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0103" type="EO" extraDET="1">
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0012"/>
+		</ftr>
+		<ftr name="DF0021">
+			<det name="DET0000"/>
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0104" type="EO" extraDET="1">
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0012"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0105" type="EO" extraDET="1">
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0012"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0106" type="EI">
+		<ftr name="DF0021">
+			<det name="DET0000"/>
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+		</ftr>
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0009"/>
+			<det name="DET0012"/>
+			<det name="DET0013"/>
+			<det name="DET0015"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0107" type="EQ" extraDET="5">
+		<ftr name="DF0017">
+			<det name="DET0000"/>
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0007"/>
+		</ftr>
+		<ftr name="DF0019">
+			<det name="DET0000"/>
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+			<det name="DET0008"/>
+			<det name="DET0009"/>
+			<det name="DET0010"/>
+			<det name="DET0011"/>
+			<det name="DET0012"/>
+			<det name="DET0013"/>
+			<det name="DET0014"/>
+			<det name="DET0015"/>
+			<det name="DET0016"/>
+			<det name="DET0017"/>
+			<det name="DET0018"/>
+			<det name="DET0019"/>
+			<det name="DET0020"/>
+			<det name="DET0021"/>
+			<det name="DET0000"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0007"/>
+			<det name="DET0007"/>
+		</ftr>
+		<ftr name="DF0018">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+		</ftr>
+		<ftr name="DF0016">
+			<det name="DET0010"/>
+		</ftr>
+		<ftr name="DF0020">
+			<det name="DET0000"/>
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0108" type="EQ" extraDET="3">
+		<ftr name="DF0017">
+			<det name="DET0000"/>
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0007"/>
+		</ftr>
+		<ftr name="DF0019">
+			<det name="DET0000"/>
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+			<det name="DET0008"/>
+			<det name="DET0009"/>
+			<det name="DET0010"/>
+			<det name="DET0011"/>
+			<det name="DET0012"/>
+			<det name="DET0013"/>
+			<det name="DET0014"/>
+			<det name="DET0015"/>
+			<det name="DET0016"/>
+			<det name="DET0017"/>
+			<det name="DET0018"/>
+			<det name="DET0019"/>
+			<det name="DET0020"/>
+			<det name="DET0021"/>
+			<det name="DET0000"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0007"/>
+			<det name="DET0007"/>
+		</ftr>
+		<ftr name="DF0018">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+		</ftr>
+		<ftr name="DF0016">
+			<det name="DET0010"/>
+		</ftr>
+		<ftr name="DF0020">
+			<det name="DET0000"/>
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0109" type="EI" extraDET="1">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0110" type="EI" extraDET="1">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0111" type="EI">
+		<ftr name="DF0014">
+			<det name="DET0000"/>
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0005"/>
+			<det name="DET0004"/>
+			<det name="DET0008"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+			<det name="DET0009"/>
+			<det name="DET0010"/>
+			<det name="DET0011"/>
+			<det name="DET0012"/>
+			<det name="DET0013"/>
+			<det name="DET0014"/>
+			<det name="DET0015"/>
+			<det name="DET0016"/>
+			<det name="DET0017"/>
+		</ftr>
+		<ftr name="DF0003">
+			<det name="DET0000"/>
+			<det name="DET0001"/>
+			<det name="DET0005"/>
+			<det name="DET0004"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0009"/>
+			<det name="DET0010"/>
+			<det name="DET0011"/>
+			<det name="DET0012"/>
+			<det name="DET0013"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0112" type="EQ" extraDET="4">
+	</transactionfunction>
+	<transactionfunction name="TF0113" type="EQ" extraDET="4">
+		<ftr name="DF0017">
+			<det name="DET0000"/>
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0007"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0114" type="EI" extraDET="1">
+		<ftr name="DF0017">
+			<det name="DET0000"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0012"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0115" type="EI" extraDET="1">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0012"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0116" type="EQ" extraDET="4">
+		<ftr name="DF0020">
+			<det name="DET0000"/>
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0117" type="EI">
+		<ftr name="DF0020">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0000"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0012"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0118" type="EI" extraDET="1">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0012"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0119" type="EQ" extraDET="5">
+		<ftr name="DF0018">
+			<det name="DET0000"/>
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+		</ftr>
+		<ftr name="DF0016">
+			<det name="DET0000"/>
+			<det name="DET0002"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0120" type="EI">
+		<ftr name="DF0018">
+			<det name="DET0001"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+			<det name="DET0008"/>
+		</ftr>
+		<ftr name="DF0016">
+			<det name="DET0000"/>
+			<det name="DET0002"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0012"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0121" type="EI">
+		<ftr name="DF0018">
+			<det name="DET0009"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0012"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0122" type="EQ" extraDET="6">
+		<ftr name="DF0019">
+			<det name="DET0000"/>
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0007"/>
+			<det name="DET0008"/>
+			<det name="DET0009"/>
+			<det name="DET0010"/>
+			<det name="DET0011"/>
+			<det name="DET0012"/>
+			<det name="DET0013"/>
+			<det name="DET0014"/>
+			<det name="DET0015"/>
+			<det name="DET0016"/>
+			<det name="DET0017"/>
+			<det name="DET0018"/>
+			<det name="DET0019"/>
+			<det name="DET0020"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0123" type="EI">
+		<ftr name="DF0019">
+			<det name="DET0001"/>
+			<det name="DET0000"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0007"/>
+			<det name="DET0008"/>
+			<det name="DET0009"/>
+			<det name="DET0010"/>
+			<det name="DET0011"/>
+			<det name="DET0012"/>
+			<det name="DET0013"/>
+			<det name="DET0014"/>
+			<det name="DET0015"/>
+			<det name="DET0016"/>
+			<det name="DET0017"/>
+			<det name="DET0018"/>
+			<det name="DET0019"/>
+			<det name="DET0020"/>
+			<det name="DET0021"/>
+			<det name="DET0006"/>
+			<det name="DET0022"/>
+		</ftr>
+		<ftr name="DF0015">
+			<det name="DET0000"/>
+			<det name="DET0002"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0012"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0124" type="EI">
+		<ftr name="DF0019">
+			<det name="DET0023"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0012"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0125" type="EQ" extraDET="4">
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0012"/>
+			<det name="DET0013"/>
+			<det name="DET0014"/>
+			<det name="DET0015"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0126" type="EI">
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0012"/>
+			<det name="DET0013"/>
+			<det name="DET0014"/>
+			<det name="DET0015"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0127" type="EI">
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0012"/>
+			<det name="DET0013"/>
+			<det name="DET0014"/>
+			<det name="DET0015"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0128" type="EQ">
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0000"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0129" type="EO">
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+		</ftr>
+		<ftr name="DF0012">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+		</ftr>
+		<ftr name="DF0013">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0130" type="EI">
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0007"/>
+			<det name="DET0004"/>
+		</ftr>
+		<ftr name="DF0013">
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0000"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0131" type="EI">
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0007"/>
+			<det name="DET0004"/>
+		</ftr>
+		<ftr name="DF0012">
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0000"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0132" type="EI">
+		<ftr name="DF0013">
+			<det name="DET0008"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0133" type="EI">
+		<ftr name="DF0012">
+			<det name="DET0006"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0134" type="EQ">
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+		</ftr>
+		<ftr name="DF0013">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0135" type="EQ">
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+		</ftr>
+		<ftr name="DF0012">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0136" type="EQ">
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+		</ftr>
+		<ftr name="DF0013">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0137" type="EQ">
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+		</ftr>
+		<ftr name="DF0012">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0138" type="EQ">
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+		</ftr>
+		<ftr name="DF0013">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0139" type="EQ">
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+		</ftr>
+		<ftr name="DF0012">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0140" type="EQ">
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+		</ftr>
+		<ftr name="DF0013">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0141" type="EQ">
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+		</ftr>
+		<ftr name="DF0013">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0142" type="EO">
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0143" type="EO">
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0144" type="EQ" extraDET="6">
+		<ftr name="DF0025">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0010"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0145" type="EI">
+		<ftr name="DF0025">
+			<det name="DET0010"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0146" type="EI">
+		<ftr name="DF0025">
+			<det name="DET0010"/>
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+			<det name="DET0008"/>
+			<det name="DET0009"/>
+			<det name="DET0000"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0147" type="EI">
+		<ftr name="DF0025">
+			<det name="DET0010"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0148" type="EQ" extraDET="7">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0026">
+			<det name="DET0001"/>
+			<det name="DET0003"/>
+			<det name="DET0007"/>
+		</ftr>
+		<ftr name="DF0024">
+			<det name="DET0002"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0149" type="EI">
+		<ftr name="DF0026">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0000"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+		</ftr>
+		<ftr name="DF0024">
+			<det name="DET0002"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0012"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0150" type="EI">
+		<ftr name="DF0026">
+			<det name="DET0007"/>
+			<det name="DET0006"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0012"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0151" type="EQ" extraDET="4">
+		<ftr name="DF0027">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0000"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0152" type="EI">
+		<ftr name="DF0027">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0000"/>
+			<det name="DET0004"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0012"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0153" type="EI">
+		<ftr name="DF0027">
+			<det name="DET0004"/>
+			<det name="DET0003"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0012"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0154" type="EQ" extraDET="4">
+		<ftr name="DF0037">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0000"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0155" type="EI">
+		<ftr name="DF0037">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0004"/>
+			<det name="DET0000"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0012"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0156" type="EI" extraDET="1">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0012"/>
+		</ftr>
+		<ftr name="DF0037">
+			<det name="DET0003"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0157" type="EQ" extraDET="6">
+		<ftr name="DF0024">
+			<det name="DET0010"/>
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0158" type="EI" extraDET="1">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0159" type="EI">
+		<ftr name="DF0024">
+			<det name="DET0010"/>
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+			<det name="DET0008"/>
+			<det name="DET0009"/>
+			<det name="DET0000"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0160" type="EI">
+		<ftr name="DF0024">
+			<det name="DET0010"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0161" type="EI" extraDET="1">
+		<ftr name="DF0022">
+			<det name="DET0001"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0162" type="EI" extraDET="1">
+		<ftr name="DF0022">
+			<det name="DET0001"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0163" type="EI">
+		<ftr name="DF0022">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0000"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0164" type="EI">
+		<ftr name="DF0023">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+			<det name="DET0008"/>
+			<det name="DET0009"/>
+			<det name="DET0010"/>
+			<det name="DET0011"/>
+			<det name="DET0012"/>
+			<det name="DET0000"/>
+		</ftr>
+		<ftr name="DF0003">
+			<det name="DET0001"/>
+			<det name="DET0000"/>
+			<det name="DET0005"/>
+			<det name="DET0004"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0165" type="EQ">
+		<ftr name="DF0022">
+			<det name="DET0000"/>
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+		</ftr>
+		<ftr name="DF0023">
+			<det name="DET0000"/>
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0006"/>
+			<det name="DET0007"/>
+			<det name="DET0008"/>
+			<det name="DET0009"/>
+			<det name="DET0010"/>
+			<det name="DET0011"/>
+			<det name="DET0012"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0166" type="EQ" extraDET="4">
+		<ftr name="DF0036">
+			<det name="DET0001"/>
+			<det name="DET0000"/>
+			<det name="DET0002"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0167" type="EI">
+		<ftr name="DF0036">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0000"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0012"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0168" type="EI">
+		<ftr name="DF0036">
+			<det name="DET0004"/>
+			<det name="DET0003"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0012"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0169" type="EQ" extraDET="4">
+		<ftr name="DF0032">
+			<det name="DET0001"/>
+			<det name="DET0000"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0170" type="EI">
+		<ftr name="DF0032">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0000"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0012"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0171" type="EI">
+		<ftr name="DF0032">
+			<det name="DET0005"/>
+			<det name="DET0004"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0012"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0172" type="EQ" extraDET="4">
+		<ftr name="DF0028">
+			<det name="DET0001"/>
+			<det name="DET0000"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0173" type="EI">
+		<ftr name="DF0028">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0000"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0012"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0174" type="EI">
+		<ftr name="DF0028">
+			<det name="DET0005"/>
+			<det name="DET0004"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0012"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0175" type="EQ" extraDET="4">
+		<ftr name="DF0038">
+			<det name="DET0000"/>
+			<det name="DET0001"/>
+			<det name="DET0003"/>
+			<det name="DET0002"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0176" type="EI">
+		<ftr name="DF0038">
+			<det name="DET0000"/>
+			<det name="DET0001"/>
+			<det name="DET0003"/>
+			<det name="DET0002"/>
+			<det name="DET0004"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0012"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0177" type="EI" extraDET="1">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0012"/>
+		</ftr>
+		<ftr name="DF0038">
+			<det name="DET0005"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0178" type="EQ" extraDET="4">
+		<ftr name="DF0034">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0000"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0179" type="EI">
+		<ftr name="DF0034">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0000"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0012"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0180" type="EI" extraDET="1">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0012"/>
+		</ftr>
+		<ftr name="DF0034">
+			<det name="DET0004"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0181" type="EQ" extraDET="4">
+		<ftr name="DF0030">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0000"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0182" type="EI">
+		<ftr name="DF0030">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0000"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0012"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0183" type="EI">
+		<ftr name="DF0030">
+			<det name="DET0005"/>
+			<det name="DET0004"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0012"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0184" type="EQ" extraDET="5">
+		<ftr name="DF0033">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+		</ftr>
+		<ftr name="DF0025">
+			<det name="DET0002"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0185" type="EI">
+		<ftr name="DF0033">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0000"/>
+		</ftr>
+		<ftr name="DF0025">
+			<det name="DET0002"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0012"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0186" type="EI" extraDET="1">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0012"/>
+		</ftr>
+		<ftr name="DF0033">
+			<det name="DET0006"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0187" type="EQ" extraDET="5">
+		<ftr name="DF0029">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+		</ftr>
+		<ftr name="DF0025">
+			<det name="DET0002"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0188" type="EI">
+		<ftr name="DF0029">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0000"/>
+		</ftr>
+		<ftr name="DF0025">
+			<det name="DET0002"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0012"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0189" type="EI" extraDET="1">
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0012"/>
+		</ftr>
+		<ftr name="DF0029">
+			<det name="DET0006"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0190" type="EQ" extraDET="5">
+		<ftr name="DF0035">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+		</ftr>
+		<ftr name="DF0025">
+			<det name="DET0002"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0191" type="EI">
+		<ftr name="DF0035">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0000"/>
+		</ftr>
+		<ftr name="DF0025">
+			<det name="DET0002"/>
+		</ftr>
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0012"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0192" type="EI">
+		<ftr name="DF0035">
+			<det name="DET0007"/>
+			<det name="DET0006"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0012"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0193" type="EQ" extraDET="5">
+		<ftr name="DF0031">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+		</ftr>
+		<ftr name="DF0025">
+			<det name="DET0002"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0194" type="EI">
+		<ftr name="DF0031">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+			<det name="DET0005"/>
+			<det name="DET0000"/>
+		</ftr>
+		<ftr name="DF0025">
+			<det name="DET0002"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0012"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0195" type="EI">
+		<ftr name="DF0031">
+			<det name="DET0008"/>
+			<det name="DET0007"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0012"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0196" type="EQ" extraDET="6">
+		<ftr name="DF0031">
+			<det name="DET0000"/>
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0003"/>
+			<det name="DET0004"/>
+		</ftr>
+		<ftr name="DF0025">
+			<det name="DET0002"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0197" type="EI">
+		<ftr name="DF0031">
+			<det name="DET0008"/>
+			<det name="DET0006"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0012"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0198" type="EO" extraDET="2">
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0012"/>
+			<det name="DET0010"/>
+		</ftr>
+		<ftr name="DF0039">
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+			<det name="DET0000"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<transactionfunction name="TF0199" type="EI">
+		<ftr name="DF0039">
+			<det name="DET0000"/>
+			<det name="DET0001"/>
+			<det name="DET0002"/>
+		</ftr>
+		<ftr name="DF0011">
+			<det name="DET0001"/>
+			<det name="DET0008"/>
+			<det name="DET0010"/>
+			<det name="DET0017"/>
+			<det name="DET0011"/>
+			<det name="DET0014"/>
+			<det name="DET0009"/>
+			<det name="DET0012"/>
+			<det name="DET0013"/>
+			<det name="DET0015"/>
+		</ftr>
+		<ftr name="DF0000">
+			<det name="DET0033"/>
+			<det name="DET0021"/>
+		</ftr>
+	</transactionfunction>
+	<stakeholder name="SH0000" weight="2">
+		<transactionfunction name="TF0001" />
+		<transactionfunction name="TF0002" />
+		<transactionfunction name="TF0003" />
+		<transactionfunction name="TF0004" />
+		<transactionfunction name="TF0005" />
+		<transactionfunction name="TF0006" />
+		<transactionfunction name="TF0007" />
+		<transactionfunction name="TF0008" />
+		<transactionfunction name="TF0009" />
+		<transactionfunction name="TF0010" />
+		<transactionfunction name="TF0011" />
+		<transactionfunction name="TF0012" />
+		<transactionfunction name="TF0013" />
+		<transactionfunction name="TF0015" />
+		<transactionfunction name="TF0016" />
+		<transactionfunction name="TF0017" />
+		<transactionfunction name="TF0018" />
+		<transactionfunction name="TF0019" />
+		<transactionfunction name="TF0020" />
+		<transactionfunction name="TF0021" />
+		<transactionfunction name="TF0022" />
+		<transactionfunction name="TF0023" />
+		<transactionfunction name="TF0024" />
+		<transactionfunction name="TF0025" />
+		<transactionfunction name="TF0026" />
+		<transactionfunction name="TF0027" />
+		<transactionfunction name="TF0028" />
+		<transactionfunction name="TF0031" />
+		<transactionfunction name="TF0032" />
+		<transactionfunction name="TF0033" />
+		<transactionfunction name="TF0034" />
+		<transactionfunction name="TF0035" />
+		<transactionfunction name="TF0036" />
+		<transactionfunction name="TF0037" />
+		<transactionfunction name="TF0038" />
+		<transactionfunction name="TF0039" />
+		<transactionfunction name="TF0040" />
+		<transactionfunction name="TF0041" />
+		<transactionfunction name="TF0042" />
+		<transactionfunction name="TF0043" />
+		<transactionfunction name="TF0044" />
+		<transactionfunction name="TF0045" />
+		<transactionfunction name="TF0046" />
+		<transactionfunction name="TF0047" />
+		<transactionfunction name="TF0048" />
+		<transactionfunction name="TF0049" />
+		<transactionfunction name="TF0050" />
+		<transactionfunction name="TF0051" />
+		<transactionfunction name="TF0052" />
+		<transactionfunction name="TF0053" />
+		<transactionfunction name="TF0054" />
+		<transactionfunction name="TF0055" />
+		<transactionfunction name="TF0062" />
+		<transactionfunction name="TF0063" />
+		<transactionfunction name="TF0072" />
+		<transactionfunction name="TF0073" />
+		<transactionfunction name="TF0075" />
+		<transactionfunction name="TF0076" />
+		<transactionfunction name="TF0077" />
+		<transactionfunction name="TF0078" />
+		<transactionfunction name="TF0079" />
+		<transactionfunction name="TF0080" />
+		<transactionfunction name="TF0081" />
+		<transactionfunction name="TF0082" />
+		<transactionfunction name="TF0083" />
+		<transactionfunction name="TF0084" />
+		<transactionfunction name="TF0085" />
+		<transactionfunction name="TF0086" />
+		<transactionfunction name="TF0087" />
+		<transactionfunction name="TF0093" />
+		<transactionfunction name="TF0094" />
+		<transactionfunction name="TF0095" />
+		<transactionfunction name="TF0098" />
+		<transactionfunction name="TF0099" />
+		<transactionfunction name="TF0100" />
+		<transactionfunction name="TF0103" />
+		<transactionfunction name="TF0104" />
+		<transactionfunction name="TF0105" />
+		<transactionfunction name="TF0113" />
+		<transactionfunction name="TF0114" />
+		<transactionfunction name="TF0116" />
+		<transactionfunction name="TF0117" />
+		<transactionfunction name="TF0119" />
+		<transactionfunction name="TF0120" />
+		<transactionfunction name="TF0122" />
+		<transactionfunction name="TF0123" />
+		<transactionfunction name="TF0125" />
+		<transactionfunction name="TF0126" />
+		<transactionfunction name="TF0127" />
+		<transactionfunction name="TF0128" />
+		<transactionfunction name="TF0129" />
+		<transactionfunction name="TF0130" />
+		<transactionfunction name="TF0131" />
+		<transactionfunction name="TF0132" />
+		<transactionfunction name="TF0133" />
+		<transactionfunction name="TF0134" />
+		<transactionfunction name="TF0135" />
+		<transactionfunction name="TF0136" />
+		<transactionfunction name="TF0137" />
+		<transactionfunction name="TF0138" />
+		<transactionfunction name="TF0139" />
+		<transactionfunction name="TF0140" />
+		<transactionfunction name="TF0141" />
+		<transactionfunction name="TF0142" />
+		<transactionfunction name="TF0143" />
+		<transactionfunction name="TF0144" />
+		<transactionfunction name="TF0145" />
+		<transactionfunction name="TF0146" />
+		<transactionfunction name="TF0148" />
+		<transactionfunction name="TF0149" />
+		<transactionfunction name="TF0151" />
+		<transactionfunction name="TF0152" />
+		<transactionfunction name="TF0154" />
+		<transactionfunction name="TF0155" />
+		<transactionfunction name="TF0157" />
+		<transactionfunction name="TF0158" />
+		<transactionfunction name="TF0159" />
+		<transactionfunction name="TF0166" />
+		<transactionfunction name="TF0167" />
+		<transactionfunction name="TF0169" />
+		<transactionfunction name="TF0170" />
+		<transactionfunction name="TF0172" />
+		<transactionfunction name="TF0173" />
+		<transactionfunction name="TF0175" />
+		<transactionfunction name="TF0176" />
+		<transactionfunction name="TF0178" />
+		<transactionfunction name="TF0179" />
+		<transactionfunction name="TF0181" />
+		<transactionfunction name="TF0182" />
+		<transactionfunction name="TF0184" />
+		<transactionfunction name="TF0185" />
+		<transactionfunction name="TF0187" />
+		<transactionfunction name="TF0188" />
+		<transactionfunction name="TF0190" />
+		<transactionfunction name="TF0191" />
+		<transactionfunction name="TF0193" />
+		<transactionfunction name="TF0194" />
+		<transactionfunction name="TF0198" />
+	</stakeholder>
+	<stakeholder name="SH0001" weight="1">
+		<transactionfunction name="TF0000" />
+		<transactionfunction name="TF0014" />
+		<transactionfunction name="TF0029" />
+		<transactionfunction name="TF0030" />
+		<transactionfunction name="TF0056" />
+		<transactionfunction name="TF0057" />
+		<transactionfunction name="TF0058" />
+		<transactionfunction name="TF0059" />
+		<transactionfunction name="TF0060" />
+		<transactionfunction name="TF0061" />
+		<transactionfunction name="TF0064" />
+		<transactionfunction name="TF0065" />
+		<transactionfunction name="TF0066" />
+		<transactionfunction name="TF0067" />
+		<transactionfunction name="TF0068" />
+		<transactionfunction name="TF0069" />
+		<transactionfunction name="TF0070" />
+		<transactionfunction name="TF0071" />
+		<transactionfunction name="TF0074" />
+		<transactionfunction name="TF0088" />
+		<transactionfunction name="TF0089" />
+		<transactionfunction name="TF0090" />
+		<transactionfunction name="TF0091" />
+		<transactionfunction name="TF0092" />
+		<transactionfunction name="TF0096" />
+		<transactionfunction name="TF0097" />
+		<transactionfunction name="TF0101" />
+		<transactionfunction name="TF0102" />
+		<transactionfunction name="TF0106" />
+		<transactionfunction name="TF0107" />
+		<transactionfunction name="TF0108" />
+		<transactionfunction name="TF0109" />
+		<transactionfunction name="TF0110" />
+		<transactionfunction name="TF0111" />
+		<transactionfunction name="TF0112" />
+		<transactionfunction name="TF0115" />
+		<transactionfunction name="TF0118" />
+		<transactionfunction name="TF0121" />
+		<transactionfunction name="TF0124" />
+		<transactionfunction name="TF0147" />
+		<transactionfunction name="TF0150" />
+		<transactionfunction name="TF0153" />
+		<transactionfunction name="TF0156" />
+		<transactionfunction name="TF0160" />
+		<transactionfunction name="TF0161" />
+		<transactionfunction name="TF0162" />
+		<transactionfunction name="TF0163" />
+		<transactionfunction name="TF0164" />
+		<transactionfunction name="TF0165" />
+		<transactionfunction name="TF0168" />
+		<transactionfunction name="TF0171" />
+		<transactionfunction name="TF0174" />
+		<transactionfunction name="TF0177" />
+		<transactionfunction name="TF0180" />
+		<transactionfunction name="TF0183" />
+		<transactionfunction name="TF0186" />
+		<transactionfunction name="TF0189" />
+		<transactionfunction name="TF0192" />
+		<transactionfunction name="TF0195" />
+		<transactionfunction name="TF0196" />
+		<transactionfunction name="TF0197" />
+		<transactionfunction name="TF0199" />
+	</stakeholder>
+	<stakeholder name="SH0002" weight="1">
+		<transactionfunction name="TF0072" />
+		<transactionfunction name="TF0073" />
+		<transactionfunction name="TF0075" />
+		<transactionfunction name="TF0076" />
+		<transactionfunction name="TF0077" />
+		<transactionfunction name="TF0078" />
+		<transactionfunction name="TF0079" />
+		<transactionfunction name="TF0080" />
+		<transactionfunction name="TF0081" />
+		<transactionfunction name="TF0082" />
+		<transactionfunction name="TF0083" />
+		<transactionfunction name="TF0084" />
+		<transactionfunction name="TF0085" />
+		<transactionfunction name="TF0086" />
+		<transactionfunction name="TF0087" />
+		<transactionfunction name="TF0125" />
+		<transactionfunction name="TF0126" />
+		<transactionfunction name="TF0127" />
+		<transactionfunction name="TF0128" />
+		<transactionfunction name="TF0129" />
+		<transactionfunction name="TF0130" />
+		<transactionfunction name="TF0131" />
+		<transactionfunction name="TF0132" />
+		<transactionfunction name="TF0133" />
+		<transactionfunction name="TF0134" />
+		<transactionfunction name="TF0135" />
+		<transactionfunction name="TF0136" />
+		<transactionfunction name="TF0137" />
+		<transactionfunction name="TF0138" />
+		<transactionfunction name="TF0139" />
+		<transactionfunction name="TF0140" />
+		<transactionfunction name="TF0141" />
+		<transactionfunction name="TF0142" />
+		<transactionfunction name="TF0143" />
+		<transactionfunction name="TF0144" />
+		<transactionfunction name="TF0145" />
+		<transactionfunction name="TF0146" />
+		<transactionfunction name="TF0147" />
+		<transactionfunction name="TF0148" />
+		<transactionfunction name="TF0149" />
+		<transactionfunction name="TF0150" />
+		<transactionfunction name="TF0151" />
+		<transactionfunction name="TF0152" />
+		<transactionfunction name="TF0153" />
+		<transactionfunction name="TF0154" />
+		<transactionfunction name="TF0155" />
+		<transactionfunction name="TF0156" />
+		<transactionfunction name="TF0157" />
+		<transactionfunction name="TF0158" />
+		<transactionfunction name="TF0159" />
+		<transactionfunction name="TF0160" />
+		<transactionfunction name="TF0163" />
+		<transactionfunction name="TF0164" />
+		<transactionfunction name="TF0165" />
+		<transactionfunction name="TF0166" />
+		<transactionfunction name="TF0167" />
+		<transactionfunction name="TF0168" />
+		<transactionfunction name="TF0169" />
+		<transactionfunction name="TF0170" />
+		<transactionfunction name="TF0171" />
+		<transactionfunction name="TF0172" />
+		<transactionfunction name="TF0173" />
+		<transactionfunction name="TF0174" />
+		<transactionfunction name="TF0175" />
+		<transactionfunction name="TF0176" />
+		<transactionfunction name="TF0177" />
+		<transactionfunction name="TF0178" />
+		<transactionfunction name="TF0179" />
+		<transactionfunction name="TF0180" />
+		<transactionfunction name="TF0181" />
+		<transactionfunction name="TF0182" />
+		<transactionfunction name="TF0183" />
+		<transactionfunction name="TF0184" />
+		<transactionfunction name="TF0185" />
+		<transactionfunction name="TF0186" />
+		<transactionfunction name="TF0187" />
+		<transactionfunction name="TF0188" />
+		<transactionfunction name="TF0189" />
+		<transactionfunction name="TF0190" />
+		<transactionfunction name="TF0191" />
+		<transactionfunction name="TF0192" />
+		<transactionfunction name="TF0193" />
+		<transactionfunction name="TF0194" />
+		<transactionfunction name="TF0195" />
+		<transactionfunction name="TF0196" />
+		<transactionfunction name="TF0197" />
+		<transactionfunction name="TF0198" />
+		<transactionfunction name="TF0199" />
+	</stakeholder>
+	<stakeholder name="SH0003" weight="1">
+		<transactionfunction name="TF0072" />
+		<transactionfunction name="TF0073" />
+		<transactionfunction name="TF0075" />
+		<transactionfunction name="TF0076" />
+		<transactionfunction name="TF0077" />
+		<transactionfunction name="TF0078" />
+		<transactionfunction name="TF0079" />
+		<transactionfunction name="TF0080" />
+		<transactionfunction name="TF0081" />
+		<transactionfunction name="TF0082" />
+		<transactionfunction name="TF0083" />
+		<transactionfunction name="TF0084" />
+		<transactionfunction name="TF0085" />
+		<transactionfunction name="TF0086" />
+		<transactionfunction name="TF0087" />
+		<transactionfunction name="TF0093" />
+		<transactionfunction name="TF0094" />
+		<transactionfunction name="TF0095" />
+		<transactionfunction name="TF0096" />
+		<transactionfunction name="TF0097" />
+		<transactionfunction name="TF0098" />
+		<transactionfunction name="TF0099" />
+		<transactionfunction name="TF0100" />
+		<transactionfunction name="TF0101" />
+		<transactionfunction name="TF0102" />
+		<transactionfunction name="TF0103" />
+		<transactionfunction name="TF0104" />
+		<transactionfunction name="TF0105" />
+		<transactionfunction name="TF0106" />
+		<transactionfunction name="TF0107" />
+		<transactionfunction name="TF0108" />
+		<transactionfunction name="TF0111" />
+		<transactionfunction name="TF0112" />
+		<transactionfunction name="TF0113" />
+		<transactionfunction name="TF0114" />
+		<transactionfunction name="TF0115" />
+		<transactionfunction name="TF0116" />
+		<transactionfunction name="TF0117" />
+		<transactionfunction name="TF0118" />
+		<transactionfunction name="TF0119" />
+		<transactionfunction name="TF0120" />
+		<transactionfunction name="TF0121" />
+		<transactionfunction name="TF0122" />
+		<transactionfunction name="TF0123" />
+		<transactionfunction name="TF0124" />
+		<transactionfunction name="TF0125" />
+		<transactionfunction name="TF0126" />
+		<transactionfunction name="TF0127" />
+		<transactionfunction name="TF0128" />
+		<transactionfunction name="TF0129" />
+		<transactionfunction name="TF0130" />
+		<transactionfunction name="TF0131" />
+		<transactionfunction name="TF0132" />
+		<transactionfunction name="TF0133" />
+		<transactionfunction name="TF0134" />
+		<transactionfunction name="TF0135" />
+		<transactionfunction name="TF0136" />
+		<transactionfunction name="TF0137" />
+		<transactionfunction name="TF0138" />
+		<transactionfunction name="TF0139" />
+		<transactionfunction name="TF0140" />
+		<transactionfunction name="TF0141" />
+		<transactionfunction name="TF0142" />
+		<transactionfunction name="TF0143" />
+	</stakeholder>
+	<stakeholder name="SH0004" weight="1">
+		<transactionfunction name="TF0000" />
+		<transactionfunction name="TF0001" />
+		<transactionfunction name="TF0002" />
+		<transactionfunction name="TF0003" />
+		<transactionfunction name="TF0004" />
+		<transactionfunction name="TF0005" />
+		<transactionfunction name="TF0006" />
+		<transactionfunction name="TF0007" />
+		<transactionfunction name="TF0008" />
+		<transactionfunction name="TF0009" />
+		<transactionfunction name="TF0010" />
+		<transactionfunction name="TF0011" />
+		<transactionfunction name="TF0012" />
+		<transactionfunction name="TF0013" />
+		<transactionfunction name="TF0026" />
+		<transactionfunction name="TF0027" />
+		<transactionfunction name="TF0028" />
+		<transactionfunction name="TF0029" />
+		<transactionfunction name="TF0030" />
+		<transactionfunction name="TF0031" />
+		<transactionfunction name="TF0032" />
+		<transactionfunction name="TF0033" />
+		<transactionfunction name="TF0034" />
+		<transactionfunction name="TF0035" />
+		<transactionfunction name="TF0036" />
+		<transactionfunction name="TF0037" />
+		<transactionfunction name="TF0038" />
+		<transactionfunction name="TF0039" />
+		<transactionfunction name="TF0040" />
+		<transactionfunction name="TF0041" />
+		<transactionfunction name="TF0042" />
+		<transactionfunction name="TF0043" />
+		<transactionfunction name="TF0044" />
+		<transactionfunction name="TF0045" />
+		<transactionfunction name="TF0056" />
+		<transactionfunction name="TF0060" />
+		<transactionfunction name="TF0061" />
+		<transactionfunction name="TF0062" />
+		<transactionfunction name="TF0063" />
+		<transactionfunction name="TF0064" />
+		<transactionfunction name="TF0065" />
+		<transactionfunction name="TF0066" />
+		<transactionfunction name="TF0072" />
+		<transactionfunction name="TF0073" />
+		<transactionfunction name="TF0075" />
+		<transactionfunction name="TF0076" />
+		<transactionfunction name="TF0077" />
+		<transactionfunction name="TF0078" />
+		<transactionfunction name="TF0079" />
+		<transactionfunction name="TF0080" />
+		<transactionfunction name="TF0081" />
+		<transactionfunction name="TF0082" />
+		<transactionfunction name="TF0083" />
+		<transactionfunction name="TF0084" />
+		<transactionfunction name="TF0085" />
+		<transactionfunction name="TF0086" />
+		<transactionfunction name="TF0087" />
+		<transactionfunction name="TF0091" />
+		<transactionfunction name="TF0092" />
+	</stakeholder>
+	<stakeholder name="SH0005" weight="1">
+		<transactionfunction name="TF0014" />
+		<transactionfunction name="TF0015" />
+		<transactionfunction name="TF0016" />
+		<transactionfunction name="TF0017" />
+		<transactionfunction name="TF0018" />
+		<transactionfunction name="TF0019" />
+		<transactionfunction name="TF0020" />
+		<transactionfunction name="TF0021" />
+		<transactionfunction name="TF0022" />
+		<transactionfunction name="TF0023" />
+		<transactionfunction name="TF0024" />
+		<transactionfunction name="TF0025" />
+		<transactionfunction name="TF0026" />
+		<transactionfunction name="TF0027" />
+		<transactionfunction name="TF0028" />
+		<transactionfunction name="TF0029" />
+		<transactionfunction name="TF0030" />
+		<transactionfunction name="TF0031" />
+		<transactionfunction name="TF0032" />
+		<transactionfunction name="TF0033" />
+		<transactionfunction name="TF0034" />
+		<transactionfunction name="TF0035" />
+		<transactionfunction name="TF0036" />
+		<transactionfunction name="TF0037" />
+		<transactionfunction name="TF0038" />
+		<transactionfunction name="TF0039" />
+		<transactionfunction name="TF0040" />
+		<transactionfunction name="TF0041" />
+		<transactionfunction name="TF0042" />
+		<transactionfunction name="TF0043" />
+		<transactionfunction name="TF0044" />
+		<transactionfunction name="TF0045" />
+		<transactionfunction name="TF0046" />
+		<transactionfunction name="TF0047" />
+		<transactionfunction name="TF0048" />
+		<transactionfunction name="TF0049" />
+		<transactionfunction name="TF0050" />
+		<transactionfunction name="TF0051" />
+		<transactionfunction name="TF0052" />
+		<transactionfunction name="TF0053" />
+		<transactionfunction name="TF0054" />
+		<transactionfunction name="TF0055" />
+		<transactionfunction name="TF0056" />
+		<transactionfunction name="TF0060" />
+		<transactionfunction name="TF0061" />
+		<transactionfunction name="TF0062" />
+		<transactionfunction name="TF0063" />
+		<transactionfunction name="TF0064" />
+		<transactionfunction name="TF0065" />
+		<transactionfunction name="TF0066" />
+		<transactionfunction name="TF0072" />
+		<transactionfunction name="TF0073" />
+		<transactionfunction name="TF0075" />
+		<transactionfunction name="TF0076" />
+		<transactionfunction name="TF0077" />
+		<transactionfunction name="TF0078" />
+		<transactionfunction name="TF0079" />
+		<transactionfunction name="TF0080" />
+		<transactionfunction name="TF0081" />
+		<transactionfunction name="TF0082" />
+		<transactionfunction name="TF0083" />
+		<transactionfunction name="TF0084" />
+		<transactionfunction name="TF0085" />
+		<transactionfunction name="TF0086" />
+		<transactionfunction name="TF0087" />
+		<transactionfunction name="TF0091" />
+		<transactionfunction name="TF0092" />
+	</stakeholder>
+</project>

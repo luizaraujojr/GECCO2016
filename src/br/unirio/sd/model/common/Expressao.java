@@ -13,10 +13,6 @@ public class Expressao
 	private @Getter Expressao direita;
 	private @Getter @Setter String nome;
 	private @Getter @Setter double valor;
-//	private @Getter @Setter double smooth;
-//	private @Getter @Setter double qart1;
-//	private @Getter @Setter double qart2;
-//	private @Getter @Setter double qart3;
 
 	/**
 	 * Cria um no da arvore de expressoes com uma operacao binaria
@@ -28,10 +24,6 @@ public class Expressao
 		this.direita = dir;
 		this.nome = null;
 		this.valor = 0.0;
-//		this.smooth = 0.0;
-//		this.qart1 = 0.0;
-//		this.qart2 = 0.0;
-//		this.qart3 = 0.0;
 	}
 
 	/**
@@ -83,10 +75,6 @@ public class Expressao
 		Expressao expressao = new Expressao(tipo, esqClone, dirClone);
 		expressao.setNome(this.nome);
 		expressao.setValor(this.valor);
-//		expressao.setSmooth(this.smooth);
-//		expressao.setQart1(this.qart1);
-//		expressao.setQart2(this.qart2);
-//		expressao.setQart3(this.qart3);
 		return expressao;
 	}	
 }

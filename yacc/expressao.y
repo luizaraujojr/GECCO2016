@@ -1,7 +1,8 @@
 %{
 package br.unirio.sd.control.parser;
 
-import br.unirio.sd.control.lex.Lexico;
+import br.unirio.sd.model.common.Expressao;
+import br.unirio.sd.model.common.TipoOperacao;
 %}
 
 /*
@@ -64,177 +65,176 @@ import br.unirio.sd.control.lex.Lexico;
 %%
 expr	: CONST
 		{
-			$$.setExpressao(new Expressao($1.valor));
+			$$ = new ParserVal(new Expressao($1.dval));
 		}
 		| ID
 		{
-			$$.setExpressao(new Expressao($1.id));
+			$$ = new ParserVal(new Expressao($1.sval));
 		}
 		| expr PLUS expr
 		{
-			$$.setExpressao(new Expressao(TipoOperacao.OP_SOMA, $1.getExpressao(), $3.getExpressao()));
+			$$ = new ParserVal(new Expressao(TipoOperacao.SOMA, $1.obj, $3.obj));
 		}
 		| expr MINUS expr
 		{
-			$$.setExpressao(new Expressao(TipoOperacao.OP_SUBTRACAO, $1.getExpressao(), $3.getExpressao()));
+			$$ = new ParserVal(new Expressao(TipoOperacao.SUBTRACAO, $1.obj, $3.obj));
 		}
 		| expr ASTER expr
 		{
-			$$.setExpressao(new Expressao(TipoOperacao.OP_PRODUTO, $1.getExpressao(), $3.getExpressao()));
+			$$ = new ParserVal(new Expressao(TipoOperacao.PRODUTO, $1.obj, $3.obj));
 		}
 		| expr DIV expr
 		{
-			$$.setExpressao(new Expressao(TipoOperacao.OP_DIVISAO, $1.getExpressao(), $3.getExpressao()));
+			$$ = new ParserVal(new Expressao(TipoOperacao.DIVISAO, $1.obj, $3.obj));
 		}
 		| MINUS expr	%prec UMINUS
 		{
-			$$.setExpressao(new Expressao(TipoOperacao.OP_UMINUS, $2.getExpressao(), null));
+			$$ = new ParserVal(new Expressao(TipoOperacao.UMINUS, $2.obj, null));
 		}
 		| L_PARENT expr R_PARENT
 		{
-			$$.setExpressao(new Expressao(TipoOperacao.OP_PARENTESES, $2.getExpressao(), null));
+			$$ = new ParserVal(new Expressao(TipoOperacao.PARENTESES, $2.obj, null));
 		}
 		| expr EQUAL expr
 		{
-			$$.setExpressao(new Expressao(TipoOperacao.OP_IGUAL, $1.getExpressao(), $3.getExpressao()));
+			$$ = new ParserVal(new Expressao(TipoOperacao.IGUAL, $1.obj, $3.obj));
 		}
 		| expr DIF expr
 		{
-			$$.setExpressao(new Expressao(TipoOperacao.OP_DIFERENTE, $1.getExpressao(), $3.getExpressao()));
+			$$ = new ParserVal(new Expressao(TipoOperacao.DIFERENTE, $1.obj, $3.obj));
 		}
 		| expr GT expr
 		{
-			$$.setExpressao(new Expressao(TipoOperacao.OP_MAIOR, $1.getExpressao(), $3.getExpressao()));
+			$$ = new ParserVal(new Expressao(TipoOperacao.MAIOR, $1.obj, $3.obj));
 		}
 		| expr GE expr
 		{
-			$$.setExpressao(new Expressao(TipoOperacao.OP_MAIORIG, $1.getExpressao(), $3.getExpressao()));
+			$$ = new ParserVal(new Expressao(TipoOperacao.MAIORIG, $1.obj, $3.obj));
 		}
 		| expr LT expr
 		{
-			$$.setExpressao(new Expressao(TipoOperacao.OP_MENOR, $1.getExpressao(), $3.getExpressao()));
+			$$ = new ParserVal(new Expressao(TipoOperacao.MENOR, $1.obj, $3.obj));
 		}
 		| expr LE expr
 		{
-			$$.setExpressao(new Expressao(TipoOperacao.OP_MENORIG, $1.getExpressao(), $3.getExpressao()));
+			$$ = new ParserVal(new Expressao(TipoOperacao.MENORIG, $1.obj, $3.obj));
 		}
 		| NOT L_PARENT expr R_PARENT
 		{
-			$$.setExpressao(new Expressao(TipoOperacao.OP_NOT, $3.getExpressao(), null));
+			$$ = new ParserVal(new Expressao(TipoOperacao.NOT, $3.obj, null));
 		}
 		| AND L_PARENT params R_PARENT
 		{
-			$$.setExpressao(new Expressao(TipoOperacao.OP_AND, $3.getExpressao(), null));
+			$$ = new ParserVal(new Expressao(TipoOperacao.AND, $3.obj, null));
 		}
 		| OR L_PARENT params R_PARENT
 		{
-			$$.setExpressao(new Expressao(TipoOperacao.OP_OR, $3.getExpressao(), null));
+			$$ = new ParserVal(new Expressao(TipoOperacao.OR, $3.obj, null));
 		}
 		| IF L_PARENT expr COMMA expr COMMA expr R_PARENT
 		{
-			$$.setExpressao(new Expressao(TipoOperacao.OP_COMMA, $5.getExpressao(), $7.getExpressao()));
-			$$.setExpressao(new Expressao(TipoOperacao.OP_COMMA, $3.getExpressao(), $$.getExpressao()));
-			$$.setExpressao(new Expressao(TipoOperacao.OP_IF, $$.getExpressao(), null));
+			$$ = new ParserVal(new Expressao(TipoOperacao.COMMA, $5.obj, $7.obj));
+			$$ = new ParserVal(new Expressao(TipoOperacao.IF, $3.obj, $$.obj));
 		}
 		| MAX L_PARENT params R_PARENT
 		{
-			$$.setExpressao(new Expressao(TipoOperacao.OP_MAX, $3.getExpressao(), null));
+			$$ = new ParserVal(new Expressao(TipoOperacao.MAX, $3.obj, null));
 		}
 		| MIN L_PARENT params R_PARENT
 		{
-			$$.setExpressao(new Expressao(TipoOperacao.OP_MIN, $3.getExpressao(), null));
+			$$ = new ParserVal(new Expressao(TipoOperacao.MIN, $3.obj, null));
 		}
 		| ROUND L_PARENT expr R_PARENT
 		{
-			$$.setExpressao(new Expressao(TipoOperacao.OP_ROUND, $3.getExpressao(), null));
+			$$ = new ParserVal(new Expressao(TipoOperacao.ROUND, $3.obj, null));
 		}
 		| LOOKUP L_PARENT ID COMMA expr COMMA expr COMMA expr R_PARENT
 		{
-			Expressao e = new Expressao($3.id);
-			$$.setExpressao(new Expressao(TipoOperacao.OP_COMMA, $7.getExpressao(), $9.getExpressao()));
-			$$.setExpressao(new Expressao(TipoOperacao.OP_COMMA, $5.getExpressao(), $$.getExpressao()));
-			$$.setExpressao(new Expressao(TipoOperacao.OP_COMMA, e, $$.getExpressao()));
-			$$.setExpressao(new Expressao(TipoOperacao.OP_LOOKUP, $$.getExpressao(), null));
+			Expressao e = new Expressao($3.sval);
+			$$ = new ParserVal(new Expressao(TipoOperacao.COMMA, $7.obj, $9.obj));
+			$$ = new ParserVal(new Expressao(TipoOperacao.COMMA, $5.obj, $$.obj));
+			$$ = new ParserVal(new Expressao(TipoOperacao.COMMA, e, $$.obj));
+			$$ = new ParserVal(new Expressao(TipoOperacao.LOOKUP, $$.obj, null));
 		}
 		| expr POTENC expr
 		{
-			$$.setExpressao(new Expressao(TipoOperacao.OP_POTENC, $1.getExpressao(), $3.getExpressao()));
+			$$ = new ParserVal(new Expressao(TipoOperacao.POTENC, $1.obj, $3.obj));
 		}
 		| LN L_PARENT expr R_PARENT
 		{
-			$$.setExpressao(new Expressao(TipoOperacao.OP_LOGN, $3.getExpressao(), null));
+			$$ = new ParserVal(new Expressao(TipoOperacao.LOGN, $3.obj, null));
 		}
 		| EXP L_PARENT expr R_PARENT
 		{
-			$$.setExpressao(new Expressao(TipoOperacao.OP_EXPN, $3.getExpressao(), null));
+			$$ = new ParserVal(new Expressao(TipoOperacao.EXPN, $3.obj, null));
 		}
 		| DT
 		{
-			$$.setExpressao(new Expressao(TipoOperacao.OP_DT, null, null));
+			$$ = new ParserVal(new Expressao(TipoOperacao.DT, null, null));
 		}
 		| TIME
 		{
-			$$.setExpressao(new Expressao(TipoOperacao.OP_TIME, null, null));
+			$$ = new ParserVal(new Expressao(TipoOperacao.TIME, null, null));
 		}
 		| COUNT L_PARENT objset R_PARENT
 		{
-			$$.setExpressao(new Expressao(TipoOperacao.OP_COUNT, $3.getExpressao(), null));
+			$$ = new ParserVal(new Expressao(TipoOperacao.COUNT, $3.obj, null));
 		}
 		| GROUPSUM L_PARENT objset COMMA ID R_PARENT
 		{
-			Expressao e1 = new Expressao($5.id);
-			$$.setExpressao(new Expressao(TipoOperacao.OP_GRUPO_SOMA, $3.getExpressao(), e1));
+			Expressao e1 = new Expressao($5.sval);
+			$$ = new ParserVal(new Expressao(TipoOperacao.GRUPO_SOMA, $3.obj, e1));
 		}
 		| GROUPMAX L_PARENT objset COMMA ID R_PARENT
 		{
-			Expressao e1 = new Expressao($5.id);
-			$$.setExpressao(new Expressao(TipoOperacao.OP_GRUPO_MAX, $3.getExpressao(), e1));
+			Expressao e1 = new Expressao($5.sval);
+			$$ = new ParserVal(new Expressao(TipoOperacao.GRUPO_MAX, $3.obj, e1));
 		}
 		| GROUPMIN L_PARENT objset COMMA ID R_PARENT
 		{
-			Expressao e1 = new Expressao($5.id);
-			$$.setExpressao(new Expressao(TipoOperacao.OP_GRUPO_MIN, $3.getExpressao(), e1));
+			Expressao e1 = new Expressao($5.sval);
+			$$ = new ParserVal(new Expressao(TipoOperacao.GRUPO_MIN, $3.obj, e1));
 		}
 		| objset POINT ID
 		{
-			Expressao e1 = new Expressao($1.id);
-			Expressao e2 = new Expressao($3.id);
-			$$.setExpressao(new Expressao(TipoOperacao.OP_PONTO, e1, e2));
+			Expressao e1 = new Expressao($1.sval);
+			Expressao e2 = new Expressao($3.sval);
+			$$ = new ParserVal(new Expressao(TipoOperacao.PONTO, e1, e2));
 		}
 		;
 
 params	: params COMMA expr
 		{
-			$$.setExpressao(new Expressao(TipoOperacao.OP_COMMA, $1.getExpressao(), $3.getExpressao()));
+			$$ = new ParserVal(new Expressao(TipoOperacao.COMMA, $1.obj, $3.obj));
 		}
 		| expr
 		{
-			$$.setExpressao($1.getExpressao());
+			$$ = new ParserVal($1.obj);
 		}
 		;
 
 objset	: ID
 		{
-			$$.setExpressao(new Expressao($1.id);
+			$$ = new ParserVal(new Expressao($1.sval));
 		}
 		| objset POINT ID
 		{
-			Expressao e1 = new Expressao($3.id);
-			$$.setExpressao(new Expressao(OP_PONTO, $1.getExpressao(), e1));
+			Expressao e1 = new Expressao($3.sval);
+			$$ = new ParserVal(new Expressao(TipoOperacao.PONTO, $1.obj, e1));
 		}
 		| L_COLCH ID R_COLCH
 		{
-			Expressao e1 = new Expressao($2.id);
-			$$.setExpressao(new Expressao(OP_CLSSET, e1, null));
+			Expressao e1 = new Expressao($2.sval);
+			$$ = new ParserVal(new Expressao(TipoOperacao.CLSSET, e1, null));
 		}
 		| BOUND L_PARENT objset COMMA ID R_PARENT
 		{
-			Expressao e1 = new Expressao($5.id);
-			$$.setExpressao(new Expressao(OP_BOUND, $3.getExpressao(), e1));
+			Expressao e1 = new Expressao($5.sval);
+			$$ = new ParserVal(new Expressao(TipoOperacao.BOUND, $3.obj, e1));
 		}
 		| SELECT L_PARENT objset COMMA expr R_PARENT
 		{
-			$$.setExpressao(new Expressao(OP_SELECT, $3.getExpressao(), $5.getExpressao()));
+			$$ = new ParserVal(new Expressao(TipoOperacao.SELECT, $3.obj, $5.obj));
 		}
 		;
 %%
@@ -246,12 +246,35 @@ public Parser(String s)
 	this.lexico = new Lexico(s);
 }
 
-private int yylex()
+public Expressao execute()
 {
-	return 0;
+	int result = yyparse();
+	return (result != 0) ? null : yyval.obj;
 }
 
-private void yyerror(String message) throws ParserException
+private int yylex()
 {
-	throw new ParserException(message);
+	Token token = lexico.proximo();
+	
+	if (token == null)
+		return 0;
+	
+	switch(token.getTipo())
+	{
+		case CONST:
+			yylval = new ParserVal(token.getValor());
+			return CONST;
+			
+		case ID:
+			yylval = new ParserVal(token.getNome());
+			return ID;
+			
+		default:
+			return token.getTipo();
+	}
+}
+
+private void yyerror(String message)
+{
+	ErrorManager.getInstance().add(message);
 }

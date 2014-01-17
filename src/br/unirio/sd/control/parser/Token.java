@@ -1,4 +1,4 @@
-package br.unirio.sd.control.lex;
+package br.unirio.sd.control.parser;
 
 import lombok.Getter;
 
@@ -9,25 +9,25 @@ import lombok.Getter;
  */
 public class Token
 {
-	private @Getter TipoToken tipo;
+	private @Getter int tipo;
 	private @Getter String nome;
 	private @Getter double valor;
 	
 	public Token(double valor)
 	{
-		this.tipo = TipoToken.CONST;
+		this.tipo = Parser.CONST;
 		this.nome = null;
 		this.valor = valor;
 	}
 	
 	public Token(String nome)
 	{
-		this.tipo = TipoToken.ID;
+		this.tipo = Parser.ID;
 		this.nome = nome;
 		this.valor = 0.0;
 	}
 
-	public Token(TipoToken tipo)
+	public Token(int tipo)
 	{
 		this.tipo = tipo;
 		this.nome = null;

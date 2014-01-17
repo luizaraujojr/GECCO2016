@@ -55,7 +55,7 @@ public class VerificaMetamodelo
 		}	
 	
 		// Captura o nome do repositório, de acordo com o tipo de sua descrição
-		String nomeRepositorio = (rate.getExpressao().getTipo() == TipoOperacao.PONTO) ? rate.getExpressao().getDireita().getNome() : rate.getExpressao().getNome();
+		String nomeRepositorio = (rate.getRepositorio().getTipo() == TipoOperacao.PONTO) ? rate.getRepositorio().getDireita().getNome() : rate.getRepositorio().getNome();
 	
 		// Pega o comportamento que representa o repositório
 		Comportamento repositorio = classe.pegaComportamentoNome(nomeRepositorio);

@@ -1,6 +1,7 @@
 package br.unirio.sd.model.meta;
 
 import lombok.Data;
+import br.unirio.sd.control.parser.Parser;
 import br.unirio.sd.model.common.Expressao;
 
 public @Data class Comportamento
@@ -13,11 +14,7 @@ public @Data class Comportamento
 
 	public Comportamento(TipoComportamento tipo, String id, String equacao)
 	{
-		this.id = id;
-		this.tipo = tipo;
-		this.visibilidade = Visibilidade.PUBLIC;
-		this.expressao = null; 	// processar a equacao
-		this.repositorio = null;
+		this(tipo, id, null, equacao);
 	}
 
 	public Comportamento(TipoComportamento tipo, String id, String repositorio, String equacao)
@@ -25,7 +22,7 @@ public @Data class Comportamento
 		this.id = id;
 		this.tipo = tipo;
 		this.visibilidade = Visibilidade.PUBLIC;
-		this.expressao = null; 	// processar a equacao
-		this.repositorio = null;	// processar a equacao
+		this.expressao = new Parser(equacao).execute();
+		this.repositorio = (repositorio != null) ? new Parser(repositorio).execute() : null;
 	}
 }

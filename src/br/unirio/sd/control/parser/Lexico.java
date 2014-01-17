@@ -37,6 +37,7 @@ public class Lexico
 		this.palavrasReservadas.put("count", Parser.COUNT);
 		this.palavrasReservadas.put("bound", Parser.BOUND);
 		this.palavrasReservadas.put("select", Parser.SELECT);
+		this.palavrasReservadas.put("values", Parser.VALUES);
 	}
 	
 	/**

@@ -12,8 +12,6 @@ public class Objeto
 	private @Getter @Setter String idClasse;
 	private List<Propriedade> propriedades;
 	private List<Relacionamento> relacionamentos;
-	//private List<Object> comportamentos;
-	//private List<Propriedade> propriedades2;
 	
 	public Objeto()
 	{

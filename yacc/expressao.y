@@ -52,6 +52,7 @@ import br.unirio.sd.model.common.TipoOperacao;
 %token COUNT
 %token BOUND
 %token SELECT
+%token VALUES
 
 /*
  * Informacoes de precedencia
@@ -201,8 +202,22 @@ expr	: CONST
 			Expressao e2 = new Expressao($3.sval);
 			$$ = new ParserVal(new Expressao(TipoOperacao.PONTO, e1, e2));
 		}
+		| VALUES L_PARENT values R_PARENT
+		{
+			$$ = $3;
+		}
 		;
-
+		
+values	: CONST COMMA values 
+		{
+			$$ = new ParserVal(new Expressao(TipoOperacao.COMMA, new Expressao($1.dval), $3.obj));
+		}
+		| CONST
+		{
+			$$ = new ParserVal(new Expressao($1.dval));
+		}
+		;
+		
 params	: params COMMA expr
 		{
 			$$ = new ParserVal(new Expressao(TipoOperacao.COMMA, $1.obj, $3.obj));
@@ -240,9 +255,11 @@ objset	: ID
 %%
 
 private Lexico lexico;
+private String equacao;
 
 public Parser(String s)
 {
+	this.equacao = s;
 	this.lexico = new Lexico(s);
 }
 
@@ -276,5 +293,5 @@ private int yylex()
 
 private void yyerror(String message)
 {
-	ErrorManager.getInstance().add(message);
+	ErrorManager.getInstance().add(message + "(" + equacao + ")");
 }

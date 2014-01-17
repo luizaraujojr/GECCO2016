@@ -170,7 +170,7 @@ public class MainProgram
 			.adicionaTaxa("DaysInProjectCounter", "DaysInProject", "1")
 			.adicionaProcesso("DIPFactor", "MIN (DaysInProject / 20, 1.0)")
 			.adicionaProcesso("DIPModifier", "LOOKUP (LearningTable, DIPFactor, 0, 1)")
-			.adicionaTabela("LearningTable", "1.0, 1.0125, 1.0325, 1.055, 1.09, 1.15, 1.2, 1.22, 1.245, 1.25, 1.25")
+			.adicionaTabela("LearningTable", "VALUES(1.0, 1.0125, 1.0325, 1.055, 1.09, 1.15, 1.2, 1.22, 1.245, 1.25, 1.25)")
 			.adicionaAjuste("Productivity", "Productivity * DIPModifier"));
 
 		return cenario;
@@ -185,7 +185,7 @@ public class MainProgram
 			.adicionaRepositorio("DailyWorkHours", "WorkHours")
 			.adicionaProcesso("WHModifier", "1 + (DailyWorkHours - 8) / (12 - 8)")
 			.adicionaProcesso("SEModifier", "LOOKUP (SchErrorsTable, WHModifier-1, 0, 1)")
-			.adicionaTabela("SchErrorsTable", "0.9, 0.94, 1, 1.05, 1.14, 1.24, 1.36, 1.5")
+			.adicionaTabela("SchErrorsTable", "VALUES(0.9, 0.94, 1, 1.05, 1.14, 1.24, 1.36, 1.5)")
 			.adicionaAjuste("Cost", "Cost * DailyWorkHours / 8")
 			.adicionaAjuste("Productivity", "Productivity * WHModifier")
 			.adicionaAjuste("ErrorGenerationRate", "ErrorGenerationRate * SEModifier"));
@@ -204,7 +204,7 @@ public class MainProgram
 			.adicionaProcesso("EXModifier", "LOOKUP (ExaustionTable, DedicationFactor, 0, 1.5)")
 			.adicionaProcesso("DedicationFactor", "1 - (1 - Dedication) / 0.4")
 			.adicionaProcesso("Dedication", "0.6 + (WHModifier - 1) * (1.2 - 0.6)")
-			.adicionaTabela("ExaustionTable", "0.0, 0.0, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.15, 1.3, 1.6, 1.9, 2.2, 2.5")
+			.adicionaTabela("ExaustionTable", "VALUES(0.0, 0.0, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.15, 1.3, 1.6, 1.9, 2.2, 2.5)")
 			.adicionaRepositorio("Resting", "0")
 			.adicionaTaxa("RestingRate1", "Resting", "IF (InitResting, 1 / DT, 0)")
 			.adicionaTaxa("RestingRate2", "Resting", "IF (QuitResting, -1 / DT, 0)")
@@ -293,7 +293,7 @@ public class MainProgram
 			.adicionaProcesso("InheritedDensity", "InheritedErrors / FunctionPoints")
 			.adicionaProcesso("RegenErrors", "(AnalysisTask + ArchitecTask + DesignTask + CodingTask) * InheritedErrors * 0.24 * RegenFactor")
 			.adicionaProcesso("RegenFactor", "Max (1, LOOKUP (ActiveErrosDens, InheritedDensity , 0, 10))")
-			.adicionaTabela("ActiveErrosDens", "1, 1.1, 1.2, 1.325, 1.45, 1.6, 2.0, 2.5, 3.25, 4.35, 6.0")
+			.adicionaTabela("ActiveErrosDens", "VALUES(1, 1.1, 1.2, 1.325, 1.45, 1.6, 2.0, 2.5, 3.25, 4.35, 6.0)")
 			.adicionaAjuste("RTErrors", "RTErrors + RegenErrors / DT"));
 
 		cenario.adicionaRestricao(new Restricao("TheActivity", "ErrorPropagation", "TheActivity"));
@@ -338,7 +338,7 @@ public class MainProgram
 		
 		cenario.adicionaConexao(new Conexao("TheActivity", "Activity")
 			.adicionaProcesso("ErrorDensityMultiplier", "Max (1, LOOKUP (TableErrorDensityMultiplier, ErrorDensity, 0, 1))")
-			.adicionaTabela("TableErrorDensityMultiplier", "8, 6.75, 5.25, 4, 3, 2, 1.8, 1.6, 1.2, 1.1, 1")
+			.adicionaTabela("TableErrorDensityMultiplier", "VALUES(8, 6.75, 5.25, 4, 3, 2, 1.8, 1.6, 1.2, 1.1, 1)")
 			.adicionaProcesso("ErrorDensity", "(Errors + RTErrors*DT) / FunctionPoints")
 			.adicionaAjuste("DetectionCost", "DetectionCost * ErrorDensityMultiplier"));
 

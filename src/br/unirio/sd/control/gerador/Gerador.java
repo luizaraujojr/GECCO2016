@@ -1,6 +1,8 @@
 package br.unirio.sd.control.gerador;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.unirio.sd.model.common.Expressao;
 import br.unirio.sd.model.meta.Classe;
@@ -67,8 +69,15 @@ public class Gerador
         writer.println("\t{");
         
         // ORDENAR OS COMPORTAMENTOS TOPOLOGICAMENTE
+        List<Comportamento> comportamentos = new ArrayList<Comportamento>();
 
         for (Comportamento comportamento : classe.getComportamentos())
+        	if (comportamento.getTipo() == TipoComportamento.RATE || comportamento.getTipo() == TipoComportamento.PROCESS)
+        		comportamentos.add(comportamento);
+        
+        List<Comportamento> comportamentosOrdenados = ordenaTopologicamente(comportamentos, classe);
+
+        for (Comportamento comportamento : comportamentosOrdenados)
         {
         	if (comportamento.getTipo() != TipoComportamento.STOCK)
         		writer.println("\t\t" + comportamento.getId() + " = " + imprimeExpressao(comportamento.getExpressao()) + ";");
@@ -79,6 +88,11 @@ public class Gerador
         writer.println("\t}");
         writer.println("}");
         writer.close();
+	}
+	
+	private List<Comportamento> ordenaTopologicamente(List<Comportamento> comportamentos, Classe classe)
+	{
+		return null;
 	}
 
 	/**

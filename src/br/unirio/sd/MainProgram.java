@@ -10,6 +10,9 @@ import br.unirio.sd.model.meta.Metamodelo;
 
 public class MainProgram
 {
+	// DURACAO = FP / 27.80
+	// ERROS = 2.4 erros/FP
+
 	public static final void main(String[] args) throws Exception
 	{
 //		Project project = new ProjectReader().execute("data\\project.xml");
@@ -43,14 +46,10 @@ public class MainProgram
 	private Classe criaClasseDesenvolvedor()
 	{
 		return new Classe("Developer")
-			// Activity to which the developer is associated
-			.adicionaProcesso("AssociatedTask", "Groupmin(Bound([Activity], Team), DeveloperNeed)")
-			
-			// Developer's Productivity for each activity
 			.adicionaProcesso("Productivity", "1")
-		
-			// Developer's error generation rate for each activity
-			.adicionaProcesso("ErrorGenerationRate", "1");
+			.adicionaProcesso("ErrorGenerationRate", "1")
+			.adicionaRepositorio("WorkAvailable", "0")
+			.adicionaTaxa("RTWorkAvailable", "WorkAvailable", "Productivity");
 	}
 
 	private Classe criaClasseAtividade()
@@ -58,77 +57,38 @@ public class MainProgram
 		return new Classe("Activity")
 			.adicionaPropriedade("TestingTask", 0)
 			.adicionaPropriedade("Duration", 0)
-			.adicionaPropriedade("Order", 0)
 			
-			// DURACAO = FP / 27.80
-			// ERROS = 2.4 erros/FP
-			
-			// Set the activity execution time
-			.adicionaRepositorio("ExecutionTime", "Duration")
-		
-			// Determine if precedent activities are concluded
-			.adicionaProcesso("PrecConcluded", "AND (GroupMax (Precedence, PrecConcluded) >= 0, GroupMax (Precedence, RemainingTime) < 0.001)")
-
 			// Determine if the activity is concluded
 			.adicionaProcesso("Concluded", "RemainingTime < 0.001")
 
 			// Determine if the activity is ready to run
-			.adicionaProcesso("Ready", "AND (PrecConcluded, NOT(Concluded))")
+			.adicionaProcesso("Ready", "AND (GroupMax(Precedence, Concluded) >= 0, NOT(Concluded))")
 
 			// Determine if there are resources available for the activity
-			.adicionaProcesso("DeveloperNeed", "IF (Ready, Order, 1000)")
-			.adicionaProcesso("Executing", "AND (Ready, Team.AssociatedTask = Order)")
-
-			// Determine developer's productivity
-			.adicionaProcesso("Productivity", "Team.Productivity * DT")
+			.adicionaProcesso("WorkAvailable", "Team.WorkAvailable")
+			.adicionaProcesso("WorkUsed", "MIN(WorkAvailable, RemainingTime)")
+			.adicionaTaxa("RTWorkUsed", "Team.WorkAvailable", "-WorkUsed")
 
 			// Determine activity executed time
 			.adicionaRepositorio("ExecutedTime", "0")
-			.adicionaTaxa("RTExecTime", "ExecutedTime", "IF (Executing, if (TestingTask>0, MIN(RemainingTime, DT), MIN(RemainingTime, Productivity)), 0) / DT")
-			.adicionaProcesso("RemainingTime", "ExecutionTime - ExecutedTime")
+			.adicionaTaxa("RTExecTime", "ExecutedTime", "IF(Executing, WorkUsed, 0)")
+			.adicionaProcesso("RemainingTime", "IF(TestingTask, Errors * 0.13, Duration - ExecutedTime)")
 
 			// Calculates conclusion time for an activity
 			.adicionaRepositorio("ConclusionTime", "0")
-			.adicionaTaxa("RTConclusionTime", "ConclusionTime", "if(AND(ConclusionTime < 0.01, RemainingTime-RTExecTime*DT < 0.01), TIME/DT+1, 0)")
+			.adicionaTaxa("RTConclusionTime", "ConclusionTime", "if(NOT(Concluded), 1, 0)")
 
 			// Errors latent in the activity
 			.adicionaRepositorio("Errors", "0")
-			.adicionaTaxa("RTErrors", "Errors", "0");
-		
-//			.adicionaProcesso("SuccessorCount", "COUNT(Successor)")
-//			.adicionaProcesso("ErrorsToGo", "if (SuccessorCount > 0, (Errors + RTErrors*DT) /  SuccessorCount, 0)")
-//			.adicionaProcesso("Initializing", "AND (ExecutionTime > 0.0, ExecutedTime < 0.001, Executing)")
-//			.adicionaProcesso("ReadyToInherit", "OR (AND(ExecutionTime < 0.001, PrecConcluded, Errors < 0.001), Initializing)")
-//			.adicionaProcesso("InheritedErrors", "if (ReadyToInherit, GROUPSUM (Precedence, ErrorsToGo), 0)")
-//			.adicionaAjuste("RTErrors", "RTErrors + InheritedErrors / DT"));
-
-//			.adicionaPropriedade("Target", 95.0)
-//			
-//			// Average errors per function point
-//			.adicionaProcesso("AvgErrorFP", "2.4")
-//	
-//			// Errors corrected acummulator for the activity
-//			.adicionaRepositorio("ErrorsCorrected", "0")
-//			.adicionaTaxa("RTCorrection", "ErrorsCorrected", "CorrErrors")
-//	
-//			// Error correction in the activity
-//			.adicionaTaxa("RTCorrErrors", "Errors", "-CorrErrors")
-//			.adicionaProcesso("CorrErrors", "(InspectionTask + TestingTask) * RTExecTime * Productivity / (DetectionCost * DT)")
-//	
-//			// Cost to correct an error
-//			.adicionaProcesso("DetectionCost", "0.28")
-//	
-//			// Adjustment of time for testng activities
-//			.adicionaTaxa("RTTesting", "ExecutionTime", "if (AND(Executing, TestingTask > 0), -ExecutionTime+ExecutedTime+TestingEffort, 0) / DT")
-//			.adicionaProcesso("TestingEffort", "TestingDifference * DetectionCost")
-//			.adicionaProcesso("TestingDifference", "Max(Errors + InheritedErrors - CorrErrors - TestingTarget, 0)")
-//			.adicionaProcesso("TestingTarget", "FunctionPoints * AvgErrorFP * (1 - Target / 100.0)"));
+			.adicionaTaxa("RTErrorsCreated",   "Errors", "IF(TestingTask, 0, Team.ErrorGenerationRate)")
+			.adicionaTaxa("RTErrorsInherited", "Errors", "IF(AND(Ready, ExecutedTime < 0.001), GROUPSUM (Precedence, Errors) / DT, 0)")
+			.adicionaTaxa("RTErrorsCorrected", "Errors", "IF(TestingTask, -WorkUsed / 0.13, 0)");
 	}
 	
 	private Classe criaClasseProjeto()
 	{
 		return new Classe("Project")
-			.adicionaProcesso("Concluded", "GroupMin ([Activity], Concluded)")	
+			.adicionaProcesso("Concluded", "GroupMin(Activity, Concluded)")	
 			.adicionaRepositorio("ProjectTime", "0")
 			.adicionaTaxa("RTProjectTime", "ProjectTime", "IF (Concluded, 0, 1)");
 	}

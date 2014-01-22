@@ -198,9 +198,8 @@ expr	: CONST
 		}
 		| objset POINT ID
 		{
-			Expressao e1 = new Expressao($1.sval);
 			Expressao e2 = new Expressao($3.sval);
-			$$ = new ParserVal(new Expressao(TipoOperacao.PONTO, e1, e2));
+			$$ = new ParserVal(new Expressao(TipoOperacao.PONTO, $1.obj, e2));
 		}
 		| VALUES L_PARENT values R_PARENT
 		{

@@ -48,12 +48,12 @@ public class Metamodelo
 		return this;
 	}
 
-	public Metamodelo adicionaRelacionamentoMultiplo(String id, String origem, String destino, String papelDestino)
+	public Metamodelo adicionaRelacionamentoMultiplo(String id, Classe origem, Classe destino, String papelDestino)
 	{
 		return adicionaRelacionamento(new Relacionamento(TipoRelacionamento.MULTIPLE, id, origem, destino, papelDestino));
 	}
 
-	public Metamodelo adicionaRelacionamentoSimples(String id, String origem, String destino)
+	public Metamodelo adicionaRelacionamentoSimples(String id, Classe origem, Classe destino)
 	{
 		return adicionaRelacionamento(new Relacionamento(TipoRelacionamento.SINGLE, id, origem, destino, ""));
 	}

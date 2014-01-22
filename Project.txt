@@ -1,0 +1,19 @@
+public class Project
+{
+	private double ProjectTime = 0;
+
+	public Project()
+	{
+	}
+
+	public void init()
+	{
+		ProjectTime = 0.0;
+	}
+
+	public void step()
+	{
+		Concluded = GROUPMIN([Activity], Concluded);
+		RTProjectTime = IF(Concluded, 0.0, 1.0);
+	}
+}

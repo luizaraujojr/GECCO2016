@@ -326,7 +326,7 @@ public class PublicadorMetamodelo
 		else
 			out.print("MULTIRELATION ");
 	
-		out.print(relacao.getId() + " " + relacao.getIdClasseOrigem() + ", " + relacao.getIdClasseDestino());
+		out.print(relacao.getId() + " " + relacao.getClasseOrigem().getId() + ", " + relacao.getClasseDestino().getId());
 	
 		if (relacao.getPapelDestino().length() > 0)
 			out.print("(" + relacao.getPapelDestino() + ")");

@@ -1,0 +1,39 @@
+public class Activity
+{
+	private double TestingTask = 0.0;
+	private double Duration = 0.0;
+	private double Order = 0.0;
+	private double ExecutionTime = 0;
+	private double ExecutedTime = 0;
+	private double ConclusionTime = 0;
+	private double Errors = 0;
+	private List<Activity> Precedence;
+	private Developer Team;
+
+	public Activity()
+	{
+		this.Precedence = new ArrayList<Activity>();
+	}
+
+	public void init()
+	{
+		ExecutionTime = Duration;
+		ExecutedTime = 0.0;
+		ConclusionTime = 0.0;
+		Errors = 0.0;
+	}
+
+	public void step()
+	{
+		PrecConcluded = AND(GROUPMAX(Precedence, PrecConcluded) >= 0.0, GROUPMAX(Precedence, RemainingTime) < 0.001);
+		Concluded = RemainingTime < 0.001;
+		Ready = AND(PrecConcluded, NOT(Concluded));
+		DeveloperNeed = IF(Ready, Order, 1000.0);
+		Executing = AND(Ready, null.AssociatedTask == Order);
+		Productivity = null.Productivity * DT;
+		RTExecTime = IF(Executing, IF(TestingTask > 0.0, MIN (RemainingTime, DT), MIN (RemainingTime, Productivity)), 0.0) / DT;
+		RemainingTime = ExecutionTime - ExecutedTime;
+		RTConclusionTime = IF(AND(ConclusionTime < 0.01, RemainingTime - RTExecTime * DT < 0.01), TIME / DT + 1.0, 0.0);
+		RTErrors = 0.0;
+	}
+}

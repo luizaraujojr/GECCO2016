@@ -1,5 +1,6 @@
 package br.unirio.sd;
 
+import br.unirio.sd.control.gerador.Gerador;
 import br.unirio.sd.control.semantics.VerificaMetamodelo;
 import br.unirio.sd.model.cenario.Cenario;
 import br.unirio.sd.model.cenario.Conexao;
@@ -17,18 +18,26 @@ public class MainProgram
 		MainProgram programa = new MainProgram();
 		Metamodelo metamodelo = programa.criaMetamodelo();
 		new VerificaMetamodelo().executa(metamodelo);
+		new Gerador().executa("", metamodelo);
+		System.out.println("Fim!");
 	}
 	
 	public Metamodelo criaMetamodelo()
 	{
-		return new Metamodelo()
-			.adicionaClasse(criaClasseDesenvolvedor())
-			.adicionaClasse(criaClasseAtividade())
-			.adicionaClasse(criaClasseProjeto())
-			.adicionaRelacionamentoMultiplo("Precedences", "Activity", "Activity", "Successors")
-			.adicionaRelacionamentoSimples("Team", "Activity", "Developer")
+		Classe classeDesenvolvedor = criaClasseDesenvolvedor();
+		Classe classeAtividade = criaClasseAtividade();
+		Classe classeProjeto = criaClasseProjeto();
+
+		Metamodelo metamodelo = new Metamodelo()
+			.adicionaClasse(classeDesenvolvedor)
+			.adicionaClasse(classeAtividade)
+			.adicionaClasse(classeProjeto)
+			.adicionaRelacionamentoMultiplo("Precedence", classeAtividade, classeAtividade, "Successor")
+			.adicionaRelacionamentoSimples("Team", classeAtividade, classeDesenvolvedor)
 			.adicionaCenario(criaCenarioTrabalhoHorasExtras())
 			.adicionaCenario(criaCenarioExaustao());
+		
+		return metamodelo;
 	}
 
 	private Classe criaClasseDesenvolvedor()
@@ -58,7 +67,7 @@ public class MainProgram
 			.adicionaRepositorio("ExecutionTime", "Duration")
 		
 			// Determine if precedent activities are concluded
-			.adicionaProcesso("PrecConcluded", "AND (GroupMax (Precedences, PrecConcluded) >= 0, GroupMax (Precedences, RemainingTime) < 0.001)")
+			.adicionaProcesso("PrecConcluded", "AND (GroupMax (Precedence, PrecConcluded) >= 0, GroupMax (Precedence, RemainingTime) < 0.001)")
 
 			// Determine if the activity is concluded
 			.adicionaProcesso("Concluded", "RemainingTime < 0.001")
@@ -86,11 +95,11 @@ public class MainProgram
 			.adicionaRepositorio("Errors", "0")
 			.adicionaTaxa("RTErrors", "Errors", "0");
 		
-//			.adicionaProcesso("SuccessorCount", "COUNT(Successors)")
+//			.adicionaProcesso("SuccessorCount", "COUNT(Successor)")
 //			.adicionaProcesso("ErrorsToGo", "if (SuccessorCount > 0, (Errors + RTErrors*DT) /  SuccessorCount, 0)")
 //			.adicionaProcesso("Initializing", "AND (ExecutionTime > 0.0, ExecutedTime < 0.001, Executing)")
 //			.adicionaProcesso("ReadyToInherit", "OR (AND(ExecutionTime < 0.001, PrecConcluded, Errors < 0.001), Initializing)")
-//			.adicionaProcesso("InheritedErrors", "if (ReadyToInherit, GROUPSUM (Precedences, ErrorsToGo), 0)")
+//			.adicionaProcesso("InheritedErrors", "if (ReadyToInherit, GROUPSUM (Precedence, ErrorsToGo), 0)")
 //			.adicionaAjuste("RTErrors", "RTErrors + InheritedErrors / DT"));
 
 //			.adicionaPropriedade("Target", 95.0)

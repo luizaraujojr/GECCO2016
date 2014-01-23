@@ -21,7 +21,7 @@ public class MainProgram
 		MainProgram programa = new MainProgram();
 		Metamodelo metamodelo = programa.criaMetamodelo();
 		new VerificaMetamodelo().executa(metamodelo);
-		new Gerador().executa("", metamodelo);
+		new Gerador().executa("src\\br\\unirio\\simulator\\", metamodelo);
 		System.out.println("Fim!");
 	}
 	
@@ -37,6 +37,7 @@ public class MainProgram
 			.adicionaClasse(classeProjeto)
 			.adicionaRelacionamentoMultiplo("Precedence", classeAtividade, classeAtividade, "Successor")
 			.adicionaRelacionamentoSimples("Team", classeAtividade, classeDesenvolvedor)
+			.adicionaRelacionamentoMultiplo("Activity", classeProjeto, classeAtividade, "")
 			.adicionaCenario(criaCenarioTrabalhoHorasExtras())
 			.adicionaCenario(criaCenarioExaustao());
 		
@@ -59,7 +60,7 @@ public class MainProgram
 			.adicionaPropriedade("Duration", 0)
 			
 			// Determine if the activity is concluded
-			.adicionaProcesso("Concluded", "RemainingTime < 0.001")
+			.adicionaProcesso("Concluded", "IF(RemainingTime < 0.001, 1, 0)")
 
 			// Determine if the activity is ready to run
 			.adicionaProcesso("Ready", "AND (GroupMax(Precedence, Concluded) >= 0, NOT(Concluded))")
@@ -71,7 +72,7 @@ public class MainProgram
 
 			// Determine activity executed time
 			.adicionaRepositorio("ExecutedTime", "0")
-			.adicionaTaxa("RTExecTime", "ExecutedTime", "IF(Executing, WorkUsed, 0)")
+			.adicionaTaxa("RTExecTime", "ExecutedTime", "IF(Ready, WorkUsed, 0)")
 			.adicionaProcesso("RemainingTime", "IF(TestingTask, Errors * 0.13, Duration - ExecutedTime)")
 
 			// Calculates conclusion time for an activity
@@ -81,7 +82,7 @@ public class MainProgram
 			// Errors latent in the activity
 			.adicionaRepositorio("Errors", "0")
 			.adicionaTaxa("RTErrorsCreated",   "Errors", "IF(TestingTask, 0, Team.ErrorGenerationRate)")
-			.adicionaTaxa("RTErrorsInherited", "Errors", "IF(AND(Ready, ExecutedTime < 0.001), GROUPSUM (Precedence, Errors) / DT, 0)")
+			.adicionaTaxa("RTErrorsInherited", "Errors", "IF(AND(Ready, ExecutedTime), GROUPSUM (Precedence, Errors) / DT, 0)")
 			.adicionaTaxa("RTErrorsCorrected", "Errors", "IF(TestingTask, -WorkUsed / 0.13, 0)");
 	}
 	

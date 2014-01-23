@@ -457,7 +457,7 @@ final static String yyrule[] = {
 "objset : SELECT L_PARENT objset COMMA expr R_PARENT",
 };
 
-//#line 256 "expressao.y"
+//#line 255 "expressao.y"
 
 private Lexico lexico;
 private String equacao;
@@ -851,75 +851,74 @@ break;
 case 32:
 //#line 200 "expressao.y"
 {
-			Expressao e1 = new Expressao(val_peek(2).sval);
 			Expressao e2 = new Expressao(val_peek(0).sval);
-			yyval = new ParserVal(new Expressao(TipoOperacao.PONTO, e1, e2));
+			yyval = new ParserVal(new Expressao(TipoOperacao.PONTO, val_peek(2).obj, e2));
 		}
 break;
 case 33:
-//#line 206 "expressao.y"
+//#line 205 "expressao.y"
 {
 			yyval = val_peek(1);
 		}
 break;
 case 34:
-//#line 212 "expressao.y"
+//#line 211 "expressao.y"
 {
 			yyval = new ParserVal(new Expressao(TipoOperacao.COMMA, new Expressao(val_peek(2).dval), val_peek(0).obj));
 		}
 break;
 case 35:
-//#line 216 "expressao.y"
+//#line 215 "expressao.y"
 {
 			yyval = new ParserVal(new Expressao(val_peek(0).dval));
 		}
 break;
 case 36:
-//#line 222 "expressao.y"
+//#line 221 "expressao.y"
 {
 			yyval = new ParserVal(new Expressao(TipoOperacao.COMMA, val_peek(2).obj, val_peek(0).obj));
 		}
 break;
 case 37:
-//#line 226 "expressao.y"
+//#line 225 "expressao.y"
 {
 			yyval = new ParserVal(val_peek(0).obj);
 		}
 break;
 case 38:
-//#line 232 "expressao.y"
+//#line 231 "expressao.y"
 {
 			yyval = new ParserVal(new Expressao(val_peek(0).sval));
 		}
 break;
 case 39:
-//#line 236 "expressao.y"
+//#line 235 "expressao.y"
 {
 			Expressao e1 = new Expressao(val_peek(0).sval);
 			yyval = new ParserVal(new Expressao(TipoOperacao.PONTO, val_peek(2).obj, e1));
 		}
 break;
 case 40:
-//#line 241 "expressao.y"
+//#line 240 "expressao.y"
 {
 			Expressao e1 = new Expressao(val_peek(1).sval);
 			yyval = new ParserVal(new Expressao(TipoOperacao.CLSSET, e1, null));
 		}
 break;
 case 41:
-//#line 246 "expressao.y"
+//#line 245 "expressao.y"
 {
 			Expressao e1 = new Expressao(val_peek(1).sval);
 			yyval = new ParserVal(new Expressao(TipoOperacao.BOUND, val_peek(3).obj, e1));
 		}
 break;
 case 42:
-//#line 251 "expressao.y"
+//#line 250 "expressao.y"
 {
 			yyval = new ParserVal(new Expressao(TipoOperacao.SELECT, val_peek(3).obj, val_peek(1).obj));
 		}
 break;
-//#line 846 "Parser.java"
+//#line 845 "Parser.java"
 //########## END OF USER-SUPPLIED ACTIONS ##########
     }//switch
     //#### Now let's reduce... ####

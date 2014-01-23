@@ -7,16 +7,16 @@ import br.unirio.support.OrdenadorTopologico;
 
 public class Simulador
 {
-	private List<IObjetoSimulacao> objetos;
-	private List<IObjetoSimulacao> objetosOrdenados;
+	private List<ObjetoSimulacao> objetos;
+	private List<ObjetoSimulacao> objetosOrdenados;
 	
 	public Simulador()
 	{
-		this.objetos = new ArrayList<IObjetoSimulacao>();
+		this.objetos = new ArrayList<ObjetoSimulacao>();
 		this.objetosOrdenados = null;
 	}
 	
-	public void adiciona(IObjetoSimulacao objeto)
+	public void adiciona(ObjetoSimulacao objeto)
 	{
 		this.objetos.add(objeto);
 	}
@@ -25,13 +25,13 @@ public class Simulador
 	{
 		objetosOrdenados = new OrdenadorTopologicoSimulacao().sort(objetos);
 		
-		for (IObjetoSimulacao objeto : objetosOrdenados)
+		for (ObjetoSimulacao objeto : objetosOrdenados)
 			objeto.init();
 	}
 	
 	private void performSingleStep()
 	{
-		for (IObjetoSimulacao objeto : objetosOrdenados)
+		for (ObjetoSimulacao objeto : objetosOrdenados)
 			objeto.step();
 	}
 	
@@ -47,10 +47,10 @@ public class Simulador
 	}
 }
 
-class OrdenadorTopologicoSimulacao extends OrdenadorTopologico<IObjetoSimulacao>
+class OrdenadorTopologicoSimulacao extends OrdenadorTopologico<ObjetoSimulacao>
 {
 	@Override
-	protected List<IObjetoSimulacao> getDependencies(IObjetoSimulacao item)
+	protected List<ObjetoSimulacao> getDependencies(ObjetoSimulacao item)
 	{
 		return item.getDependencies();
 	}

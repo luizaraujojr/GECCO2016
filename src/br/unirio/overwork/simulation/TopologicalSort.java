@@ -1,10 +1,18 @@
-package br.unirio.support;
+package br.unirio.overwork.simulation;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class OrdenadorTopologico<T>
+/**
+ * Class that returns a topological partial order of a set of dependent objects
+ * 
+ * @author Marcio Barros
+ */
+public abstract class TopologicalSort<T>
 {
+	/**
+	 * Performs the topological sort
+	 */
 	public List<T> sort(List<T> items) throws Exception
 	{
 		List<T> source = new ArrayList<T>();
@@ -24,12 +32,15 @@ public abstract class OrdenadorTopologico<T>
 				List<T> dependees = getDependencies(item);
 				boolean dependeesResolved = true;
 				
-				for (int j = 0; dependeesResolved && j < dependees.size(); j++)
+				if (dependees != null)
 				{
-					T dependee = dependees.get(j);					
-
-					if (!target.contains(dependee))
-						dependeesResolved = false;
+					for (int j = 0; dependeesResolved && j < dependees.size(); j++)
+					{
+						T dependee = dependees.get(j);					
+	
+						if (!target.contains(dependee))
+							dependeesResolved = false;
+					}
 				}
 				
 				if (dependeesResolved)
@@ -47,5 +58,8 @@ public abstract class OrdenadorTopologico<T>
 		return target;
 	}
 	
+	/**
+	 * Abstract methos to return the dependencies of a given object
+	 */
 	protected abstract List<T> getDependencies(T item);
 }

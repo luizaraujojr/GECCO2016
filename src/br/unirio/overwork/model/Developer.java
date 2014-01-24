@@ -14,12 +14,12 @@ public class Developer extends BasicSimulationObject
 	/**
 	 * Developer's productivity
 	 */
-	private @Getter double productivity;
+	private @Getter @Setter double productivity;
 	
 	/**
 	 * Developer's error generation rate for a unit of work
 	 */
-	private @Getter double errorGenerationRate;
+	private @Getter @Setter double errorGenerationRate;
 	
 	/**
 	 * Effort available from the developer in a simulation step
@@ -38,7 +38,7 @@ public class Developer extends BasicSimulationObject
 	 * Prepares the simulation of the developer
 	 */
 	@Override
-	public void init()
+	public void beforeStep()
 	{
 		productivity = 1.0;
 		errorGenerationRate = 1.0;

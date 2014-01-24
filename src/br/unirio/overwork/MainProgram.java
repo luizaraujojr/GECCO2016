@@ -3,6 +3,7 @@ package br.unirio.overwork;
 import br.unirio.overwork.builders.WorkPackageProjectBuilder;
 import br.unirio.overwork.model.Activity;
 import br.unirio.overwork.model.Project;
+import br.unirio.overwork.model.scenarios.ScenarioOverworking;
 import br.unirio.overwork.simulation.Simulator;
 
 public class MainProgram
@@ -66,6 +67,10 @@ public class MainProgram
 		Simulator simulator = new Simulator();
 		simulator.add(project.getDevelopers());
 		simulator.add(project.getActivities());
+		
+		new ScenarioOverworking(12).connect(project.getDevelopers());
+		//new ScenarioExhaution().connect(project.getDevelopers());
+		
 		simulator.init();
 		
 		while (!project.isConcluded())

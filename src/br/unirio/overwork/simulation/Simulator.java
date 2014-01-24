@@ -10,6 +10,7 @@ import lombok.Getter;
  * 
  * @author Marcio Barros
  */
+@SuppressWarnings({"rawtypes", "unchecked"})
 public class Simulator
 {
 	/**
@@ -62,8 +63,13 @@ public class Simulator
 		orderedObjects = new OrdenadorTopologicoSimulacao().sort(objects);
 		
 		for (SimulationObject object : orderedObjects)
+		{
 			object.init();
-
+			
+			for (Scenario scenario : object.getScenarios())
+				scenario.init(object);
+		}
+		
 		currentSimulationTime = 0;
 	}
 
@@ -77,6 +83,11 @@ public class Simulator
 		for (SimulationObject object : orderedObjects)
 		{
 			object.setCurrentSimulationTime(currentSimulationTime);
+			object.beforeStep();
+			
+			for (Scenario scenario : object.getScenarios())
+				scenario.step(object);
+
 			object.step();
 			
 			if (object.isLiveObject())

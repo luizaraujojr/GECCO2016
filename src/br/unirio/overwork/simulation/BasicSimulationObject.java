@@ -34,6 +34,14 @@ public abstract class BasicSimulationObject extends SimulationObject
 	}
 	
 	/**
+	 * Method called before a simulation step
+	 */
+	@Override
+	public void beforeStep()
+	{
+	}
+	
+	/**
 	 * Performs a simulation step
 	 */
 	@Override

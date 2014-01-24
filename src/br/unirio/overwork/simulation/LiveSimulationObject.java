@@ -60,6 +60,14 @@ public abstract class LiveSimulationObject extends SimulationObject
 	}
 	
 	/**
+	 * Method called before a simulation step
+	 */
+	@Override
+	public void beforeStep()
+	{
+	}
+	
+	/**
 	 * Performs a simulation step
 	 */
 	@Override

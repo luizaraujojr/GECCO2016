@@ -30,6 +30,11 @@ public abstract class Activity extends LiveSimulationObject
 	 * Number of errors remaining when the activity is finished
 	 */
 	protected @Getter double errors;
+	
+	/**
+	 * Simulation time when the activity was first executed
+	 */
+	private double startExecutionSimulationTime = 0.0;
 
 	/**
 	 * Initializes an activity
@@ -113,6 +118,7 @@ public abstract class Activity extends LiveSimulationObject
 			double effortAvailable = developer.getEffortAvailable();
 			double effortUsed = Math.min(effortAvailable, remainingWork);
 			developer.setEffortAvailable(effortAvailable - effortUsed);
+			if (effortUsed > 0 && startExecutionSimulationTime <= 0.0) startExecutionSimulationTime = getCurrentSimulationTime();
 			consumeEffort(effortUsed);
 			remainingWork = getRemainingWork();
 		}
@@ -137,6 +143,6 @@ public abstract class Activity extends LiveSimulationObject
 	public String toString()
 	{
 		NumberFormat nf2 = new DecimalFormat("0.00");
-		return getName() + "\t" + nf2.format(getFinishingSimulationTime()) + "\t" + nf2.format(errors);
+		return getName() + "\t" + nf2.format(startExecutionSimulationTime) + "\t" + nf2.format(getFinishingSimulationTime()) + "\t" + nf2.format(errors);
 	}
 }

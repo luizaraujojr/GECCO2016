@@ -67,7 +67,6 @@ public class MainProgram
 		Simulator simulator = new Simulator();
 		simulator.add(project.getDevelopers());
 		simulator.add(project.getActivities());
-		
 		new ScenarioOverworking(12).connect(project.getDevelopers());
 		//new ScenarioExhaution().connect(project.getDevelopers());
 		

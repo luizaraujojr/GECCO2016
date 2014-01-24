@@ -2,14 +2,14 @@ package br.unirio.overwork.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import br.unirio.overwork.simulation.SimulationObject;
+import br.unirio.overwork.simulation.BasicSimulationObject;
 
 /**
  * Class that represents a developer
  * 
  * @author Marcio Barros
  */
-public class Developer extends SimulationObject
+public class Developer extends BasicSimulationObject
 {
 	/**
 	 * Developer's productivity

@@ -9,7 +9,6 @@ import lombok.Getter;
  * Class that performs a continuous, object-oriented simulation
  * 
  * @author Marcio Barros
- *
  */
 public class Simulator
 {
@@ -79,7 +78,49 @@ public class Simulator
 		{
 			object.setCurrentSimulationTime(currentSimulationTime);
 			object.step();
+			
+			if (object.isLiveObject())
+				performLifeCycleStep(object);
 		}
+	}
+
+	/**
+	 * Perform a single step in the life-cycle of a live object
+	 */
+	private void performLifeCycleStep(SimulationObject object)
+	{
+		if (!dependenciesConcluded(object))
+			return;
+		
+		if (!object.isStarted())
+		{
+			object.beforeStart();
+			object.start();
+		}
+		
+		if (object.isStarted() && !object.isFinished())
+			if (!object.liveStep())
+			{
+				object.beforeFinish();
+				object.finish();
+			}
+	}
+
+	/**
+	 * Checks whether all live objects preceding an object are finished
+	 */
+	private boolean dependenciesConcluded(SimulationObject object)
+	{
+		List<SimulationObject> dependees = object.getDependencies();
+		
+		if (dependees == null)
+			return true;
+		
+		for (SimulationObject dependee : dependees)
+			if (dependee.isLiveObject() && !dependee.isFinished())
+				return false;
+
+		return true;
 	}
 
 	/**

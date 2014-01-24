@@ -1,9 +1,12 @@
 package br.unirio.overwork.model;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Getter;
+import br.unirio.overwork.simulation.LiveSimulationObject;
 import br.unirio.overwork.simulation.SimulationObject;
 
 /**
@@ -11,7 +14,7 @@ import br.unirio.overwork.simulation.SimulationObject;
  * 
  * @author Marcio Barros
  */
-public abstract class Activity extends SimulationObject
+public abstract class Activity extends LiveSimulationObject
 {
 	/**
 	 * List of activities that precede the current activity
@@ -24,17 +27,7 @@ public abstract class Activity extends SimulationObject
 	private @Getter Developer developer;
 	
 	/**
-	 * Indicates whether the activity has started
-	 */
-	private @Getter boolean started;
-	
-	/**
-	 * Records the time when the activity was finished
-	 */
-	private @Getter double conclusionTime;
-	
-	/**
-	 * Number of erros remaining when the activity is finished
+	 * Number of errors remaining when the activity is finished
 	 */
 	protected @Getter double errors;
 
@@ -74,26 +67,6 @@ public abstract class Activity extends SimulationObject
 	}
 	
 	/**
-	 * Checks whether the activity has finished
-	 */
-	public boolean isConcluded()
-	{
-		return started && (getRemainingWork() < 0.001);
-	}
-	
-	/**
-	 * Checks whether the precendent activities were concluded
-	 */
-	private boolean precedentConcluded()
-	{
-		for (Activity activity : precedences)
-			if (!activity.isConcluded())
-				return false;
-		
-		return true;
-	}
-	
-	/**
 	 * Counts the number of errors inherited from the precedent activities
 	 */
 	private double countPrecedentErrors()
@@ -119,45 +92,32 @@ public abstract class Activity extends SimulationObject
 	}
 
 	/**
-	 * Prepares the activities' simulation
+	 * Method executed before the activity's life-cycle is started
 	 */
 	@Override
-	public void init()
+	public void beforeStart()
 	{
-		this.started = false;
-		this.conclusionTime = 0.0;
-		this.errors = 0.0;
+		errors = countPrecedentErrors();
 	}
 	
 	/**
-	 * Simulation step for the activity
+	 * Method executed when the activity's life-cycle is running
 	 */
 	@Override
-	public void step()
+	public boolean liveStep()
 	{
-		if (!started)
-		{
-			boolean precConcluded = precedentConcluded();
-
-			if (precConcluded)
-			{
-				errors += countPrecedentErrors();
-				started = true;
-			}
-		}
-
 		double remainingWork = getRemainingWork();
 
-		if (started && remainingWork >= 0.001)
+		if (remainingWork >= 0.001)
 		{
 			double effortAvailable = developer.getEffortAvailable();
 			double effortUsed = Math.min(effortAvailable, remainingWork);
 			developer.setEffortAvailable(effortAvailable - effortUsed);
 			consumeEffort(effortUsed);
-			
-			if (getRemainingWork() < 0.001)
-				conclusionTime = getCurrentSimulationTime();
+			remainingWork = getRemainingWork();
 		}
+		
+		return remainingWork >= 0.001;
 	}
 	
 	/**
@@ -176,6 +136,7 @@ public abstract class Activity extends SimulationObject
 	@Override
 	public String toString()
 	{
-		return getName() + "\t" + conclusionTime + "\t" + errors;
+		NumberFormat nf2 = new DecimalFormat("0.00");
+		return getName() + "\t" + nf2.format(getFinishingSimulationTime()) + "\t" + nf2.format(errors);
 	}
 }

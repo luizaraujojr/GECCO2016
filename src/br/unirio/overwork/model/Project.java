@@ -67,7 +67,7 @@ public class Project
 	public boolean isConcluded()
 	{
 		for (Activity a : activities)
-			if (!a.isConcluded())
+			if (!a.isFinished())
 				return false;
 		
 		return true;

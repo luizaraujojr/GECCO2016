@@ -101,11 +101,27 @@ public abstract class BasicSimulationObject extends SimulationObject
 	}
 
 	/**
+	 * Method called before each live step
+	 */
+	@Override
+	public void beforeLiveStep()
+	{	
+	}
+
+	/**
 	 * Method called every simulation step that the object's life-cycle is running
 	 */
 	public boolean liveStep()
 	{
 		return false;
+	}
+
+	/**
+	 * Method called after each live step
+	 */
+	@Override
+	public void afterLiveStep()
+	{
 	}
 
 	/**

@@ -131,6 +131,22 @@ public abstract class LiveSimulationObject extends SimulationObject
 	}
 
 	/**
+	 * Method called before each live step
+	 */
+	@Override
+	public void beforeLiveStep()
+	{	
+	}
+
+	/**
+	 * Method called after each live step
+	 */
+	@Override
+	public void afterLiveStep()
+	{
+	}
+
+	/**
 	 * Method called before the object's life-cycle is finished
 	 */
 	@Override

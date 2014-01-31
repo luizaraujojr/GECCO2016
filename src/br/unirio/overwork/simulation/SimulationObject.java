@@ -137,9 +137,19 @@ public abstract class SimulationObject
 	public abstract void beforeStart();
 
 	/**
+	 * Method called before each live step
+	 */
+	public abstract void beforeLiveStep();
+
+	/**
 	 * Method called every simulation step that the object's life-cycle is running
 	 */
 	public abstract boolean liveStep();
+
+	/**
+	 * Method called after each live step
+	 */
+	public abstract void afterLiveStep();
 
 	/**
 	 * Method called before the object's life-cycle is finished

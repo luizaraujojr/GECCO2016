@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Getter;
+import lombok.Setter;
 import br.unirio.overwork.simulation.LiveSimulationObject;
 import br.unirio.overwork.simulation.SimulationObject;
 
@@ -30,6 +31,10 @@ public abstract class Activity extends LiveSimulationObject
 	 * Number of errors remaining when the activity is finished
 	 */
 	protected @Getter double errors;
+	
+	protected @Getter @Setter double productivity;
+	
+	protected @Getter @Setter double errorGenerationRate;
 	
 	/**
 	 * Simulation time when the activity was first executed
@@ -105,6 +110,13 @@ public abstract class Activity extends LiveSimulationObject
 		errors = countPrecedentErrors();
 	}
 	
+	@Override
+	public void beforeStep()
+	{
+		this.productivity = developer.getProductivity();
+		this.errorGenerationRate = developer.getErrorGenerationRate();
+	}
+	
 	/**
 	 * Method executed when the activity's life-cycle is running
 	 */
@@ -116,11 +128,21 @@ public abstract class Activity extends LiveSimulationObject
 		if (remainingWork >= 0.001)
 		{
 			double effortAvailable = developer.getEffortAvailable();
-			double effortUsed = Math.min(effortAvailable, remainingWork);
-			developer.setEffortAvailable(effortAvailable - effortUsed);
-			if (effortUsed > 0 && startExecutionSimulationTime <= 0.0) startExecutionSimulationTime = getCurrentSimulationTime();
-			consumeEffort(effortUsed);
-			remainingWork = getRemainingWork();
+			
+			if (effortAvailable > 0.0)
+			{
+				double effortUsed = Math.min(effortAvailable, remainingWork / this.productivity);
+				developer.setEffortAvailable(effortAvailable - effortUsed);
+				
+				if (effortUsed > 0 && startExecutionSimulationTime <= 0.0) 
+					startExecutionSimulationTime = getCurrentSimulationTime();
+				
+				consumeEffort(effortUsed * this.productivity);
+				remainingWork = getRemainingWork();
+				
+				if ( remainingWork < 0.001)
+					remainingWork = remainingWork* 1;
+			}
 		}
 		
 		return remainingWork >= 0.001;
@@ -129,7 +151,7 @@ public abstract class Activity extends LiveSimulationObject
 	/**
 	 * Returns the amount of work to be performed
 	 */
-	protected abstract double getRemainingWork();
+	public abstract double getRemainingWork();
 	
 	/**
 	 * Consumes an amount of effort

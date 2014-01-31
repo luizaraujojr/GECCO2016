@@ -1,6 +1,6 @@
 package br.unirio.overwork.model.scenarios;
 
-import br.unirio.overwork.model.Developer;
+import br.unirio.overwork.model.Activity;
 import br.unirio.overwork.simulation.Scenario;
 import br.unirio.overwork.simulation.SimulationObject;
 import br.unirio.overwork.simulation.Tables;
@@ -10,7 +10,7 @@ import br.unirio.overwork.simulation.Tables;
  * 
  * @author Marcio Barros
  */
-public class ScenarioExhaution extends Scenario<Developer>
+public class ScenarioExhaution extends Scenario<Activity>
 {
 	/**
 	 * Table that determines exhaustion increase factors for different daily work hours
@@ -38,46 +38,60 @@ public class ScenarioExhaution extends Scenario<Developer>
 	 * Prepares the scenario for execution
 	 */
 	@Override
-	public void init(Developer developer)
+	public void init(Activity activity)
 	{
-		developer.setScenarioVariable("tempDWH", developer.getScenarioVariable("dailyWorkHours", 8));
-		developer.setScenarioVariable("exhaustion", 0);
-		developer.setScenarioVariable("resting", 0);
+		double dailyWorkHours = activity.getScenarioVariable("dailyWorkHours", 0);
+		activity.setScenarioVariable("dailyWorkHoursCopy", dailyWorkHours);
+
+		activity.getDeveloper().setScenarioVariable("exhaustion", 0);
+		activity.getDeveloper().setScenarioVariable("resting", 0);
+		activity.setScenarioVariable("workToDo", 0);
 	}
 
+	public void beforeLiveStep(Activity activity)
+	{
+		activity.setScenarioVariable("workToDo", activity.getRemainingWork());
+	}
+	
 	/**
 	 * Runs a step of the scenario
 	 */
 	@Override
-	public void step(Developer developer)
+	public void afterLiveStep(Activity activity)
 	{
-		double exhaustion = developer.getScenarioVariable("exhaustion", 0);
-		double dailyWorkHours = developer.getScenarioVariable("dailyWorkHours", 0);
-
-		double workHourModifier = 1 + (dailyWorkHours - 8) / (12 - 8);
-		double dedication = 0.6 + (workHourModifier - 1) * (1.2 - 0.6);
-		double dedicationFactor = 1 - (1 - dedication) / 0.4;
-		double exhaustionModifier = Tables.lookup(EXHAUSTION_FACTOR, dedicationFactor, 0, 0.15);
+		double wasToDo = activity.getScenarioVariable("workToDo", 0);
+		double remainsToDo = activity.getRemainingWork();
 		
-		boolean resting = developer.getScenarioVariable("resting", 0) > 0;
+		if (wasToDo == remainsToDo)
+			return;
+		
+		double exhaustion = activity.getDeveloper().getScenarioVariable("exhaustion", 0);
+		boolean resting = activity.getDeveloper().getScenarioVariable("resting", 0) > 0;
 		
 		if (resting)
+		{
 			exhaustion -= MAX_EXHAUSTION / RESTING_PERIOD * SimulationObject.DT;
+			activity.getDeveloper().setScenarioVariable("exhaustion", exhaustion);
+		}
 		else
+		{
+			double dailyWorkHours = activity.getScenarioVariable("dailyWorkHours", 0);
+			double workHourModifier = (dailyWorkHours - 8) / (12 - 8);
+			double exhaustionModifier = Tables.lookup(EXHAUSTION_FACTOR, workHourModifier, 0, 1);
 			exhaustion += exhaustionModifier * SimulationObject.DT;
-		
-		developer.setScenarioVariable("exhaustion", exhaustion);
+			activity.getDeveloper().setScenarioVariable("exhaustion", exhaustion);
+		}
 		
 		if (!resting && exhaustion >= MAX_EXHAUSTION)
 		{
-			developer.setScenarioVariable("dailyWorkHours", 8);
-			developer.setScenarioVariable("resting", 1);
+			activity.setScenarioVariable("dailyWorkHours", 8);
+			activity.getDeveloper().setScenarioVariable("resting", 1);
 		}
-		
-		if (resting && exhaustion < 0.001)
+		else if (resting && exhaustion < 0.001)
 		{
-			developer.setScenarioVariable("dailyWorkHours", developer.getScenarioVariable("tempDWH", 8));
-			developer.setScenarioVariable("resting", 0);
+			double dailyWorkHoursCopy = activity.getScenarioVariable("dailyWorkHoursCopy", 0);
+			activity.setScenarioVariable("dailyWorkHours", dailyWorkHoursCopy);
+			activity.getDeveloper().setScenarioVariable("resting", 0);
 		}
 	}
 }

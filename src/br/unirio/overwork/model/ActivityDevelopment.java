@@ -38,7 +38,6 @@ public class ActivityDevelopment extends Activity
 	@Override
 	public void init()
 	{
-		super.init();
 		this.workPerformed = 0.0;
 	}
 
@@ -46,7 +45,7 @@ public class ActivityDevelopment extends Activity
 	 * Returns the effort required to complete the activity
 	 */
 	@Override
-	protected double getRemainingWork()
+	public double getRemainingWork()
 	{
 		return workRequired - workPerformed;
 	}
@@ -58,6 +57,6 @@ public class ActivityDevelopment extends Activity
 	protected void consumeEffort(double effort)
 	{
 		workPerformed += effort;
-		errors += (effort / workRequired) * errorsExpected * getDeveloper().getErrorGenerationRate();	
+		errors += (effort / workRequired) * errorsExpected * errorGenerationRate;	
 	}
 }

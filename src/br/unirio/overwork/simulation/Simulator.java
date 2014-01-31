@@ -86,9 +86,12 @@ public class Simulator
 			object.beforeStep();
 			
 			for (Scenario scenario : object.getScenarios())
-				scenario.step(object);
+				scenario.beforeStep(object);
 
 			object.step();
+			
+			for (Scenario scenario : object.getScenarios())
+				scenario.afterStep(object);
 			
 			if (object.isLiveObject())
 				performLifeCycleStep(object);
@@ -110,11 +113,25 @@ public class Simulator
 		}
 		
 		if (object.isStarted() && !object.isFinished())
-			if (!object.liveStep())
+		{
+			object.beforeLiveStep();
+			
+			for (Scenario scenario : object.getScenarios())
+				scenario.beforeLiveStep(object);
+			
+			boolean hasFinished = !object.liveStep();
+
+			for (Scenario scenario : object.getScenarios())
+				scenario.afterLiveStep(object);
+			
+			if (hasFinished)
 			{
 				object.beforeFinish();
 				object.finish();
 			}
+			
+			object.afterLiveStep();
+		}
 	}
 
 	/**

@@ -24,7 +24,7 @@ public class AtivityTesting extends Activity
 	 * Returns the effort required to complete the activity
 	 */
 	@Override
-	protected double getRemainingWork()
+	public double getRemainingWork()
 	{
 		return errors * ERROR_CORRECTION_EFFORT;
 	}

@@ -1,6 +1,6 @@
 package br.unirio.overwork.model.scenarios;
 
-import br.unirio.overwork.model.Developer;
+import br.unirio.overwork.model.Activity;
 import br.unirio.overwork.simulation.Scenario;
 import br.unirio.overwork.simulation.Tables;
 
@@ -9,7 +9,7 @@ import br.unirio.overwork.simulation.Tables;
  * 
  * @author Marcio Barros
  */
-public class ScenarioOverworking extends Scenario<Developer>
+public class ScenarioOverworking extends Scenario<Activity>
 {
 	/**
 	 * Table depicting the increase/decrease on error generation rates
@@ -33,21 +33,22 @@ public class ScenarioOverworking extends Scenario<Developer>
 	 * Prepares the scenario for execution
 	 */
 	@Override
-	public void init(Developer developer)
+	public void init(Activity atividade)
 	{
-		developer.setScenarioVariable("dailyWorkHours", dailyWorkHours);
+		atividade.setScenarioVariable("dailyWorkHours", dailyWorkHours);
 	}
 
 	/**
-	 * Runs a step of the scenario
+	 * Runs the scenario before a simulation step
 	 */
 	@Override
-	public void step(Developer developer)
+	public void beforeStep(Activity activity)
 	{
-		double workHours = developer.getScenarioVariable("dailyWorkHours", dailyWorkHours);
-		double workHourModifier = 1 + (workHours - 8) / (12 - 8);
-		double errorGenerationFactor = Tables.lookup(ERROR_GENERATION_FACTOR, workHourModifier - 1, 0, 1);
-		developer.setProductivity(developer.getProductivity() * workHours / 8.0);
-		developer.setErrorGenerationRate(developer.getErrorGenerationRate() * errorGenerationFactor);
+		double workHours = activity.getScenarioVariable("dailyWorkHours", dailyWorkHours);
+		double workHourModifier = (workHours - 8) / (12 - 8);
+		double errorGenerationFactor = Tables.lookup(ERROR_GENERATION_FACTOR, workHourModifier, 0, 1);
+		
+		activity.setProductivity(activity.getProductivity() * workHours / 8.0);
+		activity.setErrorGenerationRate(activity.getErrorGenerationRate() * errorGenerationFactor);
 	}
 }

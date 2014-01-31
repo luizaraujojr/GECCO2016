@@ -51,6 +51,21 @@ public class ScenarioExhaution extends Scenario<Activity>
 	public void beforeLiveStep(Activity activity)
 	{
 		activity.setScenarioVariable("workToDo", activity.getRemainingWork());
+		
+//		double exhaustion = activity.getDeveloper().getScenarioVariable("exhaustion", 0);
+		boolean resting = activity.getDeveloper().getScenarioVariable("resting", 0) > 0;
+
+		if (resting)
+		{
+			activity.setScenarioVariable("dailyWorkHours", 8);
+//			activity.getDeveloper().setScenarioVariable("resting", 1);
+		}
+		else
+		{
+			double dailyWorkHoursCopy = activity.getScenarioVariable("dailyWorkHoursCopy", 0);
+			activity.setScenarioVariable("dailyWorkHours", dailyWorkHoursCopy);
+//			activity.getDeveloper().setScenarioVariable("resting", 0);
+		}
 	}
 	
 	/**
@@ -81,7 +96,7 @@ public class ScenarioExhaution extends Scenario<Activity>
 			exhaustion += exhaustionModifier * SimulationObject.DT;
 			activity.getDeveloper().setScenarioVariable("exhaustion", exhaustion);
 		}
-		
+
 		if (!resting && exhaustion >= MAX_EXHAUSTION)
 		{
 			activity.setScenarioVariable("dailyWorkHours", 8);

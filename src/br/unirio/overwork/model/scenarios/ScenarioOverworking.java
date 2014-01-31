@@ -2,7 +2,7 @@ package br.unirio.overwork.model.scenarios;
 
 import br.unirio.overwork.model.Activity;
 import br.unirio.overwork.simulation.Scenario;
-import br.unirio.overwork.simulation.Tables;
+import br.unirio.overwork.simulation.support.Tables;
 
 /**
  * Scenario that depicts overworking
@@ -35,7 +35,7 @@ public class ScenarioOverworking extends Scenario<Activity>
 	@Override
 	public void init(Activity atividade)
 	{
-		atividade.setScenarioVariable("dailyWorkHours", dailyWorkHours);
+		atividade.setState("dailyWorkHours", dailyWorkHours);
 	}
 
 	/**
@@ -44,7 +44,7 @@ public class ScenarioOverworking extends Scenario<Activity>
 	@Override
 	public void beforeStep(Activity activity)
 	{
-		double workHours = activity.getScenarioVariable("dailyWorkHours", dailyWorkHours);
+		double workHours = activity.getState("dailyWorkHours", dailyWorkHours);
 		double workHourModifier = (workHours - 8) / (12 - 8);
 		double errorGenerationFactor = Tables.lookup(ERROR_GENERATION_FACTOR, workHourModifier, 0, 1);
 		

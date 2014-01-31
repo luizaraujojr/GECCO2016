@@ -45,13 +45,13 @@ public class ScenarioErrorRegeneration extends Scenario<ActivityDevelopment>
 	/**
 	 * Runs a step of the scenario
 	 */
-	@Override
-	public void beforeStep(ActivityDevelopment activity)
-	{
+//	@Override
+//	public void beforeStep(ActivityDevelopment activity)
+//	{
 //		PROC InheritedDensity InheritedErrors / FunctionPoints;
 //		PROC RegenErrors ExpectedErrors * InheritedErrors * RegenFactor;
 //		PROC RegenFactor Max (1, LOOKUP (ActiveErrosDens, InheritedDensity , 0, 10));
 //		TABLE ActiveErrosDens 1, 1.1, 1.2, 1.325, 1.45, 1.6, 2.0, 2.5, 3.25, 4.35, 6.0;
 //		AFFECT RTErrors RTErrors + RegenErrors / DT;
-	}
+//	}
 }

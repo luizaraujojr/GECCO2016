@@ -1,4 +1,4 @@
-package br.unirio.overwork.simulation;
+package br.unirio.overwork.simulation.support;
 
 /**
  * Table management functions

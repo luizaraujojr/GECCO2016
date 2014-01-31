@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Getter;
+import br.unirio.overwork.simulation.resource.IResource;
+import br.unirio.overwork.simulation.support.TopologicalSort;
 
 /**
  * Class that performs a continuous, object-oriented simulation
@@ -24,6 +26,11 @@ public class Simulator
 	private List<SimulationObject> objects;
 	
 	/**
+	 * Resources consumed by the simulation
+	 */
+	private List<IResource> resources;
+	
+	/**
 	 * Topological order of the objects subjected to simulation
 	 */
 	private List<SimulationObject> orderedObjects;
@@ -35,6 +42,7 @@ public class Simulator
 	{
 		this.currentSimulationTime = 0;
 		this.objects = new ArrayList<SimulationObject>();
+		this.resources = new ArrayList<IResource>();
 		this.orderedObjects = null;
 	}
 	
@@ -44,6 +52,14 @@ public class Simulator
 	public void add(SimulationObject object)
 	{
 		this.objects.add(object);
+	}
+
+	/**
+	 * Adds a resource to the simulation
+	 */
+	public void addResource(IResource resource) 
+	{
+		this.resources.add(resource);
 	}
 	
 	/**
@@ -78,60 +94,39 @@ public class Simulator
 	 */
 	private void performSingleStep()
 	{
-		currentSimulationTime += SimulationObject.DT;
+		for (IResource resource : resources)
+			resource.reset();
 		
 		for (SimulationObject object : orderedObjects)
 		{
 			object.setCurrentSimulationTime(currentSimulationTime);
-			object.beforeStep();
 			
-			for (Scenario scenario : object.getScenarios())
-				scenario.beforeStep(object);
-
-			object.step();
-			
-			for (Scenario scenario : object.getScenarios())
-				scenario.afterStep(object);
-			
-			if (object.isLiveObject())
-				performLifeCycleStep(object);
-		}
-	}
-
-	/**
-	 * Perform a single step in the life-cycle of a live object
-	 */
-	private void performLifeCycleStep(SimulationObject object)
-	{
-		if (!dependenciesConcluded(object))
-			return;
-		
-		if (!object.isStarted())
-		{
-			object.beforeStart();
-			object.start();
-		}
-		
-		if (object.isStarted() && !object.isFinished())
-		{
-			object.beforeLiveStep();
-			
-			for (Scenario scenario : object.getScenarios())
-				scenario.beforeLiveStep(object);
-			
-			boolean hasFinished = !object.liveStep();
-
-			for (Scenario scenario : object.getScenarios())
-				scenario.afterLiveStep(object);
-			
-			if (hasFinished)
+			if (dependenciesConcluded(object))
 			{
-				object.beforeFinish();
-				object.finish();
+				if (!object.isStarted())
+					object.start();
+				
+				if (object.isStarted() && !object.isFinished())
+				{
+					object.beforeStep();
+					
+					for (Scenario scenario : object.getScenarios())
+						scenario.beforeStep(object);
+					
+					boolean hasFinished = !object.step();
+
+					for (Scenario scenario : object.getScenarios())
+						scenario.afterStep(object);
+					
+					if (hasFinished)
+						object.finish();
+					
+					object.afterStep();
+				}
 			}
-			
-			object.afterLiveStep();
 		}
+
+		currentSimulationTime += SimulationObject.DT;
 	}
 
 	/**
@@ -145,7 +140,7 @@ public class Simulator
 			return true;
 		
 		for (SimulationObject dependee : dependees)
-			if (dependee.isLiveObject() && !dependee.isFinished())
+			if (!dependee.isFinished())
 				return false;
 
 		return true;

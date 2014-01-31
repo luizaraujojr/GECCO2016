@@ -1,4 +1,4 @@
-package br.unirio.overwork.simulation;
+package br.unirio.overwork.simulation.support;
 
 import java.util.ArrayList;
 import java.util.List;

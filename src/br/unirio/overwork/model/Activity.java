@@ -7,7 +7,6 @@ import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
-import br.unirio.overwork.simulation.LiveSimulationObject;
 import br.unirio.overwork.simulation.SimulationObject;
 
 /**
@@ -15,7 +14,7 @@ import br.unirio.overwork.simulation.SimulationObject;
  * 
  * @author Marcio Barros
  */
-public abstract class Activity extends LiveSimulationObject
+public abstract class Activity extends SimulationObject
 {
 	/**
 	 * List of activities that precede the current activity
@@ -32,14 +31,20 @@ public abstract class Activity extends LiveSimulationObject
 	 */
 	protected @Getter double errors;
 	
+	/**
+	 * Base developer's productivity for the activity
+	 */
 	protected @Getter @Setter double productivity;
 	
+	/**
+	 * Base developer's error generation rate for the activity
+	 */
 	protected @Getter @Setter double errorGenerationRate;
 	
 	/**
 	 * Simulation time when the activity was first executed
 	 */
-	private double startExecutionSimulationTime = 0.0;
+	private @Getter double startExecutionTime = -1.0;
 
 	/**
 	 * Initializes an activity
@@ -97,7 +102,6 @@ public abstract class Activity extends LiveSimulationObject
 	{
 		List<SimulationObject> result = new ArrayList<SimulationObject>();
 		result.addAll(precedences);
-		result.add(developer);
 		return result;
 	}
 
@@ -110,6 +114,9 @@ public abstract class Activity extends LiveSimulationObject
 		errors = countPrecedentErrors();
 	}
 	
+	/**
+	 * Fetches developer characteristics before simulating
+	 */
 	@Override
 	public void beforeStep()
 	{
@@ -121,29 +128,29 @@ public abstract class Activity extends LiveSimulationObject
 	 * Method executed when the activity's life-cycle is running
 	 */
 	@Override
-	public boolean liveStep()
+	public boolean step()
 	{
 		double remainingWork = getRemainingWork();
 
-		if (remainingWork >= 0.001)
-		{
-			double effortAvailable = developer.getEffortAvailable();
-			
-			if (effortAvailable > 0.0)
-			{
-				double effortUsed = Math.min(effortAvailable, remainingWork / this.productivity);
-				developer.setEffortAvailable(effortAvailable - effortUsed);
-				
-				if (effortUsed > 0 && startExecutionSimulationTime <= 0.0) 
-					startExecutionSimulationTime = getCurrentSimulationTime();
-				
-				consumeEffort(effortUsed * this.productivity);
-				remainingWork = getRemainingWork();
-				
-				if ( remainingWork < 0.001)
-					remainingWork = remainingWork* 1;
-			}
-		}
+		if (remainingWork < 0.001)
+			return false;
+		
+		double effortAvailable = developer.getEffort().available();
+		
+		if (effortAvailable <= 0.0)
+			return true;
+
+		double effortUsed = Math.min(effortAvailable, remainingWork / this.productivity);
+		
+		if (effortUsed > 0 && startExecutionTime < 0.0) 
+			startExecutionTime = getCurrentSimulationTime();
+		
+		developer.getEffort().consume(effortUsed);
+		consumeEffort(effortUsed * this.productivity);
+		remainingWork = getRemainingWork();
+		
+		if (remainingWork < 0.001)
+			remainingWork = remainingWork * 1;		// allows debugging
 		
 		return remainingWork >= 0.001;
 	}
@@ -165,6 +172,6 @@ public abstract class Activity extends LiveSimulationObject
 	public String toString()
 	{
 		NumberFormat nf2 = new DecimalFormat("0.00");
-		return getName() + "\t" + nf2.format(startExecutionSimulationTime) + "\t" + nf2.format(getFinishingSimulationTime()) + "\t" + nf2.format(errors);
+		return getName() + "\t" + nf2.format(startExecutionTime) + "\t" + nf2.format(getFinishingTime()) + "\t" + nf2.format(errors);
 	}
 }

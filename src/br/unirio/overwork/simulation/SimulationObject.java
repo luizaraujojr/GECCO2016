@@ -6,6 +6,8 @@ import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
+import br.unirio.overwork.simulation.state.IState;
+import br.unirio.overwork.simulation.state.State;
 
 /**
  * Class that represents an abstract simulation object
@@ -24,6 +26,26 @@ public abstract class SimulationObject
 	 * Object's name
 	 */
 	private @Getter String name;
+
+	/**
+	 * Indicates whether the object has started its life-cycle
+	 */
+	private boolean started;
+
+	/**
+	 * SImulation time when the object started its life-cycle
+	 */
+	private @Getter double startingTime;
+
+	/**
+	 * Indicates whether the object has finished its life-cycle
+	 */
+	private boolean finished;
+	
+	/**
+	 * SImulation time when the object finished its life-cycle
+	 */
+	private @Getter double finishingTime;
 	
 	/**
 	 * Current simulation time - set by the simulator
@@ -36,9 +58,9 @@ public abstract class SimulationObject
 	private List<Scenario> scenarios;
 	
 	/**
-	 * Variables used by scenarios imposed upon the simulation object
+	 * States maintained by the simulation object
 	 */
-	private HashMap<String, Double> scenarioVariables;
+	private HashMap<String, IState> states;
 	
 	/**
 	 * Initializes the simulation object
@@ -46,8 +68,12 @@ public abstract class SimulationObject
 	public SimulationObject(String name)
 	{
 		this.name = name;
+		this.started = false;
+		this.startingTime = -1.0;
+		this.finished = false;
+		this.finishingTime = -1.0;
 		this.scenarios = new ArrayList<Scenario>();
-		this.scenarioVariables = new HashMap<String, Double>();
+		this.states = new HashMap<String, IState>();
 	}
 	
 	/**
@@ -67,92 +93,106 @@ public abstract class SimulationObject
 	}
 	
 	/**
-	 * Returns the value of a variable handled by a scenario
+	 * Returns the value of a state
 	 */
-	public double getScenarioVariable(String name, double value)
+	public double getState(String name, double _default)
 	{
-		if (scenarioVariables.containsKey(name))
-			return scenarioVariables.get(name);
+		if (states.containsKey(name))
+			return states.get(name).get();
 		
-		scenarioVariables.put(name, value);
-		return value;
+		states.put(name, new State(name, _default));
+		return _default;
 	}
 	
 	/**
 	 * Sets the value of a variable handled by a scenario
 	 */
-	public void setScenarioVariable(String name, double value)
+	public void setState(String name, double value)
 	{
-		scenarioVariables.put(name, value);
+		states.put(name, new State(name, value));
 	}
-
+	
 	/**
 	 * Returns the objects that must be simulated before the current one
 	 */
-	public abstract List<SimulationObject> getDependencies();
+	public List<SimulationObject> getDependencies()
+	{
+		return null;
+	}
 	
 	/**
 	 * Prepare the simulation for the object
 	 */
-	public abstract void init();
-	
-	/**
-	 * Method called before a simulation step
-	 */
-	public abstract void beforeStep();
-	
-	/**
-	 * Performs a simulation step
-	 */
-	public abstract void step();
-	
-	/**
-	 * Indicates whether the object has a life-cycle
-	 */
-	public abstract boolean isLiveObject();
+	public void init()
+	{
+	}
 	
 	/**
 	 * Indicates whether the object has started its life-cycle
 	 */
-	public abstract boolean isStarted();
+	public boolean isStarted()
+	{
+		return started;
+	}
 
 	/**
 	 * Indicates whether the object has finished its life-cycle
 	 */
-	public abstract boolean isFinished();
+	public boolean isFinished()
+	{
+		return finished;
+	}
 
 	/**
 	 * Starts the object's life-cycle
 	 */
-	public abstract void start();
+	public final void start()
+	{
+		beforeStart();
+		this.started = true;
+		this.startingTime = getCurrentSimulationTime();
+	}
 
 	/**
 	 * Finishes the object's life-cycle
 	 */
-	public abstract void finish();
+	public final void finish()
+	{
+		this.finished = true;
+		this.finishingTime = getCurrentSimulationTime();
+		afterFinish();
+	}
 
 	/**
-	 * Method called before the object's life-cycle is started
+	 * Method called before the object's simulation is started
 	 */
-	public abstract void beforeStart();
+	public void beforeStart()
+	{
+	}
 
 	/**
-	 * Method called before each live step
+	 * Method called before each step
 	 */
-	public abstract void beforeLiveStep();
+	public void beforeStep()
+	{	
+	}
 
 	/**
-	 * Method called every simulation step that the object's life-cycle is running
+	 * Method called every simulation step
 	 */
-	public abstract boolean liveStep();
+	public abstract boolean step();
 
 	/**
-	 * Method called after each live step
+	 * Method called after each step
 	 */
-	public abstract void afterLiveStep();
+	public void afterStep()
+	{
+	}
 
 	/**
-	 * Method called before the object's life-cycle is finished
+	 * Method called after the object's simulation is finished
 	 */
-	public abstract void beforeFinish();
+	public void afterFinish()
+	{
+	}
 }

@@ -2,6 +2,7 @@ package br.unirio.overwork;
 
 import br.unirio.overwork.builders.WorkPackageProjectBuilder;
 import br.unirio.overwork.model.Activity;
+import br.unirio.overwork.model.Developer;
 import br.unirio.overwork.model.Project;
 import br.unirio.overwork.model.scenarios.ScenarioExhaution;
 import br.unirio.overwork.model.scenarios.ScenarioOverworking;
@@ -64,9 +65,12 @@ public class MainProgram
 	public static final void main(String[] args) throws Exception
 	{
 		Project project = createProject();
-		
+
 		Simulator simulator = new Simulator();
-		simulator.add(project.getDevelopers());
+
+		for (Developer developer : project.getDevelopers())
+			simulator.addResource(developer.getEffort());
+		
 		simulator.add(project.getActivities());
 		new ScenarioOverworking(12).connect(project.getActivities());
 		new ScenarioExhaution().connect(project.getActivities());

@@ -1,17 +1,23 @@
 package br.unirio.overwork.simulation;
 
-
+/**
+ * Abstract class that represents a scenario
+ * 
+ * @author Marcio
+ */
 public abstract class Scenario<T extends SimulationObject>
 {
-	public Scenario()
-	{
-	}
-
+	/**
+	 * Connects the scenario to a certain simulation object
+	 */
 	public void connect(T t)
 	{
 		t.addScenario(this);
 	}
 
+	/**
+	 * Connects the scenario to a list of simulation objects
+	 */
 	public void connect(Iterable<T> ts)
 	{
 		for (T t : ts)
@@ -19,37 +25,23 @@ public abstract class Scenario<T extends SimulationObject>
 	}
 	
 	/**
-	 * Binds the scenario to a simulation object
+	 * Initializes the scenario under a simulation object
 	 */
 	public void init(T t)
 	{
 	}
-	
+
 	/**
 	 * Executes the scenario before a simulation step
 	 */
-	public void beforeStep(T t)
-	{
+	public void beforeStep(T t) 
+	{ 
 	}
 
 	/**
 	 * Executes the scenario after a simulation step
 	 */
-	public void afterStep(T t)
-	{
-	} 
-
-	/**
-	 * Executes the scenario before a live simulation step
-	 */
-	public void beforeLiveStep(T t) 
-	{ 
-	}
-
-	/**
-	 * Executes the scenario after a live simulation step
-	 */
-	public void afterLiveStep(T t) 
+	public void afterStep(T t) 
 	{ 
 	}
 }

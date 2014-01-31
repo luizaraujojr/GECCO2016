@@ -3,7 +3,7 @@ package br.unirio.overwork.model.scenarios;
 import br.unirio.overwork.model.Activity;
 import br.unirio.overwork.simulation.Scenario;
 import br.unirio.overwork.simulation.SimulationObject;
-import br.unirio.overwork.simulation.Tables;
+import br.unirio.overwork.simulation.support.Tables;
 
 /**
  * Scenario that represents the exhaustion dynamics for software developers
@@ -40,31 +40,28 @@ public class ScenarioExhaution extends Scenario<Activity>
 	@Override
 	public void init(Activity activity)
 	{
-		double dailyWorkHours = activity.getScenarioVariable("dailyWorkHours", 0);
-		activity.setScenarioVariable("dailyWorkHoursCopy", dailyWorkHours);
+		double dailyWorkHours = activity.getState("dailyWorkHours", 0);
+		activity.setState("dailyWorkHoursCopy", dailyWorkHours);
 
-		activity.getDeveloper().setScenarioVariable("exhaustion", 0);
-		activity.getDeveloper().setScenarioVariable("resting", 0);
-		activity.setScenarioVariable("workToDo", 0);
+		activity.getDeveloper().setState("exhaustion", 0);
+		activity.getDeveloper().setState("resting", 0);
+		activity.setState("workToDo", 0);
 	}
 
-	public void beforeLiveStep(Activity activity)
+	public void beforeStep(Activity activity)
 	{
-		activity.setScenarioVariable("workToDo", activity.getRemainingWork());
+		activity.setState("workToDo", activity.getRemainingWork());
 		
-//		double exhaustion = activity.getDeveloper().getScenarioVariable("exhaustion", 0);
-		boolean resting = activity.getDeveloper().getScenarioVariable("resting", 0) > 0;
+		boolean resting = activity.getDeveloper().getState("resting", 0) > 0;
 
 		if (resting)
 		{
-			activity.setScenarioVariable("dailyWorkHours", 8);
-//			activity.getDeveloper().setScenarioVariable("resting", 1);
+			activity.setState("dailyWorkHours", 8);
 		}
 		else
 		{
-			double dailyWorkHoursCopy = activity.getScenarioVariable("dailyWorkHoursCopy", 0);
-			activity.setScenarioVariable("dailyWorkHours", dailyWorkHoursCopy);
-//			activity.getDeveloper().setScenarioVariable("resting", 0);
+			double dailyWorkHoursCopy = activity.getState("dailyWorkHoursCopy", 0);
+			activity.setState("dailyWorkHours", dailyWorkHoursCopy);
 		}
 	}
 	
@@ -72,41 +69,41 @@ public class ScenarioExhaution extends Scenario<Activity>
 	 * Runs a step of the scenario
 	 */
 	@Override
-	public void afterLiveStep(Activity activity)
+	public void afterStep(Activity activity)
 	{
-		double wasToDo = activity.getScenarioVariable("workToDo", 0);
+		double wasToDo = activity.getState("workToDo", 0);
 		double remainsToDo = activity.getRemainingWork();
 		
 		if (wasToDo == remainsToDo)
 			return;
 		
-		double exhaustion = activity.getDeveloper().getScenarioVariable("exhaustion", 0);
-		boolean resting = activity.getDeveloper().getScenarioVariable("resting", 0) > 0;
+		double exhaustion = activity.getDeveloper().getState("exhaustion", 0);
+		boolean resting = activity.getDeveloper().getState("resting", 0) > 0;
 		
 		if (resting)
 		{
 			exhaustion -= MAX_EXHAUSTION / RESTING_PERIOD * SimulationObject.DT;
-			activity.getDeveloper().setScenarioVariable("exhaustion", exhaustion);
+			activity.getDeveloper().setState("exhaustion", exhaustion);
 		}
 		else
 		{
-			double dailyWorkHours = activity.getScenarioVariable("dailyWorkHours", 0);
+			double dailyWorkHours = activity.getState("dailyWorkHours", 0);
 			double workHourModifier = (dailyWorkHours - 8) / (12 - 8);
 			double exhaustionModifier = Tables.lookup(EXHAUSTION_FACTOR, workHourModifier, 0, 1);
 			exhaustion += exhaustionModifier * SimulationObject.DT;
-			activity.getDeveloper().setScenarioVariable("exhaustion", exhaustion);
+			activity.getDeveloper().setState("exhaustion", exhaustion);
 		}
 
 		if (!resting && exhaustion >= MAX_EXHAUSTION)
 		{
-			activity.setScenarioVariable("dailyWorkHours", 8);
-			activity.getDeveloper().setScenarioVariable("resting", 1);
+			activity.setState("dailyWorkHours", 8);
+			activity.getDeveloper().setState("resting", 1);
 		}
 		else if (resting && exhaustion < 0.001)
 		{
-			double dailyWorkHoursCopy = activity.getScenarioVariable("dailyWorkHoursCopy", 0);
-			activity.setScenarioVariable("dailyWorkHours", dailyWorkHoursCopy);
-			activity.getDeveloper().setScenarioVariable("resting", 0);
+			double dailyWorkHoursCopy = activity.getState("dailyWorkHoursCopy", 0);
+			activity.setState("dailyWorkHours", dailyWorkHoursCopy);
+			activity.getDeveloper().setState("resting", 0);
 		}
 	}
 }

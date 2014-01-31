@@ -36,6 +36,18 @@ public class Project
 	{
 		this.activities.add(activity);
 	}
+
+	/**
+	 * Returns an activity, given its name
+	 */
+	public Activity getActivity(String name) 
+	{
+		for (Activity a : activities)
+			if (a.getName().compareToIgnoreCase(name) == 0)
+				return a;
+		
+		return null;
+	}
 	
 	/**
 	 * Returns the list of activities from the project

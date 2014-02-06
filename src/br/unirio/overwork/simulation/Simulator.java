@@ -81,13 +81,13 @@ public class Simulator
 	 */
 	public void init() throws Exception
 	{
+		orderedObjects = new OrdenadorTopologicoSimulacao().sort(objects);
 		currentSimulationTime = 0;
 		blackboard.clear();
-		orderedObjects = new OrdenadorTopologicoSimulacao().sort(objects);
 
 		for (SimulationObject object : orderedObjects)
 		{
-			object.prepareForStep(currentSimulationTime, blackboard);
+			object.prepare(currentSimulationTime, blackboard);
 			object.init();
 			
 			for (Scenario scenario : object.getScenarios())
@@ -105,14 +105,14 @@ public class Simulator
 		
 		for (SimulationObject object : orderedObjects)
 		{
-			object.prepareForStep(currentSimulationTime, blackboard);
+			object.prepare(currentSimulationTime, blackboard);
 			
 			if (dependenciesConcluded(object))
 			{
 				if (!object.isStarted())
 					object.start();
 				
-				if (object.isStarted() && !object.isFinished())
+				if (!object.isFinished())
 				{
 					object.beforeStep();
 					
@@ -124,10 +124,10 @@ public class Simulator
 					for (Scenario scenario : object.getScenarios())
 						scenario.afterStep(object);
 					
+					object.afterStep();
+					
 					if (hasFinished)
 						object.finish();
-					
-					object.afterStep();
 				}
 			}
 		}

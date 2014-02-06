@@ -46,7 +46,7 @@ public abstract class SimulationObject
 	/**
 	 * Current simulation time - set by the simulator
 	 */
-	private @Getter double currentSimulationTime;
+	private double currentSimulationTime;
 	
 	/**
 	 * Current simulation blackboard - set by the simulator
@@ -93,14 +93,13 @@ public abstract class SimulationObject
 	{
 		return this.scenarios;
 	}
-
+	
 	/**
-	 * Prepares the object for a simulation step
+	 * Returns the current simulation time to subclasses
 	 */
-	void prepareForStep(double simulationTime, StateBoard blackboard)
+	protected double getCurrentSimulationTime()
 	{
-		this.currentSimulationTime = simulationTime;
-		this.blackboard = blackboard;
+		return currentSimulationTime;
 	}
 	
 	/**
@@ -174,6 +173,15 @@ public abstract class SimulationObject
 	{
 		return null;
 	}
+
+	/**
+	 * Prepares the object for a simulation step
+	 */
+	void prepare(double simulationTime, StateBoard blackboard)
+	{
+		this.currentSimulationTime = simulationTime;
+		this.blackboard = blackboard;
+	}
 	
 	/**
 	 * Prepare the simulation for the object
@@ -205,7 +213,7 @@ public abstract class SimulationObject
 	{
 		beforeStart();
 		this.started = true;
-		this.startingTime = getCurrentSimulationTime();
+		this.startingTime = currentSimulationTime;
 	}
 
 	/**
@@ -214,7 +222,7 @@ public abstract class SimulationObject
 	public final void finish()
 	{
 		this.finished = true;
-		this.finishingTime = getCurrentSimulationTime();
+		this.finishingTime = currentSimulationTime;
 		afterFinish();
 	}
 

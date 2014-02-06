@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Getter;
-import br.unirio.overwork.simulation.resource.IResource;
 import br.unirio.overwork.simulation.support.TopologicalSort;
 
 /**
@@ -21,14 +20,19 @@ public class Simulator
 	private @Getter double currentSimulationTime;
 	
 	/**
-	 * Objects subjected to simulation
+	 * Current simulation blackboard
 	 */
-	private List<SimulationObject> objects;
+	private StateBoard blackboard;
 	
 	/**
 	 * Resources consumed by the simulation
 	 */
-	private List<IResource> resources;
+	private List<Resource> resources;
+	
+	/**
+	 * Objects subjected to simulation
+	 */
+	private List<SimulationObject> objects;
 	
 	/**
 	 * Topological order of the objects subjected to simulation
@@ -41,34 +45,35 @@ public class Simulator
 	public Simulator()
 	{
 		this.currentSimulationTime = 0;
+		this.blackboard = new StateBoard();
 		this.objects = new ArrayList<SimulationObject>();
-		this.resources = new ArrayList<IResource>();
+		this.resources = new ArrayList<Resource>();
 		this.orderedObjects = null;
 	}
 	
 	/**
 	 * Adds an object to the simulation
 	 */
-	public void add(SimulationObject object)
+	public void addSimulationObject(SimulationObject object)
 	{
 		this.objects.add(object);
-	}
-
-	/**
-	 * Adds a resource to the simulation
-	 */
-	public void addResource(IResource resource) 
-	{
-		this.resources.add(resource);
 	}
 	
 	/**
 	 * Adds a set of objects to the simulation
 	 */
-	public void add(Iterable<? extends SimulationObject> objects)
+	public void addSimulationObjects(Iterable<? extends SimulationObject> objects)
 	{
 		for (SimulationObject o : objects)
 			this.objects.add(o);
+	}
+
+	/**
+	 * Adds a resource to the simulation
+	 */
+	public void addResource(Resource resource) 
+	{
+		this.resources.add(resource);
 	}
 	
 	/**
@@ -76,17 +81,18 @@ public class Simulator
 	 */
 	public void init() throws Exception
 	{
+		currentSimulationTime = 0;
+		blackboard.clear();
 		orderedObjects = new OrdenadorTopologicoSimulacao().sort(objects);
-		
+
 		for (SimulationObject object : orderedObjects)
 		{
+			object.prepareForStep(currentSimulationTime, blackboard);
 			object.init();
 			
 			for (Scenario scenario : object.getScenarios())
 				scenario.init(object);
 		}
-		
-		currentSimulationTime = 0;
 	}
 
 	/**
@@ -94,12 +100,12 @@ public class Simulator
 	 */
 	private void performSingleStep()
 	{
-		for (IResource resource : resources)
+		for (Resource resource : resources)
 			resource.reset();
 		
 		for (SimulationObject object : orderedObjects)
 		{
-			object.setCurrentSimulationTime(currentSimulationTime);
+			object.prepareForStep(currentSimulationTime, blackboard);
 			
 			if (dependenciesConcluded(object))
 			{

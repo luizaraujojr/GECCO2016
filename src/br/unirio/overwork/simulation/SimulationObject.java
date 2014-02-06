@@ -1,13 +1,9 @@
 package br.unirio.overwork.simulation;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import lombok.Getter;
-import lombok.Setter;
-import br.unirio.overwork.simulation.state.IState;
-import br.unirio.overwork.simulation.state.State;
 
 /**
  * Class that represents an abstract simulation object
@@ -50,17 +46,22 @@ public abstract class SimulationObject
 	/**
 	 * Current simulation time - set by the simulator
 	 */
-	private @Getter @Setter double currentSimulationTime;
+	private @Getter double currentSimulationTime;
+	
+	/**
+	 * Current simulation blackboard - set by the simulator
+	 */
+	private StateBoard blackboard;
+	
+	/**
+	 * States maintained by the simulation object
+	 */
+	private StateBoard localStates;
 	
 	/**
 	 * Scenarios bound to the simulation object
 	 */
 	private List<Scenario> scenarios;
-	
-	/**
-	 * States maintained by the simulation object
-	 */
-	private HashMap<String, IState> states;
 	
 	/**
 	 * Initializes the simulation object
@@ -73,7 +74,8 @@ public abstract class SimulationObject
 		this.finished = false;
 		this.finishingTime = -1.0;
 		this.scenarios = new ArrayList<Scenario>();
-		this.states = new HashMap<String, IState>();
+		this.localStates = new StateBoard();
+		this.blackboard = null;
 	}
 	
 	/**
@@ -91,27 +93,80 @@ public abstract class SimulationObject
 	{
 		return this.scenarios;
 	}
-	
+
 	/**
-	 * Returns the value of a state
+	 * Prepares the object for a simulation step
 	 */
-	public double getState(String name, double _default)
+	void prepareForStep(double simulationTime, StateBoard blackboard)
 	{
-		if (states.containsKey(name))
-			return states.get(name).get();
-		
-		states.put(name, new State(name, _default));
-		return _default;
+		this.currentSimulationTime = simulationTime;
+		this.blackboard = blackboard;
 	}
 	
 	/**
-	 * Sets the value of a variable handled by a scenario
+	 * Reads a local state as a double value
 	 */
-	public void setState(String name, double value)
+	public double getLocalState(String name, double _default)
 	{
-		states.put(name, new State(name, value));
+		return localStates.getState(name, _default);
 	}
 	
+	/**
+	 * Reads a local state as a boolean value
+	 */
+	public boolean getLocalState(String name, boolean _default)
+	{
+		return localStates.getState(name, _default);
+	}
+
+	/**
+	 * Writes a local state as a double value
+	 */
+	public void setLocalState(String name, double value)
+	{
+		localStates.setState(name, value);
+	}
+
+	/**
+	 * Writes a local state as a boolean value
+	 */
+	public void setLocalState(String name, boolean value)
+	{
+		localStates.setState(name, value);
+	}
+	
+	/**
+	 * Reads a global state as a double value
+	 */
+	public double getGlobalState(String name, double _default)
+	{
+		return blackboard.getState(name, _default);
+	}
+	
+	/**
+	 * Reads a global state as a boolean value
+	 */
+	public boolean getGlobalState(String name, boolean _default)
+	{
+		return blackboard.getState(name, _default);
+	}
+
+	/**
+	 * Writes a global state as a double value
+	 */
+	public void setGlobalState(String name, double value)
+	{
+		blackboard.setState(name, value);
+	}
+
+	/**
+	 * Writes a global state as a boolean value
+	 */
+	public void setGlobalState(String name, boolean value)
+	{
+		blackboard.setState(name, value);
+	}
+
 	/**
 	 * Returns the objects that must be simulated before the current one
 	 */

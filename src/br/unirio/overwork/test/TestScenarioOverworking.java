@@ -70,7 +70,7 @@ public class TestScenarioOverworking extends TestCase
 		for (Developer developer : project.getDevelopers())
 			simulator.addResource(developer.getEffort());
 		
-		simulator.add(project.getActivities());
+		simulator.addSimulationObjects(project.getActivities());
 		new ScenarioOverworking(12).connect(project.getActivities());
 		simulator.init();
 		

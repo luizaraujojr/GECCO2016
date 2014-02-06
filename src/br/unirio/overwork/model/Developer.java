@@ -1,15 +1,14 @@
 package br.unirio.overwork.model;
 
 import lombok.Getter;
-import br.unirio.overwork.simulation.StatefulObject;
-import br.unirio.overwork.simulation.resource.Resource;
+import br.unirio.overwork.simulation.Resource;
 
 /**
  * Class that represents a developer
  * 
  * @author Marcio Barros
  */
-public class Developer extends StatefulObject
+public class Developer
 {
 	/**
 	 * Developer's name

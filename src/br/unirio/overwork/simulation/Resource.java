@@ -1,13 +1,12 @@
-package br.unirio.overwork.simulation.resource;
+package br.unirio.overwork.simulation;
 
-import br.unirio.overwork.simulation.SimulationObject;
 
 /**
  * Class that represents a resource used during a simulation
  * 
  * @author Marcio
  */
-public class Resource implements IResource 
+public class Resource 
 {
 	/**
 	 * Resource's name

@@ -12,12 +12,6 @@ import br.unirio.overwork.simulation.Tables;
  */
 public class ScenarioErrorRegeneration extends Scenario<Activity>
 {
-//	PROC InheritedDensity InheritedErrors / FunctionPoints;
-//	PROC RegenErrors (AnalysisTask + ArchitecTask + DesignTask + CodingTask) * InheritedErrors * 0.24 * RegenFactor;
-//	PROC RegenFactor Max (1, LOOKUP (ActiveErrosDens, InheritedDensity , 0, 10));
-//	TABLE ActiveErrosDens 1, 1.1, 1.2, 1.325, 1.45, 1.6, 2.0, 2.5, 3.25, 4.35, 6.0;
-//	AFFECT RTErrors RTErrors + RegenErrors / DT;
-
 	/**
 	 * Table that determines ...
 	 */
@@ -47,14 +41,21 @@ public class ScenarioErrorRegeneration extends Scenario<Activity>
 	 */
 	@Override
 	public void beforeStart(Activity activity) 
-	{ 
+	{
 		// pega o acumulado de erros ativos das atividades precedentes
 		double sum = 0.0;
 		
 		for (SimulationObject precedent : activity.getDependencies())
 			sum += precedent.getLocalState("activeErrors", 0);
 		
+		// pega o acumulado de erros das atividades precedentes
+		double sum2 = 0.0;
+		
+		for (SimulationObject precedent : activity.getDependencies())
+			sum2 += ((Activity)precedent).getErrors();
+
 		activity.setLocalState("inheritedActiveErrors", sum);
+		activity.setLocalState("errorDensity", (sum2 != 0.0) ? sum / sum2 : 0.0);
 		activity.setLocalState("activeErrors", sum);
 	}
 
@@ -89,8 +90,9 @@ public class ScenarioErrorRegeneration extends Scenario<Activity>
 		activity.setLocalState("activeErrors", activeErrors);
 		
 		// calcula o fator de densidade (FD)
-		double inheritedActiveErrors = activity.getLocalState("inheritedActiveErrors", 0);
-		double density = (errorsAfterStep > 0.0) ? inheritedActiveErrors / errorsAfterStep : 0.0;
+//		double inheritedActiveErrors = activity.getLocalState("inheritedActiveErrors", 0);
+//		double density = (errorsAfterStep > 0.0) ? inheritedActiveErrors / errorsAfterStep : 0.0;
+		double density = activity.getLocalState("errorDensity", 0.0);
 		double densityFactor = Tables.lookup(ACTIVE_ERRORS_DENSITY, density, 0, 1);
 		
 		// E1 = E1 + D * (FD - 1)

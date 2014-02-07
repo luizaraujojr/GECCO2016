@@ -40,7 +40,7 @@ public class ScenarioErrorRegeneration extends Scenario<Activity>
 	 * Executes the scenario before the start of an object's life-cycle
 	 */
 	@Override
-	public void beforeStart(Activity activity) 
+	public void afterStart(Activity activity) 
 	{
 		// pega o acumulado de erros ativos das atividades precedentes
 		double sum = 0.0;
@@ -49,24 +49,13 @@ public class ScenarioErrorRegeneration extends Scenario<Activity>
 			sum += precedent.getLocalState("activeErrors", 0);
 		
 		// pega o acumulado de erros das atividades precedentes
-		double sum2 = 0.0;
-		
-		for (SimulationObject precedent : activity.getDependencies())
-			sum2 += ((Activity)precedent).getErrors();
+		double sum2 = activity.getErrors();
 
 		activity.setLocalState("inheritedActiveErrors", sum);
 		activity.setLocalState("errorDensity", (sum2 != 0.0) ? sum / sum2 : 0.0);
 		activity.setLocalState("activeErrors", sum);
-	}
-
-	/**
-	 * Executes the scenario before the simulation step
-	 */
-	@Override
-	public void beforeStep(Activity activity)
-	{
-		// anota o número de erros atual da atividade em um estado
-		activity.setLocalState("errorsBeforeStep", activity.getErrors());
+		
+		activity.setLocalState("errorsBeforeStep", sum2);
 	}
 
 	/**
@@ -94,8 +83,13 @@ public class ScenarioErrorRegeneration extends Scenario<Activity>
 //		double density = (errorsAfterStep > 0.0) ? inheritedActiveErrors / errorsAfterStep : 0.0;
 		double density = activity.getLocalState("errorDensity", 0.0);
 		double densityFactor = Tables.lookup(ACTIVE_ERRORS_DENSITY, density, 0, 1);
+
+// Fazer com que seja cenário de ActivityDevelopment ...
+// Deveria regenerar apenas os erros ativos
 		
 		// E1 = E1 + D * (FD - 1)
 		activity.setErrors(errorsAfterStep + difference * (densityFactor - 1.0));
+
+		activity.setLocalState("errorsBeforeStep", activity.getErrors());
 	}
 }

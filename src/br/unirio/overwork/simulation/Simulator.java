@@ -135,6 +135,9 @@ public class Simulator
 			scenario.beforeStart(object);
 
 		object.start();
+
+		for (Scenario scenario : object.getScenarios())
+			scenario.afterStart(object);
 	}
 
 	/**
@@ -161,6 +164,9 @@ public class Simulator
 	 */
 	private void performStepFinish(SimulationObject object)
 	{
+		for (Scenario scenario : object.getScenarios())
+			scenario.beforeFinish(object);
+
 		object.finish();
 
 		for (Scenario scenario : object.getScenarios())

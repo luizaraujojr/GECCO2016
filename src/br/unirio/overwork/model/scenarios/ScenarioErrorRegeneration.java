@@ -26,6 +26,7 @@ public class ScenarioErrorRegeneration extends Scenario<ActivityDevelopment>
 	 */
 	public ScenarioErrorRegeneration()
 	{
+		// Parâmetro: FatorRegeneracao (0.85 para análise e projeto, 0.33 para codificação)
 	}
 	
 	/**
@@ -52,12 +53,16 @@ public class ScenarioErrorRegeneration extends Scenario<ActivityDevelopment>
 	@Override
 	public void afterStep(ActivityDevelopment activity)
 	{
-		// E0 <- pega o número de erros antes do passo na atividade, que está guardado em um estado
+		// E0 = pega o número de erros antes do passo na atividade, que está guardado em um estado
 
-		// E1 <- pega o número de erros atual da atividade em um estado
+		// E1 = pega o número de erros atual da atividade em um estado
 		
-		// D <- calcula a diferença no número de erros (E1 - E0)
+		// calcula a diferença no número de erros: D = E1 - E0
 		
-		// 
+		// atualiza o número de erros ativos: EA = EA + D * FatorRegeneracao 
+		
+		// calcula o fator de densidade (FD)
+		
+		// E1 = E1 + D * (FD - 1)
 	}
 }

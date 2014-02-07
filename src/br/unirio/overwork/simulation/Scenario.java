@@ -32,6 +32,13 @@ public abstract class Scenario<T extends SimulationObject>
 	}
 
 	/**
+	 * Executes the scenario before the start of an object's life-cycle
+	 */
+	public void beforeStart(T t) 
+	{ 
+	}
+
+	/**
 	 * Executes the scenario before a simulation step
 	 */
 	public void beforeStep(T t) 
@@ -42,6 +49,13 @@ public abstract class Scenario<T extends SimulationObject>
 	 * Executes the scenario after a simulation step
 	 */
 	public void afterStep(T t) 
+	{ 
+	}
+
+	/**
+	 * Executes the scenario after the end of an object's life-cycle
+	 */
+	public void afterFinish(T t) 
 	{ 
 	}
 }

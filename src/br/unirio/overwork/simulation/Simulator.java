@@ -97,7 +97,7 @@ public class Simulator
 	/**
 	 * Performs a single simulation step for all objects
 	 */
-	private void performSingleStep()
+	private void performStep()
 	{
 		for (Resource resource : resources)
 			resource.reset();
@@ -109,29 +109,64 @@ public class Simulator
 			if (dependenciesConcluded(object))
 			{
 				if (!object.isStarted())
-					object.start();
+					performStepStart(object);
 				
 				if (!object.isFinished())
 				{
-					object.beforeStep();
-					
-					for (Scenario scenario : object.getScenarios())
-						scenario.beforeStep(object);
-					
-					boolean hasFinished = !object.step();
+					boolean hasFinished = performStepCore(object);
 
-					for (Scenario scenario : object.getScenarios())
-						scenario.afterStep(object);
-					
-					object.afterStep();
-					
 					if (hasFinished)
-						object.finish();
+						performStepFinish(object);
 				}
 			}
 		}
 
 		currentSimulationTime += SimulationObject.DT;
+	}
+
+	/**
+	 * Performs the start of a step
+	 */
+	private void performStepStart(SimulationObject object)
+	{
+		object.beforeStart();
+
+		for (Scenario scenario : object.getScenarios())
+			scenario.beforeStart(object);
+
+		object.start();
+	}
+
+	/**
+	 * Performs the core part of a step
+	 */
+	private boolean performStepCore(SimulationObject object)
+	{
+		object.beforeStep();
+		
+		for (Scenario scenario : object.getScenarios())
+			scenario.beforeStep(object);
+		
+		boolean hasFinished = !object.step();
+
+		for (Scenario scenario : object.getScenarios())
+			scenario.afterStep(object);
+		
+		object.afterStep();
+		return hasFinished;
+	}
+
+	/**
+	 * Performs the end of a step
+	 */
+	private void performStepFinish(SimulationObject object)
+	{
+		object.finish();
+
+		for (Scenario scenario : object.getScenarios())
+			scenario.afterFinish(object);
+
+		object.afterFinish();
 	}
 
 	/**
@@ -157,7 +192,7 @@ public class Simulator
 	public void run(int steps)
 	{
 		for (int i = 0; i < steps; i++)
-			performSingleStep();
+			performStep();
 	}
 	
 	/**

@@ -84,4 +84,18 @@ public class Project
 		
 		return true;
 	}
+
+	/**
+	 * Selects a subset of activities by a prefix of its name
+	 */
+	public List<Activity> getActivitiesByPrefix(String prefix)
+	{
+		List<Activity> result = new ArrayList<Activity>();
+		
+		for (Activity activity : activities)
+			if (activity.getName().startsWith(prefix))
+				result.add(activity);
+		
+		return result;
+	}
 }

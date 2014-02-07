@@ -4,8 +4,7 @@ import br.unirio.overwork.builders.WorkPackageProjectBuilder;
 import br.unirio.overwork.model.Activity;
 import br.unirio.overwork.model.Developer;
 import br.unirio.overwork.model.Project;
-import br.unirio.overwork.model.scenarios.ScenarioExhaution;
-import br.unirio.overwork.model.scenarios.ScenarioOverworking;
+import br.unirio.overwork.model.scenarios.ScenarioErrorRegeneration;
 import br.unirio.overwork.simulation.Simulator;
 
 public class MainProgram
@@ -72,9 +71,20 @@ public class MainProgram
 			simulator.addResource(developer.getEffort());
 		
 		simulator.addSimulationObjects(project.getActivities());
-		new ScenarioOverworking(12).connect(project.getActivities());
-		new ScenarioExhaution().connect(project.getActivities());
 		
+//		ScenarioOverworking scenarioOverworking = new ScenarioOverworking(12);
+//		scenarioOverworking.connect(project.getActivities());
+//		
+//		ScenarioExhaution scenarioExhaustion = new ScenarioExhaution();
+//		scenarioExhaustion.connect(project.getActivities());
+
+		ScenarioErrorRegeneration scenarioEGIniciais = new ScenarioErrorRegeneration(0.85);
+		scenarioEGIniciais.connect(project.getActivitiesByPrefix("Requisitos"));
+		scenarioEGIniciais.connect(project.getActivitiesByPrefix("Projeto"));
+
+		ScenarioErrorRegeneration scenarioEGCodificacao = new ScenarioErrorRegeneration(0.326);
+		scenarioEGCodificacao.connect(project.getActivitiesByPrefix("Codificacao"));
+
 		simulator.init();
 		
 		while (!project.isConcluded())

@@ -211,7 +211,6 @@ public abstract class SimulationObject
 	 */
 	public final void start()
 	{
-		beforeStart();
 		this.started = true;
 		this.startingTime = currentSimulationTime;
 	}
@@ -223,7 +222,6 @@ public abstract class SimulationObject
 	{
 		this.finished = true;
 		this.finishingTime = currentSimulationTime;
-		afterFinish();
 	}
 
 	/**

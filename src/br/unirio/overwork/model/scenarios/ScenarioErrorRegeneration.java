@@ -19,9 +19,6 @@ public class ScenarioErrorRegeneration extends Scenario<ActivityDevelopment>
 	/**
 	 * Table that determines ...
 	 */
-	// em relação ao início e término da atividade ou do projeto
-//	private static double[] ACTIVE_ERRORS_DENSITY = {0.85, 0.50, 0.20, 0.075, 0.0, 0.0};
-
 //	private static double[] ACTIVE_ERRORS_DENSITY_2 = {1.00, 1.10, 1.20, 1.325, 1.45, 1.60, 2.00, 2.50, 3.25, 4.35, 6.00};
 	
 	/**
@@ -37,21 +34,30 @@ public class ScenarioErrorRegeneration extends Scenario<ActivityDevelopment>
 	@Override
 	public void init(ActivityDevelopment activity)
 	{
-//		developer.setScenarioVariable("tempDWH", developer.getScenarioVariable("dailyWorkHours", 8));
-//		developer.setScenarioVariable("exhaustion", 0);
-//		developer.setScenarioVariable("resting", 0);
+		// pega o acumulado de erros ativos das atividades precedentes
 	}
 
 	/**
-	 * Runs a step of the scenario
+	 * Executes the scenario before the simulation step
 	 */
-//	@Override
-//	public void beforeStep(ActivityDevelopment activity)
-//	{
-//		PROC InheritedDensity InheritedErrors / FunctionPoints;
-//		PROC RegenErrors ExpectedErrors * InheritedErrors * RegenFactor;
-//		PROC RegenFactor Max (1, LOOKUP (ActiveErrosDens, InheritedDensity , 0, 10));
-//		TABLE ActiveErrosDens 1, 1.1, 1.2, 1.325, 1.45, 1.6, 2.0, 2.5, 3.25, 4.35, 6.0;
-//		AFFECT RTErrors RTErrors + RegenErrors / DT;
-//	}
+	@Override
+	public void beforeStep(ActivityDevelopment activity)
+	{
+		// anota o número de erros atual da atividade em um estado
+	}
+
+	/**
+	 * Executes the scenario after the simulation step
+	 */
+	@Override
+	public void afterStep(ActivityDevelopment activity)
+	{
+		// E0 <- pega o número de erros antes do passo na atividade, que está guardado em um estado
+
+		// E1 <- pega o número de erros atual da atividade em um estado
+		
+		// D <- calcula a diferença no número de erros (E1 - E0)
+		
+		// 
+	}
 }

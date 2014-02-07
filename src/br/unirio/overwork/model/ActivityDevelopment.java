@@ -29,6 +29,7 @@ public class ActivityDevelopment extends Activity
 	{
 		super(name);
 		this.workRequired = workRequired;
+		this.workPerformed = 0.0;
 		this.errorsExpected = errorsExpected;
 	}
 	
@@ -57,6 +58,6 @@ public class ActivityDevelopment extends Activity
 	protected void consumeEffort(double effort)
 	{
 		workPerformed += effort;
-		errors += (effort / workRequired) * errorsExpected * errorGenerationRate;	
+		setErrors(getErrors() + (effort / workRequired) * errorsExpected * getErrorGenerationRate());	
 	}
 }

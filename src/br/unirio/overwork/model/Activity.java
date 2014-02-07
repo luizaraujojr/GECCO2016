@@ -22,29 +22,34 @@ public abstract class Activity extends SimulationObject
 	private List<Activity> precedences;
 	
 	/**
-	 * Develop assigned to the activity
+	 * Developer assigned to the activity
 	 */
 	private @Getter Developer developer;
 	
 	/**
 	 * Number of errors remaining when the activity is finished
 	 */
-	protected @Getter double errors;
+	private @Getter @Setter double errors;
 	
 	/**
 	 * Base developer's productivity for the activity
 	 */
-	protected @Getter @Setter double productivity;
+	private @Getter @Setter double productivity;
 	
 	/**
 	 * Base developer's error generation rate for the activity
 	 */
-	protected @Getter @Setter double errorGenerationRate;
+	private @Getter @Setter double errorGenerationRate;
 	
 	/**
 	 * Simulation time when the activity was first executed
 	 */
 	private @Getter double startExecutionTime = -1.0;
+
+	/**
+	 * Indicates whether the activity has consumed effort on the current step
+	 */
+	private boolean consumedEffort;
 
 	/**
 	 * Initializes an activity
@@ -82,6 +87,14 @@ public abstract class Activity extends SimulationObject
 	}
 	
 	/**
+	 * Indicates whether the activity has consumed some effort after a simulation step
+	 */
+	public boolean hasConsumedEffort()
+	{
+		return consumedEffort;
+	}
+	
+	/**
 	 * Counts the number of errors inherited from the precedent activities
 	 */
 	private double countPrecedentErrors()
@@ -106,7 +119,7 @@ public abstract class Activity extends SimulationObject
 	}
 
 	/**
-	 * Method executed before the activity's life-cycle is started
+	 * Collects errors from former activities before when the activity's life-cycle starts
 	 */
 	@Override
 	public void beforeStart()
@@ -142,16 +155,14 @@ public abstract class Activity extends SimulationObject
 
 		double effortUsed = Math.min(effortAvailable, remainingWork / this.productivity);
 		
-		if (effortUsed > 0 && startExecutionTime < 0.0) 
+		if (startExecutionTime < 0.0) 
 			startExecutionTime = getCurrentSimulationTime();
 		
 		developer.getEffort().consume(effortUsed);
 		consumeEffort(effortUsed * this.productivity);
+		this.consumedEffort = true;
+		
 		remainingWork = getRemainingWork();
-		
-		if (remainingWork < 0.001)
-			remainingWork = remainingWork * 1;		// allows debugging
-		
 		return remainingWork >= 0.001;
 	}
 	

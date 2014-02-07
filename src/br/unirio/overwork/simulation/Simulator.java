@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Getter;
-import br.unirio.overwork.simulation.support.TopologicalSort;
 
 /**
  * Class that performs a continuous, object-oriented simulation

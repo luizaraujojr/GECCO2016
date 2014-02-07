@@ -26,7 +26,7 @@ public class AtivityTesting extends Activity
 	@Override
 	public double getRemainingWork()
 	{
-		return errors * ERROR_CORRECTION_EFFORT;
+		return getErrors() * ERROR_CORRECTION_EFFORT;
 	}
 
 	/**
@@ -35,6 +35,6 @@ public class AtivityTesting extends Activity
 	@Override
 	protected void consumeEffort(double effort)
 	{
-		errors -= effort / ERROR_CORRECTION_EFFORT;	
+		setErrors(getErrors() - effort / ERROR_CORRECTION_EFFORT);	
 	}
 }

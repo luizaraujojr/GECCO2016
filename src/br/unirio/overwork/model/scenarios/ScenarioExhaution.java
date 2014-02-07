@@ -4,7 +4,7 @@ import br.unirio.overwork.model.Activity;
 import br.unirio.overwork.model.Developer;
 import br.unirio.overwork.simulation.Scenario;
 import br.unirio.overwork.simulation.SimulationObject;
-import br.unirio.overwork.simulation.support.Tables;
+import br.unirio.overwork.simulation.Tables;
 
 /**
  * Scenario that represents the exhaustion dynamics for software developers
@@ -41,67 +41,57 @@ public class ScenarioExhaution extends Scenario<Activity>
 	@Override
 	public void init(Activity activity)
 	{
-		double dailyWorkHours = activity.getLocalState("dailyWorkHours", 0);
-		activity.setLocalState("dailyWorkHoursCopy", dailyWorkHours);
+		double workHours = activity.getLocalState("dailyWorkHours", 8);
+		activity.setLocalState("dailyWorkHoursCopy", workHours);
 	}
 
+	/**
+	 * Executes the scenario before the simulation step
+	 */
 	@Override
 	public void beforeStep(Activity activity)
 	{
-		activity.setLocalState("workToDo", activity.getRemainingWork());
-		
 		Developer developer = activity.getDeveloper();
 		boolean resting = activity.getGlobalState(developer.getName() + "_resting", false);
-
-		if (resting)
-		{
-			activity.setLocalState("dailyWorkHours", 8);
-		}
-		else
-		{
-			double dailyWorkHoursCopy = activity.getLocalState("dailyWorkHoursCopy", 0);
-			activity.setLocalState("dailyWorkHours", dailyWorkHoursCopy);
-		}
+		double workHours = resting ? 8 : activity.getLocalState("dailyWorkHoursCopy", 8); 
+		activity.setLocalState("dailyWorkHours", workHours);
 	}
 	
 	/**
-	 * Runs a step of the scenario
+	 * Executes the scenario after the simulation step
 	 */
 	@Override
 	public void afterStep(Activity activity)
 	{
-		double wasToDo = activity.getLocalState("workToDo", 0);
-		double remainsToDo = activity.getRemainingWork();
-		
-		if (wasToDo == remainsToDo)
+		if (!activity.hasConsumedEffort())
 			return;
 		
 		Developer developer = activity.getDeveloper();
-		double exhaustion = activity.getGlobalState(developer.getName() + "_exhaustion", 0.0);
+		double exhaustion = activity.getGlobalState(developer.getName() + "_exhaustion", 0);
 		boolean resting = activity.getGlobalState(developer.getName() + "_resting", false);
 		
 		if (resting)
 		{
 			exhaustion -= MAX_EXHAUSTION / RESTING_PERIOD * SimulationObject.DT;
-			activity.setGlobalState(developer.getName() + "_exhaustion", exhaustion);
 		}
 		else
 		{
-			double dailyWorkHours = activity.getLocalState("dailyWorkHours", 0.0);
-			double workHourModifier = (dailyWorkHours - 8) / (12 - 8);
+			double workHours = activity.getLocalState("dailyWorkHours", 8);
+			double workHourModifier = (workHours - 8) / (12 - 8);
 			double exhaustionModifier = Tables.lookup(EXHAUSTION_FACTOR, workHourModifier, 0, 1);
 			exhaustion += exhaustionModifier * SimulationObject.DT;
-			activity.setGlobalState(developer.getName() + "_exhaustion", exhaustion);
 		}
+
+		activity.setGlobalState(developer.getName() + "_exhaustion", exhaustion);
 
 		if (!resting && exhaustion >= MAX_EXHAUSTION)
 		{
-			activity.setLocalState("dailyWorkHours", 8.0);
+			activity.setLocalState("dailyWorkHours", 8);
 			activity.setGlobalState(developer.getName() + "_resting", true);
 		}
 		else if (resting && exhaustion < 0.001)
 		{
-			double dailyWorkHoursCopy = activity.getLocalState("dailyWorkHoursCopy", 0.0);
+			double dailyWorkHoursCopy = activity.getLocalState("dailyWorkHoursCopy", 8);
 			activity.setLocalState("dailyWorkHours", dailyWorkHoursCopy);
 			activity.setGlobalState(developer.getName() + "_resting", false);
 		}

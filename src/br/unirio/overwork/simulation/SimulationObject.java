@@ -103,6 +103,22 @@ public abstract class SimulationObject
 	}
 	
 	/**
+	 * Indicates whether the object has started its life-cycle
+	 */
+	public boolean isStarted()
+	{
+		return started;
+	}
+
+	/**
+	 * Indicates whether the object has finished its life-cycle
+	 */
+	public boolean isFinished()
+	{
+		return finished;
+	}
+	
+	/**
 	 * Reads a local state as a double value
 	 */
 	public double getLocalState(String name, double _default)
@@ -189,22 +205,6 @@ public abstract class SimulationObject
 	public void init()
 	{
 	}
-	
-	/**
-	 * Indicates whether the object has started its life-cycle
-	 */
-	public boolean isStarted()
-	{
-		return started;
-	}
-
-	/**
-	 * Indicates whether the object has finished its life-cycle
-	 */
-	public boolean isFinished()
-	{
-		return finished;
-	}
 
 	/**
 	 * Starts the object's life-cycle
@@ -227,33 +227,33 @@ public abstract class SimulationObject
 	}
 
 	/**
-	 * Method called before the object's simulation is started
+	 * Method called before the object's life-cycle is started
 	 */
 	public void beforeStart()
 	{
 	}
 
 	/**
-	 * Method called before each step
+	 * Method called before each simulation step
 	 */
 	public void beforeStep()
 	{	
 	}
 
 	/**
-	 * Method called every simulation step
+	 * Method called at every simulation step
 	 */
 	public abstract boolean step();
 
 	/**
-	 * Method called after each step
+	 * Method called after each simulation step
 	 */
 	public void afterStep()
 	{
 	}
 
 	/**
-	 * Method called after the object's simulation is finished
+	 * Method called after the object's life-cycle is finished
 	 */
 	public void afterFinish()
 	{

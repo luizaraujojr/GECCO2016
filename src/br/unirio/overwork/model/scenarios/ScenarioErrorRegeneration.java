@@ -37,25 +37,35 @@ public class ScenarioErrorRegeneration extends Scenario<ActivityDevelopment>
 	}
 
 	/**
+	 * Calculate the number of active errors inherited from precedent activities
+	 */
+	private double countInheritedActiveErrors(ActivityDevelopment activity)
+	{
+		double sum = 0.0;
+		
+		for (SimulationObject precedent : activity.getDependencies())
+			sum += precedent.getLocalState("activeErrors", 0);
+
+		return sum;
+	}
+
+	/**
 	 * Executes the scenario before the start of an object's life-cycle
 	 */
 	@Override
 	public void afterStart(ActivityDevelopment activity) 
 	{
-		// pega o acumulado de erros ativos das atividades precedentes
-		double sum = 0.0;
-		
-		for (SimulationObject precedent : activity.getDependencies())
-			sum += precedent.getLocalState("activeErrors", 0);
-		
-		// pega o acumulado de erros das atividades precedentes
-		double sum2 = activity.getErrors();
+		double inheritedActiveErrors = countInheritedActiveErrors(activity);
+		double inheritedErrors = activity.getErrors();
 
-		activity.setLocalState("inheritedActiveErrors", sum);
-		activity.setLocalState("errorDensity", (sum2 != 0.0) ? sum / sum2 : 0.0);
-		activity.setLocalState("activeErrors", sum);
+		activity.setLocalState("inheritedActiveErrors", inheritedActiveErrors);
+		activity.setLocalState("activeErrors", inheritedActiveErrors);
+
+		double errorDensity = (inheritedErrors != 0.0) ? inheritedActiveErrors / inheritedErrors : 0.0;
+		activity.setLocalState("errorDensity", errorDensity);
 		
-		activity.setLocalState("errorsBeforeStep", sum2);
+		activity.setLocalState("workPerformedSoFar", activity.getWorkPerformed());
+		activity.setLocalState("errorsGeneratedSoFar", activity.getErrors());
 	}
 
 	/**
@@ -64,32 +74,36 @@ public class ScenarioErrorRegeneration extends Scenario<ActivityDevelopment>
 	@Override
 	public void afterStep(ActivityDevelopment activity)
 	{
-		// E0 = pega o número de erros antes do passo na atividade, que está guardado em um estado
-		double errorsBeforeStep = activity.getLocalState("errorsBeforeStep", 0);
+		// Trabalho realizado na atividade antes e depois deste passo
+		double workBeforeStep = activity.getLocalState("workPerformedSoFar", 0);
+		double workAfterStep = activity.getWorkPerformed();
 
-		// E1 = pega o número de erros atual da atividade em um estado
+		// Erros gerados na atividade antes e depois deste passo
+		double errorsBeforeStep = activity.getLocalState("errorsGeneratedSoFar", 0);
 		double errorsAfterStep = activity.getErrors();
 		
-		// calcula a diferença no número de erros: D = E1 - E0
+		// Calcula a proporção do trabalho realizado nesta atividade neste passo
+		double workFraction = (workAfterStep - workBeforeStep) / activity.getWorkRequired();
+
+		// Calcula o número de erros gerados neste passo
 		double difference = errorsAfterStep - errorsBeforeStep;
 		
-		// atualiza o número de erros ativos: EA = EA + D * FatorRegeneracao 
-		double activeErrors = activity.getLocalState("activeErrors", 0);
+		// Atualiza o número de erros ativos: EA = EA + D * FatorRegeneracao 
+		double activeErrors = activity.getLocalState("inheritedActiveErrors", 0);
 		activeErrors += difference * activeErrorsFactor;
 		activity.setLocalState("activeErrors", activeErrors);
 		
-		// calcula o fator de densidade (FD)
-//		double inheritedActiveErrors = activity.getLocalState("inheritedActiveErrors", 0);
-//		double density = (errorsAfterStep > 0.0) ? inheritedActiveErrors / errorsAfterStep : 0.0;
+		// Calcula o fator de densidade (FD)
 		double density = activity.getLocalState("errorDensity", 0.0);
 		double densityFactor = Tables.lookup(ACTIVE_ERRORS_DENSITY, density, 0, 1);
 
-// Fazer com que seja cenário de ActivityDevelopment ...
-// Deveria regenerar apenas os erros ativos
-		
 		// E1 = E1 + D * (FD - 1)
-		activity.setErrors(errorsAfterStep + difference * (densityFactor - 1.0));
+		double activeErrors1 = activity.getLocalState("inheritedActiveErrors", 0);
+		errorsAfterStep += activeErrors1 * workFraction * (densityFactor - 1.0);
+		activity.setErrors(errorsAfterStep);
 
-		activity.setLocalState("errorsBeforeStep", activity.getErrors());
+		// Salva o estado atual do trabalho
+		activity.setLocalState("workPerformedSoFar", workAfterStep);
+		activity.setLocalState("errorsGeneratedSoFar", errorsAfterStep);
 	}
 }

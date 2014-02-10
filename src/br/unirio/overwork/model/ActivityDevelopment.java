@@ -1,5 +1,7 @@
 package br.unirio.overwork.model;
 
+import lombok.Getter;
+
 /**
  * Class that represents a development activity
  * 
@@ -10,12 +12,12 @@ public class ActivityDevelopment extends Activity
 	/**
 	 * Work required to perform the activity
 	 */
-	private double workRequired;
+	private @Getter double workRequired;
 
 	/**
 	 * Work performed as part of the activity so far
 	 */
-	private double workPerformed;
+	private @Getter double workPerformed;
 	
 	/**
 	 * Number of errors expected to be generated during the activity

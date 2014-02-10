@@ -85,12 +85,9 @@ public class ScenarioErrorRegeneration extends Scenario<ActivityDevelopment>
 		// Calcula a proporção do trabalho realizado nesta atividade neste passo
 		double workFraction = (workAfterStep - workBeforeStep) / activity.getWorkRequired();
 
-		// Calcula o número de erros gerados neste passo
-		double difference = errorsAfterStep - errorsBeforeStep;
-		
 		// Atualiza o número de erros ativos: EA = EA + D * FatorRegeneracao 
 		double activeErrors = activity.getLocalState("inheritedActiveErrors", 0);
-		activeErrors += difference * activeErrorsFactor;
+		activeErrors += (errorsAfterStep - errorsBeforeStep) * activeErrorsFactor;
 		activity.setLocalState("activeErrors", activeErrors);
 		
 		// Calcula o fator de densidade (FD)

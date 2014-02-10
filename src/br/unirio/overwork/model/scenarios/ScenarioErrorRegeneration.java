@@ -1,6 +1,6 @@
 package br.unirio.overwork.model.scenarios;
 
-import br.unirio.overwork.model.Activity;
+import br.unirio.overwork.model.ActivityDevelopment;
 import br.unirio.overwork.simulation.Scenario;
 import br.unirio.overwork.simulation.SimulationObject;
 import br.unirio.overwork.simulation.Tables;
@@ -10,7 +10,7 @@ import br.unirio.overwork.simulation.Tables;
  * 
  * @author Marcio Barros
  */
-public class ScenarioErrorRegeneration extends Scenario<Activity>
+public class ScenarioErrorRegeneration extends Scenario<ActivityDevelopment>
 {
 	/**
 	 * Table that determines ...
@@ -32,7 +32,7 @@ public class ScenarioErrorRegeneration extends Scenario<Activity>
 	 * Prepares the scenario for execution
 	 */
 	@Override
-	public void init(Activity activity)
+	public void init(ActivityDevelopment activity)
 	{
 	}
 
@@ -40,7 +40,7 @@ public class ScenarioErrorRegeneration extends Scenario<Activity>
 	 * Executes the scenario before the start of an object's life-cycle
 	 */
 	@Override
-	public void afterStart(Activity activity) 
+	public void afterStart(ActivityDevelopment activity) 
 	{
 		// pega o acumulado de erros ativos das atividades precedentes
 		double sum = 0.0;
@@ -62,7 +62,7 @@ public class ScenarioErrorRegeneration extends Scenario<Activity>
 	 * Executes the scenario after the simulation step
 	 */
 	@Override
-	public void afterStep(Activity activity)
+	public void afterStep(ActivityDevelopment activity)
 	{
 		// E0 = pega o número de erros antes do passo na atividade, que está guardado em um estado
 		double errorsBeforeStep = activity.getLocalState("errorsBeforeStep", 0);

@@ -2,10 +2,9 @@ package br.unirio.overwork;
 
 import br.unirio.overwork.builders.WorkPackageProjectBuilder;
 import br.unirio.overwork.model.Activity;
-import br.unirio.overwork.model.ActivityDevelopment;
 import br.unirio.overwork.model.Developer;
 import br.unirio.overwork.model.Project;
-import br.unirio.overwork.model.scenarios.ScenarioErrorRegeneration;
+import br.unirio.overwork.model.scenarios.ScenarioOverworking;
 import br.unirio.overwork.simulation.Simulator;
 
 public class MainProgram
@@ -73,23 +72,23 @@ public class MainProgram
 		
 		simulator.addSimulationObjects(project.getActivities());
 		
-//		ScenarioOverworking scenarioOverworking = new ScenarioOverworking(12);
-//		scenarioOverworking.connect(project.getActivities());
-//		
+		ScenarioOverworking scenarioOverworking = new ScenarioOverworking(12);
+		scenarioOverworking.connect(project.getActivities());
+
 //		ScenarioExhaution scenarioExhaustion = new ScenarioExhaution();
 //		scenarioExhaustion.connect(project.getActivities());
 
-		ScenarioErrorRegeneration scenarioEGIniciais = new ScenarioErrorRegeneration(0.85);
-		ScenarioErrorRegeneration scenarioEGCodificacao = new ScenarioErrorRegeneration(0.326);
-		
-		for (Activity activity : project.getActivitiesByPrefix("Requisitos"))
-			scenarioEGIniciais.connect((ActivityDevelopment) activity);
-		
-		for (Activity activity : project.getActivitiesByPrefix("Projeto"))
-			scenarioEGIniciais.connect((ActivityDevelopment) activity);
-
-		for (Activity activity : project.getActivitiesByPrefix("Codificacao"))
-			scenarioEGCodificacao.connect((ActivityDevelopment) activity);
+//		ScenarioErrorRegeneration scenarioEGIniciais = new ScenarioErrorRegeneration(0.85);
+//		ScenarioErrorRegeneration scenarioEGCodificacao = new ScenarioErrorRegeneration(0.326);
+//		
+//		for (Activity activity : project.getActivitiesByPrefix("Requisitos"))
+//			scenarioEGIniciais.connect((ActivityDevelopment) activity);
+//		
+//		for (Activity activity : project.getActivitiesByPrefix("Projeto"))
+//			scenarioEGIniciais.connect((ActivityDevelopment) activity);
+//
+//		for (Activity activity : project.getActivitiesByPrefix("Codificacao"))
+//			scenarioEGCodificacao.connect((ActivityDevelopment) activity);
 
 		simulator.init();
 		

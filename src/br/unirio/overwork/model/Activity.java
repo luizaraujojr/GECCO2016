@@ -17,6 +17,11 @@ import br.unirio.overwork.simulation.SimulationObject;
 public abstract class Activity extends SimulationObject
 {
 	/**
+	 * Project holding the activity
+	 */
+	private @Getter Project project;
+	
+	/**
 	 * List of activities that precede the current activity
 	 */
 	private List<Activity> precedences;
@@ -54,9 +59,10 @@ public abstract class Activity extends SimulationObject
 	/**
 	 * Initializes an activity
 	 */
-	public Activity(String name)
+	public Activity(Project project, String name)
 	{
 		super(name);
+		this.project = project;
 		this.precedences = new ArrayList<Activity>();
 	}
 

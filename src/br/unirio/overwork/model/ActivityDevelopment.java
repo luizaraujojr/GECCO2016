@@ -27,9 +27,9 @@ public class ActivityDevelopment extends Activity
 	/**
 	 * Initializes the development activity
 	 */
-	public ActivityDevelopment(String name, double workRequired, double errorsExpected)
+	public ActivityDevelopment(Project project, String name, double workRequired, double errorsExpected)
 	{
-		super(name);
+		super(project, name);
 		this.workRequired = workRequired;
 		this.workPerformed = 0.0;
 		this.errorsExpected = errorsExpected;

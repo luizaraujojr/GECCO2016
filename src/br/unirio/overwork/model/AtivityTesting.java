@@ -15,9 +15,9 @@ public class AtivityTesting extends Activity
 	/**
 	 * Initializes a testing activity
 	 */
-	public AtivityTesting(String nome)
+	public AtivityTesting(Project project, String nome)
 	{
-		super(nome);
+		super(project, nome);
 	}
 
 	/**

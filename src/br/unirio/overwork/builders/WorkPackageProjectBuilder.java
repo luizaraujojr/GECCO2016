@@ -87,24 +87,24 @@ public class WorkPackageProjectBuilder
 			double effortRequirement = functionPoints * EFFORT_REQUIREMENTS * (DAYS_IN_MONTH / PRODUCTIVITY);
 			double errorsRequirement = functionPoints * EFFORT_REQUIREMENTS / developmentEffort * ERRORS_FUNCTION_POINT;
 			
-			Activity requirements = new ActivityDevelopment("Requisitos " + pacote.getName(), effortRequirement, errorsRequirement)
+			Activity requirements = new ActivityDevelopment(project, "Requisitos " + pacote.getName(), effortRequirement, errorsRequirement)
 				.setDeveloper(developer);
 			
 			double effortDesign = functionPoints * EFFORT_DESIGN * (DAYS_IN_MONTH / PRODUCTIVITY);
 			double errorsDesign = functionPoints * EFFORT_DESIGN / developmentEffort * ERRORS_FUNCTION_POINT;
 
-			Activity design = new ActivityDevelopment("Projeto " + pacote.getName(), effortDesign, errorsDesign)
+			Activity design = new ActivityDevelopment(project, "Projeto " + pacote.getName(), effortDesign, errorsDesign)
 				.addPrecedent(requirements)
 				.setDeveloper(developer);
 			
 			double effortCoding = functionPoints * EFFORT_CODING * (DAYS_IN_MONTH / PRODUCTIVITY);
 			double errorsCoding = functionPoints * EFFORT_CODING / developmentEffort * ERRORS_FUNCTION_POINT;
 
-			Activity codificacao = new ActivityDevelopment("Codificacao " + pacote.getName(), effortCoding, errorsCoding)
+			Activity codificacao = new ActivityDevelopment(project, "Codificacao " + pacote.getName(), effortCoding, errorsCoding)
 				.addPrecedent(design)
 				.setDeveloper(developer);
 
-			Activity testes = new AtivityTesting("Testes " + pacote.getName())
+			Activity testes = new AtivityTesting(project, "Testes " + pacote.getName())
 				.addPrecedent(codificacao)
 				.setDeveloper(developer);
 

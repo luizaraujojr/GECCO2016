@@ -46,12 +46,6 @@ public abstract class Activity extends SimulationObject
 	 */
 	private @Getter @Setter double errorGenerationRate;
 	
-	
-	/**
-	 * Base developer's communication overhead rate for the activity
-	 */
-	private @Getter @Setter double communicationOverheadRate;
-	
 	/**
 	 * Simulation time when the activity was first executed
 	 */

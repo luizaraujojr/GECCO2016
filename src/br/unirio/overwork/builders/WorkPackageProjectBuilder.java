@@ -79,6 +79,10 @@ public class WorkPackageProjectBuilder
 
 		Developer developer = new Developer("Developer");
 		project.addDeveloper(developer);
+		project.addDeveloper(developer);
+		project.addDeveloper(developer);
+		project.addDeveloper(developer);
+		project.addDeveloper(developer);
 		
 		for (WorkPackage pacote : workPackages)
 		{

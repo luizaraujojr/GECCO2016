@@ -3,6 +3,7 @@ package br.unirio.overwork.model.scenarios;
 import br.unirio.overwork.model.Activity;
 import br.unirio.overwork.model.Developer;
 import br.unirio.overwork.simulation.Scenario;
+import br.unirio.overwork.simulation.Tables;
 
 /**
  * Scenario that represents the communication overhead for project due the number of developers
@@ -31,10 +32,9 @@ public class ScenarioCommunicationOverhead  extends Scenario<Activity>{
 	@Override
 	public void beforeStep(Activity activity)
 	{
-		int count = countDevelopers(activity);		
-		int countDeveloperModifier = Math.round(count / 5);
-		double communicationOverheadFactor = COMMUNICATION_OVERHEAD_FACTOR[countDeveloperModifier];
-		activity.setProductivity(activity.getProductivity() * (1-communicationOverheadFactor));
+		int count = countDevelopers(activity);
+		double overhead = Tables.lookup(COMMUNICATION_OVERHEAD_FACTOR, count, 0, 30);
+		activity.setProductivity(activity.getProductivity() * (1-overhead));
 	}
 
 	/**

@@ -4,6 +4,7 @@ import br.unirio.overwork.builders.WorkPackageProjectBuilder;
 import br.unirio.overwork.model.Activity;
 import br.unirio.overwork.model.Developer;
 import br.unirio.overwork.model.Project;
+import br.unirio.overwork.model.scenarios.ScenarioCommunicationOverhead;
 import br.unirio.overwork.model.scenarios.ScenarioOverworking;
 import br.unirio.overwork.simulation.Simulator;
 
@@ -72,8 +73,13 @@ public class MainProgram
 		
 		simulator.addSimulationObjects(project.getActivities());
 		
+		ScenarioCommunicationOverhead scenarioCommunicationOverhead = new ScenarioCommunicationOverhead();
+		scenarioCommunicationOverhead.connect( project.getActivities());
+		
 		ScenarioOverworking scenarioOverworking = new ScenarioOverworking(12);
 		scenarioOverworking.connect(project.getActivities());
+		
+		
 
 //		ScenarioExhaution scenarioExhaustion = new ScenarioExhaution();
 //		scenarioExhaustion.connect(project.getActivities());

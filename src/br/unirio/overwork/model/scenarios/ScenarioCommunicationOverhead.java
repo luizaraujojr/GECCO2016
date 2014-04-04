@@ -29,7 +29,6 @@ public class ScenarioCommunicationOverhead  extends Scenario<Activity>{
 	public void init(Activity activity)
 	{
 		ArrayList<Developer> countDeveloper = (ArrayList<Developer>) activity.getProject().getDevelopers();
-		float val = 1/7;
 		int countDeveloperModifier = Math.round(countDeveloper.size()/5);
 		double communicationOverheadFactor = COMMUNICATION_OVERHEAD_FACTOR[countDeveloperModifier];
 				

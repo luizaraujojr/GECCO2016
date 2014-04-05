@@ -10,14 +10,12 @@ import br.unirio.overwork.simulation.Tables;
  * 
  * @author Luiz Antonio
  */
-
-public class ScenarioCommunicationOverhead  extends Scenario<Activity>{
-
+public class ScenarioCommunicationOverhead  extends Scenario<Activity>
+{
 	/**
 	 * Table depicting the decrease over productivity due communication overhead
 	 */
-	private static double[] COMMUNICATION_OVERHEAD_FACTOR = {0, 0.5, 0.06, 0.135, 0.24, 0.375, 0.54};
-	//private static double[] COMMUNICATION_OVERHEAD_FACTOR = {0, 0.015, 0.06, 0.135, 0.24, 0.375, 0.54};
+	private static double[] COMMUNICATION_OVERHEAD_FACTOR = {0, 0.0,15, 0.06, 0.135, 0.24, 0.375, 0.54};
 	
 	/**
 	 * Initializes the scenario
@@ -34,7 +32,7 @@ public class ScenarioCommunicationOverhead  extends Scenario<Activity>{
 	{
 		int count = countDevelopers(activity);
 		double overhead = Tables.lookup(COMMUNICATION_OVERHEAD_FACTOR, count, 0, 30);
-		activity.setProductivity(activity.getProductivity() * (1-overhead));
+		activity.setProductivity(activity.getProductivity() * (1 - overhead));
 	}
 
 	/**

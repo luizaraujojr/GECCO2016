@@ -16,7 +16,7 @@ public abstract class SimulationObject
 	/**
 	 * Simulation interval
 	 */
-	public static final double DT = 0.1;
+	public static final double DT = 0.01;
 	
 	/**
 	 * Object's name

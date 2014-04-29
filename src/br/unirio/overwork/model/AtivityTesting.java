@@ -10,14 +10,15 @@ public class AtivityTesting extends Activity
 	/**
 	 * Average number of days required to correct an error
 	 */
-	private static final double ERROR_CORRECTION_EFFORT = 0.13;
+	private double errorCorrectionEffort;
 	
 	/**
 	 * Initializes a testing activity
 	 */
-	public AtivityTesting(Project project, String nome)
+	public AtivityTesting(Project project, String nome, double errorCorrectionEffort)
 	{
 		super(project, nome);
+		this.errorCorrectionEffort = errorCorrectionEffort;
 	}
 
 	/**
@@ -26,7 +27,7 @@ public class AtivityTesting extends Activity
 	@Override
 	public double getRemainingWork()
 	{
-		return getErrors() * ERROR_CORRECTION_EFFORT;
+		return getErrors() * errorCorrectionEffort;
 	}
 
 	/**
@@ -35,6 +36,6 @@ public class AtivityTesting extends Activity
 	@Override
 	protected void consumeEffort(double effort)
 	{
-		setErrors(getErrors() - effort / ERROR_CORRECTION_EFFORT);	
+		setErrors(getErrors() - effort / errorCorrectionEffort);	
 	}
 }

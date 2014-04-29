@@ -17,36 +17,6 @@ import br.unirio.overwork.model.Project;
 public class WorkPackageProjectBuilder
 {
 	/**
-	 * Average number of function points produced by a developer in a month
-	 */
-	private static final double PRODUCTIVITY = 27.80;
-	
-	/**
-	 * Number of working-days in a month
-	 */
-	private static final double DAYS_IN_MONTH = 21;
-	
-	/**
-	 * Average percentile of project effort dedicated to requirements (from Capers Jones, 2000)
-	 */
-	private static final double EFFORT_REQUIREMENTS = 0.078;
-	
-	/**
-	 * Average percentile of project effort dedicated to design (from Capers Jones, 2000)
-	 */
-	private static final double EFFORT_DESIGN = 0.099;
-	
-	/**
-	 * Average percentile of project effort dedicated to coding (from Capers Jones, 2000)
-	 */
-	private static final double EFFORT_CODING = 0.409;
-	
-	/**
-	 * Average number of errors per developed function point
-	 */
-	private static final double ERRORS_FUNCTION_POINT = 2.4;
-	
-	/**
 	 * List of work packages comprising the project
 	 */
 	private List<WorkPackage> workPackages;
@@ -75,40 +45,47 @@ public class WorkPackageProjectBuilder
 	public Project execute()
 	{
 		Project project = new Project();
-		double developmentEffort = EFFORT_REQUIREMENTS + EFFORT_DESIGN + EFFORT_CODING;
-
 		Developer developer = new Developer("Developer");
 		project.addDeveloper(developer);
 		project.addDeveloper(developer);
 		project.addDeveloper(developer);
 		project.addDeveloper(developer);
 		project.addDeveloper(developer);
+
+		double totalFunctionPoints = 0;
+		
+		for (WorkPackage pacote : workPackages)
+			totalFunctionPoints += pacote.calculateFunctionPoints();
+		
+		Configuration configuration = Configuration.getConfigurationForFunctionPoints(totalFunctionPoints);
+		
+		double errorCorrectionEffort = configuration.getTestingEffort() * Constants.DAYS_IN_MONTH / configuration.getAverageProductivity() / 4.0;
 		
 		for (WorkPackage pacote : workPackages)
 		{
 			double functionPoints = pacote.calculateFunctionPoints();
 			
-			double effortRequirement = functionPoints * EFFORT_REQUIREMENTS * (DAYS_IN_MONTH / PRODUCTIVITY);
-			double errorsRequirement = functionPoints * EFFORT_REQUIREMENTS / developmentEffort * ERRORS_FUNCTION_POINT;
+			double effortRequirement = functionPoints * configuration.getRequirementsEffort() * (Constants.DAYS_IN_MONTH / configuration.getAverageProductivity());
+			double errorsRequirement = functionPoints;
 			
-			Activity requirements = new ActivityDevelopment(project, "Requisitos " + pacote.getName(), effortRequirement, errorsRequirement)
+			Activity requirements = new ActivityDevelopment(project, "Requisitos " + pacote.getName(), effortRequirement, errorsRequirement, 0.0)
 				.setDeveloper(developer);
 			
-			double effortDesign = functionPoints * EFFORT_DESIGN * (DAYS_IN_MONTH / PRODUCTIVITY);
-			double errorsDesign = functionPoints * EFFORT_DESIGN / developmentEffort * ERRORS_FUNCTION_POINT;
+			double effortDesign = functionPoints * configuration.getDesignEffort() * (Constants.DAYS_IN_MONTH / configuration.getAverageProductivity());
+			double errorsDesign = functionPoints;
 
-			Activity design = new ActivityDevelopment(project, "Projeto " + pacote.getName(), effortDesign, errorsDesign)
+			Activity design = new ActivityDevelopment(project, "Projeto " + pacote.getName(), effortDesign, errorsDesign, Constants.DESIGN_ERROR_REGENERATION)
 				.addPrecedent(requirements)
 				.setDeveloper(developer);
 			
-			double effortCoding = functionPoints * EFFORT_CODING * (DAYS_IN_MONTH / PRODUCTIVITY);
-			double errorsCoding = functionPoints * EFFORT_CODING / developmentEffort * ERRORS_FUNCTION_POINT;
+			double effortCoding = functionPoints * configuration.getCodingEffort() * (Constants.DAYS_IN_MONTH / configuration.getAverageProductivity());
+			double errorsCoding = functionPoints;
 
-			Activity codificacao = new ActivityDevelopment(project, "Codificacao " + pacote.getName(), effortCoding, errorsCoding)
+			Activity codificacao = new ActivityDevelopment(project, "Codificacao " + pacote.getName(), effortCoding, errorsCoding, Constants.CODING_ERROR_REGENERATION)
 				.addPrecedent(design)
 				.setDeveloper(developer);
 
-			Activity testes = new AtivityTesting(project, "Testes " + pacote.getName())
+			Activity testes = new AtivityTesting(project, "Testes " + pacote.getName(), errorCorrectionEffort)
 				.addPrecedent(codificacao)
 				.setDeveloper(developer);
 

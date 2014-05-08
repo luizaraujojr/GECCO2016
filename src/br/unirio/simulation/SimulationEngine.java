@@ -1,4 +1,4 @@
-package br.unirio.overwork.simulation;
+package br.unirio.simulation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import lombok.Getter;
  * @author Marcio Barros
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
-public class Simulator
+public class SimulationEngine
 {
 	/**
 	 * Current simulation time
@@ -41,7 +41,7 @@ public class Simulator
 	/**
 	 * Initializes the simulator
 	 */
-	public Simulator()
+	public SimulationEngine()
 	{
 		this.currentSimulationTime = 0;
 		this.blackboard = new StateBoard();

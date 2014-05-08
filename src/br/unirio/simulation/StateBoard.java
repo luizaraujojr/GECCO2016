@@ -1,4 +1,4 @@
-package br.unirio.overwork.simulation;
+package br.unirio.simulation;
 
 import java.util.HashMap;
 
@@ -7,7 +7,7 @@ import java.util.HashMap;
  * 
  * @author Marcio Barros
  */
-public class StateBoard
+class StateBoard
 {
 	private HashMap<String, Double> states;
 

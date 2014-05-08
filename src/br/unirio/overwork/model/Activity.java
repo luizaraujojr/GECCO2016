@@ -7,7 +7,7 @@ import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
-import br.unirio.overwork.simulation.SimulationObject;
+import br.unirio.simulation.SimulationObject;
 
 /**
  * Class that represents an activity

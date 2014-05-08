@@ -1,4 +1,4 @@
-package br.unirio.overwork.simulation;
+package br.unirio.simulation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.List;
  * 
  * @author Marcio Barros
  */
-public abstract class TopologicalSort<T>
+abstract class TopologicalSort<T>
 {
 	/**
 	 * Performs the topological sort

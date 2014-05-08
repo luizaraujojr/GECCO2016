@@ -1,4 +1,4 @@
-package br.unirio.overwork.simulation;
+package br.unirio.simulation;
 
 /**
  * Abstract class that represents a scenario

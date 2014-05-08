@@ -6,7 +6,7 @@ import br.unirio.overwork.model.Developer;
 import br.unirio.overwork.model.Project;
 import br.unirio.overwork.model.scenarios.ScenarioExhaution;
 import br.unirio.overwork.model.scenarios.ScenarioOverworking;
-import br.unirio.overwork.simulation.Simulator;
+import br.unirio.simulation.SimulationEngine;
 
 public class TestScenarioExhaustion extends TestCase 
 {
@@ -66,7 +66,7 @@ public class TestScenarioExhaustion extends TestCase
 	{
 		Project project = createProject();
 		
-		Simulator simulator = new Simulator();
+		SimulationEngine simulator = new SimulationEngine();
 
 		for (Developer developer : project.getDevelopers())
 			simulator.addResource(developer.getEffort());

@@ -1,7 +1,7 @@
 package br.unirio.overwork.model;
 
 import lombok.Getter;
-import br.unirio.overwork.simulation.Resource;
+import br.unirio.simulation.Resource;
 
 /**
  * Class that represents a developer

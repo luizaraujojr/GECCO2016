@@ -2,9 +2,9 @@ package br.unirio.overwork.model.scenarios;
 
 import br.unirio.overwork.model.Activity;
 import br.unirio.overwork.model.Developer;
-import br.unirio.overwork.simulation.Scenario;
-import br.unirio.overwork.simulation.SimulationObject;
-import br.unirio.overwork.simulation.Tables;
+import br.unirio.simulation.Scenario;
+import br.unirio.simulation.SimulationObject;
+import br.unirio.simulation.Tables;
 
 /**
  * Scenario that represents the exhaustion dynamics for software developers

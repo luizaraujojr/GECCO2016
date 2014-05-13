@@ -65,16 +65,13 @@ public class MainProgram
 	public static final void main(String[] args) throws Exception
 	{
 		Project project = createProject();
-
+		
 		SimulationEngine simulator = new SimulationEngine();
 
 		for (Developer developer : project.getDevelopers())
 			simulator.addResource(developer.getEffort());
 		
 		simulator.addSimulationObjects(project.getActivities());
-		
-//		ScenarioCommunicationOverhead scenarioCommunicationOverhead = new ScenarioCommunicationOverhead();
-//		scenarioCommunicationOverhead.connect(project.getActivities());
 		
 		ScenarioOverworking scenarioOverworking = new ScenarioOverworking(12);
 		scenarioOverworking.connect(project.getActivities());

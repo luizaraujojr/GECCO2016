@@ -24,7 +24,7 @@ public class ScenarioOverworking extends Scenario<Activity>
 	/**
 	 * Initializes the scenario
 	 */
-	public ScenarioOverworking(int dailyWorkHours)
+	public ScenarioOverworking(double dailyWorkHours)
 	{
 		this.dailyWorkHours = dailyWorkHours;
 	}
@@ -48,7 +48,7 @@ public class ScenarioOverworking extends Scenario<Activity>
 		double workHourModifier = (workHours - 8) / (12 - 8);
 		double errorGenerationFactor = Tables.lookup(ERROR_GENERATION_FACTOR, workHourModifier, 0, 1);
 		
-		activity.setProductivity(activity.getProductivity() * workHours / 8.0);
+		activity.setEffortMultiplier(activity.getEffortMultiplier() * workHours / 8.0);
 		activity.setErrorGenerationRate(activity.getErrorGenerationRate() * errorGenerationFactor);
 	}
 }

@@ -26,6 +26,11 @@ public class Developer
 	private @Getter double errorGenerationRate;
 	
 	/**
+	 * Developer's cost per hour
+	 */
+	private @Getter double hourlyCost;
+	
+	/**
 	 * Effort available from the developer in a simulation step
 	 */
 	private @Getter Resource effort;
@@ -33,10 +38,11 @@ public class Developer
 	/**
 	 * Initializes the developer
 	 */
-	public Developer(String name)
+	public Developer(String name, double hourlyCost)
 	{
 		super();
 		this.name = name;
+		this.hourlyCost = hourlyCost;
 		this.productivity = 1.0;
 		this.errorGenerationRate = 1.0;
 		this.effort = new Resource("effort", this.productivity);

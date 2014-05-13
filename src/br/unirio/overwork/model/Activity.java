@@ -32,6 +32,16 @@ public abstract class Activity extends SimulationObject
 	private @Getter Developer developer;
 	
 	/**
+	 * Current cost of the activity
+	 */
+	private @Getter double cost;
+	
+	/**
+	 * Current overworking hours spent in the activity
+	 */
+	private @Getter double overworkHours;
+	
+	/**
 	 * Number of errors remaining when the activity is finished
 	 */
 	private @Getter @Setter double errors;
@@ -40,6 +50,11 @@ public abstract class Activity extends SimulationObject
 	 * Base developer's productivity for the activity
 	 */
 	private @Getter @Setter double productivity;
+	
+	/**
+	 * Base developer's productivity for the activity
+	 */
+	private @Getter @Setter double effortMultiplier;
 	
 	/**
 	 * Base developer's error generation rate for the activity
@@ -125,12 +140,24 @@ public abstract class Activity extends SimulationObject
 	}
 
 	/**
+	 * Initializes the activity for another simulation round
+	 */
+	@Override
+	public void init() 
+	{
+		this.startExecutionTime = -1.0;
+	}
+	
+	/**
 	 * Collects errors from former activities before when the activity's life-cycle starts
 	 */
 	@Override
 	public void beforeStart()
 	{
-		errors = countPrecedentErrors();
+		this.cost = 0.0;
+		this.overworkHours = 0.0;
+		this.consumedEffort = false;
+		this.errors = countPrecedentErrors();
 	}
 	
 	/**
@@ -140,6 +167,7 @@ public abstract class Activity extends SimulationObject
 	public void beforeStep()
 	{
 		this.productivity = developer.getProductivity();
+		this.effortMultiplier = 1.0;
 		this.errorGenerationRate = developer.getErrorGenerationRate();
 	}
 	
@@ -159,14 +187,28 @@ public abstract class Activity extends SimulationObject
 		if (effortAvailable <= 0.0)
 			return true;
 
-		double effortUsed = Math.min(effortAvailable, remainingWork / this.productivity);
+		double effortAdjustment = this.productivity * this.effortMultiplier;
+		double effortUsed = Math.min(effortAvailable, remainingWork / effortAdjustment);
 		
 		if (startExecutionTime < 0.0) 
 			startExecutionTime = getCurrentSimulationTime();
 		
 		developer.getEffort().consume(effortUsed);
-		consumeEffort(effortUsed * this.productivity);
+		consumeEffort(effortUsed * effortAdjustment);
+
 		this.consumedEffort = true;
+		this.cost += effortUsed * 8.0 * developer.getHourlyCost(); 
+
+		if (this.effortMultiplier > 1.0)
+		{
+			this.overworkHours += effortUsed * (effortMultiplier - 1.0) * 8.0;
+			
+			if (this.effortMultiplier > 1.25)
+				this.cost += (effortUsed * 8.0 * (this.effortMultiplier - 1.25) * 1.25 + effortUsed * 8.0 * 0.25 * 1.20) * developer.getHourlyCost(); 
+			
+			else if (this.effortMultiplier > 1.0)
+				this.cost += (effortUsed * 8.0 * (this.effortMultiplier - 1.0) * 1.20) * developer.getHourlyCost(); 
+		}
 		
 		remainingWork = getRemainingWork();
 		return remainingWork >= 0.001;
@@ -189,6 +231,6 @@ public abstract class Activity extends SimulationObject
 	public String toString()
 	{
 		NumberFormat nf2 = new DecimalFormat("0.00");
-		return getName() + "\t" + nf2.format(startExecutionTime) + "\t" + nf2.format(getFinishingTime()) + "\t" + nf2.format(errors);
+		return getName() + "\t" + nf2.format(startExecutionTime) + "\t" + nf2.format(getFinishingTime()) + "\t" + nf2.format(errors) + "\t" + nf2.format(overworkHours) + "\t" + nf2.format(cost);
 	}
 }

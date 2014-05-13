@@ -38,6 +38,22 @@ public class Project
 	}
 
 	/**
+	 * Returns the number of activities in the project
+	 */
+	public int countActivities()
+	{
+		return activities.size();
+	}
+	
+	/**
+	 * Returns an activity, given its index
+	 */
+	public Activity getActivity(int index)
+	{
+		return activities.get(index);
+	}
+	
+	/**
 	 * Returns an activity, given its name
 	 */
 	public Activity getActivity(String name) 
@@ -97,5 +113,49 @@ public class Project
 				result.add(activity);
 		
 		return result;
+	}
+
+	/**
+	 * Returns the makespan for the project after a simulation run
+	 */
+	public double getMakespan()
+	{
+		double makespan = 0.0;
+		
+		for (Activity activity : activities)
+		{
+			double finish = activity.getFinishingTime();
+
+			if (finish > makespan)
+				makespan = finish;
+		}
+		
+		return makespan;
+	}
+
+	/**
+	 * Returns the cost of the project after a simulation run
+	 */
+	public double getCost()
+	{
+		double cost = 0.0;
+		
+		for (Activity activity : activities)
+			cost += activity.getCost();
+		
+		return cost;
+	}
+
+	/**
+	 * Returns the number of overworking hours within the project after a simulation run
+	 */
+	public double getOverworking()
+	{
+		double overworking = 0.0;
+		
+		for (Activity activity : activities)
+			overworking += activity.getOverworkHours();
+		
+		return overworking;
 	}
 }

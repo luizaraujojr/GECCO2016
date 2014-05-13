@@ -95,6 +95,14 @@ public abstract class SimulationObject
 	}
 	
 	/**
+	 * Clear the list of scenarios enacted upon the object
+	 */
+	public void clearScenarios()
+	{
+		this.scenarios.clear();
+	}
+	
+	/**
 	 * Returns the current simulation time to subclasses
 	 */
 	protected double getCurrentSimulationTime()
@@ -191,9 +199,23 @@ public abstract class SimulationObject
 	}
 
 	/**
+	 * Prepares the object for a simulation cycle
+	 */
+	void prepareCycle()
+	{
+		this.started = false;
+		this.startingTime = -1.0;
+		this.finished = false;
+		this.finishingTime = -1.0;
+		this.currentSimulationTime = 0.0;
+		this.blackboard = null;
+		this.localStates.clear();
+	}
+
+	/**
 	 * Prepares the object for a simulation step
 	 */
-	void prepare(double simulationTime, StateBoard blackboard)
+	void prepareStep(double simulationTime, StateBoard blackboard)
 	{
 		this.currentSimulationTime = simulationTime;
 		this.blackboard = blackboard;

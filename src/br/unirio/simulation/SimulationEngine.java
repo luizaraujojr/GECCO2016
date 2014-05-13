@@ -64,7 +64,10 @@ public class SimulationEngine
 	public void addSimulationObjects(Iterable<? extends SimulationObject> objects)
 	{
 		for (SimulationObject o : objects)
+		{
 			this.objects.add(o);
+			o.clearScenarios();
+		}
 	}
 
 	/**
@@ -86,7 +89,8 @@ public class SimulationEngine
 
 		for (SimulationObject object : orderedObjects)
 		{
-			object.prepare(currentSimulationTime, blackboard);
+			object.prepareCycle();
+			object.prepareStep(currentSimulationTime, blackboard);
 			object.init();
 			
 			for (Scenario scenario : object.getScenarios())
@@ -104,7 +108,7 @@ public class SimulationEngine
 		
 		for (SimulationObject object : orderedObjects)
 		{
-			object.prepare(currentSimulationTime, blackboard);
+			object.prepareStep(currentSimulationTime, blackboard);
 			
 			if (dependenciesConcluded(object))
 			{

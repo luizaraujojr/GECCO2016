@@ -45,7 +45,7 @@ public class WorkPackageProjectBuilder
 	public Project execute()
 	{
 		Project project = new Project();
-		Developer developer = new Developer("Developer");
+		Developer developer = new Developer("Developer", 60);
 		project.addDeveloper(developer);
 		project.addDeveloper(developer);
 		project.addDeveloper(developer);

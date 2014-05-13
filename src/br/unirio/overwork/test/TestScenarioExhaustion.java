@@ -79,116 +79,116 @@ public class TestScenarioExhaustion extends TestCase
 		while (!project.isConcluded())
 			simulator.run();
 		
-		assertEquals(0.0, project.getActivity("Requisitos Inscrições").getStartExecutionTime(), 0.1);	
-		assertEquals(1.0, project.getActivity("Requisitos Inscrições").getFinishingTime(), 0.1);	
-		assertEquals(12.9, project.getActivity("Requisitos Inscrições").getErrors(), 0.1);
+		assertEquals(0, project.getActivity("Requisitos Inscrições").getStartExecutionTime(), 0.1);	
+		assertEquals(0.83, project.getActivity("Requisitos Inscrições").getFinishingTime(), 0.1);	
+		assertEquals(40.5, project.getActivity("Requisitos Inscrições").getErrors(), 0.1);
 		
-		assertEquals(1.0, project.getActivity("Requisitos Turmas").getStartExecutionTime(), 0.1);	
-		assertEquals(2.6, project.getActivity("Requisitos Turmas").getFinishingTime(), 0.1);	
-		assertEquals(19.7, project.getActivity("Requisitos Turmas").getErrors(), 0.1);
+		assertEquals(0.83, project.getActivity("Requisitos Turmas").getStartExecutionTime(), 0.1);	
+		assertEquals(2.11, project.getActivity("Requisitos Turmas").getFinishingTime(), 0.1);	
+		assertEquals(61.5, project.getActivity("Requisitos Turmas").getErrors(), 0.1);
 		
-		assertEquals(2.6, project.getActivity("Requisitos Disciplinas").getStartExecutionTime(), 0.1);	
-		assertEquals(3.4, project.getActivity("Requisitos Disciplinas").getFinishingTime(), 0.1);	
-		assertEquals(9.6, project.getActivity("Requisitos Disciplinas").getErrors(), 0.1);
+		assertEquals(2.11, project.getActivity("Requisitos Disciplinas").getStartExecutionTime(), 0.1);	
+		assertEquals(2.73, project.getActivity("Requisitos Disciplinas").getFinishingTime(), 0.1);	
+		assertEquals(30, project.getActivity("Requisitos Disciplinas").getErrors(), 0.1);
 		
-		assertEquals(3.4, project.getActivity("Requisitos Aluno").getStartExecutionTime(), 0.1);	
-		assertEquals(4.3, project.getActivity("Requisitos Aluno").getFinishingTime(), 0.1);	
-		assertEquals(11.0, project.getActivity("Requisitos Aluno").getErrors(), 0.1);
+		assertEquals(2.73, project.getActivity("Requisitos Aluno").getStartExecutionTime(), 0.1);	
+		assertEquals(3.44, project.getActivity("Requisitos Aluno").getFinishingTime(), 0.1);	
+		assertEquals(34.47, project.getActivity("Requisitos Aluno").getErrors(), 0.1);
 		
-		assertEquals(4.3, project.getActivity("Requisitos Áreas").getStartExecutionTime(), 0.1);	
-		assertEquals(5.2, project.getActivity("Requisitos Áreas").getFinishingTime(), 0.1);	
-		assertEquals(11.0, project.getActivity("Requisitos Áreas").getErrors(), 0.1);
+		assertEquals(3.45, project.getActivity("Requisitos Áreas").getStartExecutionTime(), 0.1);	
+		assertEquals(4.16, project.getActivity("Requisitos Áreas").getFinishingTime(), 0.1);	
+		assertEquals(34.5, project.getActivity("Requisitos Áreas").getErrors(), 0.1);
 		
-		assertEquals(5.2, project.getActivity("Requisitos Professores").getStartExecutionTime(), 0.1);	
-		assertEquals(6.0, project.getActivity("Requisitos Professores").getFinishingTime(), 0.1);	
-		assertEquals(9.6, project.getActivity("Requisitos Professores").getErrors(), 0.1);
+		assertEquals(4.16, project.getActivity("Requisitos Professores").getStartExecutionTime(), 0.1);	
+		assertEquals(4.78, project.getActivity("Requisitos Professores").getFinishingTime(), 0.1);	
+		assertEquals(30, project.getActivity("Requisitos Professores").getErrors(), 0.1);
 		
-		assertEquals(6.0, project.getActivity("Requisitos Usuários").getStartExecutionTime(), 0.1);	
-		assertEquals(6.7, project.getActivity("Requisitos Usuários").getFinishingTime(), 0.1);	
-		assertEquals(8.6, project.getActivity("Requisitos Usuários").getErrors(), 0.1);
+		assertEquals(4.78, project.getActivity("Requisitos Usuários").getStartExecutionTime(), 0.1);	
+		assertEquals(5.34, project.getActivity("Requisitos Usuários").getFinishingTime(), 0.1);	
+		assertEquals(27, project.getActivity("Requisitos Usuários").getErrors(), 0.1);
 		
-		assertEquals(6.7, project.getActivity("Projeto Inscrições").getStartExecutionTime(), 0.1);	
-		assertEquals(8.1, project.getActivity("Projeto Inscrições").getFinishingTime(), 0.1);	
-		assertEquals(29.4, project.getActivity("Projeto Inscrições").getErrors(), 0.1);
+		assertEquals(5.34, project.getActivity("Projeto Inscrições").getStartExecutionTime(), 0.1);	
+		assertEquals(6.35, project.getActivity("Projeto Inscrições").getFinishingTime(), 0.1);	
+		assertEquals(96.19, project.getActivity("Projeto Inscrições").getErrors(), 0.1);
 		
-		assertEquals(8.1, project.getActivity("Projeto Turmas").getStartExecutionTime(), 0.1);	
-		assertEquals(10.1, project.getActivity("Projeto Turmas").getFinishingTime(), 0.1);	
-		assertEquals(44.6, project.getActivity("Projeto Turmas").getErrors(), 0.1);
+		assertEquals(6.35, project.getActivity("Projeto Turmas").getStartExecutionTime(), 0.1);	
+		assertEquals(7.88, project.getActivity("Projeto Turmas").getFinishingTime(), 0.1);	
+		assertEquals(146.06, project.getActivity("Projeto Turmas").getErrors(), 0.1);
 		
-		assertEquals(10.1, project.getActivity("Projeto Disciplinas").getStartExecutionTime(), 0.1);	
-		assertEquals(11.1, project.getActivity("Projeto Disciplinas").getFinishingTime(), 0.1);	
-		assertEquals(21.8, project.getActivity("Projeto Disciplinas").getErrors(), 0.1);
+		assertEquals(7.88, project.getActivity("Projeto Disciplinas").getStartExecutionTime(), 0.1);	
+		assertEquals(8.62, project.getActivity("Projeto Disciplinas").getFinishingTime(), 0.1);	
+		assertEquals(71.25, project.getActivity("Projeto Disciplinas").getErrors(), 0.1);
 		
-		assertEquals(11.1, project.getActivity("Projeto Aluno").getStartExecutionTime(), 0.1);	
-		assertEquals(12.2, project.getActivity("Projeto Aluno").getFinishingTime(), 0.1);	
-		assertEquals(25.0, project.getActivity("Projeto Aluno").getErrors(), 0.1);
+		assertEquals(8.62, project.getActivity("Projeto Aluno").getStartExecutionTime(), 0.1);	
+		assertEquals(9.48, project.getActivity("Projeto Aluno").getFinishingTime(), 0.1);	
+		assertEquals(81.9, project.getActivity("Projeto Aluno").getErrors(), 0.1);
 		
-		assertEquals(12.2, project.getActivity("Projeto Áreas").getStartExecutionTime(), 0.1);	
-		assertEquals(13.4, project.getActivity("Projeto Áreas").getFinishingTime(), 0.1);	
-		assertEquals(25.0, project.getActivity("Projeto Áreas").getErrors(), 0.1);
+		assertEquals(9.48, project.getActivity("Projeto Áreas").getStartExecutionTime(), 0.1);	
+		assertEquals(10.34, project.getActivity("Projeto Áreas").getFinishingTime(), 0.1);	
+		assertEquals(81.94, project.getActivity("Projeto Áreas").getErrors(), 0.1);
 		
-		assertEquals(13.4, project.getActivity("Projeto Professores").getStartExecutionTime(), 0.1);	
-		assertEquals(14.4, project.getActivity("Projeto Professores").getFinishingTime(), 0.1);	
-		assertEquals(21.8, project.getActivity("Projeto Professores").getErrors(), 0.1);
+		assertEquals(10.34, project.getActivity("Projeto Professores").getStartExecutionTime(), 0.1);	
+		assertEquals(11.09, project.getActivity("Projeto Professores").getFinishingTime(), 0.1);	
+		assertEquals(71.25, project.getActivity("Projeto Professores").getErrors(), 0.1);
 		
-		assertEquals(14.4, project.getActivity("Projeto Usuários").getStartExecutionTime(), 0.1);	
-		assertEquals(15.3, project.getActivity("Projeto Usuários").getFinishingTime(), 0.1);	
-		assertEquals(19.6, project.getActivity("Projeto Usuários").getErrors(), 0.1);
+		assertEquals(11.09, project.getActivity("Projeto Usuários").getStartExecutionTime(), 0.1);	
+		assertEquals(11.76, project.getActivity("Projeto Usuários").getFinishingTime(), 0.1);	
+		assertEquals(64.13, project.getActivity("Projeto Usuários").getErrors(), 0.1);
 		
-		assertEquals(15.3, project.getActivity("Codificacao Inscrições").getStartExecutionTime(), 0.1);	
-		assertEquals(22.0, project.getActivity("Codificacao Inscrições").getFinishingTime(), 0.1);	
-		assertEquals(86.0, project.getActivity("Codificacao Inscrições").getErrors(), 0.1);
+		assertEquals(11.76, project.getActivity("Codificacao Inscrições").getStartExecutionTime(), 0.1);	
+		assertEquals(18.47, project.getActivity("Codificacao Inscrições").getFinishingTime(), 0.1);	
+		assertEquals(184.3, project.getActivity("Codificacao Inscrições").getErrors(), 0.1);
 		
-		assertEquals(22.0, project.getActivity("Codificacao Turmas").getStartExecutionTime(), 0.1);	
-		assertEquals(34.7, project.getActivity("Codificacao Turmas").getFinishingTime(), 0.1);	
-		assertEquals(106.4, project.getActivity("Codificacao Turmas").getErrors(), 0.1);
+		assertEquals(18.47, project.getActivity("Codificacao Turmas").getStartExecutionTime(), 0.1);	
+		assertEquals(33.07, project.getActivity("Codificacao Turmas").getFinishingTime(), 0.1);	
+		assertEquals(233.65, project.getActivity("Codificacao Turmas").getErrors(), 0.1);
 		
-		assertEquals(34.7, project.getActivity("Codificacao Disciplinas").getStartExecutionTime(), 0.1);	
-		assertEquals(40.0, project.getActivity("Codificacao Disciplinas").getFinishingTime(), 0.1);	
-		assertEquals(60.0, project.getActivity("Codificacao Disciplinas").getErrors(), 0.1);
+		assertEquals(33.07, project.getActivity("Codificacao Disciplinas").getStartExecutionTime(), 0.1);	
+		assertEquals(40.31, project.getActivity("Codificacao Disciplinas").getFinishingTime(), 0.1);	
+		assertEquals(112.74, project.getActivity("Codificacao Disciplinas").getErrors(), 0.1);
 		
-		assertEquals(40.0, project.getActivity("Codificacao Aluno").getStartExecutionTime(), 0.1);	
-		assertEquals(44.7, project.getActivity("Codificacao Aluno").getFinishingTime(), 0.1);	
-		assertEquals(82.8, project.getActivity("Codificacao Aluno").getErrors(), 0.1);
+		assertEquals(40.31, project.getActivity("Codificacao Aluno").getStartExecutionTime(), 0.1);	
+		assertEquals(46.03, project.getActivity("Codificacao Aluno").getFinishingTime(), 0.1);	
+		assertEquals(156.94, project.getActivity("Codificacao Aluno").getErrors(), 0.1);
 		
-		assertEquals(44.7, project.getActivity("Codificacao Áreas").getStartExecutionTime(), 0.1);	
-		assertEquals(49.5, project.getActivity("Codificacao Áreas").getFinishingTime(), 0.1);	
-		assertEquals(82.8, project.getActivity("Codificacao Áreas").getErrors(), 0.1);
+		assertEquals(46.03, project.getActivity("Codificacao Áreas").getStartExecutionTime(), 0.1);	
+		assertEquals(51.75, project.getActivity("Codificacao Áreas").getFinishingTime(), 0.1);	
+		assertEquals(157, project.getActivity("Codificacao Áreas").getErrors(), 0.1);
 		
-		assertEquals(49.5, project.getActivity("Codificacao Professores").getStartExecutionTime(), 0.1);	
-		assertEquals(53.6, project.getActivity("Codificacao Professores").getFinishingTime(), 0.1);	
-		assertEquals(72.0, project.getActivity("Codificacao Professores").getErrors(), 0.1);
+		assertEquals(51.75, project.getActivity("Codificacao Professores").getStartExecutionTime(), 0.1);	
+		assertEquals(56.72, project.getActivity("Codificacao Professores").getFinishingTime(), 0.1);	
+		assertEquals(136.52, project.getActivity("Codificacao Professores").getErrors(), 0.1);
 		
-		assertEquals(53.6, project.getActivity("Codificacao Usuários").getStartExecutionTime(), 0.1);	
-		assertEquals(57.3, project.getActivity("Codificacao Usuários").getFinishingTime(), 0.1);	
-		assertEquals(64.8, project.getActivity("Codificacao Usuários").getErrors(), 0.1);
+		assertEquals(56.72, project.getActivity("Codificacao Usuários").getStartExecutionTime(), 0.1);	
+		assertEquals(61.88, project.getActivity("Codificacao Usuários").getFinishingTime(), 0.1);	
+		assertEquals(115.71, project.getActivity("Codificacao Usuários").getErrors(), 0.1);
 		
-		assertEquals(57.3, project.getActivity("Testes Inscrições").getStartExecutionTime(), 0.1);	
-		assertEquals(68.2, project.getActivity("Testes Inscrições").getFinishingTime(), 0.1);	
-		assertEquals(0.0, project.getActivity("Testes Inscrições").getErrors(), 0.1);
+		assertEquals(61.88, project.getActivity("Testes Inscrições").getStartExecutionTime(), 0.1);	
+		assertEquals(74.77, project.getActivity("Testes Inscrições").getFinishingTime(), 0.1);	
+		assertEquals(0, project.getActivity("Testes Inscrições").getErrors(), 0.1);
 		
-		assertEquals(68.2, project.getActivity("Testes Turmas").getStartExecutionTime(), 0.1);	
-		assertEquals(80.6, project.getActivity("Testes Turmas").getFinishingTime(), 0.1);	
-		assertEquals(0.0, project.getActivity("Testes Turmas").getErrors(), 0.1);
+		assertEquals(74.77, project.getActivity("Testes Turmas").getStartExecutionTime(), 0.1);	
+		assertEquals(87.35, project.getActivity("Testes Turmas").getFinishingTime(), 0.1);	
+		assertEquals(0, project.getActivity("Testes Turmas").getErrors(), 0.1);
 		
-		assertEquals(80.6, project.getActivity("Testes Disciplinas").getStartExecutionTime(), 0.1);	
-		assertEquals(85.8, project.getActivity("Testes Disciplinas").getFinishingTime(), 0.1);	
-		assertEquals(0.0, project.getActivity("Testes Disciplinas").getErrors(), 0.1);
+		assertEquals(87.35, project.getActivity("Testes Disciplinas").getStartExecutionTime(), 0.1);	
+		assertEquals(92.61, project.getActivity("Testes Disciplinas").getFinishingTime(), 0.1);	
+		assertEquals(0, project.getActivity("Testes Disciplinas").getErrors(), 0.1);
 		
-		assertEquals(85.8, project.getActivity("Testes Aluno").getStartExecutionTime(), 0.1);	
-		assertEquals(93.0, project.getActivity("Testes Aluno").getFinishingTime(), 0.1);	
-		assertEquals(0.0, project.getActivity("Testes Aluno").getErrors(), 0.1);
+		assertEquals(92.61, project.getActivity("Testes Aluno").getStartExecutionTime(), 0.1);	
+		assertEquals(99.98, project.getActivity("Testes Aluno").getFinishingTime(), 0.1);	
+		assertEquals(0, project.getActivity("Testes Aluno").getErrors(), 0.1);
 		
-		assertEquals(93.0, project.getActivity("Testes Áreas").getStartExecutionTime(), 0.1);	
-		assertEquals(101.5, project.getActivity("Testes Áreas").getFinishingTime(), 0.1);	
-		assertEquals(0.0, project.getActivity("Testes Áreas").getErrors(), 0.1);
+		assertEquals(99.98, project.getActivity("Testes Áreas").getStartExecutionTime(), 0.1);	
+		assertEquals(110.96, project.getActivity("Testes Áreas").getFinishingTime(), 0.1);	
+		assertEquals(0, project.getActivity("Testes Áreas").getErrors(), 0.1);
 		
-		assertEquals(101.5, project.getActivity("Testes Professores").getStartExecutionTime(), 0.1);	
-		assertEquals(110.9, project.getActivity("Testes Professores").getFinishingTime(), 0.1);	
-		assertEquals(0.0, project.getActivity("Testes Professores").getErrors(), 0.1);
+		assertEquals(110.96, project.getActivity("Testes Professores").getStartExecutionTime(), 0.1);	
+		assertEquals(120.28, project.getActivity("Testes Professores").getFinishingTime(), 0.1);	
+		assertEquals(0, project.getActivity("Testes Professores").getErrors(), 0.1);
 		
-		assertEquals(110.9, project.getActivity("Testes Usuários").getStartExecutionTime(), 0.1);	
-		assertEquals(118.6, project.getActivity("Testes Usuários").getFinishingTime(), 0.1);	
-		assertEquals(0.0, project.getActivity("Testes Usuários").getErrors(), 0.1);
+		assertEquals(120.28, project.getActivity("Testes Usuários").getStartExecutionTime(), 0.1);	
+		assertEquals(125.67, project.getActivity("Testes Usuários").getFinishingTime(), 0.1);	
+		assertEquals(0, project.getActivity("Testes Usuários").getErrors(), 0.1);
 	}
 }

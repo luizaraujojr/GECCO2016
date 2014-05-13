@@ -1,7 +1,9 @@
 package br.unirio.overwork;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 import br.unirio.overwork.builders.WorkPackageProjectBuilder;
-import br.unirio.overwork.model.Activity;
 import br.unirio.overwork.model.Developer;
 import br.unirio.overwork.model.Project;
 import br.unirio.overwork.model.scenarios.ScenarioExhaution;
@@ -84,7 +86,8 @@ public class MainProgram
 		while (!project.isConcluded())
 			simulator.run();
 		
-		for (Activity a : project.getActivities())
-			System.out.println(a.toString());
+		NumberFormat nf2 = new DecimalFormat("0.00");
+		System.out.println("Makespan\tCost\tOverworking");
+		System.out.println(nf2.format(project.getMakespan()) + "\t" + nf2.format(project.getCost()) + "\t" + nf2.format(project.getOverworking()));
 	}
 }

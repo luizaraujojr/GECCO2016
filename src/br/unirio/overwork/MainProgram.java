@@ -1,93 +1,101 @@
 package br.unirio.overwork;
 
+import java.io.OutputStreamWriter;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.Vector;
 
+import unirio.experiments.monoobjective.execution.FileMonoExperimentListener;
+import unirio.experiments.monoobjective.execution.StreamMonoExperimentListener;
+import br.unirio.optimization.ProjectSolution;
+import br.unirio.optimization.RandomSearchExperiment;
 import br.unirio.overwork.builders.WorkPackageProjectBuilder;
 import br.unirio.overwork.model.Developer;
 import br.unirio.overwork.model.Project;
-import br.unirio.overwork.model.scenarios.ScenarioExhaution;
 import br.unirio.overwork.model.scenarios.ScenarioOverworking;
+import br.unirio.reader.InstanceReader;
 import br.unirio.simulation.SimulationEngine;
 
 public class MainProgram
 {
-	private static Project createProject()
-	{
-		WorkPackageProjectBuilder builder = new WorkPackageProjectBuilder();
-		
-		builder.addWorkPackage("Usuários")
-			.addDataFunction("usuario", 7)
-			.addTransactionalFunction("Cadastro de usuário", 3)
-			.addTransactionalFunction("Lista de usuários ", 4)
-			.addTransactionalFunction("Consulta de usuário", 4);
+	protected static final int CYCLES = 10;
+	protected static String[] instanciasAleatorias =
+		{
+	 		"C:\\workspace\\OptimizationAlgorithms\\trunk\\data\\Instance.txt",
+		};
+	
 
-		builder.addWorkPackage("Professores")
-			.addDataFunction("professor", 7)
-			.addTransactionalFunction("Cadastro de professor", 4)
-			.addTransactionalFunction("Lista de professores", 4)
-			.addTransactionalFunction("Consulta de professor", 5);
-		
-		builder.addWorkPackage("Áreas")
-			.addDataFunction("area", 7)
-			.addTransactionalFunction("Cadastro de área", 4)
-			.addTransactionalFunction("Lista de áreas", 4)
-			.addTransactionalFunction("Lista de sub-áreas", 4)
-			.addTransactionalFunction("Consulta de área", 4);
-		
-		builder.addWorkPackage("Aluno")
-			.addDataFunction("aluno", 10)
-			.addTransactionalFunction("Cadastro de aluno", 6)
-			.addTransactionalFunction("Consulta de aluno", 7);
-		
-		builder.addWorkPackage("Disciplinas")
-			.addDataFunction("disciplina", 7)
-			.addTransactionalFunction("Cadastro de disciplina", 4)
-			.addTransactionalFunction("Lista de disciplinas", 4)
-			.addTransactionalFunction("Consulta de disciplina", 5);
-		
-		builder.addWorkPackage("Turmas")
-			.addDataFunction("turma", 7)
-			.addDataFunction("turmasolicitada", 7)
-			.addTransactionalFunction("Cadastro de turma", 6)
-			.addTransactionalFunction("Cadastro de turma solicitada", 6)
-			.addTransactionalFunction("Lista de turmas", 4)
-			.addTransactionalFunction("Consulta de turma", 7)
-			.addTransactionalFunction("Lista de turmas solicitadas", 4);
-		
-		builder.addWorkPackage("Inscrições")
-			.addDataFunction("inscricao", 7)
-			.addTransactionalFunction("Cadastro de inscrição", 6)
-			.addTransactionalFunction("Consulta de inscrição", 7)
-			.addTransactionalFunction("Geração de comprovante", 7);
-		
-		return builder.execute();
-	}
 	
 	public static final void main(String[] args) throws Exception
 	{
-		Project project = createProject();
+		for (int i = 0; i < instanciasAleatorias.length; i++)
+			if (instanciasAleatorias[i].length() > 0)
+				run(instanciasAleatorias[i]);
 		
-		SimulationEngine simulator = new SimulationEngine();
-
-		for (Developer developer : project.getDevelopers())
-			simulator.addResource(developer.getEffort());
 		
-		simulator.addSimulationObjects(project.getActivities());
 		
-		ScenarioOverworking scenarioOverworking = new ScenarioOverworking(12);
-		scenarioOverworking.connect(project.getActivities());
-		
-		ScenarioExhaution scenarioExhaustion = new ScenarioExhaution();
-		scenarioExhaustion.connect(project.getActivities());
-
-		simulator.init();
-		
-		while (!project.isConcluded())
-			simulator.run();
-		
-		NumberFormat nf2 = new DecimalFormat("0.00");
+		String overtime = "";
+		//instance loaded and project created
 		System.out.println("Makespan\tCost\tOverworking");
-		System.out.println(nf2.format(project.getMakespan()) + "\t" + nf2.format(project.getCost()) + "\t" + nf2.format(project.getOverworking()));
-	}
+//		for (int j = 0; j < 1; j++)
+//		{
+//			overtime = "";
+//			
+//			Solution solution = new Solution (project);
+//			solution.randomize();
+//					
+//			SimulationEngine simulator = new SimulationEngine();
+//	
+//			for (Developer developer : project.getDevelopers())
+//				simulator.addResource(developer.getEffort());
+//			
+//			simulator.addSimulationObjects(project.getActivities());
+//			
+//			for (int i = 0; i < project.countActivities(); i++)
+//			{
+//				ScenarioOverworking scenarioOverworking = new ScenarioOverworking(solution.getActivitiesOverworkAllocation(i));
+//				scenarioOverworking.connect(project.getActivity(i));
+//				
+//				overtime = overtime + solution.getActivitiesOverworkAllocation(i)  + "\t";
+//			}
+//					
+//	//		ScenarioExhaution scenarioExhaustion = new ScenarioExhaution();
+//	//		scenarioExhaustion.connect(project.getActivities());
+//	
+//			simulator.init();
+//			
+//			while (!project.isConcluded())
+//				simulator.run();
+//			
+//			NumberFormat nf2 = new DecimalFormat("0.00");
+//			
+//			
+//			System.out.println(nf2.format(project.getMakespan()) + "\t" + nf2.format(project.getCost()) + "\t" + nf2.format(project.getOverworking()) + "\t" + overtime);
+		}
+		
+		public static void run(String instancia) throws Exception
+		{
+			//loading the project information
+			Project project = new Project ();
+			project = loadInstance(instancia);
+			
+			// Cria o vetor de instâncias
+			Vector<Project> instances = new Vector<Project>();
+			instances.add(project);
+			
+			// Executa os experimentos com Random Search
+	       	RandomSearchExperiment rs = new RandomSearchExperiment();
+//	       	rs.addListerner(new FileMonoExperimentListener("saida rs.txt", true));
+//	       	rs.addListerner(new StreamMonoExperimentListener(new OutputStreamWriter(System.out), true));
+	       	rs.run(instances, CYCLES);
+			
+			
+		}
+		public static Project loadInstance(String instancia) throws Exception
+		{
+			//loading the project information
+			InstanceReader reader = new InstanceReader();
+			return reader.execute(instancia);
+		}
+		
 }

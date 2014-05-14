@@ -14,8 +14,8 @@ public class RandomSearchExperiment extends GenericExperiment {
 		int variableSize = instance.countActivities();
 
 		int populationSize = 3 * variableSize;
-		int maxEvaluations = 50 * populationSize;// * populationSize;
-		//RandomSearch rs = new RandomSearch(problem, maxEvaluations);
+		int maxEvaluations = 5;//0 * populationSize;// * populationSize;
+
 		RandomSearch rs = new RandomSearch(problem);
 		rs.setInputParameter("populationSize", populationSize);
 		rs.setInputParameter("maxEvaluations", maxEvaluations);

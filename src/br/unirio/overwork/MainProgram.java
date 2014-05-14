@@ -5,38 +5,30 @@ import java.util.Vector;
 
 import unirio.experiments.monoobjective.execution.FileMonoExperimentListener;
 import unirio.experiments.monoobjective.execution.StreamMonoExperimentListener;
+import br.unirio.optimization.GeneticAlgorithmExperiment;
+import br.unirio.optimization.HillClimbingExperiment;
 import br.unirio.optimization.RandomSearchExperiment;
 import br.unirio.overwork.builders.WorkPackageProjectBuilder;
 import br.unirio.overwork.instance.model.FunctionPointSystem;
 import br.unirio.overwork.instance.reader.InstanceReader;
-import br.unirio.overwork.model.base.Developer;
 import br.unirio.overwork.model.base.Project;
-import br.unirio.simulation.SimulationEngine;
 
 public class MainProgram
 {
 	protected static final int CYCLES = 10;
 	protected static String[] instanceFiles =
 		{
-	 		"data/instances/ACAD/functions-point.xml",
-	 		"data/instances/BOLS/functions-point.xml",
-	 		"data/instances/PARM/functions-point.xml",
+//	 		"data/instances/ACAD/functions-point.xml",
+//	 		"data/instances/BOLS/functions-point.xml",
+//	 		"data/instances/PARM/functions-point.xml",
 	 		"data/instances/PSOA/functions-point.xml"
 		};
-	
-
 	
 	public static final void main(String[] args) throws Exception
 	{
 		for (int i = 0; i < instanceFiles.length; i++)
 			if (instanceFiles[i].length() > 0)
 				run(instanceFiles[i]);
-		
-		Project project = createProject();
-				
-		String overtime = "";
-		
-		System.out.println("Makespan\tCost\tOverworking");
 	}
 		
 		public static void run(String instancia) throws Exception
@@ -50,10 +42,22 @@ public class MainProgram
 			instances.add(project);
 			
 			// run the Random Search experiment 
-	       	RandomSearchExperiment rs = new RandomSearchExperiment();
-	       	rs.addListerner(new FileMonoExperimentListener("saida rs.txt", true));
-	       	rs.addListerner(new StreamMonoExperimentListener(new OutputStreamWriter(System.out), true));
-	       	rs.run(instances, CYCLES);
+	       	RandomSearchExperiment rse = new RandomSearchExperiment();
+	       	rse.addListerner(new FileMonoExperimentListener("saida rs.txt", true));
+	       	rse.addListerner(new StreamMonoExperimentListener(new OutputStreamWriter(System.out), true));
+	       	rse.run(instances, CYCLES);
+	       	
+			// run the Hill Climbing experiment 
+	       	HillClimbingExperiment hce = new HillClimbingExperiment();
+	       	hce.addListerner(new FileMonoExperimentListener("saida hc.txt", true));
+	       	hce.addListerner(new StreamMonoExperimentListener(new OutputStreamWriter(System.out), true));
+	       	hce.run(instances, CYCLES);
+	       	
+	       	// run the Random Search experiment 
+	       	GeneticAlgorithmExperiment gae = new GeneticAlgorithmExperiment();
+	       	gae.addListerner(new FileMonoExperimentListener("saida ga.txt", true));
+	       	gae.addListerner(new StreamMonoExperimentListener(new OutputStreamWriter(System.out), true));
+	       	gae.run(instances, CYCLES);       	
 		}
 		
 		public static Project loadInstance(String instancia) throws Exception
@@ -62,7 +66,11 @@ public class MainProgram
 			InstanceReader reader = new InstanceReader();
 			FunctionPointSystem fps = new FunctionPointSystem("aaa");
 			fps = reader.run(instancia);
+			
+			
 				
+			//to be complemented
+						
 			//Temporary
 			return createProject();
 		}

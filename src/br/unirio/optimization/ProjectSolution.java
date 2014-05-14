@@ -113,6 +113,10 @@ public class ProjectSolution extends Solution
 		return activitiesOverworkAllocation;
 	}
 	
+	public void setActivitiesOverworkAllocations(int[] activitiesOverworkAllocation_ )
+	{
+		this.activitiesOverworkAllocation = activitiesOverworkAllocation_;
+	}
 	
 	/**
 	 * Calculates the execution time of the solution
@@ -145,39 +149,7 @@ public class ProjectSolution extends Solution
 	/**
 	 * Calculates the fitness of the solution
 	 */
-	public double getFitness()
-	{
-		SimulationEngine simulator = new SimulationEngine();
-
-		for (Developer developer : project.getDevelopers())
-			simulator.addResource(developer.getEffort());
 		
-		simulator.addSimulationObjects(project.getActivities());
-		
-		for (int i = 0; i < project.countActivities(); i++)
-		{
-			ScenarioOverworking scenarioOverworking = new ScenarioOverworking(getActivitiesOverworkAllocation(i) * 0.5 + 7.5);
-			scenarioOverworking.connect(project.getActivity(i));
-			
-			//overtime = overtime + solution.getActivitiesOverworkAllocation(i)  + "\t";
-		}
-				
-//		ScenarioExhaution scenarioExhaustion = new ScenarioExhaution();
-//		scenarioExhaustion.connect(project.getActivities());
-
-		try {
-			simulator.init();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		while (!project.isConcluded())
-			simulator.run();
-		
-		return project.getOverworking();
-	}
-	
 //			overtime = "";
 //			
 //			Solution solution = new Solution (project);

@@ -1,9 +1,8 @@
 package br.unirio.optimization;
 
-import br.unirio.overwork.model.base.Project;
-import jmetal.base.Problem;
 import jmetal.base.Solution;
 import unirio.experiments.monoobjective.execution.MonoExperiment;
+import br.unirio.overwork.model.base.Project;
 
 
 public abstract class GenericExperiment  extends MonoExperiment<Project>{
@@ -14,8 +13,8 @@ public abstract class GenericExperiment  extends MonoExperiment<Project>{
 	{
 		double[] data = new double[3];
 		data[0] = solution.getObjective(0);
-//		data[1] = problem.calcCoverage(solution);
-//		data[2] = problem.calcExecutionTime(solution);
+		data[1] = solution.getObjective(1);
+		data[2] = solution.getObjective(2);
 		return data;
 	}
 	

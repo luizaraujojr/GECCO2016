@@ -1,6 +1,6 @@
 package br.unirio.overwork.model.scenarios;
 
-import br.unirio.overwork.model.Activity;
+import br.unirio.overwork.model.base.Activity;
 import br.unirio.simulation.Scenario;
 import br.unirio.simulation.Tables;
 

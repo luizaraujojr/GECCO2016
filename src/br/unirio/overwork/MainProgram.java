@@ -4,8 +4,9 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 import br.unirio.overwork.builders.WorkPackageProjectBuilder;
-import br.unirio.overwork.model.Developer;
-import br.unirio.overwork.model.Project;
+import br.unirio.overwork.instance.reader.InstanceReader;
+import br.unirio.overwork.model.base.Developer;
+import br.unirio.overwork.model.base.Project;
 import br.unirio.overwork.model.scenarios.ScenarioExhaution;
 import br.unirio.overwork.model.scenarios.ScenarioOverworking;
 import br.unirio.simulation.SimulationEngine;
@@ -66,6 +67,12 @@ public class MainProgram
 	
 	public static final void main(String[] args) throws Exception
 	{
+		InstanceReader reader = new InstanceReader();
+		reader.run("data/instances/ACAD/functions-point.xml");
+		reader.run("data/instances/BOLS/functions-point.xml");
+		reader.run("data/instances/PARM/functions-point.xml");
+		reader.run("data/instances/PSOA/functions-point.xml");
+		
 		Project project = createProject();
 		
 		SimulationEngine simulator = new SimulationEngine();

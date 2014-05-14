@@ -3,11 +3,11 @@ package br.unirio.overwork.builders;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.unirio.overwork.model.Activity;
-import br.unirio.overwork.model.ActivityDevelopment;
-import br.unirio.overwork.model.AtivityTesting;
-import br.unirio.overwork.model.Developer;
-import br.unirio.overwork.model.Project;
+import br.unirio.overwork.model.base.Activity;
+import br.unirio.overwork.model.base.ActivityDevelopment;
+import br.unirio.overwork.model.base.AtivityTesting;
+import br.unirio.overwork.model.base.Developer;
+import br.unirio.overwork.model.base.Project;
 
 /**
  * Class that builds a project from a function points oriented description

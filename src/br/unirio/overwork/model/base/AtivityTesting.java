@@ -1,4 +1,4 @@
-package br.unirio.overwork.model;
+package br.unirio.overwork.model.base;
 
 /**
  * Class that represents a testing activity

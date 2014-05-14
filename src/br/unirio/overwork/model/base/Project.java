@@ -13,7 +13,7 @@ public class Project
 	/**
 	 * List of project activities
 	 */
-	private static List<Activity> activities;
+	private List<Activity> activities;
 
 	/**
 	 * List of developers engaged in the activity
@@ -40,7 +40,7 @@ public class Project
 	/**
 	 * Returns the number of activities in the project
 	 */
-	public static int countActivities()
+	public int countActivities()
 	{
 		return activities.size();
 	}

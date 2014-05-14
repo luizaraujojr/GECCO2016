@@ -1,9 +1,12 @@
 package br.unirio.optimization;
 
-import br.unirio.overwork.model.Project;
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
+import br.unirio.overwork.model.base.Project;
 import jmetal.base.Problem;
 import jmetal.base.Solution;
-import jmetal.base.solutionType.BinarySolutionType;
+import jmetal.base.solutionType.IntSolutionType;
 import jmetal.util.JMException;
 
 public class ProjectProblem extends Problem {
@@ -20,16 +23,29 @@ public class ProjectProblem extends Problem {
 		this.evaluations = 0;
 
 		numberOfObjectives_ = 1;
-		numberOfVariables_ = 1;
-		solutionType_ = new BinarySolutionType(this);
+		numberOfVariables_ = project.countActivities();
+		solutionType_ = new IntSolutionType(this);
 		length_ = new int[numberOfVariables_];
-		length_[0] = project.countActivities();
+		length_[0] =  1;
+		
+		double[] lLimit= new double [numberOfVariables_];
+		Arrays.fill(lLimit, 1.0);
+		double[] uLimit= new double [numberOfVariables_];
+		Arrays.fill(uLimit, 9.0);
+		
+		lowerLimit_ = lLimit;
+		upperLimit_ = uLimit;
+		//upperLimit_ = 9;
 	}
 	
 	@Override
-	public void evaluate(Solution arg0) throws JMException {
-		// TODO Auto-generated method stub
-
+	public void evaluate(Solution solution) throws JMException
+	{
+		solution.setObjective(0, solution.getFitness());
+		solution.setLocation(evaluations);
+		
+		evaluations++;
 	}
+
 
 }

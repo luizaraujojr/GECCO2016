@@ -1,6 +1,6 @@
 package br.unirio.optimization;
 
-import br.unirio.overwork.model.Project;
+import br.unirio.overwork.model.base.Project;
 import jmetal.base.Solution;
 import jmetal.base.SolutionSet;
 import jmetal.metaheuristics.randomSearch.RandomSearch;

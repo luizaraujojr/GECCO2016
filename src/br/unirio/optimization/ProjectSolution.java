@@ -5,8 +5,11 @@ import java.util.Random;
 import jmetal.base.Solution;
 import lombok.Getter;
 import lombok.Setter;
-import br.unirio.overwork.model.Project;
-import br.unirio.overwork.model.Activity;
+import br.unirio.overwork.model.base.Developer;
+import br.unirio.overwork.model.base.Project;
+import br.unirio.overwork.model.base.Activity;
+import br.unirio.overwork.model.scenarios.ScenarioOverworking;
+import br.unirio.simulation.SimulationEngine;
 
 /**
  * Class that represents a solution for Project's activities overwork optimization problem
@@ -19,13 +22,12 @@ public class ProjectSolution extends Solution
 	/**
 	 * array of the quantity of time allocated with the range from 8 to 12;
 	 */
-	private double[] activitiesOverworkAllocation;
+	private int[] activitiesOverworkAllocation;
 	
 	private @Getter @Setter double makespan;
 	private @Getter @Setter double cost;
 	private @Getter @Setter double overwork;
-	
-	
+		
 	/**
 	 * Creates a new solution
 	 */
@@ -33,7 +35,7 @@ public class ProjectSolution extends Solution
 	{
 		this.project = project;
 		//this.limits = limits;
-		this.activitiesOverworkAllocation = new double[Project.countActivities()];
+		this.activitiesOverworkAllocation = new int[project.countActivities()];
 	}
 	
 	/**
@@ -44,7 +46,7 @@ public class ProjectSolution extends Solution
 		Random r = new Random();
 		
 		for (int i = 0; i < activitiesOverworkAllocation.length; i++)
-			activitiesOverworkAllocation[i] = (r.nextInt((9 - 1) + 1) + 1) * 0.5 + 7.5;
+			activitiesOverworkAllocation[i] = (r.nextInt((9 - 1) + 1) + 1);// * 0.5 + 7.5;
 	}
 	
 	public void calculate()
@@ -93,7 +95,7 @@ public class ProjectSolution extends Solution
 	/**
 	 * Sets a test case to a specific state
 	 */
-	public void setActivitiesOverworkAllocation(int index, double value)
+	public void setActivitiesOverworkAllocation(int index, int value)
 	{
 		activitiesOverworkAllocation[index] = value;
 	}
@@ -106,7 +108,7 @@ public class ProjectSolution extends Solution
 		return activitiesOverworkAllocation[index];
 	}
 	
-	public double [] getActivitiesOverworkAllocations()
+	public int [] getActivitiesOverworkAllocations()
 	{
 		return activitiesOverworkAllocation;
 	}
@@ -143,12 +145,55 @@ public class ProjectSolution extends Solution
 	/**
 	 * Calculates the fitness of the solution
 	 */
-//	public int getFitness()
-//	{
-//		if (getExecutionTime() > limits)
-//			return 0;
-//		
-//		return getCoverage();
+	public double getFitness()
+	{
+		SimulationEngine simulator = new SimulationEngine();
+
+		for (Developer developer : project.getDevelopers())
+			simulator.addResource(developer.getEffort());
+		
+		simulator.addSimulationObjects(project.getActivities());
+		
+		for (int i = 0; i < project.countActivities(); i++)
+		{
+			ScenarioOverworking scenarioOverworking = new ScenarioOverworking(getActivitiesOverworkAllocation(i) * 0.5 + 7.5);
+			scenarioOverworking.connect(project.getActivity(i));
+			
+			//overtime = overtime + solution.getActivitiesOverworkAllocation(i)  + "\t";
+		}
+				
+//		ScenarioExhaution scenarioExhaustion = new ScenarioExhaution();
+//		scenarioExhaustion.connect(project.getActivities());
+
+		try {
+			simulator.init();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		while (!project.isConcluded())
+			simulator.run();
+		
+		return project.getOverworking();
+	}
+	
+//			overtime = "";
+//			
+//			Solution solution = new Solution (project);
+//			solution.randomize();
+//					
+//			
+//			NumberFormat nf2 = new DecimalFormat("0.00");
+//			
+//			
+//			System.out.println(nf2.format(project.getMakespan()) + "\t" + nf2.format(project.getCost()) + "\t" + nf2.format(project.getOverworking()) + "\t" + overtime);
+
+	
+	
+	
+	
+	
 //	}
 	
 	/**

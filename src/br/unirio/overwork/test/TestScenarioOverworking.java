@@ -2,8 +2,8 @@ package br.unirio.overwork.test;
 
 import junit.framework.TestCase;
 import br.unirio.overwork.builders.WorkPackageProjectBuilder;
-import br.unirio.overwork.model.Developer;
-import br.unirio.overwork.model.Project;
+import br.unirio.overwork.model.base.Developer;
+import br.unirio.overwork.model.base.Project;
 import br.unirio.overwork.model.scenarios.ScenarioOverworking;
 import br.unirio.simulation.SimulationEngine;
 

@@ -1,4 +1,4 @@
-package br.unirio.overwork.model;
+package br.unirio.overwork.model.base;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;

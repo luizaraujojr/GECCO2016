@@ -1,4 +1,4 @@
-package br.unirio.overwork.model;
+package br.unirio.overwork.model.base;
 
 import java.util.ArrayList;
 import java.util.List;

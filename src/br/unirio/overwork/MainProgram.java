@@ -43,15 +43,20 @@ public class MainProgram
 			
 			// run the Random Search experiment 
 	       	RandomSearchExperiment rse = new RandomSearchExperiment();
-	       	rse.addListerner(new FileMonoExperimentListener("saida rs.txt", true));
-	       	rse.addListerner(new StreamMonoExperimentListener(new OutputStreamWriter(System.out), true));
-	       	rse.run(instances, CYCLES);
+	       	rse.run(project, CYCLES);
+	       		     	
+	       	
+	       	
+	       	
+	       	//rse.addListerner(new FileMonoExperimentListener("saida rs.txt", true));
+	       	//rse.addListerner(new StreamMonoExperimentListener(new OutputStreamWriter(System.out), true));
+	       	//rse.run(instances, CYCLES);
 	       	
 			// run the Hill Climbing experiment 
-	       	HillClimbingExperiment hce = new HillClimbingExperiment();
-	       	hce.addListerner(new FileMonoExperimentListener("saida hc.txt", true));
-	       	hce.addListerner(new StreamMonoExperimentListener(new OutputStreamWriter(System.out), true));
-	       	hce.run(instances, CYCLES);
+//	       	HillClimbingExperiment hce = new HillClimbingExperiment();
+//	       	hce.addListerner(new FileMonoExperimentListener("saida hc.txt", true));
+//	       	hce.addListerner(new StreamMonoExperimentListener(new OutputStreamWriter(System.out), true));
+//	       	hce.run(instances, CYCLES);
 	       	
 	       	// run the Random Search experiment 
 	       	GeneticAlgorithmExperiment gae = new GeneticAlgorithmExperiment();

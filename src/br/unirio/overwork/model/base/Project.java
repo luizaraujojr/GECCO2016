@@ -3,6 +3,9 @@ package br.unirio.overwork.model.base;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * Class that represents a project with its activities and developers
  * 
@@ -10,6 +13,11 @@ import java.util.List;
  */
 public class Project
 {
+	/**
+	 * name of the project 
+	 */
+	private @Getter @Setter String name;
+	
 	/**
 	 * List of project activities
 	 */

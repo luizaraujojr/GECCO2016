@@ -19,7 +19,7 @@ public class GeneticAlgorithmExperiment extends GenericExperiment{
 		int variableSize = instance.countActivities();
 
 		int populationSize = 3 * variableSize;
-		int maxEvaluations = 5;//0 * populationSize;// * populationSize;
+		int maxEvaluations = 100 ;//* populationSize; // * populationSize;
 
 		Operator crossover = new SinglePointCrossover();
 		crossover.setParameter("probability", 0.8);

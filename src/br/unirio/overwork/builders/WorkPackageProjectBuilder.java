@@ -46,6 +46,7 @@ public class WorkPackageProjectBuilder
 	{
 		Project project = new Project();
 		Developer developer = new Developer("Developer", 60);
+		project.setName("Test");
 		project.addDeveloper(developer);
 		project.addDeveloper(developer);
 		project.addDeveloper(developer);

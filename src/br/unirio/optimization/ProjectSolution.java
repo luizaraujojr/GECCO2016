@@ -17,6 +17,7 @@ import br.unirio.simulation.SimulationEngine;
 public class ProjectSolution extends Solution
 {
 	private Project project;
+	private ProjectProblem projectProblem;
 	private int limits;
 	
 	/**
@@ -27,6 +28,10 @@ public class ProjectSolution extends Solution
 	private @Getter @Setter double makespan;
 	private @Getter @Setter double cost;
 	private @Getter @Setter double overwork;
+	private @Getter @Setter int location;
+	private @Getter @Setter String heuristic;
+	private @Getter @Setter long executionTime;
+	private @Getter @Setter int cycle;
 		
 	/**
 	 * Creates a new solution
@@ -39,9 +44,21 @@ public class ProjectSolution extends Solution
 	}
 	
 	/**
+	 * Creates a new solution
+	 */
+	public ProjectSolution(ProjectProblem projectProblem, String heuristic)//, int limits)
+	{
+		this.projectProblem = projectProblem;
+		this.heuristic = heuristic;
+		//this.project = project;
+		//this.limits = limits;
+		this.activitiesOverworkAllocation = new int[projectProblem.getProject().countActivities()];
+	}
+	
+	/**
 	 * Creates a random, potentially invalid solution
 	 */
-	public void randomize()
+	public void randomizeSolution()
 	{
 		Random r = new Random();
 		
@@ -55,6 +72,14 @@ public class ProjectSolution extends Solution
 		this.overwork = project.getOverworking();
 		this.makespan = project.getMakespan();
 	}	
+	public void publishResult()
+	{
+		System.out.print(projectProblem.getProject().getName() + "\t" + this.heuristic + "\t" + "cycle#" + "\t" + this.cycle + "\t" + this.executionTime + "\t" + projectProblem.getProject().getCost() + "\t" + projectProblem.getProject().getMakespan() + "\t" + projectProblem.getProject().getOverworking()+ "\t [");
+		for (int i = 1; i < this.activitiesOverworkAllocation.length; i++)
+			System.out.print(" " + this.activitiesOverworkAllocation[i]);
+		
+		System.out.println("]");
+	}
 	
 	/**
 	 * Creates a random, though valid, solution

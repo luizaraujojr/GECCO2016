@@ -32,15 +32,18 @@ public class ProjectSolution extends Solution
 	private @Getter @Setter String heuristic;
 	private @Getter @Setter long executionTime;
 	private @Getter @Setter int cycle;
+	private @Getter @Setter int evaluations;
 		
 	/**
 	 * Creates a new solution
 	 */
-	public ProjectSolution(Project project)//, int limits)
+	public ProjectSolution(Project project, int evaluations)
 	{
 		this.project = project;
 		//this.limits = limits;
 		this.activitiesOverworkAllocation = new int[project.countActivities()];
+		this.evaluations = evaluations;
+		
 	}
 	
 	/**
@@ -50,9 +53,10 @@ public class ProjectSolution extends Solution
 	{
 		this.projectProblem = projectProblem;
 		this.heuristic = heuristic;
-		//this.project = project;
+		this.project = projectProblem.getProject();
 		//this.limits = limits;
 		this.activitiesOverworkAllocation = new int[projectProblem.getProject().countActivities()];
+		this.evaluations = evaluations;
 	}
 	
 	/**
@@ -72,9 +76,12 @@ public class ProjectSolution extends Solution
 		this.overwork = project.getOverworking();
 		this.makespan = project.getMakespan();
 	}	
+
+
+	
 	public void publishResult()
 	{
-		System.out.print(projectProblem.getProject().getName() + "\t" + this.heuristic + "\t" + "cycle#" + "\t" + this.cycle + "\t" + this.executionTime + "\t" + projectProblem.getProject().getCost() + "\t" + projectProblem.getProject().getMakespan() + "\t" + projectProblem.getProject().getOverworking()+ "\t [");
+		System.out.print(project.getName() + "\t" + this.heuristic + "\t" + "cycle#" + this.cycle + "\t" + this.executionTime + "\t" + projectProblem.getProject().getCost() + "\t" + projectProblem.getProject().getMakespan() + "\t" + projectProblem.getProject().getOverworking()+ "\t [");
 		for (int i = 1; i < this.activitiesOverworkAllocation.length; i++)
 			System.out.print(" " + this.activitiesOverworkAllocation[i]);
 		
@@ -128,12 +135,12 @@ public class ProjectSolution extends Solution
 	/**
 	 * Returns the stateof a given test case
 	 */
-	public double getActivitiesOverworkAllocation(int index)
+	public int getActivityOverworkAllocation(int index)
 	{
 		return activitiesOverworkAllocation[index];
 	}
 	
-	public int [] getActivitiesOverworkAllocations()
+	public int [] getActivitiesOverworkAllocation()
 	{
 		return activitiesOverworkAllocation;
 	}
@@ -174,6 +181,16 @@ public class ProjectSolution extends Solution
 	/**
 	 * Calculates the fitness of the solution
 	 */
+	
+	public double getFitness()
+	{
+//		if (getExecutionTime() > evaluations)
+//			return 0;
+		
+		//return getMakespan() + getCost() + getOverwork();
+		return getMakespan();// + getCost() + getOverwork();
+	}
+	
 		
 //			overtime = "";
 //			
@@ -196,13 +213,20 @@ public class ProjectSolution extends Solution
 	/**
 	 * Creates a clone of the current solution
 	 */
-//	public Solution clone()
-//	{
-//		Solution solution_ = new Solution(Project, limits);
-//		
-//		for (int i = 0; i < Activitys.length; i++)
-//			solution_.setActivity(i, Activitys[i]);
-//
-//		return solution_;
-//	}
+	public ProjectSolution clone()
+	{
+		ProjectSolution projectSolution = new ProjectSolution(this.projectProblem, this.heuristic);
+	
+		projectSolution.setMakespan(this.makespan);
+		projectSolution.setCost(this.cost);
+		projectSolution.setOverwork(this.overwork);
+		projectSolution.setLocation(this.location);
+		projectSolution.setHeuristic(this.heuristic);
+		projectSolution.setExecutionTime(this.executionTime);
+		projectSolution.setCycle(this.cycle);
+		projectSolution.setEvaluations(this.evaluations);
+		projectSolution.setActivitiesOverworkAllocations(this.activitiesOverworkAllocation); 
+
+		return projectSolution;
+	}
 }

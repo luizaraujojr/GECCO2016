@@ -23,13 +23,15 @@ public class ProjectProblem extends Problem {
 	
 	private @Getter @Setter Project project;
 	private @Getter @Setter String instanceName;
+	private @Getter @Setter int maxEvaluations;
 	
 
-	public ProjectProblem(Project project) throws ClassNotFoundException
+	public ProjectProblem(Project project, int maxEvaluations) throws ClassNotFoundException
 	
 	{	
 		this.project = project;
 		this.evaluations = 0;
+		this.maxEvaluations = maxEvaluations;
 
 		numberOfObjectives_ = 3;
 		numberOfVariables_ = project.countActivities();
@@ -45,6 +47,28 @@ public class ProjectProblem extends Problem {
 		lowerLimit_ = lLimit;
 		upperLimit_ = uLimit;
 	}
+
+public ProjectProblem(Project project) throws ClassNotFoundException
+	
+	{	
+		this.project = project;
+		this.evaluations = 0;
+		
+		numberOfObjectives_ = 3;
+		numberOfVariables_ = project.countActivities();
+		solutionType_ = new IntSolutionType(this);
+		length_ = new int[numberOfVariables_];
+		length_[0] =  1;
+		
+		double[] lLimit= new double [numberOfVariables_];
+		Arrays.fill(lLimit, 1.0);
+		double[] uLimit= new double [numberOfVariables_];
+		Arrays.fill(uLimit, 9.0);
+		
+		lowerLimit_ = lLimit;
+		upperLimit_ = uLimit;
+	}
+
 	
 	@Override
 	public void evaluate(Solution solution) throws JMException
@@ -142,7 +166,7 @@ public class ProjectProblem extends Problem {
 		
 		for (int i = 0; i < project.countActivities(); i++)
 		{
-			ScenarioOverworking scenarioOverworking = new ScenarioOverworking(solution.getActivitiesOverworkAllocation(i) * 0.5 + 7.5);
+			ScenarioOverworking scenarioOverworking = new ScenarioOverworking(solution.getActivityOverworkAllocation(i) * 0.5 + 7.5);
 			scenarioOverworking.connect(project.getActivity(i));
 		}
 				
@@ -158,4 +182,10 @@ public class ProjectProblem extends Problem {
 		while (!project.isConcluded())
 			simulator.run();
 	}
+	
+	public void publishTitle()
+	{
+		System.out.println("name" + "\t" + "heuristic" + "\t" + "cycle" + "\t" + "executionTime" + "\t" + "Cost" + "\t" + "Makespan" + "\t" + "Overworking"+ "\t Activities");
+	}
 }
+

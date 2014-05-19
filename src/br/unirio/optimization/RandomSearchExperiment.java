@@ -1,8 +1,5 @@
 package br.unirio.optimization;
 
-import jmetal.base.Solution;
-import jmetal.base.SolutionSet;
-import jmetal.metaheuristics.randomSearch.RandomSearch;
 import br.unirio.overwork.model.base.Project;
 
 public class RandomSearchExperiment //extends GenericExperiment 
@@ -22,19 +19,21 @@ public class RandomSearchExperiment //extends GenericExperiment
 //		return projectSolution;
 //	}
 //}
-	public void run (Project instance, int cycles) throws Exception
+	public void run (Project instance, int cycles, int maxEvaluations) throws Exception
 	{
-		ProjectProblem pp = new ProjectProblem(instance);
+		ProjectProblem projectProblem = new ProjectProblem(instance, maxEvaluations);
+		
+		projectProblem.publishTitle();
 		
 		for (int cycle = 0; cycle < cycles; cycle++)
 		{
 			long initTime = System.currentTimeMillis();			
-			ProjectSolution ps = new ProjectSolution(pp, "RS");
-			ps.randomizeSolution();
-			pp.evaluate(ps);
-			ps.setExecutionTime(System.currentTimeMillis() - initTime);
-			ps.setCycle(cycle);
-			ps.publishResult();	
+			ProjectSolution projectSolution = new ProjectSolution(projectProblem, "RS");
+			projectSolution.randomizeSolution();
+			projectProblem.evaluate(projectSolution);
+			projectSolution.setExecutionTime(System.currentTimeMillis() - initTime);
+			projectSolution.setCycle(cycle);
+			projectSolution.publishResult();	
 		}
 		
 	}

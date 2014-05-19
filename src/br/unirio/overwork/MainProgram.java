@@ -7,6 +7,7 @@ import unirio.experiments.monoobjective.execution.FileMonoExperimentListener;
 import unirio.experiments.monoobjective.execution.StreamMonoExperimentListener;
 import br.unirio.optimization.GeneticAlgorithmExperiment;
 import br.unirio.optimization.HillClimbingExperiment;
+import br.unirio.optimization.HillClimbingExperimentJmetal;
 import br.unirio.optimization.RandomSearchExperiment;
 import br.unirio.overwork.builders.WorkPackageProjectBuilder;
 import br.unirio.overwork.instance.model.FunctionPointSystem;
@@ -16,6 +17,7 @@ import br.unirio.overwork.model.base.Project;
 public class MainProgram
 {
 	protected static final int CYCLES = 10;
+	protected static final int MAXEVALUATIONS = 250;
 	protected static String[] instanceFiles =
 		{
 //	 		"data/instances/ACAD/functions-point.xml",
@@ -43,9 +45,12 @@ public class MainProgram
 			
 			// run the Random Search experiment 
 	       	RandomSearchExperiment rse = new RandomSearchExperiment();
-	       	rse.run(project, CYCLES);
-	       		     	
+	       	rse.run(project, CYCLES, MAXEVALUATIONS);
 	       	
+	       	
+	       	HillClimbingExperiment hce = new HillClimbingExperiment();
+	       	hce.run(project, CYCLES, MAXEVALUATIONS);
+	       		       	
 	       	
 	       	
 	       	//rse.addListerner(new FileMonoExperimentListener("saida rs.txt", true));
@@ -59,10 +64,10 @@ public class MainProgram
 //	       	hce.run(instances, CYCLES);
 	       	
 	       	// run the Random Search experiment 
-	       	GeneticAlgorithmExperiment gae = new GeneticAlgorithmExperiment();
-	       	gae.addListerner(new FileMonoExperimentListener("saida ga.txt", true));
-	       	gae.addListerner(new StreamMonoExperimentListener(new OutputStreamWriter(System.out), true));
-	       	gae.run(instances, CYCLES);       	
+//	       	GeneticAlgorithmExperiment gae = new GeneticAlgorithmExperiment();
+//	       	gae.addListerner(new FileMonoExperimentListener("saida ga.txt", true));
+//	       	gae.addListerner(new StreamMonoExperimentListener(new OutputStreamWriter(System.out), true));
+//	       	gae.run(instances, CYCLES);       	
 		}
 		
 		public static Project loadInstance(String instancia) throws Exception

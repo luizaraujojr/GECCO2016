@@ -1,5 +1,6 @@
 package br.unirio.optimization;
 
+import unirio.experiments.monoobjective.execution.MonoExperimentListener;
 import jmetal.base.Algorithm;
 import jmetal.base.Operator;
 import jmetal.base.Solution;
@@ -10,6 +11,11 @@ import jmetal.base.operator.selection.BinaryTournament;
 import jmetal.metaheuristics.singleObjective.geneticAlgorithm.gGA;
 import br.unirio.overwork.model.base.Project;
 
+/**
+ * Class that contains the genetic algorithm 
+ * 
+ * @author Luiz Araujo Jr
+ */
 public class GeneticAlgorithmExperiment extends GenericExperiment{
 	
 	@Override
@@ -19,7 +25,7 @@ public class GeneticAlgorithmExperiment extends GenericExperiment{
 		int variableSize = instance.countActivities();
 
 		int populationSize = 3 * variableSize;
-		int maxEvaluations = 100 ;//* populationSize; // * populationSize;
+		int maxEvaluations = 100 ;//* populationSize;
 
 		Operator crossover = new SinglePointCrossover();
 		crossover.setParameter("probability", 0.8);

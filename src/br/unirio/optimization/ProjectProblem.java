@@ -1,7 +1,6 @@
 package br.unirio.optimization;
 
 import java.util.Arrays;
-import java.util.Random;
 
 import jmetal.base.Problem;
 import jmetal.base.Solution;
@@ -14,18 +13,23 @@ import br.unirio.overwork.model.base.Project;
 import br.unirio.overwork.model.scenarios.ScenarioOverworking;
 import br.unirio.simulation.SimulationEngine;
 
+/**
+ * Class that contains the project problem
+ * 
+ * @author Luiz Araujo Jr
+ */
+
 public class ProjectProblem extends Problem {
-	
-	//private static final double MinimumValue = 0;
-	
-	//private Project project;
+
 	private int evaluations;
 	
 	private @Getter @Setter Project project;
 	private @Getter @Setter String instanceName;
 	private @Getter @Setter int maxEvaluations;
 	
-
+	/**
+	 * Creates a new project problem for the jmetal framework
+	 */
 	public ProjectProblem(Project project, int maxEvaluations) throws ClassNotFoundException
 	
 	{	
@@ -48,6 +52,9 @@ public class ProjectProblem extends Problem {
 		upperLimit_ = uLimit;
 	}
 
+	/**
+	 * Creates a new project problem
+	 */
 public ProjectProblem(Project project) throws ClassNotFoundException
 	
 	{	
@@ -69,62 +76,40 @@ public ProjectProblem(Project project) throws ClassNotFoundException
 		upperLimit_ = uLimit;
 	}
 
-	
+	/**
+	 * Complete evaluate the allocation for jmetal
+	 */
 	@Override
 	public void evaluate(Solution solution) throws JMException
 	{
 		runSimulation(solution);
-		solution.setObjective(0, project.getMakespan()/project.getOverworking());//calcOverWork(solution));
-//		solution.setObjective(1, project.getMakespan());//calcOverWork(solution));
-//		solution.setObjective(2, project.getCost());//calcOverWork(solution));
+		solution.setObjective(0, project.getOverworking());
+		solution.setObjective(1, project.getMakespan());
+		solution.setObjective(2, project.getCost());
 		solution.setLocation(evaluations);
 		
-		//System.out.println(solution);
 		evaluations++;
 	}
 	
-	public void evaluate(ProjectSolution solution) throws JMException
+	/**
+	 * Complete evaluate the allocation
+	 */
+	public void evaluate(ProjectSolution solution, int cycle, long initTime) throws JMException
 	{
 		runSimulation(solution);
 		solution.setCost(project.getCost());
 		solution.setMakespan(project.getMakespan());
 		solution.setOverwork(project.getOverworking());
 		solution.setLocation(evaluations);
+		solution.setCycle(cycle);
+		solution.setExecutionTime(System.currentTimeMillis() - initTime);
 		
 		evaluations++;
 	}
-
-
-//	public double calcOverWork(Solution solution)
-//	{
-//		int[] solution_ = convertToArray(solution);
-//		ProjectSolution ps = new ProjectSolution(this.project);
-//		ps.calculate();
-//		ps.setActivitiesOverworkAllocations(solution_);
-//		
-//		return ps.getOverwork();
-//	}
 	
-//	public void randomizeSolution()
-//	{
-//		Random r = new Random();
-//		
-//		  
-//		for (int i = 0; i < project.countActivities(); i++)
-//			project.
-//			testCases[i] = r.nextDouble() >= 0.5;
-//	}
-	
-	public int[] convertToArray(Solution solution) throws JMException
-	{
-		int[] activitiesOverworkAllocations_ = new int [this.project.countActivities()];
-
-		for (int i = 0; i < this.project.countActivities(); i++)
-			activitiesOverworkAllocations_[i] = (int) solution.getDecisionVariables()[i].getValue();
-		
-		return activitiesOverworkAllocations_;
-	}
-	
+	/**
+	 * Runs the simulations with jmetal
+	 */
 	public void runSimulation(Solution solution) throws JMException
 	{
 		SimulationEngine simulator = new SimulationEngine();
@@ -133,12 +118,10 @@ public ProjectProblem(Project project) throws ClassNotFoundException
 			simulator.addResource(developer.getEffort());
 		
 		simulator.addSimulationObjects(project.getActivities());
-		
-		int [] activitiesOverworkAllocation = convertToArray(solution);
-		
+				
 		for (int i = 0; i < project.countActivities(); i++)
 		{
-			ScenarioOverworking scenarioOverworking = new ScenarioOverworking(activitiesOverworkAllocation[i] * 0.5 + 7.5);
+			ScenarioOverworking scenarioOverworking = new ScenarioOverworking(solution.getDecisionVariables()[i].getValue() * 0.5 + 7.5);
 			scenarioOverworking.connect(project.getActivity(i));
 		}
 				
@@ -154,7 +137,10 @@ public ProjectProblem(Project project) throws ClassNotFoundException
 		while (!project.isConcluded())
 			simulator.run();
 	}
-	
+
+	/**
+	 * Runs the simulations
+	 */
 	public void runSimulation(ProjectSolution solution) throws JMException
 	{
 		SimulationEngine simulator = new SimulationEngine();
@@ -183,9 +169,13 @@ public ProjectProblem(Project project) throws ClassNotFoundException
 			simulator.run();
 	}
 	
+	/**
+	 * Prints out the information for the title of the results
+	 */
 	public void publishTitle()
 	{
-		System.out.println("name" + "\t" + "heuristic" + "\t" + "cycle" + "\t" + "executionTime" + "\t" + "Cost" + "\t" + "Makespan" + "\t" + "Overworking"+ "\t Activities");
+		//System.out.println("name" + "\t" + "heuristic" + "\t" + "cycle" + "\t" + "executionTime" + "\t" + "Cost" + "\t" + "Makespan" + "\t" + "Overworking"+ "\t Activities");
+		System.out.println("cycle" + "; " + "executionTime" + "; " + "Overworking" + "; " + "Makespan" + "; " + "Cost"+ "; " + "Location"+ "; Activities");
 	}
 }
 

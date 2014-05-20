@@ -43,31 +43,28 @@ public class MainProgram
 			Vector<Project> instances = new Vector<Project>();
 			instances.add(project);
 			
-			// run the Random Search experiment 
+			// run the Random Search experiment
+			System.out.println("RS");
 	       	RandomSearchExperiment rse = new RandomSearchExperiment();
 	       	rse.run(project, CYCLES, MAXEVALUATIONS);
 	       	
-	       	
+	     // run the Hill Climbing experiment
+	       	System.out.println("HC");
 	       	HillClimbingExperiment hce = new HillClimbingExperiment();
 	       	hce.run(project, CYCLES, MAXEVALUATIONS);
-	       		       	
 	       	
-	       	
-	       	//rse.addListerner(new FileMonoExperimentListener("saida rs.txt", true));
-	       	//rse.addListerner(new StreamMonoExperimentListener(new OutputStreamWriter(System.out), true));
-	       	//rse.run(instances, CYCLES);
-	       	
-			// run the Hill Climbing experiment 
+			// run the Hill Climbing Jmetal experiment 
 //	       	HillClimbingExperiment hce = new HillClimbingExperiment();
 //	       	hce.addListerner(new FileMonoExperimentListener("saida hc.txt", true));
 //	       	hce.addListerner(new StreamMonoExperimentListener(new OutputStreamWriter(System.out), true));
 //	       	hce.run(instances, CYCLES);
 	       	
-	       	// run the Random Search experiment 
-//	       	GeneticAlgorithmExperiment gae = new GeneticAlgorithmExperiment();
-//	       	gae.addListerner(new FileMonoExperimentListener("saida ga.txt", true));
-//	       	gae.addListerner(new StreamMonoExperimentListener(new OutputStreamWriter(System.out), true));
-//	       	gae.run(instances, CYCLES);       	
+	       	// run the Genetic algorithm experiment 
+	       	System.out.println("GA");
+	       	GeneticAlgorithmExperiment gae = new GeneticAlgorithmExperiment();
+	       	gae.addListerner(new FileMonoExperimentListener("saida ga.txt", true));
+	       	gae.addListerner(new StreamMonoExperimentListener(new OutputStreamWriter(System.out), true));
+	       	gae.run(instances, CYCLES);       	
 		}
 		
 		public static Project loadInstance(String instancia) throws Exception
@@ -76,8 +73,6 @@ public class MainProgram
 			InstanceReader reader = new InstanceReader();
 			FunctionPointSystem fps = new FunctionPointSystem("aaa");
 			fps = reader.run(instancia);
-			
-			
 				
 			//to be complemented
 						

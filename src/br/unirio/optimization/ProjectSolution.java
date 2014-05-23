@@ -16,6 +16,7 @@ import br.unirio.overwork.model.base.Project;
  */
 public class ProjectSolution extends Solution
 {
+	@SuppressWarnings("unused")
 	private Project project;
 	private ProjectProblem projectProblem;
 	

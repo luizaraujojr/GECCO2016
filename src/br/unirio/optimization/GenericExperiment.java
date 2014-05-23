@@ -2,7 +2,6 @@ package br.unirio.optimization;
 
 import jmetal.base.Solution;
 import unirio.experiments.monoobjective.execution.MonoExperiment;
-import unirio.experiments.monoobjective.execution.MonoExperimentListener;
 import br.unirio.overwork.model.base.Project;
 
 /**

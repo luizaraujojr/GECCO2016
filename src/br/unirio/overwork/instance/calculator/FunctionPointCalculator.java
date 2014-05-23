@@ -43,10 +43,11 @@ public class FunctionPointCalculator
 			rets++;
 
 			for (DataElement det : ret.getDataElements()) 
-				if (det.isHasSemanticMeaning() && !det.isPrimaryKey()) 
+				if (det.isHasSemanticMeaning() || !det.isPrimaryKey()) 
 					dets++;
 		}
 
+//		System.out.println(dataFunction.getName() + " " + rets + " " + dets);
 		Complexity complexity = calculateDataFunctionComplexity(rets, dets);
 		return calculateFunctionPointsDataFunction(complexity, dataFunction.getType());
 	}
@@ -65,6 +66,7 @@ public class FunctionPointCalculator
 			fields += ftr.countDataElements();
 		}
 
+		System.out.println(transaction.getName() + " " + ftrs + " " + fields);
 		Complexity complexity = calculateTransactionComplexity(ftrs, fields, transaction.getType());
 		return calculateFunctionPointsTransaction(complexity, transaction.getType());
 	}

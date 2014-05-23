@@ -1,6 +1,5 @@
 package br.unirio.optimization;
 
-import unirio.experiments.monoobjective.execution.MonoExperimentListener;
 import jmetal.base.Algorithm;
 import jmetal.base.Operator;
 import jmetal.base.Solution;

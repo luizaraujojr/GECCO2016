@@ -41,7 +41,7 @@ public class RegisterElement
 		int count = 0;
 		
 		for (DataElement det : dataElements)
-			if (det.isHasSemanticMeaning() && !det.isPrimaryKey())
+			if (det.isHasSemanticMeaning() || !det.isPrimaryKey())
 				count++;
 
 		return count;

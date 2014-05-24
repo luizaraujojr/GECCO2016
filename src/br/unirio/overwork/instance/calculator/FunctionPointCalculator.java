@@ -1,5 +1,8 @@
 package br.unirio.overwork.instance.calculator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.unirio.overwork.instance.model.FunctionPointSystem;
 import br.unirio.overwork.instance.model.data.DataElement;
 import br.unirio.overwork.instance.model.data.DataFunction;
@@ -21,6 +24,14 @@ public class FunctionPointCalculator
 	{
 		int total = 0;
 		
+		for (Transaction transaction : fps.getTransactions())
+		{
+			for (FileReference ftr : transaction.getFileReferences())
+			{
+				ftr.markDataElements();
+			}
+		}
+
 		for(DataFunction dataFunction : fps.getDataFunctions()) 
 			total += calculateDataFunctionValue(dataFunction);
 		
@@ -42,12 +53,12 @@ public class FunctionPointCalculator
 		{
 			rets++;
 
-			for (DataElement det : ret.getDataElements()) 
-				if (det.isHasSemanticMeaning() || !det.isPrimaryKey()) 
+			for (DataElement det : ret.getDataElements())
+				if (det.countsForDataFunction(dataFunction))
 					dets++;
 		}
 
-//		System.out.println(dataFunction.getName() + " " + rets + " " + dets);
+		System.out.println("DF " + dataFunction.getName() + " " + rets + " " + dets);
 		Complexity complexity = calculateDataFunctionComplexity(rets, dets);
 		return calculateFunctionPointsDataFunction(complexity, dataFunction.getType());
 	}
@@ -57,16 +68,26 @@ public class FunctionPointCalculator
 	 */
 	public int calculateTransactionValue(Transaction transaction) 
 	{
+		List<String> dataFunctions = new ArrayList<String>();
 		int fields = transaction.getExtraDataElements();
+		
+		if (transaction.isCountErrorMessages())
+			fields++;
+		
 		int ftrs = 0;
 		
 		for (FileReference ftr : transaction.getFileReferences())
 		{
-			ftrs++;
+			if (!dataFunctions.contains(ftr.getDataModelElement()))
+			{
+				dataFunctions.add(ftr.getDataModelElement());
+				ftrs++;
+			}
+
 			fields += ftr.countDataElements();
 		}
 
-		System.out.println(transaction.getName() + " " + ftrs + " " + fields);
+		System.out.println("TF " + transaction.getName() + " " + ftrs + " " + fields);
 		Complexity complexity = calculateTransactionComplexity(ftrs, fields, transaction.getType());
 		return calculateFunctionPointsTransaction(complexity, transaction.getType());
 	}

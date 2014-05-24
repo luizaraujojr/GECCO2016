@@ -1093,7 +1093,7 @@
 					<det name="TE_TIPO_TETO"/>
 					<det name="DT_INICIO_VIGENCIA_TIPO"/>
 					<det name="DT_FIM_VIGENCIA_TIPO"/>
-					<det name="DT_FIM_VALIDADE"/>
+					<mb_det name="DT_VALIDADE"/>							<MB>ESTE CAMPO NAO EXISTE NA FUNCAO DE DADOS TETO</MB>
 				</ftr>
 			</ftr-list>
 			<dependencies>
@@ -1111,7 +1111,7 @@
 					<det name="TE_TIPO_TETO"/>
 					<det name="DT_INICIO_VIGENCIA_TIPO"/>
 					<det name="DT_FIM_VIGENCIA_TIPO"/>
-					<det name="DT_FIM_VALIDADE"/>
+					<mb_det name="DT_VALIDADE"/>							<MB>ESTE CAMPO NAO EXISTE NA FUNCAO DE DADOS TETO</MB>
 				</ftr>
 			</ftr-list>
 			<dependencies>
@@ -1130,7 +1130,7 @@
 					<det name="TE_TIPO_TETO"/>
 					<det name="DT_INICIO_VIGENCIA_TIPO"/>
 					<det name="DT_FIM_VIGENCIA_TIPO"/>
-					<det name="DT_FIM_VALIDADE"/>
+					<mb_det name="DT_VALIDADE"/>							<MB>ESTE CAMPO NAO EXISTE NA FUNCAO DE DADOS TETO</MB>
 				</ftr>
 			</ftr-list>
 			<dependencies>
@@ -1171,7 +1171,7 @@
 					<det name="TE_TIPO_TETO"/>
 					<det name="DT_INICIO_VIGENCIA_TIPO"/>
 					<det name="DT_FIM_VIGENCIA_TIPO"/>
-					<det name="DT_FIM_VALIDADE"/>
+					<mb_det name="DT_VALIDADE"/>							<MB>ESTE CAMPO NAO EXISTE NA FUNCAO DE DADOS TETO</MB>
 				</ftr>
 			</ftr-list>
 		</transaction>
@@ -1181,7 +1181,7 @@
 					<det name="TE_TIPO_TETO"/>
 					<det name="DT_INICIO_VIGENCIA_TIPO"/>
 					<det name="DT_FIM_VIGENCIA_TIPO"/>
-					<det name="DT_FIM_VALIDADE"/>
+					<mb_det name="DT_VALIDADE"/>							<MB>ESTE CAMPO NAO EXISTE NA FUNCAO DE DADOS TETO</MB>
 				</ftr>
 			</ftr-list>
 			<dependencies>
@@ -1195,7 +1195,7 @@
 					<det name="TE_TIPO_TETO"/>
 					<det name="DT_INICIO_VIGENCIA_TIPO"/>
 					<det name="DT_FIM_VIGENCIA_TIPO"/>
-					<det name="DT_FIM_VALIDADE"/>
+					<mb_det name="DT_VALIDADE"/>							<MB>ESTE CAMPO NAO EXISTE NA FUNCAO DE DADOS TETO</MB>
 				</ftr>
 			</ftr-list>
 			<dependencies>
@@ -1209,7 +1209,7 @@
 					<det name="TE_TIPO_TETO"/>
 					<det name="DT_INICIO_VIGENCIA_TIPO"/>
 					<det name="DT_FIM_VIGENCIA_TIPO"/>
-					<det name="DT_FIM_VALIDADE"/>
+					<mb_det name="DT_VALIDADE"/>							<MB>ESTE CAMPO NAO EXISTE NA FUNCAO DE DADOS TETO</MB>
 				</ftr>
 			</ftr-list>
 			<dependencies>
@@ -1222,7 +1222,7 @@
 					<det name="TE_TIPO_TETO"/>
 					<det name="DT_INICIO_VIGENCIA_TIPO"/>
 					<det name="DT_FIM_VIGENCIA_TIPO"/>
-					<det name="DT_FIM_VALIDADE"/>
+					<mb_det name="DT_VALIDADE"/>							<MB>ESTE CAMPO NAO EXISTE NA FUNCAO DE DADOS TETO</MB>
 				</ftr>
 			</ftr-list>
 			<dependencies>

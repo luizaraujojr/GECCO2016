@@ -35,15 +35,4 @@ public class RegisterElement
 	{
 		return dataElements;
 	}
-
-	public int countDataElements() 
-	{
-		int count = 0;
-		
-		for (DataElement det : dataElements)
-			if (det.isHasSemanticMeaning() || !det.isPrimaryKey())
-				count++;
-
-		return count;
-	}
 }

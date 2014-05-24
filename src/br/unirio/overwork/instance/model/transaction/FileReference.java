@@ -5,6 +5,7 @@ import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
+import br.unirio.overwork.instance.model.data.DataElement;
 import br.unirio.overwork.instance.model.data.RegisterElement;
 
 public class FileReference 
@@ -42,9 +43,27 @@ public class FileReference
 
 	public int countDataElements() 
 	{
+		int count = 0;
+		
 		if (useAllDataElements)
-			return referencedRegister.countDataElements();
+			for (DataElement det : referencedRegister.getDataElements())
+				if (det.countsForTransaction())
+					count++;
+		
+		for (Field field : fields)
+			if (field.getDataElement().countsForTransaction())
+				count++;
 
-		return fields.size();
+		return count;
+	}
+
+	public void markDataElements()
+	{
+		if (useAllDataElements)
+			for (DataElement det : referencedRegister.getDataElements())
+				det.setUsed(true);
+		
+		for (Field field : fields)
+			field.getDataElement().setUsed(true);
 	}
 }

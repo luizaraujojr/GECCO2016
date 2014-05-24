@@ -1,6 +1,7 @@
 package br.unirio.overwork.instance.model.data;
 
 import lombok.Getter;
+import lombok.Setter;
 
 public class DataElement 
 {
@@ -16,6 +17,8 @@ public class DataElement
 	
 	private @Getter boolean hasSemanticMeaning;
 	
+	private @Getter @Setter boolean used;
+	
 	public DataElement(String name, boolean primaryKey, String referencedRegister, String dataModelElement, String description, boolean hasSemanticMeaning)
 	{
 		this.name = name;
@@ -24,5 +27,36 @@ public class DataElement
 		this.dataModelElement = dataModelElement;
 		this.description = description;
 		this.hasSemanticMeaning = hasSemanticMeaning;
+		this.used = false;
+	}
+	
+	public boolean countsForTransaction()
+	{
+		if (!used)
+			return false;
+		
+		return (hasSemanticMeaning || !primaryKey);
+	}
+	
+	public boolean countsForDataFunction(DataFunction dataFunction)
+	{
+		if (!used)
+			return false;
+		
+		if (!(hasSemanticMeaning || !primaryKey))
+			return false;
+		
+		if (referencedRegister.length() == 0)
+			return true;
+
+		RegisterElement register = dataFunction.getRegisterElementName(referencedRegister);
+		
+		if (dataModelElement.length() == 0 && register == null)
+			return true;
+
+		if (dataModelElement.compareToIgnoreCase(dataFunction.getName()) == 0 && register == null)
+			return true;
+		
+		return false;
 	}
 }

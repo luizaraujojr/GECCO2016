@@ -186,9 +186,14 @@ public class InstanceReader
 		{
 			Element ftrNode = (Element) ftrListNode.item(i);
 			
+			String dataModelElement = getAttribute(ftrNode, "name");
 			String name = getAttribute(ftrNode, "name");
+			
 			String ret = getAttribute(ftrNode, "ret");
-			String dataModelElement = getAttribute(ftrNode, "dataModelElement");
+			
+			if (ret.length() == 0)
+				ret = dataModelElement;
+			
 			boolean useAllDets = getBooleanAttribute(ftrNode, "useAllDets");
 
 			FileReference ftr = new FileReference(name, ret, dataModelElement, useAllDets);

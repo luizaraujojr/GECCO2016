@@ -35,7 +35,8 @@ public class DataElement
 		if (!used)
 			return false;
 		
-		return (hasSemanticMeaning || !primaryKey);
+//		return (hasSemanticMeaning || !primaryKey);
+		return !primaryKey;
 	}
 	
 	public boolean countsForDataFunction(DataFunction dataFunction)

@@ -58,9 +58,14 @@ public class FunctionPointCalculator
 					dets++;
 		}
 
-		System.out.println("DF " + dataFunction.getName() + " " + rets + " " + dets);
-		Complexity complexity = calculateDataFunctionComplexity(rets, dets);
-		return calculateFunctionPointsDataFunction(complexity, dataFunction.getType());
+		if (dets > 0 && rets > 0)
+		{
+			System.out.println("DF " + dataFunction.getName() + " " + rets + " " + dets);
+			Complexity complexity = calculateDataFunctionComplexity(rets, dets);
+			return calculateFunctionPointsDataFunction(complexity, dataFunction.getType());
+		}
+		
+		return 0;
 	}
 
 	/**

@@ -84,9 +84,7 @@
 				<det name="IN_DESC_EXCLUSIVO_DECIMO_TERC"/>
 				<det name="CS_RUBRICA"/>
 				<det name="ID_VIGENCIA_PREVAL_CONSIGNACAO"  primaryKey="true"/>
-				
 				<!-- Vigencia Prevalencia Consignação -->
-				<det name="ID_VIGENCIA_PREVAL_CONSIGNACAO" primaryKey="true"/>
 				<det name="DT_INICIO_VIGENCIA"/>
 				<det name="DT_FIM_VIGENCIA"/>
 
@@ -98,8 +96,6 @@
 				<det name="DT_FIM_VIGENCIA"/>
 				<det name="DT_INICIO_VIGENCIA"/>
 				<det name="ID_FUNDAMENTACAO_LEGAL" ref="FundamentacaoLegal"/>
-				<det name="ID_FAIXA_SALARIO_FAMILIA" primaryKey="true"/>
-				
 				<!-- Faixa Salario Familia -->
 				<det name="ID_FAIXA_SALARIO_FAMILIA" primaryKey="true"/>
 				<det name="VL_FAIXA_INICIAL_BASE_CALCULO"/>
@@ -129,9 +125,7 @@
 				<det name="DT_INICIO_VIGENCIA"/>
 				<det name="DT_FIM_VIGENCIA"/>
 				<det name="DT_FIM_VALIDADE"/>
-
 				<!-- Tipo Teto -->
-				<det name="ID_TIPO_TETO" primaryKey="true"/>
 				<det name="TE_TIPO_TETO"/>
 				<det name="DT_INICIO_VIGENCIA_TIPO"/>
 				<det name="DT_FIM_VIGENCIA_TIPO"/>
@@ -153,11 +147,6 @@
 			<ret name="GrupoBeneficio">
 				<det name="NM_GRUPO_BENEFICIO"/>
 				<det name="ID_GRUPO_BENEFICIO"  primaryKey="true"/>
-			</ret>
-			<ret name="LocalDeTrabalho">
-				<det name="ID_LOCAL_TRABALHO"  primaryKey="true"/>
-				<det name="NM_LOCAL_TRABALHO"/>
-				<det name="DT_FIM_VALIDADE"/>
 			</ret>
 		</ilf>
 		<ilf name="CoeficienteReajustamentoBaseSM">

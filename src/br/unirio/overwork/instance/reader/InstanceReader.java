@@ -121,11 +121,11 @@ public class InstanceReader
 		{
 			Element detNode = (Element) detListNode.item(i);
 			String name = getAttribute(detNode, "name");
-			boolean primaryKey = getBooleanAttribute(detNode, "primaryKey");
+			boolean primaryKey = getBooleanAttribute(detNode, "primaryKey", false);
 			String ref = getAttribute(detNode, "ref");
 			String dataModelElement = getAttribute(detNode, "dataModelElement");
 			String description = getAttribute(detNode, "description");
-			boolean hasSemanticMeaning = getBooleanAttribute(detNode, "hasSemanticMeaning");
+			boolean hasSemanticMeaning = getBooleanAttribute(detNode, "hasSemanticMeaning", true);
 			
 			DataElement det = new DataElement(name, primaryKey, ref, dataModelElement, description, hasSemanticMeaning);
 			ret.addDataElements(det);
@@ -144,7 +144,7 @@ public class InstanceReader
 			Element transactionNode = (Element) transactionListNode.item(i);
 			String name = getAttribute(transactionNode, "name");
 			int extraDET = getIntAttribute(transactionNode, "extraDET");
-			boolean errorMessages = getBooleanAttribute(transactionNode, "errorMsg");
+			boolean errorMessages = getBooleanAttribute(transactionNode, "errorMsg", false);
 			TransactionType type = TransactionType.get(getAttribute(transactionNode, "type"));
 			
 			Transaction transaction = new Transaction(name, errorMessages, type, extraDET);
@@ -194,7 +194,7 @@ public class InstanceReader
 			if (ret.length() == 0)
 				ret = dataModelElement;
 			
-			boolean useAllDets = getBooleanAttribute(ftrNode, "useAllDets");
+			boolean useAllDets = getBooleanAttribute(ftrNode, "useAllDets", false);
 
 			FileReference ftr = new FileReference(name, ret, dataModelElement, useAllDets);
 			loadFields(ftr, ftrNode); 
@@ -230,7 +230,7 @@ public class InstanceReader
 		{
 			Element dependencyNode = (Element) dependencyListNode.item(i);
 			String ref = getAttribute(dependencyNode, "ref");
-			boolean canbeWeak = getBooleanAttribute(dependencyNode, "canBeWeak");
+			boolean canbeWeak = getBooleanAttribute(dependencyNode, "canBeWeak", false);
 
 			Dependency dependency = new Dependency(ref, canbeWeak);
 			transaction.addDependency(dependency);
@@ -295,12 +295,12 @@ public class InstanceReader
 	/**
 	 * Loads an optional boolean attribute from a XML element
 	 */
-	private boolean getBooleanAttribute(Element element, String name) 
+	private boolean getBooleanAttribute(Element element, String name, boolean defValue) 
 	{
 		String value = element.getAttribute(name);
 		
-		if (value == null)
-			return false;
+		if (value == null || value.length() == 0)
+			return defValue;
 		
 		return value.compareToIgnoreCase("true") == 0;
 	}

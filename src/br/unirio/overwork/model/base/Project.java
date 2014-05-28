@@ -48,7 +48,7 @@ public class Project
 	/**
 	 * Returns the number of activities in the project
 	 */
-	public int countActivities()
+	public int getActivitiesCount()
 	{
 		return activities.size();
 	}
@@ -164,6 +164,7 @@ public class Project
 		for (Activity activity : activities)
 			overworking += activity.getOverworkHours();
 		
+
 		return overworking;
 	}
 }

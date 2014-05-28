@@ -50,6 +50,11 @@ public final class FunctionPointSystem
 	{
 		return dataFunctions;
 	}
+	
+	public DataFunction getDataFunction(int index)
+	{
+		return dataFunctions.get(index);
+	}
 
 	public RegisterElement getRegisterElementName(String name) 
 	{
@@ -81,6 +86,11 @@ public final class FunctionPointSystem
 	public Iterable<Transaction> getTransactions()
 	{
 		return transactions;
+	}
+	
+	public Transaction getTransaction(int index)
+	{
+		return transactions.get(index);
 	}
 	
 	public Iterable<Stakeholder> getStakeholders()

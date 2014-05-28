@@ -48,7 +48,8 @@ public class FunctionPointCalculator
 		}
 
 		Complexity complexity = calculateDataFunctionComplexity(rets, dets);
-		return calculateFunctionPointsDataFunction(complexity, dataFunction.getType());
+		dataFunction.setFp(calculateFunctionPointsDataFunction(complexity, dataFunction.getType()));
+		return dataFunction.getFp();
 	}
 
 	/**
@@ -66,7 +67,8 @@ public class FunctionPointCalculator
 		}
 
 		Complexity complexity = calculateTransactionComplexity(ftrs, fields, transaction.getType());
-		return calculateFunctionPointsTransaction(complexity, transaction.getType());
+		transaction.setFp(calculateFunctionPointsTransaction(complexity, transaction.getType()));
+		return transaction.getFp(); 
 	}
 	
 	/**

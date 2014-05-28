@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Getter;
+import lombok.Setter;
 
 public class Transaction 
 {
@@ -18,6 +19,8 @@ public class Transaction
 	private List<FileReference> fileReferences;
 	
 	private List<Dependency> dependencies;
+	
+	private @Getter @Setter int fp;
 
 	public Transaction(String name, boolean errorMessages, TransactionType type, int extraDET) 
 	{
@@ -27,6 +30,7 @@ public class Transaction
 		this.extraDataElements = extraDET;
 		this.dependencies = new ArrayList<Dependency>();
 		this.fileReferences = new ArrayList<FileReference>();
+		this.fp = 0;
 	}
 
 	public void addFileReference(FileReference ftr) 
@@ -37,6 +41,11 @@ public class Transaction
 	public Iterable<FileReference> getFileReferences()
 	{
 		return fileReferences;
+	}
+	
+	public FileReference getFileReference(int index)
+	{
+		return fileReferences.get(index);
 	}
 
 	public void addDependency(Dependency dependency) 

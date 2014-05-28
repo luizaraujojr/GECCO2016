@@ -261,6 +261,7 @@ public class InstanceReader
 					ret = fps.getRegisterElementName(ftr.getRet());
 				
 				if (ret == null)
+
 					throw new Exception("RET '" + ftr.getRet() + "' not identified in FTR.");
 				
 				ftr.setReferencedRegister(ret);

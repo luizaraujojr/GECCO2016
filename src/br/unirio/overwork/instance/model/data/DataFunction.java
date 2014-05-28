@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Getter;
+import lombok.Setter;
 
 public class DataFunction
 {
 	private @Getter String name;
 	
 	private @Getter DataFunctionType type;
+	
+	private @Getter @Setter int fp;
 	
 	private List<RegisterElement> registerElements;
 	
@@ -18,6 +21,7 @@ public class DataFunction
 		this.name = name;
 		this.type = type;
 		this.registerElements = new ArrayList<RegisterElement>();
+		this.fp = 0;
 	}
 
 	public void addRegisterElement(RegisterElement ret) 

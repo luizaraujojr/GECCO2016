@@ -14,7 +14,7 @@ public class Solution
 	public Solution(Project project)
 	{
 		this.project = project;
-		this.allocation = new int[project.countActivities()];
+		this.allocation = new int[project.getActivitiesCount()];
 		randomize();
 	}
 	

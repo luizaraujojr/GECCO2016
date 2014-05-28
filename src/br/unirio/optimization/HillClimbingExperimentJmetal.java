@@ -1,6 +1,5 @@
 package br.unirio.optimization;
 
-import jmetal.base.Solution;
 import jmetal.base.SolutionSet;
 import jmetal.base.visitor.neighborhood.DeepIntegerNeighborVisitor;
 import jmetal.base.visitor.neighborhood.NeighborVisitor;
@@ -9,10 +8,10 @@ import br.unirio.overwork.model.base.Project;
 
 public class HillClimbingExperimentJmetal extends GenericExperiment{
 	@Override
-	protected Solution runCycle(Project instance, int instanceNumber) throws Exception
+	public SolutionSet runCycle(Project instance, int instanceNumber, int cycles) throws Exception
 	{
-		ProjectProblem problem = createProblem(instance);
-		int variableSize = instance.countActivities();
+		ProjectProblem problem = new ProjectProblem(instance);
+		int variableSize = instance.getActivitiesCount();
 
 		int populationSize = 3 * variableSize;
 		int maxEvaluations = 5;//0 * populationSize;// * populationSize;
@@ -24,6 +23,6 @@ public class HillClimbingExperimentJmetal extends GenericExperiment{
 
 		
 		SolutionSet solutions = hc.execute();
-		return solutions.get(0);
+		return solutions;
 	}
 }

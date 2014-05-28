@@ -39,6 +39,21 @@ public class WorkPackageProjectBuilder
 		return pt;
 	}
 	
+	public WorkPackage getWorkPackagebyName(String name)
+	{
+		for (WorkPackage wp : this.workPackages)
+		{
+//			System.out.println(wp.getName());
+//			System.out.println(name);
+			if (wp.getName().equals(name))
+			{
+				return wp;
+			}
+		}
+		return null;
+	}
+
+	
 	/**
 	 * Executes the project generation procedure
 	 */

@@ -1,7 +1,7 @@
 package br.unirio.optimization;
 
 import jmetal.base.Solution;
-import unirio.experiments.monoobjective.execution.MonoExperiment;
+import unirio.experiments.multiobjective.execution.MultiExperiment;
 import br.unirio.overwork.model.base.Project;
 
 /**
@@ -9,7 +9,7 @@ import br.unirio.overwork.model.base.Project;
  * 
  * @author Luiz Araujo Jr
  */
-public abstract class GenericExperiment  extends MonoExperiment<Project>{
+public abstract class GenericExperiment  extends MultiExperiment<Project>{
 
 	protected ProjectProblem problem;
 
@@ -22,9 +22,9 @@ public abstract class GenericExperiment  extends MonoExperiment<Project>{
 		return data;
 	}
 	
-	protected ProjectProblem createProblem(Project instance) throws ClassNotFoundException
-	{
-		problem = new ProjectProblem(instance);
-		return problem;
-	}
+//	protected ProjectProblem createProblem(Project instance) throws ClassNotFoundException
+//	{
+//		problem = new ProjectProblem(instance);
+//		return problem;
+//	}
 }

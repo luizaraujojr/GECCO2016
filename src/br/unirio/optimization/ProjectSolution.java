@@ -2,7 +2,6 @@ package br.unirio.optimization;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.Random;
 
 import jmetal.base.Solution;
 import lombok.Getter;
@@ -16,7 +15,6 @@ import br.unirio.overwork.model.base.Project;
  */
 public class ProjectSolution extends Solution
 {
-	@SuppressWarnings("unused")
 	private Project project;
 	private ProjectProblem projectProblem;
 	
@@ -34,6 +32,17 @@ public class ProjectSolution extends Solution
 	private @Getter @Setter long executionTime;
 	private @Getter @Setter int cycle;
 	private @Getter @Setter int evaluations;
+	
+	
+	/**
+	 * Stores the number of objective values of the solution
+	 */
+	private @Getter @Setter int numberOfObjectives;
+	
+	/**
+	 * Stores the objectives values of the solution.
+	 */
+	private double[] objective_;
 		
 	/**
 	 * Creates a new solution for the jmetal framework
@@ -41,7 +50,7 @@ public class ProjectSolution extends Solution
 	public ProjectSolution(Project project, int evaluations)
 	{
 		this.project = project;
-		this.activitiesOverworkAllocation = new int[project.countActivities()];
+		this.activitiesOverworkAllocation = new int[project.getActivitiesCount()];
 		this.evaluations = evaluations;	
 	}
 	
@@ -53,7 +62,10 @@ public class ProjectSolution extends Solution
 		this.projectProblem = projectProblem;
 		this.heuristic = heuristic;
 		this.project = projectProblem.getProject();
-		this.activitiesOverworkAllocation = new int[projectProblem.getProject().countActivities()];
+		this.activitiesOverworkAllocation = new int[projectProblem.getProject().getActivitiesCount()];
+		numberOfObjectives = projectProblem.getNumberOfObjectives();
+		objective_ = new double[this.numberOfObjectives];
+		
 	}
 	
 	/**
@@ -61,10 +73,14 @@ public class ProjectSolution extends Solution
 	 */
 	public void randomizeSolution()
 	{
-		Random r = new Random();
-		
-		for (int i = 0; i < activitiesOverworkAllocation.length; i++)
-			activitiesOverworkAllocation[i] = (r.nextInt((9 - 1) + 1) + 1);// * 0.5 + 7.5;
+//		Random r = new Random();
+//		Variable[] var;
+//		
+//		for (int i = 0; i < numberOfVariables(); i++)
+//			var[i]= (r.nextInt((9 - 1) + 1) + 1);// * 0.5 + 7.5;
+//		
+//		setDecisionVariables(var);
+		randomize();
 	}
 	
 	/**
@@ -146,4 +162,14 @@ public class ProjectSolution extends Solution
 
 		return projectSolution;
 	}
+	
+	public void setObjective(int i, double value)
+	{
+		objective_[i] = value;
+	} // setObjective
+	
+	public double getObjective(int i)
+	{
+		return objective_[i];
+	} // getObjective
 }

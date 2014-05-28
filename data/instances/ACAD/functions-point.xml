@@ -546,13 +546,8 @@
 		<transaction name="RemoverTurma" errorMsg="true" type="EI">
 			<ftr-list>
 				<ftr name="Turma" ret="Turma">
-				
-					<det name="ano"/>
-					<det name="periodo"/>
+					<det name="idTurma"/>
 				</ftr>				
-				<ftr name="Disciplina" ret="Disciplina">
-					<det name="nome"/>
-				</ftr>
 			</ftr-list>
 			<dependencies>
 				<dependency ref="IncluirNovaTurma"/>

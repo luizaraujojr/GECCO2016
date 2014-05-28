@@ -3,6 +3,7 @@ package br.unirio.overwork.instance.calculator;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.Getter;
 import br.unirio.overwork.instance.model.FunctionPointSystem;
 import br.unirio.overwork.instance.model.data.DataElement;
 import br.unirio.overwork.instance.model.data.DataFunction;
@@ -12,38 +13,43 @@ import br.unirio.overwork.instance.model.transaction.Field;
 import br.unirio.overwork.instance.model.transaction.FileReference;
 import br.unirio.overwork.instance.model.transaction.Transaction;
 import br.unirio.overwork.instance.model.transaction.TransactionType;
+import br.unirio.overwork.instance.report.Report;
 
 /**
  * Function-point calculator based on a detailed function point model
  */
 public class FunctionPointCalculator 
 {
+	private @Getter Report report;
+	
+	/**
+	 * Initializes a calculation process
+	 */
+	public FunctionPointCalculator ()
+	{
+		this.report = new Report();
+	}
+	
 	/**
 	 * Calculates the number of function points given to set of transactions and data functions
 	 */
-	public int calculate(FunctionPointSystem fps)
+	public void calculate(FunctionPointSystem fps)
 	{
-		int total = 0;
-		
 		for (Transaction transaction : fps.getTransactions())
 			for (FileReference ftr : transaction.getFileReferences())
 				ftr.markDataElements();
 
 		for(DataFunction dataFunction : fps.getDataFunctions()) 
-			total += calculateDataFunctionValue(fps, dataFunction);
+			calculateDataFunctionValue(fps, dataFunction);
 		
-		System.out.println();
-
 		for (Transaction transaction : fps.getTransactions())
-			total += calculateTransactionValue(fps, transaction);
-
-		return total;
+			calculateTransactionValue(fps, transaction);
 	}
 	
 	/**
 	 * Calculates the number of function points given to a data function
 	 */
-	public int calculateDataFunctionValue(FunctionPointSystem fps, DataFunction dataFunction) 
+	public void calculateDataFunctionValue(FunctionPointSystem fps, DataFunction dataFunction) 
 	{
 		int dets = 0;
 		int rets = 0;
@@ -59,18 +65,16 @@ public class FunctionPointCalculator
 
 		if (dets > 0 && rets > 0)
 		{
-			System.out.println("DF " + dataFunction.getName() + " " + rets + " " + dets);
 			Complexity complexity = calculateDataFunctionComplexity(rets, dets);
-			return calculateFunctionPointsDataFunction(complexity, dataFunction.getType());
+			int functionPoints = calculateFunctionPointsDataFunction(complexity, dataFunction.getType());
+			report.addDataFunction(dataFunction.getName(), rets, dets, functionPoints);
 		}
-		
-		return 0;
 	}
 
 	/**
 	 * Calculates the number of function points given to a transaction
 	 */
-	public int calculateTransactionValue(FunctionPointSystem fps, Transaction transaction) 
+	public void calculateTransactionValue(FunctionPointSystem fps, Transaction transaction) 
 	{
 		List<String> dataFunctions = new ArrayList<String>();
 		int fields = transaction.getExtraDataElements();
@@ -102,9 +106,9 @@ public class FunctionPointCalculator
 				fields += countDataElements(fps, transaction, ftr, dataFunction);
 		}
 
-		System.out.println("TF " + transaction.getName() + " " + ftrs + " " + fields);
 		Complexity complexity = calculateTransactionComplexity(ftrs, fields, transaction.getType());
-		return calculateFunctionPointsTransaction(complexity, transaction.getType());
+		int functionPoints = calculateFunctionPointsTransaction(complexity, transaction.getType());
+		report.addTransactionFunction(transaction.getName(), ftrs, fields, functionPoints);
 	}
 
 	/**

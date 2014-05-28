@@ -19,6 +19,9 @@ import br.unirio.overwork.instance.model.data.RegisterElement;
 import br.unirio.overwork.instance.model.transaction.FileReference;
 import br.unirio.overwork.instance.model.transaction.Transaction;
 import br.unirio.overwork.instance.reader.InstanceReader;
+import br.unirio.overwork.instance.report.Report;
+import br.unirio.overwork.instance.report.ReportDataFunction;
+import br.unirio.overwork.instance.report.ReportTransactionFunction;
 import br.unirio.overwork.model.base.Project;
 
 public class MainProgram
@@ -83,30 +86,45 @@ public class MainProgram
 			//loading the project information
 			InstanceReader reader = new InstanceReader();
 			FunctionPointSystem fps = new FunctionPointSystem(instancia.split("/")[2]);
+			
 			fps = reader.run(instancia);
 		
 			FunctionPointCalculator fpc = new FunctionPointCalculator();
 			
-			fpc.calculate(fps);
+			Report report = new Report();
+			report = fpc.calculate(fps);
 			
 			WorkPackageProjectBuilder builder = new WorkPackageProjectBuilder();
 			 
 			
-			for  (DataFunction df: fps.getDataFunctions())
+			for  (ReportDataFunction df: report.getDataFunctions())
 			{
-			//	WorkPackage workPackage = builder.addWorkPackage(df.getName()).addDataFunction(df.getName(), df.getFp());
+				WorkPackage workPackage = builder.addWorkPackage(df.getName()).addDataFunction(df.getName(), df.getFunctionPoints());
 			}
+
 			
-			for  (Transaction tr: fps.getTransactions())
-			{				
-				//WorkPackage workPackage = builder.getWorkPackagebyName(tr.getFileReference(0).getName());
+			for  (ReportTransactionFunction tr: report.getTransactionFunctions())
+			{	
+				for (Transaction _transaction : fps.getTransactions())
+				{
+					if (_transaction.getName() == tr.getName())
+					{
+						for (FileReference fr: _transaction.getFileReferences())
+						{
+							WorkPackage workPackage = builder.getWorkPackagebyName(fr.getName());
+							workPackage.addTransactionalFunction(tr.getName(), tr.getFunctionPoints());
+						}	
+					}		
+				}
+					
+				
 				//System.out.println(tr.getName());
 				//System.out.println(tr.getFileReference(0).getName());
 				
-				//workPackage.addTransactionalFunction(tr.getName(), tr.getFp());
+			//	
 			}
 						
-			return createProject(); //builder.execute(); 
+			return builder.execute(); //createProject();  
 		}
 		
 		private static Project createProject()

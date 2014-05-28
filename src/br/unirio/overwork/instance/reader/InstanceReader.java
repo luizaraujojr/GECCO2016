@@ -96,7 +96,7 @@ public class InstanceReader
 	/**
 	 * Loads a data model element from a detailed function point file
 	 */
-	private void loadDataModelElement(DataFunction element, Element root) 
+	private void loadDataModelElement(DataFunction dataFunction, Element root) 
 	{
 		NodeList retListNode = root.getElementsByTagName("ret");
 		
@@ -104,8 +104,8 @@ public class InstanceReader
 		{
 			Element retNode = (Element) retListNode.item(i);
 			String name = retNode.getAttribute("name");
-			RegisterElement ret = new RegisterElement(name);
-			element.addRegisterElement(ret);
+			RegisterElement ret = new RegisterElement(name, dataFunction);
+			dataFunction.addRegisterElement(ret);
 			loadRegisterElement(ret, retNode);
 		}
 	}
@@ -125,7 +125,7 @@ public class InstanceReader
 			String ref = getAttribute(detNode, "ref");
 			String dataModelElement = getAttribute(detNode, "dataModelElement");
 			String description = getAttribute(detNode, "description");
-			boolean hasSemanticMeaning = getBooleanAttribute(detNode, "hasSemanticMeaning", true);
+			boolean hasSemanticMeaning = getBooleanAttribute(detNode, "hasSemanticMeaning", false);
 			
 			DataElement det = new DataElement(name, primaryKey, ref, dataModelElement, description, hasSemanticMeaning);
 			ret.addDataElements(det);
@@ -186,13 +186,13 @@ public class InstanceReader
 		{
 			Element ftrNode = (Element) ftrListNode.item(i);
 			
-			String dataModelElement = getAttribute(ftrNode, "name");
+			String dataModelElement = getAttribute(ftrNode, "dataModelElement");
 			String name = getAttribute(ftrNode, "name");
 			
 			String ret = getAttribute(ftrNode, "ret");
 			
 			if (ret.length() == 0)
-				ret = dataModelElement;
+				ret = name;
 			
 			boolean useAllDets = getBooleanAttribute(ftrNode, "useAllDets", false);
 

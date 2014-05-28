@@ -29,7 +29,7 @@
 				
 				<!-- ALIQUOTA_IMPOSTO_RENDA -->
 				<det name="ID_ALIQUOTA_IMPOSTO_RENDA" primaryKey="true"/>
-				<det name="ID_IMPOSTO_RENDA" primaryKey="true"/>
+				<!-- det name="ID_IMPOSTO_RENDA" primaryKey="true"/-->
 				<det name="TX_ALIQUOTA"/>
 				<det name="VL_FAIXA_INICIAL_BASE_CALCULO"/>
 				<det name="VL_FAIXA_FINAL_BASE_CALCULO"/>
@@ -63,18 +63,18 @@
 				<det name="ID_TIPO_FUNDAMENTACAO_LEGAL" primaryKey="true"/>
 				<det name="TE_TIPO_FUNDAMENTACAO_LEGAL"/>
 				<det name="SG_TIPO_FUNDAMENTACAO_LEGAL"/>
-				<det name="DT_FIM_VALIDADE_TIPO"/>
+				<det name="DT_FIM_VALIDADE"/>
 			</ret>
 			<ret name="ReferenciaFundamentacaoLegal">
 				<det name="ID_REF_FUNDAMENTACAO_LEGAL" primaryKey="true"/>
 				<det name="TE_REF_FUNDAMENTACAO_LEGAL"/>
-				<det name="DT_FIM_VALIDADE_REFERENCIA"/>
+				<det name="DT_FIM_VALIDADE"/>
 			</ret>
 			<ret name="EntidadeEmissora">
 				<det name="ID_AUTORIDADE_EMISSORA" primaryKey="true"/>
 				<det name="SG_AUTORIDADE_EMISSORA"/>
 				<det name="TE_AUTORIDADE_EMISSORA"/>
-				<det name="DT_FIM_VALIDADE_EMISSORA"/>
+				<det name="DT_FIM_VALIDADE"/>
 			</ret>
 		</ilf>
 		<ilf name="PrevalenciaConsignacao">
@@ -86,7 +86,7 @@
 				<det name="ID_VIGENCIA_PREVAL_CONSIGNACAO"  primaryKey="true"/>
 				
 				<!-- Vigencia Prevalencia Consignação -->
-				<det_retirado name="ID_VIGENCIA_PREVAL_CONSIGNACAO" primaryKey="true"/>
+				<!-- det name="ID_VIGENCIA_PREVAL_CONSIGNACAO" primaryKey="true"/ -->
 				<det name="DT_INICIO_VIGENCIA"/>
 				<det name="DT_FIM_VIGENCIA"/>
 
@@ -101,7 +101,7 @@
 				<det name="ID_FAIXA_SALARIO_FAMILIA" primaryKey="true"/>
 				
 				<!-- Faixa Salario Familia -->
-				<det_retirado name="ID_FAIXA_SALARIO_FAMILIA" primaryKey="true"/>
+				<!-- det name="ID_FAIXA_SALARIO_FAMILIA" primaryKey="true"/ -->
 				<det name="VL_FAIXA_INICIAL_BASE_CALCULO"/>
 				<det name="VL_FAIXA_FINAL_BASE_CALCULO"/>
 				<det name="VL_SALARIO_FAMILIA"/>
@@ -131,7 +131,7 @@
 				<det name="DT_FIM_VALIDADE"/>
 
 				<!-- Tipo Teto -->
-				<det_retirado name="ID_TIPO_TETO" primaryKey="true"/>
+				<!-- det name="ID_TIPO_TETO" primaryKey="true"/ -->
 				<det name="TE_TIPO_TETO"/>
 				<det name="DT_INICIO_VIGENCIA_TIPO"/>
 				<det name="DT_FIM_VIGENCIA_TIPO"/>
@@ -154,11 +154,6 @@
 				<det name="NM_GRUPO_BENEFICIO"/>
 				<det name="ID_GRUPO_BENEFICIO"  primaryKey="true"/>
 			</ret>
-			<ret_retirado name="LocalDeTrabalho">
-				<det name="ID_LOCAL_TRABALHO"  primaryKey="true"/>
-				<det name="NM_LOCAL_TRABALHO"/>
-				<det name="DT_FIM_VALIDADE"/>
-			</ret_retirado>
 		</ilf>
 		<ilf name="CoeficienteReajustamentoBaseSM">
 			<ret name="CoeficienteReajustamentoBaseSM">
@@ -718,8 +713,7 @@
 		<transaction name="IncluirImpostoDeRendaExterior" errorMsg="true" type="EI">
 			<ftr-list>
 				<ftr name="ImpostoDeRendaExterior" ret="ImpostoDeRendaExterior" useAllDets="true">
-				</ftr>
-				<ftr name="FundamentacaoLegal" ret="FundamentacaoLegal">
+				</ftr><ftr name="FundamentacaoLegal" ret="FundamentacaoLegal">
 					<det name="NU_FUNDAMENTACAO_LEGAL"/>
 				</ftr>
 				<ftr name="FundamentacaoLegal" ret="EntidadeEmissora">

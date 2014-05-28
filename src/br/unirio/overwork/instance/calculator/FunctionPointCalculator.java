@@ -25,18 +25,16 @@ public class FunctionPointCalculator
 		int total = 0;
 		
 		for (Transaction transaction : fps.getTransactions())
-		{
 			for (FileReference ftr : transaction.getFileReferences())
-			{
 				ftr.markDataElements();
-			}
-		}
 
 		for(DataFunction dataFunction : fps.getDataFunctions()) 
 			total += calculateDataFunctionValue(dataFunction);
 		
+		System.out.println();
+
 		for (Transaction transaction : fps.getTransactions())
-			total += calculateTransactionValue(transaction);
+			total += calculateTransactionValue(fps, transaction);
 
 		return total;
 	}
@@ -71,7 +69,7 @@ public class FunctionPointCalculator
 	/**
 	 * Calculates the number of function points given to a transaction
 	 */
-	public int calculateTransactionValue(Transaction transaction) 
+	public int calculateTransactionValue(FunctionPointSystem fps, Transaction transaction) 
 	{
 		List<String> dataFunctions = new ArrayList<String>();
 		int fields = transaction.getExtraDataElements();
@@ -83,13 +81,24 @@ public class FunctionPointCalculator
 		
 		for (FileReference ftr : transaction.getFileReferences())
 		{
-			if (!dataFunctions.contains(ftr.getDataModelElement()))
+			String dataFunctionName = ftr.getDataModelElement();
+			
+			if (dataFunctionName.length() == 0)
+				dataFunctionName = ftr.getReferencedRegister().getDataFunction().getName();
+			
+			if (!dataFunctions.contains(dataFunctionName))
 			{
-				dataFunctions.add(ftr.getDataModelElement());
+				dataFunctions.add(dataFunctionName);
 				ftrs++;
 			}
-
-			fields += ftr.countDataElements();
+			
+			DataFunction dataFunction = fps.getDataFunctionName(dataFunctionName);
+			
+			if (dataFunction == null)
+				System.out.println("A função de dados '" + dataFunctionName + "' não foi encontrada.");
+			
+			if (dataFunction != null)
+				fields += ftr.countDataElements(dataFunction);
 		}
 
 		System.out.println("TF " + transaction.getName() + " " + ftrs + " " + fields);

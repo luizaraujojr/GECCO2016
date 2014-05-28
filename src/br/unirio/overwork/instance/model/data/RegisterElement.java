@@ -9,11 +9,14 @@ public class RegisterElement
 {
 	private @Getter String name;
 	
+	private @Getter DataFunction dataFunction;
+	
 	private List<DataElement> dataElements;
 	
-	public RegisterElement(String name)
+	public RegisterElement(String name, DataFunction dataFunction)
 	{
 		this.name = name;
+		this.dataFunction = dataFunction;
 		this.dataElements = new ArrayList<DataElement>();
 	}
 

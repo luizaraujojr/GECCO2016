@@ -1,4 +1,4 @@
-package	 br.unirio.optimization;
+package	 br.unirio.optimization.experiment;
 
 import java.io.Writer;
 import java.text.DecimalFormat;
@@ -7,6 +7,7 @@ import java.util.List;
 import unirio.experiments.multiobjective.controller.Experiment;
 import jmetal.base.Algorithm;
 import jmetal.base.Solution;
+import br.unirio.optimization.ProjectProblem;
 import br.unirio.optimization.heuristic.RandomSearch;
 import br.unirio.overwork.model.base.Project;
 

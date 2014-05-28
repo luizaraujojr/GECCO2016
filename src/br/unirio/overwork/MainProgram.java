@@ -6,12 +6,17 @@ import java.util.Vector;
 
 import unirio.experiments.monoobjective.execution.FileMonoExperimentListener;
 import unirio.experiments.monoobjective.execution.StreamMonoExperimentListener;
-import br.unirio.optimization.GeneticAlgorithmExperiment;
-import br.unirio.optimization.HillClimbingExperiment;
-import br.unirio.optimization.RandomSearchExperiment;
+import unirio.experiments.multiobjective.analyzer.ExperimentAnalyzer;
+import br.unirio.analyzer.ProjectExperimentFileReader;
+import br.unirio.optimization.experiment.HillClimbingExperiment;
+import br.unirio.optimization.experiment.NSGAIIExperiment;
+import br.unirio.optimization.experiment.RandomSearchExperiment;
+import br.unirio.overwork.builders.WorkPackage;
 import br.unirio.overwork.builders.WorkPackageProjectBuilder;
 import br.unirio.overwork.instance.calculator.FunctionPointCalculator;
 import br.unirio.overwork.instance.model.FunctionPointSystem;
+import br.unirio.overwork.instance.model.data.DataFunction;
+import br.unirio.overwork.instance.model.transaction.Transaction;
 import br.unirio.overwork.instance.reader.InstanceReader;
 import br.unirio.overwork.model.base.Project;
 
@@ -32,39 +37,103 @@ public class MainProgram
 	
 	public static final void main(String[] args) throws Exception
 	{
-		InstanceReader reader = new InstanceReader();
-
-		for (int i = 0; i < instanceFiles.length; i++)
-		{
-			FunctionPointSystem fps = reader.run(instanceFiles[i]);
-			new FunctionPointCalculator().calculate(fps);
-//			Project project = createProject();
-//			optimize(project);
-		}
+//		for (int i = 0; i < instanceFiles.length; i++)
+//			if (instanceFiles[i].length() > 0)
+				run(instanceFiles);
 	}
 	
-	private static void optimize(Project project) throws Exception, FileNotFoundException
+	
+	public static void run(String[] instancesFiles) throws Exception
 	{
-		// creating the instance vector
-		Vector<Project> instances = new Vector<Project>();
-		instances.add(project);
+		//creating the instance vector
 		
-		// run the Random Search experiment
-		System.out.println("RS");
-       	RandomSearchExperiment rse = new RandomSearchExperiment();
-       	rse.run(project, CYCLES, MAXEVALUATIONS);
-       	
-       	// run the Hill Climbing experiment
-       	System.out.println("HC");
-       	HillClimbingExperiment hce = new HillClimbingExperiment();
-       	hce.run(project, CYCLES, MAXEVALUATIONS);
-       	
-       	// run the Genetic algorithm experiment 
-       	System.out.println("GA");
-       	GeneticAlgorithmExperiment gae = new GeneticAlgorithmExperiment();
-       	gae.addListerner(new FileMonoExperimentListener("saida ga.txt", true));
-       	gae.addListerner(new StreamMonoExperimentListener(new OutputStreamWriter(System.out), true));
-       	gae.run(instances, CYCLES);
+		Vector<Project> instances = new Vector<Project>();
+		for (int i = 0; i < instancesFiles.length; i++)
+			if (instancesFiles[i].length() > 0)
+			{
+				//loading the project information
+				Project project = new Project ();
+				project = loadInstance(instancesFiles[i]);
+				
+				//population the project vector
+				instances.add(project);
+			}			
+		
+		
+		HillClimbingExperiment hc = new HillClimbingExperiment();
+		hc.runCycles("saida hc.txt", instances, CYCLES);
+		
+		ExperimentAnalyzer analyzer2 = new ExperimentAnalyzer(new ProjectExperimentFileReader());
+		analyzer2.analyze("hc", "saida hc.txt", instances.size(), CYCLES, 3);
+		
+		RandomSearchExperiment rs = new RandomSearchExperiment();
+		rs.runCycles("saida rs.txt", instances, CYCLES);
+		
+		ExperimentAnalyzer analyzer1 = new ExperimentAnalyzer(new ProjectExperimentFileReader());
+		analyzer1.analyze("rs", "saida rs.txt", instances.size(), CYCLES, 3);
+		
+		NSGAIIExperiment hsgaii2 = new NSGAIIExperiment();
+		hsgaii2.runCycles("saida nsgaii2.txt", instances, CYCLES);
+		
+		ExperimentAnalyzer analyzer3 = new ExperimentAnalyzer(new ProjectExperimentFileReader());
+		analyzer3.analyze("NSGAII", "saida nsgaii2.txt", instances.size(), CYCLES, 3);	       	
+	}
+	
+	
+//	private static void optimize(Project project) throws Exception, FileNotFoundException
+//	{
+//		// creating the instance vector
+//		Vector<Project> instances = new Vector<Project>();
+//		instances.add(project);
+//		
+//		// run the Random Search experiment
+//		System.out.println("RS");
+//       	RandomSearchExperiment rse = new RandomSearchExperiment();
+//       	rse.run(project, CYCLES, MAXEVALUATIONS);
+//       	
+//       	// run the Hill Climbing experiment
+//       	System.out.println("HC");
+//       	HillClimbingExperiment hce = new HillClimbingExperiment();
+//       	hce.run(project, CYCLES, MAXEVALUATIONS);
+//       	
+//       	// run the Genetic algorithm experiment 
+//       	System.out.println("GA");
+//       	GeneticAlgorithmExperiment gae = new GeneticAlgorithmExperiment();
+//       	gae.addListerner(new FileMonoExperimentListener("saida ga.txt", true));
+//       	gae.addListerner(new StreamMonoExperimentListener(new OutputStreamWriter(System.out), true));
+//       	gae.run(instances, CYCLES);
+//	}
+	
+	public static Project loadInstance(String instancia) throws Exception
+	{
+		//loading the project information
+		InstanceReader reader = new InstanceReader();
+		FunctionPointSystem fps = new FunctionPointSystem(instancia.split("/")[2]);
+		fps = reader.run(instancia);
+	
+		FunctionPointCalculator fpc = new FunctionPointCalculator();
+		
+		fpc.calculate(fps);
+		
+		WorkPackageProjectBuilder builder = new WorkPackageProjectBuilder();
+		 
+		
+		for  (DataFunction df: fps.getDataFunctions())
+		{
+	//		WorkPackage workPackage = builder.addWorkPackage(df.getName()).addDataFunction(df.getName(), df.getFp());
+		}
+		
+		for  (Transaction tr: fps.getTransactions())
+		{				
+		//	WorkPackage workPackage = builder.getWorkPackagebyName(tr.getFileReference(0).getName());
+			//System.out.println(tr.getName());
+			//System.out.println(tr.getFileReference(0).getName());
+			
+			//workPackage.addTransactionalFunction(tr.getName(), tr.getFp());
+		}
+					
+		return createProject(); //builder.execute();
+
 	}
 	
 	private static Project createProject()

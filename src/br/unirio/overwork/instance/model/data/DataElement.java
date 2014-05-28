@@ -29,49 +29,4 @@ public class DataElement
 		this.hasSemanticMeaning = hasSemanticMeaning;
 		this.used = false;
 	}
-	
-	public boolean countsForTransaction(DataFunction dataFunction)
-	{
-		if (!used)
-			return false;
-		
-		if (!(hasSemanticMeaning || !primaryKey))
-			return false;
-		
-		if (referencedRegister.length() == 0)
-			return true;
-
-		RegisterElement register = dataFunction.getRegisterElementName(referencedRegister);
-		
-		if (dataModelElement.length() == 0 && register == null)
-			return true;
-
-		if (dataModelElement.compareToIgnoreCase(dataFunction.getName()) == 0 && register == null)
-			return true;
-		
-		return false;
-//		return !primaryKey;
-	}
-	
-	public boolean countsForDataFunction(DataFunction dataFunction)
-	{
-		if (!used)
-			return false;
-		
-		if (!(hasSemanticMeaning || !primaryKey))
-			return false;
-		
-		if (referencedRegister.length() == 0)
-			return true;
-
-		RegisterElement register = dataFunction.getRegisterElementName(referencedRegister);
-		
-		if (dataModelElement.length() == 0 && register == null)
-			return true;
-
-		if (dataModelElement.compareToIgnoreCase(dataFunction.getName()) == 0 && register == null)
-			return true;
-		
-		return false;
-	}
 }

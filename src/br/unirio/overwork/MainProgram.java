@@ -24,10 +24,10 @@ public class MainProgram
 	
 	private static String[] instanceFiles =
 	{
-//	 	"data/instances/ACAD/functions-point.xml",
+	 	"data/instances/ACAD/functions-point.xml",
 //	 	"data/instances/BOLS/functions-point.xml",
 //	 	"data/instances/PARM/functions-point.xml",
-	 	"data/instances/PSOA/functions-point.xml"
+//	 	"data/instances/PSOA/functions-point.xml"
 	};
 	
 	public static final void main(String[] args) throws Exception

@@ -618,7 +618,6 @@
 					<det name="nome"/>
 				</ftr>				
 				<ftr name="Turma" ret="Turma">
-					<det primaryKey="true" name="idTurma"/>
 					<det name="ano"/>
 					<det name="periodo"/>
 					<det name="sala"/>

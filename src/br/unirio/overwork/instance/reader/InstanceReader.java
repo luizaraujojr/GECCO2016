@@ -127,6 +127,9 @@ public class InstanceReader
 			String description = getAttribute(detNode, "description");
 			boolean hasSemanticMeaning = getBooleanAttribute(detNode, "hasSemanticMeaning", false);
 			
+			if (dataModelElement.length() == 0 && ref.length() > 0)
+				dataModelElement = ref;
+			
 			DataElement det = new DataElement(name, primaryKey, ref, dataModelElement, description, hasSemanticMeaning);
 			ret.addDataElements(det);
 		}
@@ -258,12 +261,14 @@ public class InstanceReader
 			if (ftr.getRet().length() > 0)
 			{
 				DataFunction data = fps.getDataFunctionName(ftr.getDataModelElement()); 
-				RegisterElement ret = null;
 				
-				if (data != null)
-					ret = data.getRegisterElementName(ftr.getRet());
-				else
-					ret = fps.getRegisterElementName(ftr.getRet());
+				if (data == null)
+					data = fps.getDataFunctionName(ftr.getName());
+				
+				if (data == null)
+					throw new Exception("Data model '" + ftr.getName() + "' not identified in FTR.");
+				
+				RegisterElement ret = data.getRegisterElementName(ftr.getRet());
 				
 				if (ret == null)
 					throw new Exception("RET '" + ftr.getRet() + "' not identified in FTR.");

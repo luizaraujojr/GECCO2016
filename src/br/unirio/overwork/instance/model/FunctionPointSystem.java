@@ -51,19 +51,6 @@ public final class FunctionPointSystem
 		return dataFunctions;
 	}
 
-	public RegisterElement getRegisterElementName(String name) 
-	{
-		for (DataFunction data : dataFunctions)
-		{
-			RegisterElement ret = data.getRegisterElementName(name);
-			
-			if (ret != null)
-				return ret;
-		}
-		
-		return null;
-	}
-
 	public void addTransaction(Transaction transaction) 
 	{
 		transactions.add(transaction);
@@ -102,5 +89,18 @@ public final class FunctionPointSystem
 				interests.add(interest);
 
 		return interests;
+	}
+
+	public RegisterElement getRegisterElementName(String dataFunctionName, String registerName)
+	{
+		if (dataFunctionName.length() == 0)
+			dataFunctionName = registerName;
+		
+		DataFunction df = getDataFunctionName(dataFunctionName);
+		
+		if (df == null)
+			return null;
+		
+		return df.getRegisterElementName(registerName);
 	}
 }

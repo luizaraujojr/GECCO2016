@@ -29,7 +29,6 @@
 				
 				<!-- ALIQUOTA_IMPOSTO_RENDA -->
 				<det name="ID_ALIQUOTA_IMPOSTO_RENDA" primaryKey="true"/>
-				<!-- det name="ID_IMPOSTO_RENDA" primaryKey="true"/-->
 				<det name="TX_ALIQUOTA"/>
 				<det name="VL_FAIXA_INICIAL_BASE_CALCULO"/>
 				<det name="VL_FAIXA_FINAL_BASE_CALCULO"/>
@@ -86,7 +85,6 @@
 				<det name="ID_VIGENCIA_PREVAL_CONSIGNACAO"  primaryKey="true"/>
 				
 				<!-- Vigencia Prevalencia Consignação -->
-				<!-- det name="ID_VIGENCIA_PREVAL_CONSIGNACAO" primaryKey="true"/ -->
 				<det name="DT_INICIO_VIGENCIA"/>
 				<det name="DT_FIM_VIGENCIA"/>
 
@@ -101,7 +99,6 @@
 				<det name="ID_FAIXA_SALARIO_FAMILIA" primaryKey="true"/>
 				
 				<!-- Faixa Salario Familia -->
-				<!-- det name="ID_FAIXA_SALARIO_FAMILIA" primaryKey="true"/ -->
 				<det name="VL_FAIXA_INICIAL_BASE_CALCULO"/>
 				<det name="VL_FAIXA_FINAL_BASE_CALCULO"/>
 				<det name="VL_SALARIO_FAMILIA"/>
@@ -131,7 +128,6 @@
 				<det name="DT_FIM_VALIDADE"/>
 
 				<!-- Tipo Teto -->
-				<!-- det name="ID_TIPO_TETO" primaryKey="true"/ -->
 				<det name="TE_TIPO_TETO"/>
 				<det name="DT_INICIO_VIGENCIA_TIPO"/>
 				<det name="DT_FIM_VIGENCIA_TIPO"/>
@@ -771,9 +767,6 @@
 				<ftr name="FundamentacaoLegal" ret="EntidadeEmissora">
 					<det name="TE_AUTORIDADE_EMISSORA"/>
 				</ftr>
-				<ftr name="FundamentacaoLegal" ret="EntidadeEmissora">
-					<det name="TE_AUTORIDADE_EMISSORA"/>
-				</ftr>
 			</ftr-list>
 			<dependencies>
 				<dependency ref="IncluirImpostoDeRendaExterior"/>
@@ -1162,7 +1155,7 @@
 		<!-- Tipo Teto-->
 		<transaction name="IncluirTipoTeto" errorMsg="true" type="EI">
 			<ftr-list>
-				<ftr name="Teto" ret="Teto" useAllDets="true">
+				<ftr name="Teto" ret="Teto">
 					<det name="TE_TIPO_TETO"/>
 					<det name="DT_INICIO_VIGENCIA_TIPO"/>
 					<det name="DT_FIM_VIGENCIA_TIPO"/>
@@ -1225,141 +1218,6 @@
 				<dependency ref="PesquisarTipoTeto"/>
 			</dependencies>
 		</transaction>
-		
-		
-		<!-- Índice Econômico-->
-		<!-- transaction name="IncluirIndiceEconomico" errorMsg="true" type="EI">
-			<ftr-list>
-					<ftr name="IndiceEconomico" ret="IndiceEconomico" useAllDets="true">
-						<!  ftr name="Indice Economico_Tipo Indice Economico" ret="Indice Economico_Tipo Indice Economico" useAllDets="true" >
-				
-					</ftr>
-			</ftr-list>
-			<dependencies>
-				<dependency ref="IncluirIncluirIndiceEconomico"/>
-				<dependency ref="PesquisarIncluirIndiceEconomico"/>
-			</dependencies>
-		</transaction>
-		<transaction name="AlterarIndiceEconomico" errorMsg="true" type="EI">
-			<ftr-list>
-				<ftr name="IndiceEconomico" ret="IndiceEconomico" useAllDets="true">
-				</ftr>
-			</ftr-list>
-			<dependencies>
-				<dependency ref="IncluirIndiceEconomico"/>
-				<dependency ref="PesquisarIndiceEconomico"/>
-			</dependencies>
-		</transaction>
-		<transaction name="ExcluirIndiceEconomico" errorMsg="true" type="EI">
-			<ftr-list>
-				<ftr name="IndiceEconomico" ret="IndiceEconomico" useAllDets="true">
-				</ftr>
-			</ftr-list>
-			<dependencies>
-				<dependency ref="IncluirIndiceEconomico"/>
-				<dependency ref="PesquisarIndiceEconomico"/>
-			</dependencies>
-		</transaction>
-		<transaction name="IncluirValordeContribuicaoINSS" errorMsg="true" type="EI">
-			<ftr-list>
-				<ftr name="ValorDeContribuicaoINSS" ret="ValorDeContribuicaoINSS" useAllDets="true">
-				</ftr>
-				<ftr name="UF" ret="UF" useAllDets="true">
-				</ftr>
-			</ftr-list>
-			<dependencies>
-				<dependency ref="IncluirIncluirValordeContribuicaoINSS"/>
-				<dependency ref="PesquisarIncluirValordeContribuicaoINSS"/>
-			</dependencies>
-		</transaction>
-		<transaction name="AlterarValordeContribuicaoINSS" errorMsg="true" type="EI">
-			<ftr-list>
-				<ftr name="ValorDeContribuicaoINSS" ret="ValorDeContribuicaoINSS" useAllDets="true">
-				</ftr>
-				<ftr name="UF" ret="UF" useAllDets="true">
-				</ftr>
-			</ftr-list>
-			<dependencies>
-				<dependency ref="IncluirValordeContribuicaoINSS"/>
-				<dependency ref="PesquisarValordeContribuicaoINSS"/>
-			</dependencies>
-		</transaction>
-		<transaction name="ExcluirValordeContribuicaoINSS" errorMsg="true" type="EI">
-			<ftr-list>
-				<ftr name="ValorDeContribuicaoINSS" ret="ValorDeContribuicaoINSS" useAllDets="true">
-				</ftr>
-				<ftr name="UF" ret="UF" useAllDets="true">
-				</ftr>
-			</ftr-list>
-			<dependencies>
-				<dependency ref="IncluirValordeContribuicaoINSS"/>
-				<dependency ref="PesquisarValordeContribuicaoINSS"/>
-			</dependencies>
-		</transaction>
-		
-				<transaction name="PesquisarTipodeIndiceEconomico" errorMsg="true" type="EQ">
-			<ftr-list>
-				<ftr name="TipoIndiceEconomico" ret="TipoIndiceEconomico" useAllDets="true">
-				</ftr>
-			</ftr-list>
-			<dependencies>
-				<dependency ref="IncluirTipodeIndiceEconomico"/>
-				<dependency ref="PesquisarTipodeIndiceEconomico"/>
-			</dependencies>
-		</transaction>
-		<transaction name="DetalharTipodeIndiceEconomico" errorMsg="true" type="EQ">
-			<ftr-list>
-				<ftr name="TipoIndiceEconomico" ret="TipoIndiceEconomico" useAllDets="true">
-				</ftr>
-			</ftr-list>
-			<dependencies>
-				<dependency ref="IncluirTipodeIndiceEconomico"/>
-				<dependency ref="PesquisarTipodeIndiceEconomico"/>
-			</dependencies>
-		</transaction>
-		<transaction name="PesquisarIndiceEconomico" errorMsg="true" type="EQ">
-			<ftr-list>
-				<ftr name="IndiceEconomico" ret="IndiceEconomico" useAllDets="true">
-				</ftr>
-			</ftr-list>
-			<dependencies>
-				<dependency ref="IncluirIndiceEconomico"/>
-				<dependency ref="PesquisarIndiceEconomico"/>
-			</dependencies>
-		</transaction>
-		<transaction name="DetalharIndiceEconomico" errorMsg="true" type="EQ">
-			<ftr-list>
-				<ftr name="IndiceEconomico" ret="IndiceEconomico" useAllDets="true">
-				</ftr>
-			</ftr-list>
-			<dependencies>
-				<dependency ref="IncluirIndiceEconomico"/>
-				<dependency ref="PesquisarIndiceEconomico"/>
-			</dependencies>
-		</transaction>
-		<transaction name="PesquisarValordeContribuicaoINSS" errorMsg="true" type="EQ">
-			<ftr-list>
-				<ftr name="ValorContribuicaoINSS" ret="ValorContribuicaoINSS" useAllDets="true">
-				</ftr>
-			</ftr-list>
-			<dependencies>
-				<dependency ref="IncluirValordeContribuicaoINSS"/>
-				<dependency ref="PesquisarValordeContribuicaoINSS"/>
-			</dependencies>
-		</transaction>
-		<transaction name="DetalharValordeContribuicaoINSS" errorMsg="true" type="EQ">
-			<ftr-list>
-				<ftr name="ValorContribuicaoINSS" ret="ValorContribuicaoINSS" useAllDets="true">
-				</ftr>
-				<ftr name="UF" ret="UF" useAllDets="true">
-				</ftr>
-			</ftr-list>
-			<dependencies>
-				<dependency ref="IncluirValordeContribuicaoINSS"/>
-				<dependency ref="PesquisarValordeContribuicaoINSS"/>
-			</dependencies>
-		</transaction -->
-		
 		<transaction name="IncluirSalarioContribuicao" errorMsg="true" type="EI">
 			<ftr-list>
 				<ftr name="SalarioContribuicao" ret="SalarioContribuicao" useAllDets="true">

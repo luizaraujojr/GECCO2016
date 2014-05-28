@@ -6,7 +6,6 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import br.unirio.overwork.instance.model.data.DataElement;
-import br.unirio.overwork.instance.model.data.DataFunction;
 import br.unirio.overwork.instance.model.data.RegisterElement;
 
 public class FileReference 
@@ -40,22 +39,6 @@ public class FileReference
 	public Iterable<Field> getFields()
 	{
 		return fields;
-	}
-
-	public int countDataElements(DataFunction dataFunction) 
-	{
-		int count = 0;
-		
-		if (useAllDataElements)
-			for (DataElement det : referencedRegister.getDataElements())
-				if (det.countsForTransaction(dataFunction))
-					count++;
-		
-		for (Field field : fields)
-			if (field.getDataElement().countsForTransaction(dataFunction))
-				count++;
-
-		return count;
 	}
 
 	public void markDataElements()

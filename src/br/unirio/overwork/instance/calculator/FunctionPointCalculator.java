@@ -8,6 +8,7 @@ import br.unirio.overwork.instance.model.data.DataElement;
 import br.unirio.overwork.instance.model.data.DataFunction;
 import br.unirio.overwork.instance.model.data.DataFunctionType;
 import br.unirio.overwork.instance.model.data.RegisterElement;
+import br.unirio.overwork.instance.model.transaction.Field;
 import br.unirio.overwork.instance.model.transaction.FileReference;
 import br.unirio.overwork.instance.model.transaction.Transaction;
 import br.unirio.overwork.instance.model.transaction.TransactionType;
@@ -29,7 +30,7 @@ public class FunctionPointCalculator
 				ftr.markDataElements();
 
 		for(DataFunction dataFunction : fps.getDataFunctions()) 
-			total += calculateDataFunctionValue(dataFunction);
+			total += calculateDataFunctionValue(fps, dataFunction);
 		
 		System.out.println();
 
@@ -42,7 +43,7 @@ public class FunctionPointCalculator
 	/**
 	 * Calculates the number of function points given to a data function
 	 */
-	public int calculateDataFunctionValue(DataFunction dataFunction) 
+	public int calculateDataFunctionValue(FunctionPointSystem fps, DataFunction dataFunction) 
 	{
 		int dets = 0;
 		int rets = 0;
@@ -52,7 +53,7 @@ public class FunctionPointCalculator
 			rets++;
 
 			for (DataElement det : ret.getDataElements())
-				if (det.countsForDataFunction(dataFunction))
+				if (countsForDataFunction(fps, det, dataFunction))
 					dets++;
 		}
 
@@ -98,12 +99,98 @@ public class FunctionPointCalculator
 				System.out.println("A função de dados '" + dataFunctionName + "' não foi encontrada.");
 			
 			if (dataFunction != null)
-				fields += ftr.countDataElements(dataFunction);
+				fields += countDataElements(fps, transaction, ftr, dataFunction);
 		}
 
 		System.out.println("TF " + transaction.getName() + " " + ftrs + " " + fields);
 		Complexity complexity = calculateTransactionComplexity(ftrs, fields, transaction.getType());
 		return calculateFunctionPointsTransaction(complexity, transaction.getType());
+	}
+
+	/**
+	 * Counts all data elements used by an FTR
+	 */
+	public int countDataElements(FunctionPointSystem fps, Transaction transaction, FileReference ftr, DataFunction dataFunction) 
+	{
+		int count = 0;
+		
+		if (ftr.isUseAllDataElements())
+			for (DataElement det : ftr.getReferencedRegister().getDataElements())
+				if (countsForTransaction(fps, transaction, det, dataFunction))
+					count++;
+		
+		for (Field field : ftr.getFields())
+			//if (countsForTransaction(fps, transaction, field.getDataElement(), dataFunction))
+				count++;
+
+		return count;
+	}
+	
+	/**
+	 * 
+	 */
+	public boolean countsForTransaction(FunctionPointSystem fps, Transaction transaction, DataElement det, DataFunction dataFunction)
+	{
+		if (!det.isUsed())
+			return false;
+		
+		if (det.isHasSemanticMeaning())
+			return true;
+		
+		if (det.isPrimaryKey())
+			return false;
+	
+//		if (!(det.isHasSemanticMeaning() || !det.isPrimaryKey()))
+//			return false;
+		
+		if (det.getReferencedRegister().length() == 0)
+			return true;
+		
+		RegisterElement register = fps.getRegisterElementName(det.getDataModelElement(), det.getReferencedRegister());
+
+		if (det.getDataModelElement().compareToIgnoreCase(dataFunction.getName()) == 0)
+			return false;
+	
+//		RegisterElement register = dataFunction.getRegisterElementName(det.getReferencedRegister());
+		
+//		if (det.getDataModelElement().length() == 0 && register == null)
+//			return true;
+		
+		if (transaction.containsFileReference(register))
+			return false;
+
+		return true;
+	}
+
+	/**
+	 * 
+	 */
+	public boolean countsForDataFunction(FunctionPointSystem fps, DataElement det, DataFunction dataFunction)
+	{
+		if (!det.isUsed())
+			return false;
+		
+		if (det.isHasSemanticMeaning())
+			return true;
+		
+		if (det.isPrimaryKey())
+			return false;
+	
+//		if (det.isPrimaryKey() && !det.isHasSemanticMeaning())
+//			return false;
+		
+		if (det.getReferencedRegister().length() == 0)
+			return true;
+
+//		RegisterElement register = fps.getRegisterElementName(det.getDataModelElement(), det.getReferencedRegister());
+//		
+//		if (/*det.getDataModelElement().length() == 0 && */register == null)
+//			return true;
+
+		if (det.getDataModelElement().compareToIgnoreCase(dataFunction.getName()) == 0 /*&& register != null*/)
+			return false;
+		
+		return true;
 	}
 	
 	/**

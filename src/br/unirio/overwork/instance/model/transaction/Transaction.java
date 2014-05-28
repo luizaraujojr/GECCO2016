@@ -3,6 +3,7 @@ package br.unirio.overwork.instance.model.transaction;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.unirio.overwork.instance.model.data.RegisterElement;
 import lombok.Getter;
 
 public class Transaction 
@@ -47,5 +48,14 @@ public class Transaction
 	public Iterable<Dependency> getDependencies()
 	{
 		return dependencies;
+	}
+
+	public boolean containsFileReference(RegisterElement register)
+	{
+		for (FileReference fileReference : fileReferences)
+			if (fileReference.getReferencedRegister().getDataFunction() == register.getDataFunction())
+				return true;
+		
+		return false;
 	}
 }

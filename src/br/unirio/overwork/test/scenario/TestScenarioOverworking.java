@@ -1,4 +1,4 @@
-package br.unirio.overwork.test;
+package br.unirio.overwork.test.scenario;
 
 import junit.framework.TestCase;
 import br.unirio.overwork.builders.WorkPackageProjectBuilder;

@@ -25,6 +25,15 @@ public class Report
 		return dataFunctions.get(index);
 	}
 	
+	public ReportDataFunction getDataFunctionName(String name)
+	{
+		for (ReportDataFunction df : dataFunctions)
+			if (df.getName().compareToIgnoreCase(name) == 0)
+				return df;
+		
+		return null;
+	}
+	
 	public void addDataFunction(String name, int rets, int dets, int functionPoints)
 	{
 		dataFunctions.add(new ReportDataFunction(name, rets, dets, functionPoints));
@@ -43,6 +52,15 @@ public class Report
 	public ReportTransactionFunction getTransactionFunctionIndex(int index)
 	{
 		return transactionFunctions.get(index);
+	}
+	
+	public ReportTransactionFunction getTransactionFunctionName(String name)
+	{
+		for (ReportTransactionFunction tf : transactionFunctions)
+			if (tf.getName().compareToIgnoreCase(name) == 0)
+				return tf;
+		
+		return null;
 	}
 	
 	public void addTransactionFunction(String name, int ftrs, int dets, int functionPoints)

@@ -3,7 +3,6 @@ package br.unirio.overwork.instance.calculator;
 import java.util.ArrayList;
 import java.util.List;
 
-import lombok.Getter;
 import br.unirio.overwork.instance.model.FunctionPointSystem;
 import br.unirio.overwork.instance.model.data.DataElement;
 import br.unirio.overwork.instance.model.data.DataFunction;
@@ -20,36 +19,30 @@ import br.unirio.overwork.instance.report.Report;
  */
 public class FunctionPointCalculator 
 {
-	private @Getter Report report;
-	
-	/**
-	 * Initializes a calculation process
-	 */
-	public FunctionPointCalculator ()
-	{
-		this.report = new Report();
-	}
-	
 	/**
 	 * Calculates the number of function points given to set of transactions and data functions
 	 */
-	public void calculate(FunctionPointSystem fps)
+	public Report calculate(FunctionPointSystem fps)
 	{
+		Report report = new Report();
+		
 		for (Transaction transaction : fps.getTransactions())
 			for (FileReference ftr : transaction.getFileReferences())
 				ftr.markDataElements();
 
 		for(DataFunction dataFunction : fps.getDataFunctions()) 
-			calculateDataFunctionValue(fps, dataFunction);
+			calculateDataFunctionValue(fps, report, dataFunction);
 		
 		for (Transaction transaction : fps.getTransactions())
-			calculateTransactionValue(fps, transaction);
+			calculateTransactionValue(fps, report, transaction);
+		
+		return report;
 	}
 	
 	/**
 	 * Calculates the number of function points given to a data function
 	 */
-	public void calculateDataFunctionValue(FunctionPointSystem fps, DataFunction dataFunction) 
+	public void calculateDataFunctionValue(FunctionPointSystem fps, Report report, DataFunction dataFunction) 
 	{
 		int dets = 0;
 		int rets = 0;
@@ -74,7 +67,7 @@ public class FunctionPointCalculator
 	/**
 	 * Calculates the number of function points given to a transaction
 	 */
-	public void calculateTransactionValue(FunctionPointSystem fps, Transaction transaction) 
+	public void calculateTransactionValue(FunctionPointSystem fps, Report report, Transaction transaction) 
 	{
 		List<String> dataFunctions = new ArrayList<String>();
 		int fields = transaction.getExtraDataElements();

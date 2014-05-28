@@ -22,8 +22,6 @@ public class MainInstanceLoader
 		{
 			FunctionPointSystem fps = reader.run(instanceFiles[i]);
 			new FunctionPointCalculator().calculate(fps);
-			//System.out.println("DF " + dataFunction.getName() + " " + rets + " " + dets);
-			//System.out.println("TF " + transaction.getName() + " " + ftrs + " " + fields);
 		}
 	}
 }

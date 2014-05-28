@@ -120,7 +120,7 @@ public class FunctionPointCalculator
 					count++;
 		
 		for (Field field : ftr.getFields())
-			//if (countsForTransaction(fps, transaction, field.getDataElement(), dataFunction))
+			if (field.getDataElement().isUsed())
 				count++;
 
 		return count;

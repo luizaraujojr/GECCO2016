@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system>
+	<name>Gestao De Pessoas</name>
+	<data name="Empregado" fp="15"/>
+	<data name="MotivoAfastamento" fp="7"/>
+	<data name="Estabelecimento" fp="7"/>
+	<data name="MotivoTransferencia" fp="7"/>
+	<data name="MotivoFalta" fp="7"/>
+	<data name="Verba" fp="7"/>
+	<data name="Cargo" fp="7"/>
+	<data name="Cidade" fp="5"/>
+	<data name="Escolaridade" fp="5"/>
+	<transaction name="IncluirNovoEmpregado" fp="6">
+		<depends name="Empregado"/>
+		<depends name="Cidade"/>
+		<depends name="Escolaridade"/>
+	</transaction>
+	<transaction name="AlterarEmpregado" fp="6">
+		<depends name="Empregado"/>
+		<depends name="Cidade"/>
+		<depends name="Escolaridade"/>
+		<ftr name="IncluirNovoEmpregado"/>
+		<ftr name="ConsultarEmpregado"/>
+	</transaction>
+	<transaction name="RemoverEmpregado" fp="3">
+		<depends name="Empregado"/>
+		<ftr name="IncluirNovoEmpregado"/>
+		<ftr name="ConsultarEmpregado"/>
+	</transaction>
+	<transaction name="ConsultarEmpregado" fp="3">
+		<depends name="Empregado"/>
+		<ftr name="IncluirNovoEmpregado"/>
+	</transaction>
+	<transaction name="IncluirAfastamento" fp="4">
+		<depends name="Empregado"/>
+		<depends name="MotivoAfastamento"/>
+		<ftr name="IncluirNovoEmpregado"/>
+		<ftr name="IncluirMotivoDeAfastamento"/>
+	</transaction>
+	<transaction name="AlterarAfastamento" fp="4">
+		<depends name="Empregado"/>
+		<depends name="MotivoAfastamento"/>
+		<ftr name="IncluirAfastamento"/>
+		<ftr name="ConsultarAfastamentos"/>
+	</transaction>
+	<transaction name="CancelarAfastamento" fp="3">
+		<depends name="Empregado"/>
+		<ftr name="IncluirAfastamento"/>
+		<ftr name="ConsultarAfastamentos"/>
+	</transaction>
+	<transaction name="ConsultarAfastamentos" fp="4">
+		<depends name="Empregado"/>
+		<depends name="MotivoAfastamento"/>
+		<ftr name="IncluirAfastamento"/>
+	</transaction>
+	<transaction name="DesignarGerencia" fp="4">
+		<depends name="Empregado"/>
+		<depends name="Estabelecimento"/>
+		<ftr name="IncluirNovoEmpregado"/>
+		<ftr name="IncluirCentroDeCusto"/>
+	</transaction>
+	<transaction name="AlterarDesignacaoDeGerencia" fp="4">
+		<depends name="Empregado"/>
+		<depends name="Estabelecimento"/>
+		<ftr name="DesignarGerencia"/>
+		<ftr name="ConsultarDesignacaoDeGerencia"/>
+	</transaction>
+	<transaction name="RemoverDesignacaoDeGerencia" fp="3">
+		<depends name="Empregado"/>
+		<ftr name="DesignarGerencia"/>
+		<ftr name="ConsultarDesignacaoDeGerencia"/>
+	</transaction>
+	<transaction name="ConsultarDesignacaoDeGerencia" fp="4">
+		<depends name="Empregado"/>
+		<depends name="Estabelecimento"/>
+		<ftr name="DesignarGerencia"/>
+	</transaction>
+	<transaction name="IncluirLotacao" fp="4">
+		<depends name="Empregado"/>
+		<depends name="Estabelecimento"/>
+		<ftr name="IncluirNovoEmpregado"/>
+		<ftr name="IncluirCentroDeCusto"/>
+		<ftr name="IncluirMotivoDeTransferencia"/>
+	</transaction>
+	<transaction name="RemoverLotacao" fp="3">
+		<depends name="Empregado"/>
+		<ftr name="IncluirLotacao"/>
+		<ftr name="ConsultarLotacoes"/>
+	</transaction>
+	<transaction name="ConsultarLotacoes" fp="3">
+		<depends name="Empregado"/>
+		<ftr name="IncluirLotacao"/>
+	</transaction>
+	<transaction name="IncluirFalta" fp="4">
+		<depends name="Empregado"/>
+		<depends name="MotivoFalta"/>
+		<ftr name="IncluirNovoEmpregado"/>
+		<ftr name="IncluirMotivoDeFalta"/>
+	</transaction>
+	<transaction name="AbonarFalta" fp="4">
+		<depends name="Empregado"/>
+		<depends name="MotivoFalta"/>
+		<ftr name="IncluirFalta"/>
+		<ftr name="ConsultarFaltas"/>
+		<ftr name="DesignarGerencia"/>
+	</transaction>
+	<transaction name="RemoverFalta" fp="3">
+		<depends name="Empregado"/>
+		<ftr name="IncluirFalta"/>
+		<ftr name="ConsultarFaltas"/>
+	</transaction>
+	<transaction name="AlterarFalta" fp="3">
+		<depends name="Empregado"/>
+		<ftr name="IncluirFalta"/>
+		<ftr name="ConsultarFaltas"/>
+	</transaction>
+	<transaction name="ConsultarFaltas" fp="3">
+		<depends name="Empregado"/>
+		<ftr name="IncluirFalta"/>
+	</transaction>
+	<transaction name="IncluirHoraExtra" fp="3">
+		<depends name="Empregado"/>
+		<ftr name="IncluirNovoEmpregado"/>
+		<ftr name="DesignarGerencia"/>
+	</transaction>
+	<transaction name="AlterarHoraExtra" fp="3">
+		<depends name="Empregado"/>
+		<ftr name="IncluirHoraExtra"/>
+		<ftr name="ConsultarHorasExtras"/>
+	</transaction>
+	<transaction name="RemoverHoraExtra" fp="3">
+		<depends name="Empregado"/>
+		<ftr name="IncluirHoraExtra"/>
+		<ftr name="ConsultarHorasExtras"/>
+	</transaction>
+	<transaction name="ConsultarHorasExtras" fp="3">
+		<depends name="Empregado"/>
+		<ftr name="IncluirHoraExtra"/>
+	</transaction>
+	<transaction name="AssociarCargoAEmpregado" fp="4">
+		<depends name="Empregado"/>
+		<depends name="Cargo"/>
+		<ftr name="IncluirNovoEmpregado"/>
+		<ftr name="IncluirCargo"/>
+	</transaction>
+	<transaction name="RemoverCargoDeEmpregado" fp="4">
+		<depends name="Empregado"/>
+		<depends name="Cargo"/>
+		<ftr name="AssociarCargoAEmpregado"/>
+		<ftr name="ConsultarCargosDeEmpregado"/>
+	</transaction>
+	<transaction name="ConsultarCargosDeEmpregado" fp="3">
+		<depends name="Empregado"/>
+		<depends name="Cargo"/>
+		<ftr name="AssociarCargoAEmpregado"/>
+	</transaction>
+	<transaction name="IncluirEstabelecimento" fp="3">
+		<depends name="Estabelecimento"/>
+	</transaction>
+	<transaction name="RemoverEstabelecimento" fp="3">
+		<depends name="Estabelecimento"/>
+		<ftr name="IncluirEstabelecimento"/>
+		<ftr name="ConsultarEstabelecimento"/>
+	</transaction>
+	<transaction name="AlterarEstabelecimento" fp="3">
+		<depends name="Estabelecimento"/>
+		<ftr name="IncluirEstabelecimento"/>
+		<ftr name="ConsultarEstabelecimento"/>
+	</transaction>
+	<transaction name="ConsultarEstabelecimento" fp="3">
+		<depends name="Estabelecimento"/>
+		<ftr name="IncluirEstabelecimento"/>
+	</transaction>
+	<transaction name="IncluirCentroDeCusto" fp="3">
+		<depends name="Estabelecimento"/>
+		<ftr name="IncluirEstabelecimento"/>
+	</transaction>
+	<transaction name="AlterarCentroDeCusto" fp="3">
+		<depends name="Estabelecimento"/>
+		<ftr name="IncluirCentroDeCusto"/>
+		<ftr name="ConsultarCentroDeCusto"/>
+	</transaction>
+	<transaction name="RemoverCentroDeCusto" fp="3">
+		<depends name="Estabelecimento"/>
+		<ftr name="IncluirCentroDeCusto"/>
+		<ftr name="ConsultarCentroDeCusto"/>
+	</transaction>
+	<transaction name="ConsultarCentroDeCusto" fp="3">
+		<depends name="Estabelecimento"/>
+		<ftr name="IncluirCentroDeCusto"/>
+	</transaction>
+	<transaction name="IncluirMotivoDeAfastamento" fp="3">
+		<depends name="MotivoAfastamento"/>
+	</transaction>
+	<transaction name="RemoverMotivoDeAfastamento" fp="3">
+		<depends name="MotivoAfastamento"/>
+		<ftr name="IncluirMotivoDeAfastamento"/>
+		<ftr name="ConsultarMotivosDeAfastamento"/>
+	</transaction>
+	<transaction name="AlterarMotivoDeAfastamento" fp="3">
+		<depends name="MotivoAfastamento"/>
+		<ftr name="IncluirMotivoDeAfastamento"/>
+		<ftr name="ConsultarMotivosDeAfastamento"/>
+	</transaction>
+	<transaction name="ConsultarMotivosDeAfastamento" fp="3">
+		<depends name="MotivoAfastamento"/>
+		<ftr name="IncluirMotivoDeAfastamento"/>
+	</transaction>
+	<transaction name="IncluirMotivoDeFalta" fp="3">
+		<depends name="MotivoFalta"/>
+	</transaction>
+	<transaction name="RemoverMotivoDeFalta" fp="3">
+		<depends name="MotivoFalta"/>
+		<ftr name="IncluirMotivoDeFalta"/>
+		<ftr name="ConsultarMotivosDeFalta"/>
+	</transaction>
+	<transaction name="AlterarMotivoDeFalta" fp="3">
+		<depends name="MotivoFalta"/>
+		<ftr name="IncluirMotivoDeFalta"/>
+		<ftr name="ConsultarMotivosDeFalta"/>
+	</transaction>
+	<transaction name="ConsultarMotivosDeFalta" fp="3">
+		<depends name="MotivoFalta"/>
+		<ftr name="IncluirMotivoDeFalta"/>
+	</transaction>
+	<transaction name="IncluirMotivoDeTransferencia" fp="3">
+		<depends name="MotivoTransferencia"/>
+	</transaction>
+	<transaction name="RemoverMotivoDeTransferencia" fp="3">
+		<depends name="MotivoTransferencia"/>
+		<ftr name="IncluirMotivoDeTransferencia"/>
+		<ftr name="ConsultarMotivosDeTransferencia"/>
+	</transaction>
+	<transaction name="AlterarMotivoDeTransferencia" fp="3">
+		<depends name="MotivoTransferencia"/>
+		<ftr name="IncluirMotivoDeTransferencia"/>
+		<ftr name="ConsultarMotivosDeTransferencia"/>
+	</transaction>
+	<transaction name="ConsultarMotivosDeTransferencia" fp="3">
+		<depends name="MotivoTransferencia"/>
+		<ftr name="IncluirMotivoDeTransferencia"/>
+	</transaction>
+	<transaction name="IncluirVerba" fp="3">
+		<depends name="Verba"/>
+	</transaction>
+	<transaction name="RemoverVerba" fp="3">
+		<depends name="Verba"/>
+		<ftr name="IncluirVerba"/>
+		<ftr name="ConsultarVerbas"/>
+	</transaction>
+	<transaction name="AlteraVerba" fp="3">
+		<depends name="Verba"/>
+		<ftr name="IncluirVerba"/>
+		<ftr name="ConsultarVerbas"/>
+	</transaction>
+	<transaction name="ConsultarVerbas" fp="3">
+		<depends name="Verba"/>
+		<ftr name="IncluirVerba"/>
+	</transaction>
+	<transaction name="IncluirCargo" fp="3">
+		<depends name="Cargo"/>
+	</transaction>
+	<transaction name="RemoverCargo" fp="3">
+		<depends name="Cargo"/>
+		<ftr name="IncluirCargo"/>
+		<ftr name="ConsultarCargos"/>
+	</transaction>
+	<transaction name="AlteraCargo" fp="3">
+		<depends name="Cargo"/>
+		<ftr name="IncluirCargo"/>
+		<ftr name="ConsultarCargos"/>
+	</transaction>
+	<transaction name="ConsultarCargos" fp="3">
+		<depends name="Cargo"/>
+		<ftr name="IncluirCargo"/>
+	</transaction>
+	<transaction name="IncluirSalarioDoCargo" fp="3">
+		<depends name="Cargo"/>
+		<ftr name="IncluirCargo"/>
+	</transaction>
+	<transaction name="RemoverSalarioDoCargo" fp="3">
+		<depends name="Cargo"/>
+		<ftr name="IncluirSalarioDoCargo"/>
+		<ftr name="ConsultarSalariosDoCargo"/>
+	</transaction>
+	<transaction name="AlteraSalarioDoCargo" fp="3">
+		<depends name="Cargo"/>
+		<ftr name="IncluirSalarioDoCargo"/>
+		<ftr name="ConsultarSalariosDoCargo"/>
+	</transaction>
+	<transaction name="ConsultarSalariosDoCargo" fp="3">
+		<depends name="Cargo"/>
+		<ftr name="IncluirSalarioDoCargo"/>
+	</transaction>
+	<transaction name="ProcessarFolha" fp="7">
+		<depends name="Empregado"/>
+		<depends name="Verba"/>
+		<depends name="Cargo"/>
+		<ftr name="IncluirVerba"/>
+		<ftr name="IncluirNovoEmpregado"/>
+		<ftr name="IncluirHoraExtra"/>
+		<ftr name="IncluirSalarioDoCargo"/>
+		<ftr name="DesignarGerencia"/>
+		<ftr name="IncluirAfastamento"/>
+		<ftr name="AssociarCargoAEmpregado"/>
+		<ftr name="IncluirFalta"/>
+		<ftr name="IncluirHoraExtra"/>
+		<ftr name="IncluirLotacao"/>
+	</transaction>
+	<transaction name="AdicionarVerbaParaEmpregado" fp="4">
+		<depends name="Empregado"/>
+		<depends name="Verba"/>
+		<ftr name="IncluirVerba"/>
+		<ftr name="IncluirNovoEmpregado"/>
+		<ftr name="ProcessarFolha"/>
+	</transaction>
+	<transaction name="RemoverVerbaDeEmpregado" fp="4">
+		<depends name="Empregado"/>
+		<depends name="Verba"/>
+		<ftr name="ProcessarFolha"/>
+		<ftr name="VisualizarContraCheques"/>
+	</transaction>
+	<transaction name="AlterarVerbaDeEmpregado" fp="4">
+		<depends name="Empregado"/>
+		<depends name="Verba"/>
+		<ftr name="ProcessarFolha"/>
+		<ftr name="VisualizarContraCheques"/>
+	</transaction>
+	<transaction name="VisualizarContraCheques" fp="4">
+		<depends name="Empregado"/>
+		<depends name="Verba"/>
+		<ftr name="ProcessarFolha"/>
+	</transaction>
+	<transaction name="VisualizarProprioContraCheque" fp="4">
+		<depends name="Empregado"/>
+		<depends name="Verba"/>
+		<ftr name="ProcessarFolha"/>
+	</transaction>
+</system>

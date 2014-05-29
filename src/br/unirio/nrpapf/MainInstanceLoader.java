@@ -3,8 +3,8 @@ package br.unirio.nrpapf;
 import br.unirio.nrpapf.calculator.FunctionPointCalculator;
 import br.unirio.nrpapf.model.FunctionPointSystem;
 import br.unirio.nrpapf.reader.InstanceReader;
+import br.unirio.nrpapf.report.OverworkPublisher;
 import br.unirio.nrpapf.report.Report;
-import br.unirio.nrpapf.report.TestCasePublisher;
 
 public class MainInstanceLoader
 {
@@ -26,8 +26,10 @@ public class MainInstanceLoader
 			FunctionPointSystem fps = reader.run(instanceFilename);
 			Report report = new FunctionPointCalculator().calculate(fps);
 
-			String instanceName = instanceFilename.substring(15, instanceFilename.lastIndexOf('/'));
-			new TestCasePublisher().run(report, instanceFilename, "TestReader" + instanceName);
+//			String instanceName = instanceFilename.substring(15, instanceFilename.lastIndexOf('/'));
+//			new TestCasePublisher().run(report, instanceFilename, "TestReader" + instanceName);
+
+			new OverworkPublisher().run(fps, report);
 		}
 	}
 }

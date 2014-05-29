@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system>
+	<name>Parametros</name>
+	<data name="ParametrosLegais" fp="7"/>
+	<data name="ImpostoDeRenda" fp="7"/>
+	<data name="ImpostoDeRendaExterior" fp="7"/>
+	<data name="FundamentacaoLegal" fp="7"/>
+	<data name="PrevalenciaConsignacao" fp="7"/>
+	<data name="SalarioFamilia" fp="7"/>
+	<data name="IndiceDeReajusteRGPS" fp="7"/>
+	<data name="Teto" fp="7"/>
+	<data name="SalarioMinimoGrupoBeneficio" fp="7"/>
+	<data name="CoeficienteReajustamentoBaseSM" fp="7"/>
+	<data name="IndiceReajusteBuracoNegro" fp="7"/>
+	<data name="SalarioContribuicao" fp="7"/>
+	<data name="UF" fp="5"/>
+	<data name="Rubrica" fp="5"/>
+	<data name="SalarioMinimoRegionalizado" fp="5"/>
+	<data name="LocalDeTrabalho" fp="5"/>
+	<data name="EspecieBeneficio" fp="5"/>
+	<data name="Tratamento" fp="5"/>
+	<data name="FatorDeAtualizacao" fp="5"/>
+	<data name="TaxaConversaoMoeda" fp="5"/>
+	<data name="CotacaoValorAtualizacao" fp="5"/>
+	<transaction name="IncluirTipoFundamentacaoLegal" fp="3">
+		<depends name="TipoFundamentacaoLegal"/>
+	</transaction>
+	<transaction name="AlterarTipoFundamentacaoLegal" fp="3">
+		<depends name="TipoFundamentacaoLegal"/>
+		<ftr name="IncluirTipoFundamentacaoLegal"/>
+		<ftr name="PesquisarTipoFundamentacaoLegal"/>
+	</transaction>
+	<transaction name="ExcluirTipoFundamentacaoLegal" fp="3">
+		<depends name="TipoFundamentacaoLegal"/>
+		<ftr name="IncluirTipoFundamentacaoLegal"/>
+		<ftr name="PesquisarTipoFundamentacaoLegal"/>
+	</transaction>
+	<transaction name="PesquisarTipoFundamentacaoLegal" fp="3">
+		<depends name="TipoFundamentacaoLegal"/>
+		<ftr name="IncluirTipoFundamentacaoLegal"/>
+	</transaction>
+	<transaction name="DetalharTipoFundamentacaoLegal" fp="3">
+		<depends name="TipoFundamentacaoLegal"/>
+		<ftr name="IncluirTipoFundamentacaoLegal"/>
+		<ftr name="PesquisarTipoFundamentacaoLegal"/>
+	</transaction>
+	<transaction name="IncluirReferenciaFundamentacaoLegal" fp="3">
+		<depends name="ReferenciaFundamentacaoLegal"/>
+	</transaction>
+	<transaction name="AlterarReferenciaFundamentacaoLegal" fp="3">
+		<depends name="ReferenciaFundamentacaoLegal"/>
+		<ftr name="IncluirReferenciaFundamentacaoLegal"/>
+		<ftr name="PesquisarReferenciaFundamentacaoLegal"/>
+	</transaction>
+	<transaction name="ExcluirReferenciaFundamentacaoLegal" fp="3">
+		<depends name="ReferenciaFundamentacaoLegal"/>
+		<ftr name="IncluirReferenciaFundamentacaoLegal"/>
+		<ftr name="PesquisarReferenciaFundamentacaoLegal"/>
+	</transaction>
+	<transaction name="PesquisarReferenciaFundamentacaoLegal" fp="3">
+		<depends name="ReferenciaFundamentacaoLegal"/>
+		<ftr name="IncluirReferenciaFundamentacaoLegal"/>
+	</transaction>
+	<transaction name="DetalharReferenciaFundamentacaoLegal" fp="3">
+		<depends name="ReferenciaFundamentacaoLegal"/>
+		<ftr name="IncluirReferenciaFundamentacaoLegal"/>
+		<ftr name="PesquisarReferenciaFundamentacaoLegal"/>
+	</transaction>
+	<transaction name="IncluirAutoridadeEmissora" fp="3">
+		<depends name="EntidadeEmissora"/>
+	</transaction>
+	<transaction name="AlterarAutoridadeEmissora" fp="3">
+		<depends name="EntidadeEmissora"/>
+		<ftr name="IncluirAutoridadeEmissora"/>
+		<ftr name="PesquisarAutoridadeEmissora"/>
+	</transaction>
+	<transaction name="ExcluirAutoridadeEmissora" fp="3">
+		<depends name="EntidadeEmissora"/>
+		<ftr name="IncluirAutoridadeEmissora"/>
+		<ftr name="PesquisarAutoridadeEmissora"/>
+	</transaction>
+	<transaction name="PesquisarAutoridadeEmissora" fp="3">
+		<depends name="EntidadeEmissora"/>
+		<ftr name="IncluirAutoridadeEmissora"/>
+	</transaction>
+	<transaction name="DetalharAutoridadeEmissora" fp="3">
+		<depends name="EntidadeEmissora"/>
+		<ftr name="IncluirAutoridadeEmissora"/>
+		<ftr name="PesquisarAutoridadeEmissora"/>
+	</transaction>
+	<transaction name="IncluirFundamentacaoLegal" fp="3">
+		<depends name="FundamentacaoLegal"/>
+		<depends name="EntidadeEmissora"/>
+		<depends name="ReferenciaFundamentacaoLegal"/>
+		<depends name="TipoFundamentacaoLegal"/>
+		<ftr name="IncluirTipoFundamentacaoLegal"/>
+		<ftr name="IncluirAutoridadeEmissora"/>
+		<ftr name="IncluirReferenciaFundamentacaoLegal"/>
+	</transaction>
+	<transaction name="AlterarFundamentacaoLegal" fp="3">
+		<depends name="FundamentacaoLegal"/>
+		<depends name="EntidadeEmissora"/>
+		<depends name="ReferenciaFundamentacaoLegal"/>
+		<depends name="TipoFundamentacaoLegal"/>
+		<ftr name="IncluirFundamentacaoLegal"/>
+		<ftr name="PesquisarFundamentacaoLegal"/>
+	</transaction>
+	<transaction name="ExcluirFundamentacaoLegal" fp="3">
+		<depends name="FundamentacaoLegal"/>
+		<ftr name="IncluirFundamentacaoLegal"/>
+		<ftr name="PesquisarFundamentacaoLegal"/>
+	</transaction>
+	<transaction name="PesquisarFundamentacaoLegal" fp="3">
+		<depends name="FundamentacaoLegal"/>
+		<depends name="EntidadeEmissora"/>
+		<depends name="ReferenciaFundamentacaoLegal"/>
+		<depends name="TipoFundamentacaoLegal"/>
+		<ftr name="IncluirFundamentacaoLegal"/>
+	</transaction>
+	<transaction name="DetalharFundamentacaoLegal" fp="3">
+		<depends name="FundamentacaoLegal"/>
+		<depends name="EntidadeEmissora"/>
+		<depends name="ReferenciaFundamentacaoLegal"/>
+		<depends name="TipoFundamentacaoLegal"/>
+		<ftr name="IncluirFundamentacaoLegal"/>
+		<ftr name="PesquisarFundamentacaoLegal"/>
+	</transaction>
+	<transaction name="IncluirImpostoDeRenda" fp="4">
+		<depends name="ImpostoDeRenda"/>
+		<depends name="FundamentacaoLegal"/>
+		<depends name="EntidadeEmissora"/>
+		<ftr name="IncluirFundamentacaoLegal"/>
+	</transaction>
+	<transaction name="AlterarImpostoDeRenda" fp="4">
+		<depends name="ImpostoDeRenda"/>
+		<depends name="FundamentacaoLegal"/>
+		<depends name="EntidadeEmissora"/>
+		<ftr name="IncluirImpostoDeRenda"/>
+		<ftr name="PesquisarImpostoDeRenda"/>
+	</transaction>
+	<transaction name="ExcluirImpostoDeRenda" fp="3">
+		<depends name="ImpostoDeRenda"/>
+		<ftr name="IncluirImpostoDeRenda"/>
+		<ftr name="PesquisarImpostoDeRenda"/>
+	</transaction>
+	<transaction name="PesquisarImpostoDeRenda" fp="4">
+		<depends name="ImpostoDeRenda"/>
+		<depends name="FundamentacaoLegal"/>
+		<depends name="EntidadeEmissora"/>
+		<ftr name="IncluirImpostoDeRenda"/>
+	</transaction>
+	<transaction name="DetalharImpostoDeRenda" fp="4">
+		<depends name="ImpostoDeRenda"/>
+		<depends name="FundamentacaoLegal"/>
+		<depends name="EntidadeEmissora"/>
+		<ftr name="IncluirImpostoDeRenda"/>
+		<ftr name="PesquisarImpostoDeRenda"/>
+	</transaction>
+	<transaction name="IncluirAliquotaImpostoDeRenda" fp="4">
+		<depends name="ImpostoDeRenda"/>
+		<depends name="FundamentacaoLegal"/>
+		<depends name="EntidadeEmissora"/>
+		<ftr name="IncluirImpostoDeRenda"/>
+	</transaction>
+	<transaction name="AlterarAliquotaImpostoDeRenda" fp="4">
+		<depends name="ImpostoDeRenda"/>
+		<depends name="FundamentacaoLegal"/>
+		<depends name="EntidadeEmissora"/>
+		<ftr name="IncluirAliquotaImpostoDeRenda"/>
+	</transaction>
+	<transaction name="ExcluirAliquotaImpostoDeRenda" fp="4">
+		<depends name="ImpostoDeRenda"/>
+		<depends name="FundamentacaoLegal"/>
+		<depends name="EntidadeEmissora"/>
+		<ftr name="IncluirAliquotaImpostoDeRenda"/>
+	</transaction>
+	<transaction name="DetalharAliquotaImpostoDeRenda" fp="4">
+		<depends name="ImpostoDeRenda"/>
+		<depends name="FundamentacaoLegal"/>
+		<depends name="EntidadeEmissora"/>
+		<ftr name="IncluirAliquotaImpostoDeRenda"/>
+	</transaction>
+	<transaction name="IncluirImpostoDeRendaExterior" fp="4">
+		<depends name="ImpostoDeRendaExterior"/>
+		<depends name="FundamentacaoLegal"/>
+		<depends name="EntidadeEmissora"/>
+		<ftr name="IncluirFundamentacaoLegal"/>
+	</transaction>
+	<transaction name="AlterarImpostoDeRendaExterior" fp="4">
+		<depends name="ImpostoDeRendaExterior"/>
+		<depends name="EntidadeEmissora"/>
+		<ftr name="IncluirImpostoDeRendaExterior"/>
+		<ftr name="PesquisarImpostoDeRendaExterior"/>
+	</transaction>
+	<transaction name="ExcluirImpostoDeRendaExterior" fp="3">
+		<depends name="ImpostoDeRendaExterior"/>
+		<ftr name="IncluirImpostoDeRendaExterior"/>
+		<ftr name="PesquisarImpostoDeRendaExterior"/>
+	</transaction>
+	<transaction name="PesquisarImpostoDeRendaExterior" fp="3">
+		<depends name="ImpostoDeRendaExterior"/>
+		<depends name="EntidadeEmissora"/>
+		<ftr name="IncluirImpostoDeRendaExterior"/>
+	</transaction>
+	<transaction name="DetalharImpostoDeRendaExterior" fp="3">
+		<depends name="ImpostoDeRendaExterior"/>
+		<depends name="EntidadeEmissora"/>
+		<ftr name="IncluirImpostoDeRendaExterior"/>
+		<ftr name="PesquisarImpostoDeRendaExterior"/>
+	</transaction>
+	<transaction name="IncluirSalarioFamilia" fp="3">
+		<depends name="SalarioFamilia"/>
+		<depends name="EntidadeEmissora"/>
+		<ftr name="IncluirFundamentacaoLegal"/>
+	</transaction>
+	<transaction name="AlterarSalarioFamilia" fp="4">
+		<depends name="SalarioFamilia"/>
+		<depends name="EntidadeEmissora"/>
+		<ftr name="IncluirSalarioFamilia"/>
+		<ftr name="PesquisarSalarioFamilia"/>
+	</transaction>
+	<transaction name="ExcluirSalarioFamilia" fp="3">
+		<depends name="SalarioFamilia"/>
+		<ftr name="IncluirSalarioFamilia"/>
+		<ftr name="PesquisarSalarioFamilia"/>
+	</transaction>
+	<transaction name="PesquisarSalarioFamilia" fp="4">
+		<depends name="SalarioFamilia"/>
+		<depends name="FundamentacaoLegal"/>
+		<ftr name="IncluirSalarioFamilia"/>
+	</transaction>
+	<transaction name="DetalharSalarioFamilia" fp="4">
+		<depends name="SalarioFamilia"/>
+		<depends name="EntidadeEmissora"/>
+		<ftr name="IncluirSalarioFamilia"/>
+		<ftr name="PesquisarSalarioFamilia"/>
+	</transaction>
+	<transaction name="IncluirFaixaSalarioFamilia" fp="3">
+		<depends name="SalarioFamilia"/>
+		<ftr name="IncluirSalarioFamilia"/>
+	</transaction>
+	<transaction name="AlterarFaixaSalarioFamilia" fp="3">
+		<depends name="SalarioFamilia"/>
+		<ftr name="IncluirFaixaSalarioFamilia"/>
+	</transaction>
+	<transaction name="ExcluirFaixaSalarioFamilia" fp="3">
+		<depends name="SalarioFamilia"/>
+		<ftr name="IncluirFaixaSalarioFamilia"/>
+	</transaction>
+	<transaction name="DetalharFaixaSalarioFamilia" fp="4">
+		<depends name="SalarioFamilia"/>
+		<depends name="EntidadeEmissora"/>
+		<ftr name="IncluirFaixaSalarioFamilia"/>
+	</transaction>
+	<transaction name="IncluirParametroLegal" fp="3">
+		<depends name="ParametrosLegais"/>
+	</transaction>
+	<transaction name="AlterarParametroLegal" fp="3">
+		<depends name="ParametrosLegais"/>
+		<ftr name="IncluirParametroLegal"/>
+		<ftr name="PesquisarParametrosLegais"/>
+	</transaction>
+	<transaction name="ExcluirParametroLegal" fp="3">
+		<depends name="ParametrosLegais"/>
+		<ftr name="IncluirParametroLegal"/>
+		<ftr name="PesquisarParametrosLegais"/>
+	</transaction>
+	<transaction name="PesquisarParametrosLegais" fp="3">
+		<depends name="ParametrosLegais"/>
+		<ftr name="IncluirParametroLegal"/>
+	</transaction>
+	<transaction name="DetalharParametrosLegais" fp="3">
+		<depends name="ParametrosLegais"/>
+		<ftr name="IncluirParametroLegal"/>
+		<ftr name="PesquisarParametrosLegais"/>
+	</transaction>
+	<transaction name="IncluirPrevalenciaConsignacao" fp="3">
+		<depends name="PrevalenciaConsignacao"/>
+	</transaction>
+	<transaction name="AlterarPrevalenciaConsginacao" fp="3">
+		<depends name="PrevalenciaConsignacao"/>
+		<ftr name="IncluirPrevalenciaConsignacao"/>
+		<ftr name="PesquisarPrevalenciaConsignacao"/>
+	</transaction>
+	<transaction name="ExcluirPrevalenciaConsignacao" fp="3">
+		<depends name="PrevalenciaConsignacao"/>
+		<ftr name="IncluirPrevalenciaConsignacao"/>
+		<ftr name="PesquisarPrevalenciaConsignacao"/>
+	</transaction>
+	<transaction name="PesquisarPrevalenciaConsignacao" fp="4">
+		<depends name="PrevalenciaConsignacao"/>
+		<depends name="Rubrica"/>
+		<ftr name="IncluirPrevalenciaConsignacao"/>
+		<ftr name="PesquisarPrevalenciaConsignacao"/>
+	</transaction>
+	<transaction name="DetalharPrevalenciaConsignacao" fp="4">
+		<depends name="PrevalenciaConsignacao"/>
+		<depends name="Rubrica"/>
+		<ftr name="IncluirPrevalenciaConsignacao"/>
+		<ftr name="PesquisarPrevalenciaConsignacao"/>
+	</transaction>
+	<transaction name="DetalharVigenciaPrevalenciaConsignacao" fp="3">
+		<depends name="PrevalenciaConsignacao"/>
+		<depends name="Rubrica"/>
+		<ftr name="DetalharPrevalenciaConsignacao"/>
+	</transaction>
+	<transaction name="IncluirIndiceReajusteRGPS" fp="4">
+		<depends name="IndiceDeReajusteRGPS"/>
+		<depends name="EntidadeEmissora"/>
+		<ftr name="IncluirFundamentacaoLegal"/>
+	</transaction>
+	<transaction name="AlterarIndiceReajusteRGPS" fp="4">
+		<depends name="IndiceDeReajusteRGPS"/>
+		<depends name="EntidadeEmissora"/>
+		<ftr name="IncluirIndiceReajusteRGPS"/>
+		<ftr name="PesquisarIndiceReajusteRGPS"/>
+	</transaction>
+	<transaction name="ExcluirIndiceReajusteRGPS" fp="3">
+		<depends name="IndiceDeReajusteRGPS"/>
+		<ftr name="IncluirIndiceReajusteRGPS"/>
+		<ftr name="PesquisarIndiceReajusteRGPS"/>
+	</transaction>
+	<transaction name="PesquisarIndiceReajusteRGPS" fp="3">
+		<depends name="IndiceDeReajusteRGPS"/>
+		<ftr name="IncluirIndiceReajusteRGPS"/>
+		<ftr name="PesquisarIndiceReajusteRGPS"/>
+	</transaction>
+	<transaction name="DetalharIndiceReajusteRGPS" fp="3">
+		<depends name="IndiceDeReajusteRGPS"/>
+		<ftr name="IncluirIndiceReajusteRGPS"/>
+		<ftr name="PesquisarIndiceReajusteRGPS"/>
+	</transaction>
+	<transaction name="IncluirTeto" fp="3">
+		<depends name="Teto"/>
+		<ftr name="IncluirTipoTeto"/>
+	</transaction>
+	<transaction name="AlterarTeto" fp="3">
+		<depends name="Teto"/>
+		<ftr name="IncluirTeto"/>
+		<ftr name="PesquisarTeto"/>
+	</transaction>
+	<transaction name="ExcluirTeto" fp="3">
+		<depends name="Teto"/>
+		<ftr name="IncluirTeto"/>
+		<ftr name="PesquisarTeto"/>
+	</transaction>
+	<transaction name="PesquisarTeto" fp="3">
+		<depends name="Teto"/>
+		<ftr name="IncluirTeto"/>
+	</transaction>
+	<transaction name="DetalharTeto" fp="3">
+		<depends name="Teto"/>
+		<ftr name="IncluirTeto"/>
+		<ftr name="PesquisarTeto"/>
+	</transaction>
+	<transaction name="IncluirTipoTeto" fp="3">
+		<depends name="Teto"/>
+	</transaction>
+	<transaction name="AlterarTipoTeto" fp="3">
+		<depends name="Teto"/>
+		<ftr name="IncluirTipoTeto"/>
+		<ftr name="PesquisarTipoTeto"/>
+	</transaction>
+	<transaction name="ExcluirTipoTeto" fp="3">
+		<depends name="Teto"/>
+		<ftr name="IncluirTipoTeto"/>
+		<ftr name="PesquisarTipoTeto"/>
+	</transaction>
+	<transaction name="PesquisarTipoTeto" fp="3">
+		<depends name="Teto"/>
+		<ftr name="IncluirTipoTeto"/>
+	</transaction>
+	<transaction name="DetalharTipoTeto" fp="3">
+		<depends name="Teto"/>
+		<ftr name="IncluirTipoTeto"/>
+		<ftr name="PesquisarTipoTeto"/>
+	</transaction>
+	<transaction name="IncluirSalarioContribuicao" fp="4">
+		<depends name="SalarioContribuicao"/>
+		<depends name="UF"/>
+	</transaction>
+	<transaction name="AlterarSalarioContribuicao" fp="4">
+		<depends name="SalarioContribuicao"/>
+		<depends name="UF"/>
+		<ftr name="IncluirSalarioContribuicao"/>
+		<ftr name="PesquisarSalarioContribuicao"/>
+	</transaction>
+	<transaction name="ExcluirSalarioContribuicao" fp="4">
+		<depends name="SalarioContribuicao"/>
+		<depends name="UF"/>
+		<ftr name="IncluirSalarioContribuicao"/>
+		<ftr name="PesquisarSalarioContribuicao"/>
+	</transaction>
+	<transaction name="PesquisarSalarioContribuicao" fp="4">
+		<depends name="SalarioContribuicao"/>
+		<depends name="UF"/>
+		<ftr name="IncluirSalarioContribuicao"/>
+	</transaction>
+	<transaction name="DetalharSalarioContribuicao" fp="4">
+		<depends name="SalarioContribuicao"/>
+		<depends name="UF"/>
+		<ftr name="IncluirSalarioContribuicao"/>
+		<ftr name="PesquisarSalarioContribuicao"/>
+	</transaction>
+	<transaction name="PesquisarSalarioMinimoRegionalizado" fp="4">
+		<depends name="SalarioMinimoRegionalizado"/>
+		<depends name="LocalDeTrabalho"/>
+	</transaction>
+	<transaction name="DetalharSalarioMinimoRegionalizado" fp="3">
+		<depends name="SalarioMinimoRegionalizado"/>
+		<ftr name="PesquisarSalarioMinimoRegionalizado"/>
+	</transaction>
+	<transaction name="PesquisarLocaisdeTrabalho" fp="3">
+		<depends name="LocalDeTrabalho"/>
+	</transaction>
+	<transaction name="DetalharLocaisdeTrabalho" fp="3">
+		<depends name="LocalDeTrabalho"/>
+		<ftr name="PesquisarLocaisdeTrabalho"/>
+	</transaction>
+	<transaction name="PesquisarEspecieBeneficio" fp="3">
+		<depends name="EspecieBeneficio"/>
+	</transaction>
+	<transaction name="DetalharEspecieBeneficio" fp="3">
+		<depends name="EspecieBeneficio"/>
+		<ftr name="PesquisarEspecieBeneficio"/>
+	</transaction>
+	<transaction name="PesquisarTratamento" fp="3">
+		<depends name="Tratamento"/>
+	</transaction>
+	<transaction name="DetalharTratamento" fp="3">
+		<depends name="Tratamento"/>
+		<ftr name="PesquisarTratamento"/>
+	</transaction>
+	<transaction name="PesquisarFatorAtualizacao" fp="3">
+		<depends name="FatorDeAtualizacao"/>
+	</transaction>
+	<transaction name="DetalharFatorAtualizacao" fp="3">
+		<depends name="FatorDeAtualizacao"/>
+		<ftr name="PesquisarFatorAtualizacao"/>
+	</transaction>
+	<transaction name="PesquisarRubrica" fp="3">
+		<depends name="Rubrica"/>
+	</transaction>
+	<transaction name="DetalharRubrica" fp="3">
+		<depends name="Rubrica"/>
+		<ftr name="PesquisarRubrica"/>
+	</transaction>
+	<transaction name="PesquisarTaxaConversaoMoeda" fp="3">
+		<depends name="TaxaConversaoMoeda"/>
+	</transaction>
+	<transaction name="DetalharTaxaConversaoMoeda" fp="3">
+		<depends name="TaxaConversaoMoeda"/>
+		<ftr name="PesquisarTaxaConversaoMoeda"/>
+	</transaction>
+	<transaction name="PesquisarCotacaoFatorAtualizacao" fp="3">
+		<depends name="CotacaoValorAtualizacao"/>
+	</transaction>
+	<transaction name="DetalharCotacaoFatorAtualizacao" fp="3">
+		<depends name="CotacaoValorAtualizacao"/>
+		<ftr name="PesquisarCotacaoFatorAtualizacao"/>
+	</transaction>
+	<transaction name="PesquisarGrupoBeneficio" fp="3">
+		<depends name="GrupoBeneficio"/>
+	</transaction>
+	<transaction name="DetalharGrupoBeneficio" fp="3">
+		<depends name="GrupoBeneficio"/>
+		<ftr name="PesquisarGrupoBeneficio"/>
+	</transaction>
+	<transaction name="PesquisarCoeficienteReajustamentoBaseSM" fp="3">
+		<depends name="CoeficienteReajustamentoBaseSM"/>
+	</transaction>
+	<transaction name="DetalharCoeficienteReajustamentoBaseSM" fp="3">
+		<depends name="CoeficienteReajustamentoBaseSM"/>
+		<ftr name="PesquisarCoeficienteReajustamentoBaseSM"/>
+	</transaction>
+	<transaction name="PesquisarIndiceReajusteBuracoNegro" fp="3">
+		<depends name="IndiceReajusteBuracoNegro"/>
+	</transaction>
+	<transaction name="DetalharIndiceReajusteBuracoNegro" fp="3">
+		<depends name="IndiceReajusteBuracoNegro"/>
+		<ftr name="PesquisarIndiceReajusteBuracoNegro"/>
+	</transaction>
+	<transaction name="PesquisarSalarioMinimoGrupoBenef" fp="3">
+		<depends name="SalarioMinimoGrupoBeneficio"/>
+	</transaction>
+	<transaction name="DetalharSalarioMinimoGrupoBenef" fp="3">
+		<depends name="SalarioMinimoGrupoBeneficio"/>
+		<ftr name="PesquisarSalarioMinimoGrupoBenef"/>
+	</transaction>
+</system>

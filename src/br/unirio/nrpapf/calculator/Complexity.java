@@ -1,4 +1,4 @@
-package br.unirio.overwork.instance.calculator;
+package br.unirio.nrpapf.calculator;
 
 /**
  * Different complexity values for function points

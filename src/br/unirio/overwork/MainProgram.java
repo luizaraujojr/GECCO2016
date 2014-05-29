@@ -3,19 +3,19 @@ package br.unirio.overwork;
 import java.util.Vector;
 
 import unirio.experiments.multiobjective.analyzer.ExperimentAnalyzer;
+import br.unirio.nrpapf.calculator.FunctionPointCalculator;
+import br.unirio.nrpapf.model.FunctionPointSystem;
+import br.unirio.nrpapf.model.transaction.FileReference;
+import br.unirio.nrpapf.model.transaction.Transaction;
+import br.unirio.nrpapf.reader.InstanceReader;
+import br.unirio.nrpapf.report.Report;
+import br.unirio.nrpapf.report.ReportDataFunction;
+import br.unirio.nrpapf.report.ReportTransactionFunction;
 import br.unirio.optimization.experiment.HillClimbingExperiment;
 import br.unirio.optimization.experiment.NSGAIIExperiment;
 import br.unirio.optimization.experiment.RandomSearchExperiment;
 import br.unirio.overwork.builders.WorkPackage;
 import br.unirio.overwork.builders.WorkPackageProjectBuilder;
-import br.unirio.overwork.instance.calculator.FunctionPointCalculator;
-import br.unirio.overwork.instance.model.FunctionPointSystem;
-import br.unirio.overwork.instance.model.transaction.FileReference;
-import br.unirio.overwork.instance.model.transaction.Transaction;
-import br.unirio.overwork.instance.reader.InstanceReader;
-import br.unirio.overwork.instance.report.Report;
-import br.unirio.overwork.instance.report.ReportDataFunction;
-import br.unirio.overwork.instance.report.ReportTransactionFunction;
 import br.unirio.overwork.model.base.Project;
 
 public class MainProgram

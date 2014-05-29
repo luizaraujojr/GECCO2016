@@ -1,4 +1,4 @@
-package br.unirio.overwork.instance.model.data;
+package br.unirio.nrpapf.model.data;
 
 import java.util.ArrayList;
 import java.util.List;

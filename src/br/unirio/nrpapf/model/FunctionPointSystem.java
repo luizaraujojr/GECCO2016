@@ -1,15 +1,15 @@
-package br.unirio.overwork.instance.model;
+package br.unirio.nrpapf.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
-import br.unirio.overwork.instance.model.data.DataFunction;
-import br.unirio.overwork.instance.model.data.RegisterElement;
-import br.unirio.overwork.instance.model.stakeholder.Interest;
-import br.unirio.overwork.instance.model.stakeholder.Stakeholder;
-import br.unirio.overwork.instance.model.transaction.Transaction;
+import br.unirio.nrpapf.model.data.DataFunction;
+import br.unirio.nrpapf.model.data.RegisterElement;
+import br.unirio.nrpapf.model.stakeholder.Interest;
+import br.unirio.nrpapf.model.stakeholder.Stakeholder;
+import br.unirio.nrpapf.model.transaction.Transaction;
 
 public final class FunctionPointSystem 
 {

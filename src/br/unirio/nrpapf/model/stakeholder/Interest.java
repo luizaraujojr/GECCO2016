@@ -1,7 +1,7 @@
-package br.unirio.overwork.instance.model.stakeholder;
+package br.unirio.nrpapf.model.stakeholder;
 
 import lombok.Getter;
-import br.unirio.overwork.instance.model.transaction.Transaction;
+import br.unirio.nrpapf.model.transaction.Transaction;
 
 public class Interest
 {

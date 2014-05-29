@@ -1,10 +1,10 @@
-package br.unirio.overwork.instance.model.transaction;
+package br.unirio.nrpapf.model.transaction;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import br.unirio.overwork.instance.model.data.RegisterElement;
 import lombok.Getter;
+import br.unirio.nrpapf.model.data.RegisterElement;
 
 public class Transaction 
 {

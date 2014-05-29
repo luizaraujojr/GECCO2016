@@ -1,11 +1,11 @@
-package br.unirio.overwork.instance.model;
+package br.unirio.nrpapf.model;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import lombok.Getter;
 import lombok.Setter;
-import br.unirio.overwork.instance.model.transaction.Transaction;
+import br.unirio.nrpapf.model.transaction.Transaction;
 
 public class FunctionPointSet 
 {

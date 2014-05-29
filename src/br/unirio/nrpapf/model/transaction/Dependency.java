@@ -1,4 +1,4 @@
-package br.unirio.overwork.instance.model.transaction;
+package br.unirio.nrpapf.model.transaction;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,17 +1,17 @@
-package br.unirio.overwork.test.instances;
+package br.unirio.nrpapf.test;
 
 import junit.framework.TestCase;
-import br.unirio.overwork.instance.calculator.FunctionPointCalculator;
-import br.unirio.overwork.instance.model.FunctionPointSystem;
-import br.unirio.overwork.instance.reader.InstanceReader;
-import br.unirio.overwork.instance.report.Report;
+import br.unirio.nrpapf.calculator.FunctionPointCalculator;
+import br.unirio.nrpapf.model.FunctionPointSystem;
+import br.unirio.nrpapf.reader.InstanceReader;
+import br.unirio.nrpapf.report.Report;
 
 public class TestReaderACAD extends TestCase
 {
 	public void testAll() throws Exception
 	{
 		InstanceReader reader = new InstanceReader();
-		FunctionPointSystem fps = reader.run("data/instances/ACAD/functions-point.xml");
+		FunctionPointSystem fps = reader.run("data/nrp-apf/ACAD/functions-point.xml");
 		Report report = new FunctionPointCalculator().calculate(fps);
 
 		/* Data Functions */

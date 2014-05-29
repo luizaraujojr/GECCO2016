@@ -1,10 +1,10 @@
-package br.unirio.overwork.instance;
+package br.unirio.nrpapf;
 
-import br.unirio.overwork.instance.calculator.FunctionPointCalculator;
-import br.unirio.overwork.instance.model.FunctionPointSystem;
-import br.unirio.overwork.instance.reader.InstanceReader;
-import br.unirio.overwork.instance.report.Report;
-import br.unirio.overwork.instance.report.TestCasePublisher;
+import br.unirio.nrpapf.calculator.FunctionPointCalculator;
+import br.unirio.nrpapf.model.FunctionPointSystem;
+import br.unirio.nrpapf.reader.InstanceReader;
+import br.unirio.nrpapf.report.Report;
+import br.unirio.nrpapf.report.TestCasePublisher;
 
 public class MainInstanceLoader
 {

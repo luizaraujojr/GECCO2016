@@ -1,12 +1,12 @@
-package br.unirio.overwork.instance.model.transaction;
+package br.unirio.nrpapf.model.transaction;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
-import br.unirio.overwork.instance.model.data.DataElement;
-import br.unirio.overwork.instance.model.data.RegisterElement;
+import br.unirio.nrpapf.model.data.DataElement;
+import br.unirio.nrpapf.model.data.RegisterElement;
 
 public class FileReference 
 {

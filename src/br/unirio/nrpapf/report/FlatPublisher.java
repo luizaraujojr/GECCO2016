@@ -1,4 +1,4 @@
-package br.unirio.overwork.instance.report;
+package br.unirio.nrpapf.report;
 
 
 public class FlatPublisher

@@ -1,4 +1,4 @@
-package br.unirio.overwork.instance.model.stakeholder;
+package br.unirio.nrpapf.model.stakeholder;
 
 import lombok.Getter;
 import lombok.Setter;

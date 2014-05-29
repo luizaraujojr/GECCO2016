@@ -1,12 +1,7 @@
 package	 br.unirio.optimization.experiment;
 
-import java.io.Writer;
-import java.text.DecimalFormat;
-import java.util.List;
-
-import unirio.experiments.multiobjective.controller.Experiment;
 import jmetal.base.Algorithm;
-import jmetal.base.Solution;
+import unirio.experiments.multiobjective.controller.Experiment;
 import br.unirio.optimization.ProjectProblem;
 import br.unirio.optimization.heuristic.RandomSearch;
 import br.unirio.overwork.model.base.Project;
@@ -95,23 +90,4 @@ public class RandomSearchExperiment extends Experiment<Project>
 
 		return algorithm;
 	}
-	
-	public void printParetoFrontier(Writer bw, Project instance, List<Solution> uniques) throws Exception
-	{
-		DecimalFormat dc = new DecimalFormat("0.####");
-	
-		for (int j = 0; j < uniques.size(); j++)
-		{
-			Solution solution = uniques.get(j);
-			print(bw, dc.format (solution.getObjective(0)));
-			
-			for (int k = 1; k < 3; k++)
-				print(bw, "; " + dc.format(solution.getObjective(k)));
-					
-			print(bw, "; " + dc.format(solution.getLocation()));
-			println(bw, "");
-		}
-	}
-	
-	
 } 

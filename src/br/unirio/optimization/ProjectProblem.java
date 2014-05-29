@@ -27,11 +27,6 @@ public class ProjectProblem extends Problem {
 	private @Getter @Setter String instanceName;
 	private @Getter @Setter int maxEvaluations;
 	
-//	/**
-//	 * Stores the number of objective values of the solution
-//	 */
-//	private @Getter @Setter int numberOfObjectives;
-	
 	/**
 	 * Creates a new project problem for the jmetal framework
 	 */

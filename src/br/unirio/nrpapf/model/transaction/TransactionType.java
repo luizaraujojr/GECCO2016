@@ -1,5 +1,10 @@
 package br.unirio.nrpapf.model.transaction;
 
+/**
+ * Enumeration of transaction types
+ * 
+ * @author Marcio Barros
+ */
 public enum TransactionType 
 {
 	EO,

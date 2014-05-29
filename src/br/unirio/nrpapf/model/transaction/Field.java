@@ -4,6 +4,11 @@ import lombok.Getter;
 import lombok.Setter;
 import br.unirio.nrpapf.model.data.DataElement;
 
+/**
+ * Class that represents a field within a transaction
+ * 
+ * @author Marcio Barros
+ */
 public class Field 
 {
 	private @Getter String name;

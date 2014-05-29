@@ -3,6 +3,11 @@ package br.unirio.nrpapf.model.transaction;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Class that represents a transaction dependency on a second transaction
+ * 
+ * @author Marcio Barros
+ */
 public class Dependency
 {
 	private @Getter String dependeeTransactionName;

@@ -3,6 +3,11 @@ package br.unirio.nrpapf.model.stakeholder;
 import lombok.Getter;
 import br.unirio.nrpapf.model.transaction.Transaction;
 
+/**
+ * Class that represents a stakeholder's interest in a transaction
+ * 
+ * @author Marcio Barros
+ */
 public class Interest
 {
 	private @Getter Stakeholder stakeholder;

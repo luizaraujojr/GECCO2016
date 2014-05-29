@@ -258,9 +258,9 @@ public class InstanceReader
 		
 		for (FileReference ftr : transaction.getFileReferences())
 		{
-			if (ftr.getRet().length() > 0)
+			if (ftr.getReferencedRegisterElement().length() > 0)
 			{
-				DataFunction data = fps.getDataFunctionName(ftr.getDataModelElement()); 
+				DataFunction data = fps.getDataFunctionName(ftr.getReferencedDataFunction()); 
 				
 				if (data == null)
 					data = fps.getDataFunctionName(ftr.getName());
@@ -268,10 +268,10 @@ public class InstanceReader
 				if (data == null)
 					throw new Exception("Data model '" + ftr.getName() + "' not identified in FTR.");
 				
-				RegisterElement ret = data.getRegisterElementName(ftr.getRet());
+				RegisterElement ret = data.getRegisterElementName(ftr.getReferencedRegisterElement());
 				
 				if (ret == null)
-					throw new Exception("RET '" + ftr.getRet() + "' not identified in FTR.");
+					throw new Exception("RET '" + ftr.getReferencedRegisterElement() + "' not identified in FTR.");
 				
 				ftr.setReferencedRegister(ret);
 				

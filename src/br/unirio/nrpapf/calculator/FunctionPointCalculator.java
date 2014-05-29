@@ -79,7 +79,7 @@ public class FunctionPointCalculator
 		
 		for (FileReference ftr : transaction.getFileReferences())
 		{
-			String dataFunctionName = ftr.getDataModelElement();
+			String dataFunctionName = ftr.getReferencedDataFunction();
 			
 			if (dataFunctionName.length() == 0)
 				dataFunctionName = ftr.getReferencedRegister().getDataFunction().getName();
@@ -124,7 +124,7 @@ public class FunctionPointCalculator
 	}
 	
 	/**
-	 * 
+	 * Determines whether a DET counts for a transaction's complexity
 	 */
 	public boolean countsForTransaction(FunctionPointSystem fps, Transaction transaction, DataElement det, DataFunction dataFunction)
 	{
@@ -137,22 +137,14 @@ public class FunctionPointCalculator
 		if (det.isPrimaryKey())
 			return false;
 	
-//		if (!(det.isHasSemanticMeaning() || !det.isPrimaryKey()))
-//			return false;
-		
-		if (det.getReferencedRegister().length() == 0)
+		if (det.getReferencedRegisterElement().length() == 0)
 			return true;
 		
-		RegisterElement register = fps.getRegisterElementName(det.getDataModelElement(), det.getReferencedRegister());
+		RegisterElement register = getRegisterElementName(fps, det.getReferencedDataFunction(), det.getReferencedRegisterElement());
 
-		if (det.getDataModelElement().compareToIgnoreCase(dataFunction.getName()) == 0)
+		if (det.getReferencedDataFunction().compareToIgnoreCase(dataFunction.getName()) == 0)
 			return false;
 	
-//		RegisterElement register = dataFunction.getRegisterElementName(det.getReferencedRegister());
-		
-//		if (det.getDataModelElement().length() == 0 && register == null)
-//			return true;
-		
 		if (transaction.containsFileReference(register))
 			return false;
 
@@ -160,7 +152,23 @@ public class FunctionPointCalculator
 	}
 
 	/**
-	 * 
+	 * Returns a given register element
+	 */
+	public RegisterElement getRegisterElementName(FunctionPointSystem fps, String dataFunctionName, String registerName)
+	{
+		if (dataFunctionName.length() == 0)
+			dataFunctionName = registerName;
+		
+		DataFunction df = fps.getDataFunctionName(dataFunctionName);
+		
+		if (df == null)
+			return null;
+		
+		return df.getRegisterElementName(registerName);
+	}
+
+	/**
+	 * Determines whether a DET counts for a data function's complexity
 	 */
 	public boolean countsForDataFunction(FunctionPointSystem fps, DataElement det, DataFunction dataFunction)
 	{
@@ -173,18 +181,10 @@ public class FunctionPointCalculator
 		if (det.isPrimaryKey())
 			return false;
 	
-//		if (det.isPrimaryKey() && !det.isHasSemanticMeaning())
-//			return false;
-		
-		if (det.getReferencedRegister().length() == 0)
+		if (det.getReferencedRegisterElement().length() == 0)
 			return true;
 
-//		RegisterElement register = fps.getRegisterElementName(det.getDataModelElement(), det.getReferencedRegister());
-//		
-//		if (/*det.getDataModelElement().length() == 0 && */register == null)
-//			return true;
-
-		if (det.getDataModelElement().compareToIgnoreCase(dataFunction.getName()) == 0 /*&& register != null*/)
+		if (det.getReferencedDataFunction().compareToIgnoreCase(dataFunction.getName()) == 0 /*&& register != null*/)
 			return false;
 		
 		return true;

@@ -6,6 +6,11 @@ import java.util.List;
 import lombok.Getter;
 import br.unirio.nrpapf.model.data.RegisterElement;
 
+/**
+ * Class represents a transaction function
+ * 
+ * @author Marcio Barros
+ */
 public class Transaction 
 {
 	private @Getter String name;
@@ -20,6 +25,9 @@ public class Transaction
 	
 	private List<Dependency> dependencies;
 
+	/**
+	 * Initializes the transaction
+	 */
 	public Transaction(String name, boolean errorMessages, TransactionType type, int extraDET) 
 	{
 		this.name = name;
@@ -30,26 +38,41 @@ public class Transaction
 		this.fileReferences = new ArrayList<FileReference>();
 	}
 
+	/**
+	 * Adds a file reference for the transaction
+	 */
 	public void addFileReference(FileReference ftr) 
 	{
 		fileReferences.add(ftr);
 	}
 	
+	/**
+	 * Returns the file references for the transaction
+	 */
 	public Iterable<FileReference> getFileReferences()
 	{
 		return fileReferences;
 	}
 
+	/**
+	 * Adds a dependency to another transaction
+	 */
 	public void addDependency(Dependency dependency) 
 	{
 		dependencies.add(dependency);
 	}
 	
+	/**
+	 * Returns the dependencies upon other transactions
+	 */
 	public Iterable<Dependency> getDependencies()
 	{
 		return dependencies;
 	}
 
+	/**
+	 * Determines if the transaction refers to a given RET
+	 */
 	public boolean containsFileReference(RegisterElement register)
 	{
 		for (FileReference fileReference : fileReferences)

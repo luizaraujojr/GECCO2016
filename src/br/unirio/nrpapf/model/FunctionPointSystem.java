@@ -4,16 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Getter;
-import lombok.Setter;
 import br.unirio.nrpapf.model.data.DataFunction;
-import br.unirio.nrpapf.model.data.RegisterElement;
 import br.unirio.nrpapf.model.stakeholder.Interest;
 import br.unirio.nrpapf.model.stakeholder.Stakeholder;
 import br.unirio.nrpapf.model.transaction.Transaction;
 
+/**
+ * Class that represents a system organized in function points
+ * 
+ * @author Marcio Barros
+ */
 public final class FunctionPointSystem 
 {
-	private @Getter @Setter String name;
+	private @Getter String name;
 	
 	private List<DataFunction> dataFunctions;
 	
@@ -23,6 +26,9 @@ public final class FunctionPointSystem
 	
 	private List<Interest> interests;
 	
+	/**
+	 * Initializes the system
+	 */
 	public FunctionPointSystem(String name)
 	{
 		this.name = name;
@@ -32,11 +38,17 @@ public final class FunctionPointSystem
 		this.interests = new ArrayList<Interest>();
 	}
 
+	/**
+	 * Adds a data function to the system
+	 */
 	public void addDataFunction(DataFunction element) 
 	{
 		dataFunctions.add(element);
 	}
 
+	/**
+	 * Returns a data function, given its name
+	 */
 	public DataFunction getDataFunctionName(String name) 
 	{
 		for (DataFunction data : dataFunctions)
@@ -46,16 +58,25 @@ public final class FunctionPointSystem
 		return null;
 	}
 	
+	/**
+	 * Returns all data functions
+	 */
 	public Iterable<DataFunction> getDataFunctions()
 	{
 		return dataFunctions;
 	}
 
+	/**
+	 * Adds a transaction function to the system
+	 */
 	public void addTransaction(Transaction transaction) 
 	{
 		transactions.add(transaction);
 	}
 
+	/**
+	 * Returns a transaction function, given its name
+	 */
 	public Transaction getTransactionName(String name) 
 	{
 		for (Transaction transaction : transactions)
@@ -65,21 +86,33 @@ public final class FunctionPointSystem
 		return null;
 	}
 	
+	/**
+	 * Returns all transaction functions
+	 */
 	public Iterable<Transaction> getTransactions()
 	{
 		return transactions;
 	}
 	
+	/**
+	 * Returns all stakeholders
+	 */
 	public Iterable<Stakeholder> getStakeholders()
 	{
 		return stakeholders;
 	}
 	
+	/**
+	 * Returns all stakeholder interests
+	 */
 	public Iterable<Interest> getInterest()
 	{
 		return interests;
 	}
 	
+	/**
+	 * Retuns all interests in for a given transaction
+	 */
 	public List<Interest> getInterests(Transaction transaction) 
 	{
 		List<Interest> interests = new ArrayList<Interest>();
@@ -89,18 +122,5 @@ public final class FunctionPointSystem
 				interests.add(interest);
 
 		return interests;
-	}
-
-	public RegisterElement getRegisterElementName(String dataFunctionName, String registerName)
-	{
-		if (dataFunctionName.length() == 0)
-			dataFunctionName = registerName;
-		
-		DataFunction df = getDataFunctionName(dataFunctionName);
-		
-		if (df == null)
-			return null;
-		
-		return df.getRegisterElementName(registerName);
 	}
 }

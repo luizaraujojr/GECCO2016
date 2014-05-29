@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <system>
 	<name>opmet</name>
-	<data-model>
-		<ilf name="Alertas" fp="">
+	<data-model>		
+		<ilf name="Alertas">
 			<ret name="Alertas">
 				<det name="DATA INICIAL"/>
 				<det name="DATA FINAL"/>

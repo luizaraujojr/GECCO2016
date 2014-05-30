@@ -1,8 +1,6 @@
 package br.unirio.overwork.builders.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import br.unirio.overwork.builders.model.SoftwareSystem;
 import br.unirio.overwork.builders.model.WorkPackage;
 import br.unirio.overwork.model.base.Activity;
 import br.unirio.overwork.model.base.ActivityDevelopment;
@@ -17,48 +15,7 @@ import br.unirio.overwork.model.base.Project;
  */
 public class WorkPackageProjectBuilder
 {
-	/**
-	 * List of work packages comprising the project
-	 */
-	private List<WorkPackage> workPackages;
-	
-	/**
-	 * Initializes the project builder
-	 */
-	public WorkPackageProjectBuilder()
-	{
-		this.workPackages = new ArrayList<WorkPackage>();
-	}
-	
-	/**
-	 * Adds a work package to the project
-	 */
-	public WorkPackage addWorkPackage(String nome)
-	{
-		WorkPackage pt = new WorkPackage(nome);
-		this.workPackages.add(pt);
-		return pt;
-	}
-	
-	public WorkPackage getWorkPackagebyName(String name)
-	{
-		for (WorkPackage wp : this.workPackages)
-		{
-//			System.out.println(wp.getName());
-//			System.out.println(name);
-			if (wp.getName().equals(name))
-			{
-				return wp;
-			}
-		}
-		return null;
-	}
-
-	
-	/**
-	 * Executes the project generation procedure
-	 */
-	public Project execute()
+	public Project execute(SoftwareSystem system)
 	{
 		Project project = new Project();
 		Developer developer = new Developer("Developer", 60);
@@ -71,14 +28,14 @@ public class WorkPackageProjectBuilder
 
 		double totalFunctionPoints = 0;
 		
-		for (WorkPackage pacote : workPackages)
+		for (WorkPackage pacote : system.getWorkPackages())
 			totalFunctionPoints += pacote.calculateFunctionPoints();
 		
 		Configuration configuration = Configuration.getConfigurationForFunctionPoints(totalFunctionPoints);
 		
 		double errorCorrectionEffort = configuration.getTestingEffort() * Constants.DAYS_IN_MONTH / configuration.getAverageProductivity() / 4.0;
 		
-		for (WorkPackage pacote : workPackages)
+		for (WorkPackage pacote : system.getWorkPackages())
 		{
 			double functionPoints = pacote.calculateFunctionPoints();
 			

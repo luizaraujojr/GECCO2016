@@ -219,3 +219,4 @@ pip-log.txt
 *.classpath
 .classpath
 .classpath
+*.classpath

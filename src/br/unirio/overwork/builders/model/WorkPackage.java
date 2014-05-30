@@ -1,4 +1,4 @@
-package br.unirio.overwork.builders;
+package br.unirio.overwork.builders.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,14 +18,9 @@ public class WorkPackage
 	private @Getter String name;
 	
 	/**
-	 * Data functions comprising the work package
+	 * List of requirements within the work package
 	 */
-	private List<DataFunction> dataFunctions;
-
-	/**
-	 * Transactional functions comprising the work package
-	 */
-	private List<TransactionalFunction> transactionalFunctions;
+	private List<Requirement> requirements;
 
 	/**
 	 * Initializes the work package
@@ -33,26 +28,45 @@ public class WorkPackage
 	public WorkPackage(String name)
 	{
 		this.name = name;
-		this.dataFunctions = new ArrayList<DataFunction>();
-		this.transactionalFunctions = new ArrayList<TransactionalFunction>();
-	}
-
-	/**
-	 * Adds a data function to the work package
-	 */
-	public WorkPackage addDataFunction(String name, int functionPoints)
-	{
-		this.dataFunctions.add(new DataFunction(name, functionPoints));
-		return this;
+		this.requirements = new ArrayList<Requirement>();
 	}
 	
 	/**
-	 * Adds a transactional function to the work package
+	 * Counts the number of requirements in the work package
 	 */
-	public WorkPackage addTransactionalFunction(String name, int functionPoints)
+	public int countRequirements()
 	{
-		this.transactionalFunctions.add(new TransactionalFunction(name, functionPoints));
-		return this;
+		return requirements.size();
+	}
+	
+	/**
+	 * Returns a requirement, given its index
+	 */
+	public Requirement getRequirementIndex(int index)
+	{
+		return requirements.get(index);
+	}
+	
+	/**
+	 * Returns a requirement, given its name
+	 */
+	public Requirement getRequirementName(String name)
+	{
+		for (Requirement r : requirements)
+			if (r.getName().compareToIgnoreCase(name) == 0)
+				return r;
+		
+		return null;
+	}
+
+	/**
+	 * Adds a requirement to the work package
+	 */
+	public Requirement addRequirement(String name, int functionPoints)
+	{
+		Requirement requirement = new Requirement(name, functionPoints);
+		this.requirements.add(requirement);
+		return requirement;
 	}
 	
 	/**
@@ -62,46 +76,9 @@ public class WorkPackage
 	{
 		int soma = 0;
 		
-		for (DataFunction fd : dataFunctions)
-			soma += fd.getFunctionPoints();
+		for (Requirement r : requirements)
+			soma += r.getFunctionPoints();
 		
-		for (TransactionalFunction ft : transactionalFunctions)
-			soma += ft.getFunctionPoints();
-
 		return soma;
-	}
-}
-
-/**
- * Class that represents a data function within a work package
- * 
- * @author Marcio Barros
- */
-class DataFunction
-{
-	private @Getter String name;
-	private @Getter int functionPoints;
-	
-	public DataFunction(String name, int functionPoints)
-	{
-		this.name = name;
-		this.functionPoints = functionPoints;
-	}
-}
-
-/**
- * Class that represents a transactional function within a work package
- * 
- * @author Marcio Barros
- */
-class TransactionalFunction
-{
-	private @Getter String name;
-	private @Getter int functionPoints;
-	
-	public TransactionalFunction(String name, int functionPoints)
-	{
-		this.name = name;
-		this.functionPoints = functionPoints;
 	}
 }

@@ -1,8 +1,9 @@
-package br.unirio.overwork.builders;
+package br.unirio.overwork.builders.controller;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import br.unirio.overwork.builders.model.WorkPackage;
 import br.unirio.overwork.model.base.Activity;
 import br.unirio.overwork.model.base.ActivityDevelopment;
 import br.unirio.overwork.model.base.AtivityTesting;

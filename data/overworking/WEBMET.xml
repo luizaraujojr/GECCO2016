@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system>
+	<name>WEBMET</name>
+<data fp="" name="FUNCOES DE DADOS"/>
+<data fp="7" name="USUARIO"/>
+<data fp="10" name="ESTACOES"/>
+<data fp="15" name="OBSERVACAO"/>	
+<data fp="7" name="GERENCIA"/>
+<data fp="7" name="MAQUINA"/>
+<data fp="7" name="PARAMETRO DO BDC"/>
+<data fp="7" name="PARAMETRO DO OPMET"/>
+<data fp="7" name="PARAMETRO REDE NEURAL"/>
+
+<transaction fp="3" name="USUARIO CADASTRAR">
+	<depends name="USUARIO"/>
+</transaction>	
+<transaction fp="4" name="ESTACOES (EMS) CADASTRAR">
+	<depends name="ESTACAO"/>
+</transaction>
+<transaction fp="4" name="ESTACOES (EMS) ALTERAR">
+	<depends name="ESTACAO"/>
+</transaction>
+<transaction fp="3" name="ESTACOES EMS LISTAR">
+	<depends name="ESTACAO"/>
+</transaction>
+<transaction fp="4" name="CADASTRO DE EMS VISUALIZAR">
+	<depends name="ESTACAO"/>
+</transaction>
+<transaction fp="3" name="PESQUISA DE ESTACOES EMA (SELECIONAR)">
+	<depends name="ESTACAO"/>
+</transaction>
+<transaction fp="3" name="ESTACOES EMA PESQUISAR">
+	<depends name="ESTACAO"/>
+</transaction>
+<transaction fp="3" name="ESTACOES (EMA) ALTERAR">
+	<depends name="ESTACAO"/>
+</transaction>
+<transaction fp="3" name="ESTACOES (EMA) CADASTRAR">
+	<depends name="ESTACAO"/>
+</transaction>
+<transaction fp="3" name="CENTROS VISUALIZAR">
+	<depends name="ESTACAO"/>
+</transaction>
+<transaction fp="3" name="CENTRO CADASTRAR">
+	<depends name="ESTACAO"/>
+</transaction>
+<transaction fp="3" name="CENTRO ALTERAR">
+	<depends name="ESTACAO"/>
+</transaction>
+<transaction fp="3" name="CENTRO REMOVER">
+	<depends name="ESTACAO"/>
+</transaction>
+<transaction fp="3" name="PESQUISA DO CADASTRO DE CENTROS (VISUALIZAR)">
+	<depends name="ESTACAO"/>
+</transaction>
+<transaction fp="3" name="REGIONAIS PESQUISAR">
+	<depends name="ESTACAO"/>
+</transaction>
+<transaction fp="3" name="REGIONAIS VISUALIZAR">
+	<depends name="ESTACAO"/>
+</transaction>
+<transaction fp="3" name="ALTERACAO CADASTRO REGIONAL">
+	<depends name="ESTACAO"/>
+</transaction>
+<transaction fp="3" name="EXCLUIR CADASTRO REGIONAL">
+	<depends name="ESTACAO"/>
+</transaction>
+<transaction fp="3" name="REGIONAL CADASTRAR">
+	<depends name="ESTACAO"/>
+</transaction>
+<transaction fp="3" name="CONDICAO DE TEMPO PRESENTE E RECENTE PESQUISAR">
+	<depends name="ESTACAO"/>
+</transaction>
+<transaction fp="3" name="CONDICAO DE TEMPO PRESENTE E RECENTE CADASTRAR">
+	<depends name="ESTACAO"/>
+</transaction>
+<transaction fp="3" name="MAQUINAS CADASTRAR">
+	<depends name="MAQUINA"/>
+</transaction>
+<transaction fp="3" name="OBSERVACOES EMA (PTU, WIND) LISTAR">
+	<depends name="ESTACAO"/>
+</transaction>
+<transaction fp="3" name="OBSERVACOES EMA (PTU, WIND) CADASTRAR">
+	<depends name="ESTACAO"/>
+</transaction>
+<transaction fp="4" name="OBSERVACOES EMA (TEMP, PILOT) LISTAR">
+	<depends name="ESTACAO"/>
+	<depends name="OBSERVACAO"/>
+</transaction>
+<transaction fp="3" name="OBSERVACAO EMA (TEMP, PILOT) CADASTRAR">
+	<depends name="OBSERVACAO"/>
+</transaction>
+<transaction fp="4" name="OBSERVACOES EMS LISTAR">
+	<depends name="ESTACAO"/>
+	<depends name="OBSERVACAO"/>
+</transaction>
+<transaction fp="6" name="OBSERVACAO EMS REGISTRAR">
+	<depends name="ESTACAO"/>
+	<depends name="OBSERVACAO"/>
+</transaction>
+<transaction fp="3" name="RELATORIO ESTATISTICO DE QUANTIDADE DE MENSAGENS POR TIPO METEOROLOGICO PESQUISAR">
+	<depends name="ESTACAO"/>
+</transaction>
+<transaction fp="3" name="RELATORIO ESTATISTICO DE QUANTIDADE DE MENSAGENS POR TIPO METEOROLOGICO GERAR">
+	<depends name="ESTACAO"/>
+</transaction>
+<transaction fp="3" name="RELATORIO DE CONDICOES DE TEMPO PESQUISAR">
+	<depends name="ESTACAO"/>
+</transaction>
+<transaction fp="3" name="RELATORIO DE CONDICOES DE TEMPO GERAR">
+	<depends name="OBSERVACAO"/>
+</transaction>
+<transaction fp="3" name="RELATORIO DE LOG DE OPERACOES GERAR">
+	<depends name="USUARIO"/>
+</transaction>
+<transaction fp="3" name="RELATORIO CLIMATOLOGICO - IEPV 105-78 PESQUISAR">
+	<depends name="ESTACAO"/>
+</transaction>
+<transaction fp="7" name="RELATORIO CLIMATOLOGICO - IEPV 105-78 GERAR">
+	<depends name="ESTACAO"/>
+	<depends name="OBSERVACAO"/>
+</transaction>
+<transaction fp="3" name="RELATORIO CLIMATOLOGICO - SUMARIO 1 PESQUISAR">
+	<depends name="ESTACAO"/>
+</transaction>
+<transaction fp="5" name="RELATORIO CLIMATOLOGICO - SUMARIO 1 GERAR">
+	<depends name="OBSERVACAO"/>
+</transaction>
+<transaction fp="3" name="RELATORIO CLIMATOLOGICO - SUMARIO 2 PESQUISAR">
+	<depends name="ESTACAO"/>
+</transaction>
+<transaction fp="4" name="RELATORIO CLIMATOLOGICO - SUMARIO 2 GERAR">
+	<depends name="OBSERVACAO"/>
+</transaction>
+<transaction fp="3" name="RELATORIO - SUMARIO GERAL PESQUISAR">
+	<depends name="ESTACAO"/>
+</transaction>
+<transaction fp="7" name="RELATORIO - SUMARIO GERAL">
+	<depends name="ESTACAO"/>
+	<depends name="OBSERVACAO"/>
+</transaction>
+<transaction fp="3" name=" RELATORIO SINTETICO DE OBSERVACAO METEOROLOGICA PESQUISAR">
+	<depends name="ESTACAO"/>
+</transaction>
+<transaction fp="5" name=" RELATORIO SINTETICO DE OBSERVACAO METEOROLOGICA GERAR">
+	<depends name="OBSERVACAO"/>
+</transaction>
+<transaction fp="3" name="PARAMETRO DO SISTEMA BDC CADASTRAR">
+	<depends name="PARAMETRO_SISTEMA_BDC"/>
+</transaction>
+<transaction fp="3" name="PARAMETRO DO SISTEMA OPMET CADASTRAR">
+	<depends name="PARAMETRO_SISTEMA_OPMET"/>
+</transaction>
+<transaction fp="3" name="CADASTRO DE PARAMETROS DO SISTEMA NEURAL">
+	<depends name="PARAMETRO_SISTEMA_REDE_NEURAL"/>
+</transaction>
+<transaction fp="3" name="PARAMENTROS DO SISTEMA DE DIAS DE OBSERVACAO EMS CADASTRAR">
+	<depends name="ESTACAO"/>
+</transaction>
+<transaction fp="3" name="PARAMETRO PARA ATUALIZACAO DO HORARIO UTC
+(OBSERVACOES EMS E ESTACAO)">
+	<depends name="ESTACAO"/>
+</transaction>
+</system>

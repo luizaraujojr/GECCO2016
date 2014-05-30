@@ -55,11 +55,11 @@ public class OverworkPublisher
 			String dataFunctionName = fileReference.getReferencedDataFunction();
 			
 			if (dataFunctionName.length() == 0)
-				dataFunctionName = fileReference.getReferencedRegisterElement();
+				dataFunctionName = fileReference.getName();
 			
 			if (!contains(dataFunctionReferences, dataFunctionName))
 			{	
-				System.out.println("\t\t<depends name=\"" + dataFunctionName + "\"/>");
+				System.out.println("\t\t<ftr name=\"" + dataFunctionName + "\"/>");
 				dataFunctionReferences.add(dataFunctionName);
 			}
 		}
@@ -71,7 +71,7 @@ public class OverworkPublisher
 	private void publishTransactionDependencies(Transaction transaction)
 	{
 		for (Dependency dependency : transaction.getDependencies())
-			System.out.println("\t\t<ftr name=\"" + dependency.getDependeeTransactionName() + "\"/>");
+			System.out.println("\t\t<depends name=\"" + dependency.getDependeeTransactionName() + "\"/>");
 	}
 
 	/**

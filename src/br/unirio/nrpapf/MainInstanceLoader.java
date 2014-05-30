@@ -11,9 +11,9 @@ public class MainInstanceLoader
 	private static String[] instanceFiles =
 	{
 //	 	"data/nrp-apf/ACAD/functions-point.xml",
-//	 	"data/nrp-apf/BOLS/functions-point.xml",
+	 	"data/nrp-apf/BOLS/functions-point.xml",
 //	 	"data/nrp-apf/PARM/functions-point.xml",
-	 	"data/nrp-apf/PSOA/functions-point.xml"
+//	 	"data/nrp-apf/PSOA/functions-point.xml"
 	};
 	
 	public static final void main(String[] args) throws Exception

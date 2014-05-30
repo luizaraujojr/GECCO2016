@@ -1,7 +1,6 @@
 package br.unirio.optimization.heuristic;
 
 import jmetal.base.Algorithm;
-import jmetal.base.Operator;
 import jmetal.base.Problem;
 import jmetal.base.Solution;
 import jmetal.base.SolutionSet;

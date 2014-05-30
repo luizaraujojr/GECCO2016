@@ -1,19 +1,14 @@
 package br.unirio.optimization.experiment;
 
-import java.io.Writer;
-import java.text.DecimalFormat;
-import java.util.List;
-
-import br.unirio.optimization.ProjectProblem;
-import br.unirio.overwork.model.base.Project;
 import jmetal.base.Algorithm;
 import jmetal.base.Operator;
-import jmetal.base.Solution;
 import jmetal.base.operator.crossover.UniformCrossover;
 import jmetal.base.operator.mutation.IntUniformMutation;
 import jmetal.base.operator.selection.BinaryTournament;
 import jmetal.metaheuristics.nsgaII.NSGAII;
 import unirio.experiments.multiobjective.controller.Experiment;
+import br.unirio.optimization.ProjectProblem;
+import br.unirio.overwork.model.base.Project;
 
 public class NSGAIIExperiment extends Experiment<Project>
 {
@@ -41,22 +36,5 @@ public class NSGAIIExperiment extends Experiment<Project>
 		algorithm.addOperator("mutation", mutation);
 		algorithm.addOperator("selection", selection);
 		return algorithm;
-	}
-	
-	public void printParetoFrontier(Writer bw, Project instance, List<Solution> uniques) throws Exception
-	{
-		DecimalFormat dc = new DecimalFormat("0.####");
-	
-		for (int j = 0; j < uniques.size(); j++)
-		{
-			Solution solution = uniques.get(j);
-			print(bw, dc.format (solution.getObjective(0)));
-			
-			for (int k = 1; k < 3; k++)
-				print(bw, "; " + dc.format(solution.getObjective(k)));
-					
-			print(bw, "; " + dc.format(solution.getLocation()));
-			println(bw, "");
-		}
 	}
 }

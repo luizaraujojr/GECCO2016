@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system>
+	<name>webmet</name>
+<data-model>  
+ 
+ <ilf name="USUARIO">	<ret name="USUARIO"><det name="LOGIN"/>
+<det name="NOME "/>
+<det name="BLOAQUEADO"/>
+<det name="DIAS DE EXPIRACAO"/>
+<det name="INDICATIVO OPERACIONAL"/>
+<det name="CARGO/FUNCAO"/>
+<det name="PERFIL"/>
+<det name="OBSERVACOES"/>
+</ret>
+<ret name="USUARIO"> 
+<det primaryKey="true" name="USUARIO"/> </ret>
+<ret name="GRUPO"> 
+<det primaryKey="true" name="GRUPO"/> </ret>
+<ret name="PERFIL"> 
+<det primaryKey="true" name="PERFIL"/> </ret>
+<ret name="FUNCIONALIDADE"> 
+<det primaryKey="true" name="FUNCIONALIDADE"/> </ret>
+<ret name="RELATORIO"> 
+<det primaryKey="true" name="RELATORIO"/> </ret>
+</ilf>
+
+
+<ilf name="ESTACAO">	<ret name="ESTACAO">
+<det name="INDICATIVO DA LOCALIDADE"/>
+<det name="NUMERO SINOTICO"/>
+<det name="INDICADOR DE AREA"/>
+<det name="NOME DA LOCALIDADE"/>
+<det name="ESTADO"/>
+<det name="INSTITUICAO"/>
+<det name="STATUS"/>
+<det name="REGIONAL DECEA"/>
+<det name="REGINAL INFRAERO"/>
+<det name="TIPOS METEOROLOGICOS"/>
+<det name="LATITUDE"/>
+<det name="LONGITUDE"/>
+<det name="ALTITUDE DA ESTACAO"/>
+<det name="DECLINACAO MAGNETICA"/>
+<det name="CONVERTER UTC SOMAM-SE"/>
+<det name="H24"/>
+<det name="HORA LOCAL CORRESPONDENTE AO MEREDIANO"/>
+<det name="TIPO DE FUNCIONAMENTO"/>
+<det name="HORA DE ABERTURA"/>
+<det name="HORA DE FECHAMENTO"/>
+<det name="PRESSAO MINIMA"/>
+<det name="PRESSAO MAXIMA"/>
+<det name="MINIMOS OPERACIONAIS VISIBILIDADE ABAIXO DE"/>
+<det name="MINIMOS OPERACIONAIS TETO ABAIXO DE"/>
+<det name="CLASSE"/>
+<det name="TIPO DE EQUIPAMENTO PARA MEDIR PRECIPITACAO"/>
+<det name="PISTA"/>
+<det name="TIPO DE NUVEM"/>
+<det name="PISTA PRINCIPAL"/>
+<det name="TEMPERATURA MAXIMA"/>
+<det name="TEMERATURA MINIMA"/>
+<det name="BULBO SEXO MAXIMO"/>
+<det name="BULBO SECO MINIMO"/>
+<det name="BULBO UMIDO MAXIMO"/>
+<det name="BULBO UMDIFO MINIMO"/>
+<det name="INFORMAR QUANDO A TEMPERATURA VARIAR DE"/>
+<det name="VELOCIDADE MAXIMA DO VENTO "/>
+<det name="RAJADA MAXIMA DO VENTO"/>
+<det name="VALOR MINIMO DO RVR "/>
+<det name="VALOR MAXIMO DO RVR"/>
+<det name="POSICAO DO RVR"/>
+<det name="TIPO DE NUVEM"/>
+<det name="ALTURA MAXIMA DA NUVEM"/>
+<det name="ALTURA MINIMA DA NUVEM"/>
+</ret>
+
+<ret name="ESTACAO"> 
+<det primaryKey="true" name="ESTACAO"/> </ret>
+<ret name="GRUPO"> 
+<det primaryKey="true" name="GRUPO"/> </ret>
+<ret name="PISTA"> 
+<det primaryKey="true" name="PISTA"/> </ret>
+<ret name="ESTACAO_TIPO_NUVEM"> 
+<det primaryKey="true" name="ESTACAO_TIPO_NUVEM"/> </ret>
+
+</ilf>
+
+<ilf name="OBSERVACAO">	<ret name="OBSERVACAO">
+<det name="DATA"/>
+<det name="HORA LOCAL"/>
+<det name="ID REGISTRO"/>
+<det name="ESTACAO"/>
+<det name="INDICATIVO"/>
+<det name="TIPO REGISTRO"/>
+<det name="OBSERVACAO SUMARIO GERAL"/>
+<det name="PISTA"/>
+<det name="DIRECAO"/>
+<det name="VELOCIDADE"/>
+<det name="RAJADA"/>
+<det name="VENTO VARIAVEL"/>
+<det name="VNT VND"/>
+<det name="VISIBILIDADE PREDOMINANTE"/>
+<det name="VISIBILIDADE MINIMA"/>
+<det name="DIRECAO DA VISIBILIDADE MINIMA"/>
+<det name="ALCANCE VISUAL"/>
+<det name="TENDENCIA"/>
+<det name="VARIANDO"/>
+<det name="ALCANCE MINIMO"/>
+<det name="ALCANCE MAXIMO"/>
+<det name="TIPO "/>
+<det name="SUB TIPOS"/>
+<det name="ID CONDICAO TEMPO"/>
+<det name="NOME"/>
+<det name="ID NUVEM"/>
+<det name="QUANTIDADE"/>
+<det name="TIPO DE NUVEM"/>
+<det name="ALTURA"/>
+<det name="TETO"/>
+<det name="TEMPERATURA DO AR NA PISTA"/>
+<det name="BULBO SECO"/>
+<det name="BULBO UMIDO"/>
+<det name="PONTO DE ORVALHO"/>
+<det name="UMIDADE RELATIVA DO AR"/>
+<det name="TEMPERATURA DAS ULTIMAS 12 HORAS"/>
+<det name="MEDIA DE TEMP. NAS ULTIMAS 12 HORAS"/>
+<det name="QFE"/>
+<det name="QNH"/>
+<det name="QFF"/>
+<det name="ALTITUDE DE 850 HPA"/>
+<det name="DIF. PRESSAO NAS ULTIMAS 12 HORAS"/>
+<det name="TENDENCIA DE PRESSAO"/>
+<det name="PRESSAO"/>
+<det name="HORA SINOTICA"/>
+<det name="QUANTIDADE DE PRECIPITACAO"/>
+<det name="DURACAO DA PRECIPITACAO"/>
+<det name="DIA ANTERIOR"/>
+<det name="INICIO"/>
+<det name="TERMINO "/>
+<det name="DURACAO DAS PRECIPITACOES"/>
+<det name="DIA ATUAL"/>
+<det name="TIPO OBSERVACAO"/>
+<det name="ENVIA PARA OPMET"/>
+<det name="METAR/SPECI"/>
+<det name="SYNOP"/>
+<det name="ARQUIVO REDE NEURAL"/>
+<det name="DESCRICAO"/>
+<det name="CODIGO"/>
+<det name="TIPO  DA CONDICAO DO TEMPO"/>
+<det name="TIPO"/>
+<det name="TROVOADA"/>
+
+</ret>
+
+<ret name="REGISTRO_IEPV"> 
+<det primaryKey="true" name="REGISTRO_IEPV"/> </ret>
+<ret name="VENTO"> 
+<det primaryKey="true" name="VENTO"/> </ret>
+<ret name="TETO"> 
+<det primaryKey="true" name="TETO"/> </ret>
+<ret name="RVR"> 
+<det primaryKey="true" name="RVR"/> </ret>
+<ret name="OBSERVACAO"> 
+<det primaryKey="true" name="OBSERVACAO"/> </ret>
+<ret name="NUVEM"> 
+<det primaryKey="true" name="NUVEM"/> </ret>
+<ret name="PISTA"> 
+<det primaryKey="true" name="PISTA"/> </ret>
+<ret name="REDE_NEURAL_XML"> 
+<det primaryKey="true" name="REDE_NEURAL_XML"/> </ret>
+<ret name="CONDICAO TEMPO"> 
+<det primaryKey="true" name="CONDICAO TEMPO"/> </ret>
+<ret name="TIPO TEMPO"> 
+<det primaryKey="true" name="TIPO TEMPO"/> </ret>
+<ret name="FILE UPLOAD"> 
+<det primaryKey="true" name="FILE UPLOAD"/> </ret>
+<ret name="FILE UPLOAD FILE DATA WIND"> 
+<det primaryKey="true" name="FILE UPLOAD FILE DATA WIND"/> </ret>
+<ret name="FILE UPLOAD FILE DATA PTU"> 
+<det primaryKey="true" name="FILE UPLOAD FILE DATA PTU"/> </ret>
+
+</ilf>
+
+
+<ilf name="GERENCIA">	<ret name="GERENCIA">
+
+<det name="INDICADOR DA GERENCIA"/>
+<det name="NOME DA GERENCIA"/>
+<det name="ESTADO"/>
+<det name="REGIONAL"/>
+<det name="INSTITUICAO"/>
+<det name="TIPO METEOROLOGICOS"/>
+<det name="STATUS"/>
+</ret>
+
+<ret name="GERENCIA"> 
+<det primaryKey="true" name="GERENCIA"/> </ret>
+</ilf>
+
+<ilf name="MAQUINA">	<ret name="MAQUINA">
+<det name="MAC ADDRESS"/>
+<det name="DESCRICAO"/>
+<det name="BLOQUEADA"/>
+<det name="ESTACAO"/>
+</ret>
+
+<ret name="MAQUINA"> 
+<det primaryKey="true" name="MAQUINA"/> </ret>
+</ilf>
+
+
+<ilf name="PARAMETRO_SISTEMA_BDC">	<ret name="PARAMETRO_SISTEMA_BDC">
+
+<det name="IP "/>
+<det name="PORTA"/>
+<det name="SID"/>
+<det name="USUARIO"/>
+<det name="SENHA"/>
+</ret>
+
+<ret name="PARAMETRO_SISTEMA_BDC"> 
+<det primaryKey="true" name="PARAMETRO_SISTEMA_BDC"/> </ret>
+</ilf>
+
+<ilf name="PARAMETRO_SISTEMA_OPMET">	<ret name="PARAMETRO_SISTEMA_OPMET">
+<det name="IP "/>
+<det name="PORTA"/>
+<det name="SID"/>
+<det name="USUARIO"/>
+<det name="SENHA"/>
+</ret>
+
+<ret name="PARAMETRO_SISTEMA_OPMET"> 
+<det primaryKey="true" name="PARAMETRO_SISTEMA_OPMET"/> </ret>
+</ilf>
+
+<ilf name="PARAMETRO_SISTEMA_REDE_NEURAL">	<ret name="PARAMETRO_SISTEMA_REDE_NEURAL">
+<det name="IP "/>
+<det name="PORTA"/>
+<det name="CAMINHO"/>
+<det name="USUARIO"/>
+<det name="SENHA"/>
+</ret>
+
+<ret name="PARAMETRO_SISTEMA_REDE_NEURAL"> 
+<det primaryKey="true" name="PARAMETRO_SISTEMA_REDE_NEURAL"/> </ret>
+</ilf>
+
+</data-model>
+
+<transaction-model>
+<transaction name="USUARIO CADASTRAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="USUARIO" ret="USUARIO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="ESTACAO (EMS) CADASTRAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="ESTACAO" ret="ESTACAO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="ESTACAO (EMS) ALTERAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="ESTACAO" ret="ESTACAO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="ESTACAO EMS LISTAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="ESTACAO" ret="ESTACAO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="CADASTRO DE EMS VISUALIZAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="ESTACAO" ret="ESTACAO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="PESQUISA DE ESTACAO EMA (SELECIONAR)" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="ESTACAO" ret="ESTACAO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="ESTACAO EMA PESQUISAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="ESTACAO" ret="ESTACAO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="ESTACAO (EMA) ALTERAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="ESTACAO" ret="ESTACAO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="ESTACAO (EMA) CADASTRAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="ESTACAO" ret="ESTACAO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="GRUPOS DE ESTACAO METEOROLOGICAS CADASTRAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="ESTACAO" ret="ESTACAO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="CENTROS VISUALIZAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="ESTACAO" ret="ESTACAO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="CENTRO CADASTRAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="ESTACAO" ret="ESTACAO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="CENTRO ALTERAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="ESTACAO" ret="ESTACAO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="CENTRO REMOVER" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="ESTACAO" ret="ESTACAO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="PESQUISA DO CADASTRO DE CENTROS (VISUALIZAR)" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="ESTACAO" ret="ESTACAO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="REGIONAIS PESQUISAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="ESTACAO" ret="ESTACAO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="REGIONAIS VISUALIZAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="ESTACAO" ret="ESTACAO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="ALTERACAO CADASTRO REGIONAL" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="ESTACAO" ret="ESTACAO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="EXCLUIR CADASTRO REGIONAL" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="ESTACAO" ret="ESTACAO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="REGIONAL CADASTRAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="ESTACAO" ret="ESTACAO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="CONDICAO DE TEMPO PRESENTE E RECENTE PESQUISAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="ESTACAO" ret="ESTACAO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="CONDICAO DE TEMPO PRESENTE E RECENTE CADASTRAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="ESTACAO" ret="ESTACAO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="CLASSIFICACAO DO TIPO DE TEMPO PASSADO LISTAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="ESTACAO" ret="ESTACAO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="GERENCIA CADASTRAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="GERENCIA" ret="GERENCIA" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="MAQUINAS CADASTRAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="MAQUINA" ret="MAQUINA" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="OBSERVACOES EMA (PTU, WIND) LISTAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="ESTACAO" ret="ESTACAO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="OBSERVACOES EMA (PTU, WIND) CADASTRAR" errorMsg="true" type="EI">
+   
+<ftr-list>	
+<ftr name="ESTACAO" ret="ESTACAO" useAllDets="true" />	
+</ftr-list></transaction>
+<transaction name="OBSERVACOES EMA (TEMP, PILOT) LISTAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="ESTACAO" ret="ESTACAO" useAllDets="true" />
+<ftr name="OBSERVACAO" ret="OBSERVACAO" useAllDets="true" />	</ftr-list></transaction>
+
+<transaction name="OBSERVACAO EMA (TEMP, PILOT) CADASTRAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="OBSERVACAO" ret="OBSERVACAO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="OBSERVACOES EMS LISTAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="ESTACAO" ret="ESTACAO" useAllDets="true" />
+<ftr name="OBSERVACAO" ret="OBSERVACAO" useAllDets="true" />
+</ftr-list></transaction>
+<transaction name="OBSERVACAO EMS REGISTRAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="ESTACAO" ret="ESTACAO" useAllDets="true" />
+<ftr name="OBSERVACAO" ret="OBSERVACAO" useAllDets="true" />
+</ftr-list></transaction>
+<transaction name="RELATORIO ESTATISTICO DE QUANTIDADE DE MENSAGENS POR TIPO METEOROLOGICO PESQUISAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="ESTACAO" ret="ESTACAO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="RELATORIO ESTATISTICO DE QUANTIDADE DE MENSAGENS POR TIPO METEOROLOGICO GERAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="ESTACAO" ret="ESTACAO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="RELATORIO DE CONDICOES DE TEMPO PESQUISAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="ESTACAO" ret="ESTACAO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="RELATORIO DE CONDICOES DE TEMPO GERAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="OBSERVACAO" ret="OBSERVACAO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="RELATORIO DE LOG DE OPERACOES GERAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="USUARIO" ret="USUARIO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="RELATORIO CONFIGURACAO" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="USUARIO" ret="USUARIO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="RELATORIO CLIMATOLOGICO - IEPV 105-78 PESQUISAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="ESTACAO" ret="ESTACAO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="RELATORIO CLIMATOLOGICO - IEPV 105-78 GERAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="ESTACAO" ret="ESTACAO" useAllDets="true" />
+<ftr name="OBSERVACAO" ret="OBSERVACAO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="RELATORIO CLIMATOLOGICO - SUMARIO 1 PESQUISAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="ESTACAO" ret="ESTACAO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="RELATORIO CLIMATOLOGICO - SUMARIO 1 GERAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="OBSERVACAO" ret="OBSERVACAO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="RELATORIO CLIMATOLOGICO - SUMARIO 2 PESQUISAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="ESTACAO" ret="ESTACAO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="RELATORIO CLIMATOLOGICO - SUMARIO 2 GERAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="OBSERVACAO" ret="OBSERVACAO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="RELATORIO - SUMARIO GERAL PESQUISAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="ESTACAO" ret="ESTACAO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="RELATORIO - SUMARIO GERAL" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="ESTACAO" ret="ESTACAO" useAllDets="true" />
+<ftr name="OBSERVACAO" ret="OBSERVACAO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name=" RELATORIO SINTETICO DE OBSERVACAO METEOROLOGICA PESQUISAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="ESTACAO" ret="ESTACAO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name=" RELATORIO SINTETICO DE OBSERVACAO METEOROLOGICA GERAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="OBSERVACAO" ret="OBSERVACAO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="PARAMETRO DO SISTEMA BDC CADASTRAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="PARAMETRO_SISTEMA_BDC" ret="PARAMETRO_SISTEMA_BDC" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="PARAMETRO DO SISTEMA OPMET CADASTRAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="PARAMETRO_SISTEMA_OPMET" ret="PARAMETRO_SISTEMA_OPMET" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="CADASTRO DE PARAMETROS DO SISTEMA NEURAL" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="PARAMETRO_SISTEMA_REDE_NEURAL" ret="PARAMETRO_SISTEMA_REDE_NEURAL" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="PARAMENTROS DO SISTEMA DE DIAS DE OBSERVACAO EMS CADASTRAR" errorMsg="true" type="EI">
+   <ftr-list>	<ftr name="ESTACAO" ret="ESTACAO" useAllDets="true" />	</ftr-list></transaction>
+<transaction name="PARAMETRO PARA ATUALIZACAO DO HORARIO UTC
+(OBSERVACOES EMS E ESTACAO)" errorMsg="true" type="EI">
+   
+<ftr-list>	
+<ftr name="ESTACAO" ret="ESTACAO" useAllDets="true" />	
+</ftr-list>
+</transaction>
+
+</transaction-model>
+
+
+</system>

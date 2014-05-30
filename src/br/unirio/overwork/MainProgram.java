@@ -14,8 +14,8 @@ import br.unirio.nrpapf.report.ReportTransactionFunction;
 import br.unirio.optimization.experiment.HillClimbingExperiment;
 import br.unirio.optimization.experiment.NSGAIIExperiment;
 import br.unirio.optimization.experiment.RandomSearchExperiment;
-import br.unirio.overwork.builders.WorkPackage;
-import br.unirio.overwork.builders.WorkPackageProjectBuilder;
+import br.unirio.overwork.builders.controller.WorkPackageProjectBuilder;
+import br.unirio.overwork.builders.model.WorkPackage;
 import br.unirio.overwork.model.base.Project;
 
 public class MainProgram
@@ -93,7 +93,7 @@ public class MainProgram
 		
 		for  (ReportDataFunction df: report.getDataFunctions())
 		{
-			WorkPackage workPackage = builder.addWorkPackage(df.getName()).addDataFunction(df.getName(), df.getFunctionPoints());
+			WorkPackage workPackage = builder.addWorkPackage(df.getName()).builder.addRequirement(df.getName(), df.getFunctionPoints());
 		}
 
 		
@@ -106,7 +106,7 @@ public class MainProgram
 					for (FileReference fr: _transaction.getFileReferences())
 					{
 						WorkPackage workPackage = builder.getWorkPackagebyName(fr.getName());
-						workPackage.addTransactionalFunction(tr.getName(), tr.getFunctionPoints());
+						workPackage.builder.addRequirement(tr.getName(), tr.getFunctionPoints());
 					}	
 				}		
 			}
@@ -121,54 +121,54 @@ public class MainProgram
 		return builder.execute(); //createProject();  
 	}
 	
-	private static Project createProject()
+	protected static Project createProject()
 	{
 		WorkPackageProjectBuilder builder = new WorkPackageProjectBuilder();
 		
-		builder.addWorkPackage("Usuários")
-			.addDataFunction("usuario", 7)
-			.addTransactionalFunction("Cadastro de usuário", 3)
-			.addTransactionalFunction("Lista de usuários ", 4)
-			.addTransactionalFunction("Consulta de usuário", 4);
+		WorkPackage wp1 = builder.addWorkPackage("Usuários");
+		wp1.addRequirement("usuario", 7);
+		wp1.addRequirement("Cadastro de usuário", 3);
+		wp1.addRequirement("Lista de usuários ", 4);
+		wp1.addRequirement("Consulta de usuário", 4);
 
-		builder.addWorkPackage("Professores")
-			.addDataFunction("professor", 7)
-			.addTransactionalFunction("Cadastro de professor", 4)
-			.addTransactionalFunction("Lista de professores", 4)
-			.addTransactionalFunction("Consulta de professor", 5);
+		WorkPackage wp2 = builder.addWorkPackage("Professores");
+		wp2.addRequirement("professor", 7);
+		wp2.addRequirement("Cadastro de professor", 4);
+		wp2.addRequirement("Lista de professores", 4);
+		wp2.addRequirement("Consulta de professor", 5);
 		
-		builder.addWorkPackage("Áreas")
-			.addDataFunction("area", 7)
-			.addTransactionalFunction("Cadastro de área", 4)
-			.addTransactionalFunction("Lista de áreas", 4)
-			.addTransactionalFunction("Lista de sub-áreas", 4)
-			.addTransactionalFunction("Consulta de área", 4);
+		WorkPackage wp3 = builder.addWorkPackage("Áreas");
+		wp3.addRequirement("area", 7);
+		wp3.addRequirement("Cadastro de área", 4);
+		wp3.addRequirement("Lista de áreas", 4);
+		wp3.addRequirement("Lista de sub-áreas", 4);
+		wp3.addRequirement("Consulta de área", 4);
 		
-		builder.addWorkPackage("Aluno")
-			.addDataFunction("aluno", 10)
-			.addTransactionalFunction("Cadastro de aluno", 6)
-			.addTransactionalFunction("Consulta de aluno", 7);
+		WorkPackage wp4 = builder.addWorkPackage("Aluno");
+		wp4.addRequirement("aluno", 10);
+		wp4.addRequirement("Cadastro de aluno", 6);
+		wp4.addRequirement("Consulta de aluno", 7);
 		
-		builder.addWorkPackage("Disciplinas")
-			.addDataFunction("disciplina", 7)
-			.addTransactionalFunction("Cadastro de disciplina", 4)
-			.addTransactionalFunction("Lista de disciplinas", 4)
-			.addTransactionalFunction("Consulta de disciplina", 5);
+		WorkPackage wp5 = builder.addWorkPackage("Disciplinas");
+		wp5.addRequirement("disciplina", 7);
+		wp5.addRequirement("Cadastro de disciplina", 4);
+		wp5.addRequirement("Lista de disciplinas", 4);
+		wp5.addRequirement("Consulta de disciplina", 5);
 		
-		builder.addWorkPackage("Turmas")
-			.addDataFunction("turma", 7)
-			.addDataFunction("turmasolicitada", 7)
-			.addTransactionalFunction("Cadastro de turma", 6)
-			.addTransactionalFunction("Cadastro de turma solicitada", 6)
-			.addTransactionalFunction("Lista de turmas", 4)
-			.addTransactionalFunction("Consulta de turma", 7)
-			.addTransactionalFunction("Lista de turmas solicitadas", 4);
+		WorkPackage wp6 = builder.addWorkPackage("Turmas");
+		wp6.addRequirement("turma", 7);
+		wp6.addRequirement("turmasolicitada", 7);
+		wp6.addRequirement("Cadastro de turma", 6);
+		wp6.addRequirement("Cadastro de turma solicitada", 6);
+		wp6.addRequirement("Lista de turmas", 4);
+		wp6.addRequirement("Consulta de turma", 7);
+		wp6.addRequirement("Lista de turmas solicitadas", 4);
 		
-		builder.addWorkPackage("Inscrições")
-			.addDataFunction("inscricao", 7)
-			.addTransactionalFunction("Cadastro de inscrição", 6)
-			.addTransactionalFunction("Consulta de inscrição", 7)
-			.addTransactionalFunction("Geração de comprovante", 7);
+		WorkPackage wp7 = builder.addWorkPackage("Inscrições");
+		wp7.addRequirement("inscricao", 7);
+		wp7.addRequirement("Cadastro de inscrição", 6);
+		wp7.addRequirement("Consulta de inscrição", 7);
+		wp7.addRequirement("Geração de comprovante", 7);
 		
 		return builder.execute();
 	}

@@ -1,11 +1,7 @@
 package br.unirio.overwork.builders.controller;
 
-<<<<<<< HEAD:src/br/unirio/overwork/builders/controller/SoftwareSystemProjectBuilder.java
 import java.util.ArrayList;
 import java.util.List;
-
-=======
->>>>>>> 040caff09376ba88c6f4513e39c71952bd0ef7e7:src/br/unirio/overwork/builders/controller/WorkPackageProjectBuilder.java
 import br.unirio.overwork.builders.model.SoftwareSystem;
 import br.unirio.overwork.builders.model.WorkPackage;
 import br.unirio.overwork.model.base.Activity;
@@ -21,7 +17,7 @@ import br.unirio.overwork.model.base.Project;
  */
 public class SoftwareSystemProjectBuilder
 {
-<<<<<<< HEAD:src/br/unirio/overwork/builders/controller/SoftwareSystemProjectBuilder.java
+
 	/**
 	 * Software System
 	 */
@@ -48,8 +44,7 @@ public class SoftwareSystemProjectBuilder
 		WorkPackage pt = new WorkPackage(nome);
 		this.workPackages.add(pt);
 		return pt;
-	}
-	
+	}	
 	
 	/**
 	 * Adds a software system to the project
@@ -79,9 +74,6 @@ public class SoftwareSystemProjectBuilder
 	 * Executes the project generation procedure
 	 */
 	public Project execute()
-=======
-	public Project execute(SoftwareSystem system)
->>>>>>> 040caff09376ba88c6f4513e39c71952bd0ef7e7:src/br/unirio/overwork/builders/controller/WorkPackageProjectBuilder.java
 	{
 		Project project = new Project();
 		Developer developer = new Developer("Developer", 60);
@@ -94,23 +86,19 @@ public class SoftwareSystemProjectBuilder
 
 		double totalFunctionPoints = 0;
 		
-<<<<<<< HEAD:src/br/unirio/overwork/builders/controller/SoftwareSystemProjectBuilder.java
 		for (WorkPackage wp : softwareSystem.getWorkPackages())
 			totalFunctionPoints += wp.calculateFunctionPoints();
-=======
-		for (WorkPackage pacote : system.getWorkPackages())
+
+		for (WorkPackage pacote : softwareSystem.getWorkPackages())
 			totalFunctionPoints += pacote.calculateFunctionPoints();
->>>>>>> 040caff09376ba88c6f4513e39c71952bd0ef7e7:src/br/unirio/overwork/builders/controller/WorkPackageProjectBuilder.java
 		
 		Configuration configuration = Configuration.getConfigurationForFunctionPoints(totalFunctionPoints);
 		
 		double errorCorrectionEffort = configuration.getTestingEffort() * Constants.DAYS_IN_MONTH / configuration.getAverageProductivity() / 4.0;
 		
-<<<<<<< HEAD:src/br/unirio/overwork/builders/controller/SoftwareSystemProjectBuilder.java
 		for (WorkPackage wp : softwareSystem.getWorkPackages())
-=======
-		for (WorkPackage pacote : system.getWorkPackages())
->>>>>>> 040caff09376ba88c6f4513e39c71952bd0ef7e7:src/br/unirio/overwork/builders/controller/WorkPackageProjectBuilder.java
+
+		for (WorkPackage pacote : softwareSystem.getWorkPackages())
 		{
 			double functionPoints = wp.calculateFunctionPoints();
 			

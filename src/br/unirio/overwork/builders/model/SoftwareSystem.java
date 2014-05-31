@@ -67,13 +67,13 @@ public class SoftwareSystem
 		return null;
 	}
 	
-	/**
-	 * Returns the work packages comprising the system
-	 */
-	public Iterable<WorkPackage> getWorkPackages()
-	{
-		return workPackages;
-	}
+//	/**
+//	 * Returns the work packages comprising the system
+//	 */
+//	public Iterable<WorkPackage> getWorkPackages()
+//	{
+//		return workPackages;
+//	}
 
 	/**
 	 * Adds a work package to the system

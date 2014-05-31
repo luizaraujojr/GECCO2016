@@ -7,11 +7,7 @@ import br.unirio.instance.Reader;
 import br.unirio.optimization.experiment.HillClimbingExperiment;
 import br.unirio.optimization.experiment.NSGAIIExperiment;
 import br.unirio.optimization.experiment.RandomSearchExperiment;
-<<<<<<< HEAD
 import br.unirio.overwork.builders.controller.SoftwareSystemProjectBuilder;
-=======
-import br.unirio.overwork.builders.controller.WorkPackageProjectBuilder;
->>>>>>> 040caff09376ba88c6f4513e39c71952bd0ef7e7
 import br.unirio.overwork.builders.model.SoftwareSystem;
 import br.unirio.overwork.builders.model.WorkPackage;
 import br.unirio.overwork.model.base.Project;
@@ -94,71 +90,45 @@ public class MainProgram
 	
 	protected static Project createProject()
 	{
-<<<<<<< HEAD
-		SoftwareSystem ss = new SoftwareSystem("teste");
-
-		//WorkPackage wp1 = builder.addWorkPackage("Usuários");
-		WorkPackage wp1 = new WorkPackage("Usuários"); 
-=======
-		SoftwareSystem system = new SoftwareSystem("");
+		SoftwareSystem system = new SoftwareSystem("Projeto de teste");
 		
 		WorkPackage wp1 = system.addWorkPackage("Usuários");
->>>>>>> 040caff09376ba88c6f4513e39c71952bd0ef7e7
+
 		wp1.addRequirement("usuario", 7);
 		wp1.addRequirement("Cadastro de usuário", 3);
 		wp1.addRequirement("Lista de usuários ", 4);
 		wp1.addRequirement("Consulta de usuário", 4);
 
-<<<<<<< HEAD
-		//WorkPackage wp2 = builder.addWorkPackage("Professores");
-		WorkPackage wp2 = new WorkPackage("professor");
-=======
 		WorkPackage wp2 = system.addWorkPackage("Professores");
->>>>>>> 040caff09376ba88c6f4513e39c71952bd0ef7e7
+
 		wp2.addRequirement("professor", 7);
 		wp2.addRequirement("Cadastro de professor", 4);
 		wp2.addRequirement("Lista de professores", 4);
 		wp2.addRequirement("Consulta de professor", 5);
 		
-<<<<<<< HEAD
-		//WorkPackage wp3 = builder.addWorkPackage("Áreas");
-		WorkPackage wp3 = new WorkPackage("Áreas");
-=======
 		WorkPackage wp3 = system.addWorkPackage("Áreas");
->>>>>>> 040caff09376ba88c6f4513e39c71952bd0ef7e7
+
 		wp3.addRequirement("area", 7);
 		wp3.addRequirement("Cadastro de área", 4);
 		wp3.addRequirement("Lista de áreas", 4);
 		wp3.addRequirement("Lista de sub-áreas", 4);
 		wp3.addRequirement("Consulta de área", 4);
 		
-<<<<<<< HEAD
-		//WorkPackage wp4 = builder.addWorkPackage("Aluno");
-		WorkPackage wp4 = new WorkPackage("Aluno");
-=======
 		WorkPackage wp4 = system.addWorkPackage("Aluno");
->>>>>>> 040caff09376ba88c6f4513e39c71952bd0ef7e7
+
 		wp4.addRequirement("aluno", 10);
 		wp4.addRequirement("Cadastro de aluno", 6);
-		wp4.addRequirement("Consulta de aluno", 7);
-		
-<<<<<<< HEAD
-//		WorkPackage wp5 = builder.addWorkPackage("Disciplinas");
-		WorkPackage wp5 = new WorkPackage("Disciplinas");
-=======
+		wp4.addRequirement("Consulta de aluno", 7);	
+
 		WorkPackage wp5 = system.addWorkPackage("Disciplinas");
->>>>>>> 040caff09376ba88c6f4513e39c71952bd0ef7e7
+
 		wp5.addRequirement("disciplina", 7);
 		wp5.addRequirement("Cadastro de disciplina", 4);
 		wp5.addRequirement("Lista de disciplinas", 4);
 		wp5.addRequirement("Consulta de disciplina", 5);
 		
-<<<<<<< HEAD
-//		WorkPackage wp6 = builder.addWorkPackage("Turmas");
-		WorkPackage wp6 = new WorkPackage("Turmas");
-=======
 		WorkPackage wp6 = system.addWorkPackage("Turmas");
->>>>>>> 040caff09376ba88c6f4513e39c71952bd0ef7e7
+
 		wp6.addRequirement("turma", 7);
 		wp6.addRequirement("turmasolicitada", 7);
 		wp6.addRequirement("Cadastro de turma", 6);
@@ -167,33 +137,18 @@ public class MainProgram
 		wp6.addRequirement("Consulta de turma", 7);
 		wp6.addRequirement("Lista de turmas solicitadas", 4);
 		
-<<<<<<< HEAD
-//		WorkPackage wp7 = builder.addWorkPackage("Inscrições");
-		WorkPackage wp7 = new WorkPackage("Inscrições");
-=======
 		WorkPackage wp7 = system.addWorkPackage("Inscrições");
->>>>>>> 040caff09376ba88c6f4513e39c71952bd0ef7e7
+
 		wp7.addRequirement("inscricao", 7);
 		wp7.addRequirement("Cadastro de inscrição", 6);
 		wp7.addRequirement("Consulta de inscrição", 7);
 		wp7.addRequirement("Geração de comprovante", 7);
-		
-<<<<<<< HEAD
-		ss.addWorkPackage(wp1);
-		ss.addWorkPackage(wp2);
-		ss.addWorkPackage(wp3);
-		ss.addWorkPackage(wp4);
-		ss.addWorkPackage(wp5);
-		ss.addWorkPackage(wp6);
-		ss.addWorkPackage(wp7);
-		
+			
 		SoftwareSystemProjectBuilder builder = new SoftwareSystemProjectBuilder();
 		
-		builder.addSoftwareSystem(ss);
+		builder.addSoftwareSystem(system);
 		
 		return builder.execute();
-=======
-		return new WorkPackageProjectBuilder().execute(system);
->>>>>>> 040caff09376ba88c6f4513e39c71952bd0ef7e7
+
 	}
 }

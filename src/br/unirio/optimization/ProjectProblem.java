@@ -33,7 +33,6 @@ public class ProjectProblem extends Problem {
 	public ProjectProblem(Project project, int maxEvaluations) throws ClassNotFoundException
 	
 	{	
-		
 		this.project = project;
 		this.evaluations = 0;
 		this.maxEvaluations = maxEvaluations;

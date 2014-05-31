@@ -1,6 +1,7 @@
 package	 br.unirio.optimization.experiment;
 
 import jmetal.base.Algorithm;
+import lombok.Setter;
 import unirio.experiments.multiobjective.controller.Experiment;
 import br.unirio.optimization.ProjectProblem;
 import br.unirio.optimization.heuristic.RandomSearch;
@@ -14,6 +15,9 @@ import br.unirio.overwork.model.base.Project;
 
 public class RandomSearchExperiment extends Experiment<Project>
 {
+	
+	public @Setter int maxEvaluations;
+	
 	/**
 	 * Runs the experiment
 	 */
@@ -81,6 +85,7 @@ public class RandomSearchExperiment extends Experiment<Project>
 	protected Algorithm createAlgorithm(Project instance) throws Exception
 	{		
 		ProjectProblem problem = new ProjectProblem(instance);
+		problem.setMaxEvaluations(maxEvaluations);
 
 		int population = 10;// * instance.getActivitiesCount();
 		

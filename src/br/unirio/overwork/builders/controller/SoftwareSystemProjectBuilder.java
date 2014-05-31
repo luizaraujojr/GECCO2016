@@ -3,6 +3,7 @@ package br.unirio.overwork.builders.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.unirio.overwork.builders.model.SoftwareSystem;
 import br.unirio.overwork.builders.model.WorkPackage;
 import br.unirio.overwork.model.base.Activity;
 import br.unirio.overwork.model.base.ActivityDevelopment;
@@ -15,8 +16,13 @@ import br.unirio.overwork.model.base.Project;
  * 
  * @author Marcio Barros
  */
-public class WorkPackageProjectBuilder
+public class SoftwareSystemProjectBuilder
 {
+	/**
+	 * Software System
+	 */
+	private SoftwareSystem softwareSystem;
+	
 	/**
 	 * List of work packages comprising the project
 	 */
@@ -25,7 +31,7 @@ public class WorkPackageProjectBuilder
 	/**
 	 * Initializes the project builder
 	 */
-	public WorkPackageProjectBuilder()
+	public SoftwareSystemProjectBuilder()
 	{
 		this.workPackages = new ArrayList<WorkPackage>();
 	}
@@ -39,6 +45,17 @@ public class WorkPackageProjectBuilder
 		this.workPackages.add(pt);
 		return pt;
 	}
+	
+	
+	/**
+	 * Adds a software system to the project
+	 * @return 
+	 */
+	public void addSoftwareSystem(SoftwareSystem ss)
+	{
+		this.softwareSystem = ss;
+	}
+	
 	
 	public WorkPackage getWorkPackagebyName(String name)
 	{
@@ -54,7 +71,6 @@ public class WorkPackageProjectBuilder
 		return null;
 	}
 
-	
 	/**
 	 * Executes the project generation procedure
 	 */
@@ -71,38 +87,38 @@ public class WorkPackageProjectBuilder
 
 		double totalFunctionPoints = 0;
 		
-		for (WorkPackage pacote : workPackages)
-			totalFunctionPoints += pacote.calculateFunctionPoints();
+		for (WorkPackage wp : softwareSystem.getWorkPackages())
+			totalFunctionPoints += wp.calculateFunctionPoints();
 		
 		Configuration configuration = Configuration.getConfigurationForFunctionPoints(totalFunctionPoints);
 		
 		double errorCorrectionEffort = configuration.getTestingEffort() * Constants.DAYS_IN_MONTH / configuration.getAverageProductivity() / 4.0;
 		
-		for (WorkPackage pacote : workPackages)
+		for (WorkPackage wp : softwareSystem.getWorkPackages())
 		{
-			double functionPoints = pacote.calculateFunctionPoints();
+			double functionPoints = wp.calculateFunctionPoints();
 			
 			double effortRequirement = functionPoints * configuration.getRequirementsEffort() * (Constants.DAYS_IN_MONTH / configuration.getAverageProductivity());
 			double errorsRequirement = functionPoints;
 			
-			Activity requirements = new ActivityDevelopment(project, "Requisitos " + pacote.getName(), effortRequirement, errorsRequirement, 0.0)
+			Activity requirements = new ActivityDevelopment(project, "Requisitos " + wp.getName(), effortRequirement, errorsRequirement, 0.0)
 				.setDeveloper(developer);
 			
 			double effortDesign = functionPoints * configuration.getDesignEffort() * (Constants.DAYS_IN_MONTH / configuration.getAverageProductivity());
 			double errorsDesign = functionPoints;
 
-			Activity design = new ActivityDevelopment(project, "Projeto " + pacote.getName(), effortDesign, errorsDesign, Constants.DESIGN_ERROR_REGENERATION)
+			Activity design = new ActivityDevelopment(project, "Projeto " + wp.getName(), effortDesign, errorsDesign, Constants.DESIGN_ERROR_REGENERATION)
 				.addPrecedent(requirements)
 				.setDeveloper(developer);
 			
 			double effortCoding = functionPoints * configuration.getCodingEffort() * (Constants.DAYS_IN_MONTH / configuration.getAverageProductivity());
 			double errorsCoding = functionPoints;
 
-			Activity codificacao = new ActivityDevelopment(project, "Codificacao " + pacote.getName(), effortCoding, errorsCoding, Constants.CODING_ERROR_REGENERATION)
+			Activity codificacao = new ActivityDevelopment(project, "Codificacao " + wp.getName(), effortCoding, errorsCoding, Constants.CODING_ERROR_REGENERATION)
 				.addPrecedent(design)
 				.setDeveloper(developer);
 
-			Activity testes = new AtivityTesting(project, "Testes " + pacote.getName(), errorCorrectionEffort)
+			Activity testes = new AtivityTesting(project, "Testes " + wp.getName(), errorCorrectionEffort)
 				.addPrecedent(codificacao)
 				.setDeveloper(developer);
 

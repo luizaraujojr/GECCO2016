@@ -48,6 +48,14 @@ public class SoftwareSystem
 	}
 	
 	/**
+	 * Returns the work packages
+	 */
+	public List<WorkPackage> getWorkPackages()
+	{
+		return workPackages;
+	}
+	
+	/**
 	 * Returns a work package, given its name
 	 */
 	public WorkPackage getWorkPackageName(String name)
@@ -68,6 +76,16 @@ public class SoftwareSystem
 		this.workPackages.add(wp);
 		return wp;
 	}
+	
+	
+	/** verificar com o márcio
+	 * Adds a work package to the system
+	 */
+	public void addWorkPackage(WorkPackage wp)
+	{
+		this.workPackages.add(wp);
+	}
+	
 	
 	/**
 	 * Calculates the number of function points in the system

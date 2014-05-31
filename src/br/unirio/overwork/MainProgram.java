@@ -3,33 +3,27 @@ package br.unirio.overwork;
 import java.util.Vector;
 
 import unirio.experiments.multiobjective.analyzer.ExperimentAnalyzer;
-import br.unirio.nrpapf.calculator.FunctionPointCalculator;
-import br.unirio.nrpapf.model.FunctionPointSystem;
-import br.unirio.nrpapf.model.transaction.FileReference;
-import br.unirio.nrpapf.model.transaction.Transaction;
-import br.unirio.nrpapf.reader.InstanceReader;
-import br.unirio.nrpapf.report.Report;
-import br.unirio.nrpapf.report.ReportDataFunction;
-import br.unirio.nrpapf.report.ReportTransactionFunction;
+import br.unirio.instance.Reader;
 import br.unirio.optimization.experiment.HillClimbingExperiment;
 import br.unirio.optimization.experiment.NSGAIIExperiment;
 import br.unirio.optimization.experiment.RandomSearchExperiment;
-import br.unirio.overwork.builders.controller.WorkPackageProjectBuilder;
+import br.unirio.overwork.builders.controller.SoftwareSystemProjectBuilder;
+import br.unirio.overwork.builders.model.SoftwareSystem;
 import br.unirio.overwork.builders.model.WorkPackage;
 import br.unirio.overwork.model.base.Project;
 
 public class MainProgram
 {
-	protected static final int CYCLES = 5;
-	protected static final int MAXEVALUATIONS = 2000;
+	protected static final int CYCLES = 20;
+	protected static final int MAXEVALUATIONS = 10000;
 	protected static String[] instanceFiles =
 	{
 //	 		"data/instances/ACAD/functions-point.xml",
 //	 		"data/instances/BOLS/functions-point.xml",
 //	 		"data/instances/PARM/functions-point.xml",
 //	 		"data/instances/PSOA/functions-point.xml",
-		"data/instances/WEBMET/functions-point.xml",
-		"data/instances/OPMET/functions-point.xml"
+		"data/overworking/ACAD.xml"
+		//"data/instances/OPMET/functions-point.xml"
 	};
 	
 	public static final void main(String[] args) throws Exception
@@ -57,18 +51,21 @@ public class MainProgram
 		
 		
 		HillClimbingExperiment hc = new HillClimbingExperiment();
+		hc.setMaxEvaluations(MAXEVALUATIONS);
 		hc.runCycles("saida hc.txt", instances, CYCLES);
 		
 		ExperimentAnalyzer analyzer2 = new ExperimentAnalyzer();
 		analyzer2.analyze("hc", "saida hc.txt", instances.size(), CYCLES, 3);
 		
 		RandomSearchExperiment rs = new RandomSearchExperiment();
+		rs.setMaxEvaluations(MAXEVALUATIONS);
 		rs.runCycles("saida rs.txt", instances, CYCLES);
 		
 		ExperimentAnalyzer analyzer1 = new ExperimentAnalyzer();
 		analyzer1.analyze("rs", "saida rs.txt", instances.size(), CYCLES, 3);
 		
 		NSGAIIExperiment hsgaii2 = new NSGAIIExperiment();
+		hsgaii2.setMaxEvaluations(MAXEVALUATIONS);
 		hsgaii2.runCycles("saida nsgaii2.txt", instances, CYCLES);
 		
 		ExperimentAnalyzer analyzer3 = new ExperimentAnalyzer();
@@ -78,84 +75,60 @@ public class MainProgram
 	public static Project loadInstance(String instancia) throws Exception
 	{
 		//loading the project information
-		InstanceReader reader = new InstanceReader();
-		FunctionPointSystem fps = new FunctionPointSystem(instancia.split("/")[2]);
+		Reader reader = new Reader();
+		SoftwareSystem ss = new SoftwareSystem(instancia.split("/")[2]);
 		
-		fps = reader.run(instancia);
+		ss = reader.run(instancia);
 	
-		FunctionPointCalculator fpc = new FunctionPointCalculator();
+		SoftwareSystemProjectBuilder builder = new SoftwareSystemProjectBuilder();
 		
-		Report report = new Report();
-		report = fpc.calculate(fps);
-		
-		WorkPackageProjectBuilder builder = new WorkPackageProjectBuilder();
-		 
-		
-		for  (ReportDataFunction df: report.getDataFunctions())
-		{
-			WorkPackage workPackage = builder.addWorkPackage(df.getName()).builder.addRequirement(df.getName(), df.getFunctionPoints());
-		}
+		builder.addSoftwareSystem(ss);
 
-		
-		for  (ReportTransactionFunction tr: report.getTransactionFunctions())
-		{	
-			for (Transaction _transaction : fps.getTransactions())
-			{
-				if (_transaction.getName() == tr.getName())
-				{
-					for (FileReference fr: _transaction.getFileReferences())
-					{
-						WorkPackage workPackage = builder.getWorkPackagebyName(fr.getName());
-						workPackage.builder.addRequirement(tr.getName(), tr.getFunctionPoints());
-					}	
-				}		
-			}
-				
-			
-			//System.out.println(tr.getName());
-			//System.out.println(tr.getFileReference(0).getName());
-			
-		//	
-		}
-					
-		return builder.execute(); //createProject();  
+	return builder.execute();   
+//	return createProject(); 
 	}
 	
 	protected static Project createProject()
 	{
-		WorkPackageProjectBuilder builder = new WorkPackageProjectBuilder();
-		
-		WorkPackage wp1 = builder.addWorkPackage("Usuários");
+		SoftwareSystem ss = new SoftwareSystem("teste");
+
+		//WorkPackage wp1 = builder.addWorkPackage("Usuários");
+		WorkPackage wp1 = new WorkPackage("Usuários"); 
 		wp1.addRequirement("usuario", 7);
 		wp1.addRequirement("Cadastro de usuário", 3);
 		wp1.addRequirement("Lista de usuários ", 4);
 		wp1.addRequirement("Consulta de usuário", 4);
 
-		WorkPackage wp2 = builder.addWorkPackage("Professores");
+		//WorkPackage wp2 = builder.addWorkPackage("Professores");
+		WorkPackage wp2 = new WorkPackage("professor");
 		wp2.addRequirement("professor", 7);
 		wp2.addRequirement("Cadastro de professor", 4);
 		wp2.addRequirement("Lista de professores", 4);
 		wp2.addRequirement("Consulta de professor", 5);
 		
-		WorkPackage wp3 = builder.addWorkPackage("Áreas");
+		//WorkPackage wp3 = builder.addWorkPackage("Áreas");
+		WorkPackage wp3 = new WorkPackage("Áreas");
 		wp3.addRequirement("area", 7);
 		wp3.addRequirement("Cadastro de área", 4);
 		wp3.addRequirement("Lista de áreas", 4);
 		wp3.addRequirement("Lista de sub-áreas", 4);
 		wp3.addRequirement("Consulta de área", 4);
 		
-		WorkPackage wp4 = builder.addWorkPackage("Aluno");
+		//WorkPackage wp4 = builder.addWorkPackage("Aluno");
+		WorkPackage wp4 = new WorkPackage("Aluno");
 		wp4.addRequirement("aluno", 10);
 		wp4.addRequirement("Cadastro de aluno", 6);
 		wp4.addRequirement("Consulta de aluno", 7);
 		
-		WorkPackage wp5 = builder.addWorkPackage("Disciplinas");
+//		WorkPackage wp5 = builder.addWorkPackage("Disciplinas");
+		WorkPackage wp5 = new WorkPackage("Disciplinas");
 		wp5.addRequirement("disciplina", 7);
 		wp5.addRequirement("Cadastro de disciplina", 4);
 		wp5.addRequirement("Lista de disciplinas", 4);
 		wp5.addRequirement("Consulta de disciplina", 5);
 		
-		WorkPackage wp6 = builder.addWorkPackage("Turmas");
+//		WorkPackage wp6 = builder.addWorkPackage("Turmas");
+		WorkPackage wp6 = new WorkPackage("Turmas");
 		wp6.addRequirement("turma", 7);
 		wp6.addRequirement("turmasolicitada", 7);
 		wp6.addRequirement("Cadastro de turma", 6);
@@ -164,11 +137,24 @@ public class MainProgram
 		wp6.addRequirement("Consulta de turma", 7);
 		wp6.addRequirement("Lista de turmas solicitadas", 4);
 		
-		WorkPackage wp7 = builder.addWorkPackage("Inscrições");
+//		WorkPackage wp7 = builder.addWorkPackage("Inscrições");
+		WorkPackage wp7 = new WorkPackage("Inscrições");
 		wp7.addRequirement("inscricao", 7);
 		wp7.addRequirement("Cadastro de inscrição", 6);
 		wp7.addRequirement("Consulta de inscrição", 7);
 		wp7.addRequirement("Geração de comprovante", 7);
+		
+		ss.addWorkPackage(wp1);
+		ss.addWorkPackage(wp2);
+		ss.addWorkPackage(wp3);
+		ss.addWorkPackage(wp4);
+		ss.addWorkPackage(wp5);
+		ss.addWorkPackage(wp6);
+		ss.addWorkPackage(wp7);
+		
+		SoftwareSystemProjectBuilder builder = new SoftwareSystemProjectBuilder();
+		
+		builder.addSoftwareSystem(ss);
 		
 		return builder.execute();
 	}

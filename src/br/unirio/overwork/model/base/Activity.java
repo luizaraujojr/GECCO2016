@@ -1,6 +1,7 @@
 package br.unirio.overwork.model.base;
 
 import java.text.DecimalFormat;
+
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;

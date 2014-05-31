@@ -1,7 +1,7 @@
 package br.unirio.overwork.test.scenario;
 
 import junit.framework.TestCase;
-import br.unirio.overwork.builders.controller.WorkPackageProjectBuilder;
+import br.unirio.overwork.builders.controller.SoftwareSystemProjectBuilder;
 import br.unirio.overwork.builders.model.WorkPackage;
 import br.unirio.overwork.model.base.Developer;
 import br.unirio.overwork.model.base.Project;
@@ -13,7 +13,7 @@ public class TestScenarioExhaustion extends TestCase
 {
 	private static Project createProject()
 	{
-		WorkPackageProjectBuilder builder = new WorkPackageProjectBuilder();
+		SoftwareSystemProjectBuilder builder = new SoftwareSystemProjectBuilder();
 		
 		WorkPackage wp1 = builder.addWorkPackage("Usuários");
 		wp1.addRequirement("usuario", 7);

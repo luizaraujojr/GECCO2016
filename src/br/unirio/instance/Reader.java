@@ -15,8 +15,34 @@ import br.unirio.overwork.builders.model.SoftwareSystem;
 import br.unirio.overwork.builders.model.WorkPackage;
 
 public class Reader {
-	
+
 	public SoftwareSystem run(String filename) throws Exception 
+	{
+		Element root = loadXmlFile (filename);
+		
+		//extracting from the transaction list and including in the requirement list
+		ArrayList<Requirement> tfRequirementList = new ArrayList<Requirement>();
+		NodeList transactionNodeList = root.getElementsByTagName("transaction");
+		extractRequirements (transactionNodeList, tfRequirementList);
+		
+		//looping in the data function list to include in the requirement list
+		ArrayList<Requirement> dfRequirementList = new ArrayList<Requirement>();
+		NodeList dataNodeList = root.getElementsByTagName("data");
+		extractRequirements (dataNodeList, dfRequirementList);
+		
+		//looping in the transaction list to include the dependency over a transaction function 
+		for (int i = 0; i < transactionNodeList.getLength(); i++) 
+		{
+			Element transactionNode = (Element) transactionNodeList.item(i);
+						
+			extractDependencies(transactionNode, "depends", tfRequirementList,tfRequirementList);
+			
+			extractDependencies(transactionNode, "ftr", tfRequirementList, dfRequirementList);
+		}
+		return createSoftwareSystem(root, dfRequirementList, tfRequirementList);
+	}
+	
+	private Element loadXmlFile (String filename) throws Exception
 	{
 		File fXmlFile = new File(filename);
 		
@@ -25,82 +51,45 @@ public class Reader {
 		Document doc = dBuilder.parse(fXmlFile);
 		doc.getDocumentElement().normalize();
 
-		Element root = doc.getDocumentElement();
+		return doc.getDocumentElement();
+	}
+	
+	private void extractRequirements(NodeList nodeList, ArrayList<Requirement> reqs)
+	{		
+		for (int i = 0; i < nodeList.getLength(); i++) 
+		{
+			Element node = (Element) nodeList.item(i);
+						
+			String name = getAttribute(node, "name");
+			int fp = getIntAttribute(node, "fp");
+			
+			Requirement req = new Requirement(name,fp); 
+			reqs.add(req);
+		}		
+	}
+	
+	private void extractDependencies(Element transactionNode, String dependencyTagName, ArrayList<Requirement> parentReqs, ArrayList<Requirement> childReqs)
+	{		
+		Requirement parentR = getRequirementByName(parentReqs, getAttribute(transactionNode, "name"));
+		
+		NodeList dependencyListNode = transactionNode.getElementsByTagName(dependencyTagName);
+		
+		for (int j = 0; j < dependencyListNode.getLength(); j++)
+		{
+			Element dependstransactionNode = (Element) dependencyListNode.item(j);
+			String ftrname = getAttribute(dependstransactionNode, "name");
+			
+			Requirement childR = getRequirementByName(childReqs, ftrname);
+			
+			parentR.addDependence(childR);				
+		}
+	}
+	
+	private SoftwareSystem createSoftwareSystem(Element root, ArrayList<Requirement> dfRequirementList, ArrayList<Requirement> tfRequirementList)
+	{
 		Element nameElement = (Element) root.getElementsByTagName("name").item(0);
 		
 		SoftwareSystem ss = new SoftwareSystem(nameElement.getTextContent());
-		
-		ArrayList<WorkPackage> workPackageList = new ArrayList<WorkPackage>();
-		
-		ArrayList<Requirement> tfRequirementList = new ArrayList<Requirement>();
-		ArrayList<Requirement> dfRequirementList = new ArrayList<Requirement>();
-		
-		NodeList transactionNodeList = root.getElementsByTagName("transaction");
-		
-		//loop pelas transações
-		for (int i = 0; i < transactionNodeList.getLength(); i++) 
-		{
-			Element transactionNode = (Element) transactionNodeList.item(i);
-			NodeList childtransactionNodeList = transactionNodeList.item(i).getChildNodes();
-						
-			String name = getAttribute(transactionNode, "name");
-			int fp = getIntAttribute(transactionNode, "fp");
-			
-			Requirement req = new Requirement(name,fp); 
-			tfRequirementList.add(req);
-		}
-		
-		NodeList dataNodeList = root.getElementsByTagName("data");
-		
-		//loop pelas data functions
-		for (int i = 0; i < dataNodeList.getLength(); i++) 
-		{
-			Element dataNode = (Element) dataNodeList.item(i);
-			NodeList childdataNodeList = dataNodeList.item(i).getChildNodes();
-						
-			String name = getAttribute(dataNode, "name");
-			int fp = getIntAttribute(dataNode, "fp");
-			
-			Requirement req = new Requirement(name,fp); 
-			dfRequirementList.add(req);
-		}
-
-		//loop pelas transações
-		for (int i = 0; i < transactionNodeList.getLength(); i++) 
-		{
-			Element transactionNode = (Element) transactionNodeList.item(i);
-			NodeList childtransactionNodeList = transactionNodeList.item(i).getChildNodes();
-						
-			String name = getAttribute(transactionNode, "name");
-			
-			//loop pelas dependências com outras transações
-			NodeList dependsListNode = transactionNode.getElementsByTagName("depends");
-			
-			Requirement parentR = getRequirementByName(tfRequirementList, name);
-						
-			for (int j = 0; j < dependsListNode.getLength(); j++)
-			{
-				Element dependstransactionNode = (Element) dependsListNode.item(j);
-				String ftrname = getAttribute(dependstransactionNode, "name");
-				
-				Requirement childR = getRequirementByName(tfRequirementList, ftrname);
-				
-				parentR.addDependence(childR);				
-			}
-		}
-		
-		//loop pelas data functions
-		for (int i = 0; i < dataNodeList.getLength(); i++) 
-		{
-			Element dataNode = (Element) dataNodeList.item(i);
-			NodeList childdataNodeList = dataNodeList.item(i).getChildNodes();
-						
-			String name = getAttribute(dataNode, "name");
-			int fp = getIntAttribute(dataNode, "fp");
-			
-			Requirement req = new Requirement(name,fp); 
-			dfRequirementList.add(req);
-		}
 		
 		for(Requirement r1 : dfRequirementList)
 		{
@@ -109,11 +98,10 @@ public class Reader {
 			
 			for (Requirement r2 : getRequirementsByDataFunctionDependence(tfRequirementList, r1.getName()))
 			{
-				wp.addRequirement(r2.getName(), r2.getFunctionPoints());
-				
+				wp.addRequirement(r2);		
 			}
 			ss.addWorkPackage(wp);
-		}		
+		}
 		return ss;
 	}
 

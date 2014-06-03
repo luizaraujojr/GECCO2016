@@ -87,7 +87,7 @@ public class RandomSearchExperiment extends Experiment<Project>
 		ProjectProblem problem = new ProjectProblem(instance);
 		problem.setMaxEvaluations(maxEvaluations);
 
-		int population = 10;// * instance.getActivitiesCount();
+		int population = instance.getActivitiesCount()*10;
 		
 		RandomSearch algorithm = new RandomSearch(problem);
 		algorithm.setInputParameter("populationSize", population);

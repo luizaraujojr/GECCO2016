@@ -14,8 +14,8 @@ import br.unirio.overwork.model.base.Project;
 
 public class MainProgram
 {
-	protected static final int CYCLES = 20;
-	protected static final int MAXEVALUATIONS = 10000;
+	protected static final int CYCLES = 5;
+	protected static final int MAXEVALUATIONS = 20000;
 	protected static String[] instanceFiles =
 	{
 //	 		"data/instances/ACAD/functions-point.xml",
@@ -50,26 +50,26 @@ public class MainProgram
 			}			
 		
 		
-		HillClimbingExperiment hc = new HillClimbingExperiment();
-		hc.setMaxEvaluations(MAXEVALUATIONS);
-		hc.runCycles("saida hc.txt", instances, CYCLES);
+//		HillClimbingExperiment hc = new HillClimbingExperiment();
+//		hc.setMaxEvaluations(MAXEVALUATIONS);
+//		hc.runCycles("saida hc.txt", instances, CYCLES);
+//		
+//		ExperimentAnalyzer analyzer2 = new ExperimentAnalyzer();
+//		analyzer2.analyze("hc", "saida hc.txt", instances.size(), CYCLES, 3);
 		
-		ExperimentAnalyzer analyzer2 = new ExperimentAnalyzer();
-		analyzer2.analyze("hc", "saida hc.txt", instances.size(), CYCLES, 3);
-		
-		RandomSearchExperiment rs = new RandomSearchExperiment();
-		rs.setMaxEvaluations(MAXEVALUATIONS);
-		rs.runCycles("saida rs.txt", instances, CYCLES);
-		
-		ExperimentAnalyzer analyzer1 = new ExperimentAnalyzer();
-		analyzer1.analyze("rs", "saida rs.txt", instances.size(), CYCLES, 3);
+//		RandomSearchExperiment rs = new RandomSearchExperiment();
+//		rs.setMaxEvaluations(MAXEVALUATIONS);
+//		rs.runCycles("saida rs.txt", instances, CYCLES);
+//		
+//		ExperimentAnalyzer analyzer1 = new ExperimentAnalyzer();
+//		analyzer1.analyze("rs", "saida rs.txt", instances.size(), CYCLES, 3);
 		
 		NSGAIIExperiment hsgaii2 = new NSGAIIExperiment();
 		hsgaii2.setMaxEvaluations(MAXEVALUATIONS);
-		hsgaii2.runCycles("saida nsgaii2.txt", instances, CYCLES);
+		hsgaii2.runCycles("saida nsgaii.txt", instances, CYCLES);
 		
 		ExperimentAnalyzer analyzer3 = new ExperimentAnalyzer();
-		analyzer3.analyze("NSGAII", "saida nsgaii2.txt", instances.size(), CYCLES, 3);	       	
+		analyzer3.analyze("NSGAII", "saida nsgaii.txt", instances.size(), CYCLES, 3);	       	
 	}
 	
 	public static Project loadInstance(String instancia) throws Exception

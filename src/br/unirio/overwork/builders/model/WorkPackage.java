@@ -70,6 +70,15 @@ public class WorkPackage
 	}
 	
 	/**
+	 * Adds a requirement to the work package
+	 */
+	public Requirement addRequirement(Requirement requirement)
+	{
+		this.requirements.add(requirement);
+		return requirement;
+	}
+	
+	/**
 	 * Calculates the number of function points in the work package
 	 */
 	public int calculateFunctionPoints()

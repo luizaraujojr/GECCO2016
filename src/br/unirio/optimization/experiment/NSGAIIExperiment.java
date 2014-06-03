@@ -29,7 +29,7 @@ public class NSGAIIExperiment extends Experiment<Project>
 
 		Operator selection = new BinaryTournament();
 
-		int population = 10;// * instance.getActivitiesCount();
+		int population = instance.getActivitiesCount();
 		//int evaluations = 200;// * instance.getActivitiesCount() * population;
 		
 		NSGAII algorithm = new NSGAII(problem);

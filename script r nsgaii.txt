@@ -1,2 +1,0 @@
-nsgaii <- read.table(file="C:/workspace/Hector/saida nsgaii-r.txt", sep=";", header=FALSE);
-plot (nsgaii$V2,nsgaii$V3)

@@ -48,14 +48,6 @@ public class SoftwareSystem
 	}
 	
 	/**
-	 * Returns the work packages
-	 */
-	public List<WorkPackage> getWorkPackages()
-	{
-		return workPackages;
-	}
-	
-	/**
 	 * Returns a work package, given its name
 	 */
 	public WorkPackage getWorkPackageName(String name)
@@ -67,13 +59,13 @@ public class SoftwareSystem
 		return null;
 	}
 	
-//	/**
-//	 * Returns the work packages comprising the system
-//	 */
-//	public Iterable<WorkPackage> getWorkPackages()
-//	{
-//		return workPackages;
-//	}
+	/**
+	 * Returns the work packages comprising the system
+	 */
+	public Iterable<WorkPackage> getWorkPackages()
+	{
+		return workPackages;
+	}
 
 	/**
 	 * Adds a work package to the system
@@ -103,7 +95,7 @@ public class SoftwareSystem
 		int soma = 0;
 		
 		for (WorkPackage wp : workPackages)
-			soma += wp.calculateFunctionPoints();
+			soma += wp.getFunctionPoints();
 		
 		return soma;
 	}

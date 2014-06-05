@@ -8,203 +8,227 @@
 	<data name="Disciplina" fp="7"/>
 	<data name="Turma" fp="7"/>
 	<data name="Inscricao" fp="7"/>
-	<transaction name="IncluirNovoAluno" fp="4">
-		<ftr name="Aluno"/>
-	</transaction>
-	<transaction name="AlterarAluno" fp="4">
-		<ftr name="Aluno"/>
-		<depends name="IncluirNovoAluno"/>
-		<depends name="ConsultarAluno"/>
-	</transaction>
-	<transaction name="ConsultarAluno" fp="4">
-		<ftr name="Aluno"/>
-		<depends name="IncluirNovoAluno"/>
-	</transaction>
-	<transaction name="RemoverAluno" fp="3">
-		<ftr name="Aluno"/>
-		<depends name="IncluirNovoAluno"/>
-		<depends name="ConsultarAluno"/>
-	</transaction>
-	<transaction name="InformarTrancamentoDeAluno" fp="3">
-		<ftr name="Aluno"/>
-		<depends name="IncluirNovoAluno"/>
-		<depends name="ConsultarAluno"/>
-	</transaction>
-	<transaction name="CancelarTrancamentoDeAluno" fp="3">
-		<ftr name="Aluno"/>
-		<depends name="IncluirNovoAluno"/>
-		<depends name="ConsultarAluno"/>
-		<depends name="InformarTrancamentoDeAluno"/>
-	</transaction>
-	<transaction name="RemoverTrancamentoDeAluno" fp="3">
-		<ftr name="Aluno"/>
-		<depends name="IncluirNovoAluno"/>
-		<depends name="ConsultarAluno"/>
-		<depends name="InformarTrancamentoDeAluno"/>
-	</transaction>
-	<transaction name="IncluirBolsaParaAluno" fp="3">
-		<ftr name="Aluno"/>
-		<depends name="IncluirNovoAluno"/>
-		<depends name="ConsultarAluno"/>
-	</transaction>
-	<transaction name="AlterarBolsaDeAluno" fp="3">
-		<ftr name="Aluno"/>
-		<depends name="IncluirBolsaParaAluno"/>
-		<depends name="ConsultarBolsasDeAluno"/>
-	</transaction>
-	<transaction name="ConsultarBolsasDeAluno" fp="3">
-		<ftr name="Aluno"/>
-		<depends name="IncluirBolsaParaAluno"/>
-	</transaction>
-	<transaction name="RemoverBolsaParaAluno" fp="3">
-		<ftr name="Aluno"/>
-		<depends name="IncluirBolsaParaAluno"/>
-		<depends name="ConsultarBolsasDeAluno"/>
-	</transaction>
-	<transaction name="IncluirNovoProfessor" fp="4">
-		<ftr name="Professor"/>
-		<ftr name="Area"/>
-		<depends name="IncluirNovaArea"/>
-	</transaction>
-	<transaction name="AlterarProfessor" fp="4">
-		<ftr name="Professor"/>
-		<ftr name="Area"/>
-		<depends name="IncluirNovoProfessor"/>
-		<depends name="ConsultarProfessor"/>
-	</transaction>
-	<transaction name="ConsultarProfessor" fp="4">
-		<ftr name="Professor"/>
-		<ftr name="Area"/>
-		<depends name="IncluirNovoProfessor"/>
-	</transaction>
-	<transaction name="RemoverProfessor" fp="3">
-		<ftr name="Professor"/>
-		<depends name="IncluirNovoProfessor"/>
-		<depends name="ConsultarProfessor"/>
-	</transaction>
-	<transaction name="IncluirNovaArea" fp="3">
-		<ftr name="Area"/>
-		<ftr name="Professor"/>
-		<depends name="IncluirNovoProfessor"/>
-	</transaction>
-	<transaction name="AlterarArea" fp="3">
-		<ftr name="Area"/>
-		<ftr name="Professor"/>
-		<depends name="IncluirNovaArea"/>
-		<depends name="ConsultarArea"/>
-	</transaction>
-	<transaction name="ConsultarArea" fp="3">
-		<ftr name="Area"/>
-		<ftr name="Professor"/>
-		<depends name="IncluirNovaArea"/>
-	</transaction>
-	<transaction name="RemoverArea" fp="3">
-		<ftr name="Area"/>
-		<depends name="IncluirNovaArea"/>
-		<depends name="ConsultarArea"/>
-	</transaction>
-	<transaction name="IncluirNovaLinha" fp="3">
-		<ftr name="Area"/>
-		<ftr name="Professor"/>
-		<depends name="IncluirNovaArea"/>
-	</transaction>
-	<transaction name="AlterarLinha" fp="3">
-		<ftr name="Area"/>
-		<ftr name="Professor"/>
-		<depends name="IncluirNovaLinha"/>
-		<depends name="ConsultarLinha"/>
-	</transaction>
-	<transaction name="ConsultarLinha" fp="3">
-		<ftr name="Area"/>
-		<ftr name="Professor"/>
-		<depends name="IncluirNovaLinha"/>
-	</transaction>
-	<transaction name="RemoverLinha" fp="3">
-		<ftr name="Area"/>
-		<depends name="IncluirNovaLinha"/>
-		<depends name="ConsultarLinha"/>
-	</transaction>
-	<transaction name="IncluirUsuario" fp="3">
-		<ftr name="Usuario"/>
-	</transaction>
-	<transaction name="AlterarUsuario" fp="3">
-		<ftr name="Usuario"/>
-		<depends name="IncluirUsuario"/>
-		<depends name="ConsultarUsuario"/>
-	</transaction>
-	<transaction name="ConsultarUsuario" fp="3">
-		<ftr name="Usuario"/>
-		<depends name="IncluirUsuario"/>
-	</transaction>
-	<transaction name="RemoverUsuario" fp="3">
-		<ftr name="Usuario"/>
-		<depends name="IncluirUsuario"/>
-		<depends name="ConsultarUsuario"/>
-	</transaction>
-	<transaction name="IncluirNovaDisciplina" fp="3">
-		<ftr name="Disciplina"/>
-	</transaction>
-	<transaction name="AlterarDisciplina" fp="3">
-		<ftr name="Disciplina"/>
-		<depends name="IncluirNovaDisciplina"/>
-		<depends name="ConsultarDisciplina"/>
-	</transaction>
-	<transaction name="ConsultarDisciplina" fp="3">
-		<ftr name="Disciplina"/>
-		<depends name="IncluirNovaDisciplina"/>
-	</transaction>
-	<transaction name="RemoverDisciplina" fp="3">
-		<ftr name="Disciplina"/>
-		<depends name="IncluirNovaDisciplina"/>
-		<depends name="ConsultarDisciplina"/>
-	</transaction>
-	<transaction name="IncluirNovaTurma" fp="4">
-		<ftr name="Turma"/>
-		<ftr name="Professor"/>
-	</transaction>
-	<transaction name="AlterarTurma" fp="4">
-		<ftr name="Turma"/>
-		<ftr name="Professor"/>
-		<depends name="IncluirNovaTurma"/>
-		<depends name="ConsultarTurma"/>
-	</transaction>
-	<transaction name="ConsultarTurma" fp="4">
-		<ftr name="Turma"/>
-		<ftr name="Professor"/>
-		<depends name="IncluirNovaTurma"/>
-	</transaction>
-	<transaction name="RemoverTurma" fp="3">
-		<ftr name="Turma"/>
-		<ftr name="Disciplina"/>
-		<depends name="IncluirNovaTurma"/>
-		<depends name="ConsultarTurma"/>
-	</transaction>
-	<transaction name="RealizarInscricaoEmTurma" fp="4">
-		<ftr name="Inscricao"/>
-		<ftr name="Aluno"/>
-		<depends name="IncluirNovaTurma"/>
-		<depends name="IncluirNovoAluno"/>
-		<depends name="IncluirNovaDisciplina"/>
-	</transaction>
-	<transaction name="ConsultarInscricaoEmTurma" fp="4">
-		<ftr name="Inscricao"/>
-		<ftr name="Aluno"/>
-		<depends name="RealizarInscricaoEmTurma"/>
-	</transaction>
-	<transaction name="CancelarInscricaoEmTurma" fp="4">
-		<ftr name="Inscricao"/>
-		<ftr name="Aluno"/>
-		<depends name="CancelarInscricaoEmTurma"/>
-		<depends name="RealizarInscricaoEmTurma"/>
-	</transaction>
-	<transaction name="GeracaoDeComprovanteDeInscricao" fp="7">
-		<ftr name="Inscricao"/>
-		<ftr name="Aluno"/>
-		<ftr name="Disciplina"/>
-		<ftr name="Turma"/>
-		<depends name="RealizarInscricaoEmTurma"/>
-		<depends name="IncluirNovaTurma"/>
-		<depends name="IncluirNovoAluno"/>
-		<depends name="IncluirNovaDisciplina"/>
-	</transaction>
+	
+	<group name="Aluno">
+		<transaction name="IncluirNovoAluno" fp="4">
+			<ftr name="Aluno"/>
+		</transaction>
+		<transaction name="AlterarAluno" fp="4">
+			<ftr name="Aluno"/>
+			<depends name="IncluirNovoAluno"/>
+			<depends name="ConsultarAluno"/>
+		</transaction>
+		<transaction name="ConsultarAluno" fp="4">
+			<ftr name="Aluno"/>
+			<depends name="IncluirNovoAluno"/>
+		</transaction>
+		<transaction name="RemoverAluno" fp="3">
+			<ftr name="Aluno"/>
+			<depends name="IncluirNovoAluno"/>
+			<depends name="ConsultarAluno"/>
+		</transaction>
+	</group>
+	
+	<group name="Trancamento">
+		<transaction name="InformarTrancamentoDeAluno" fp="3">
+			<ftr name="Aluno"/>
+			<depends name="IncluirNovoAluno"/>
+			<depends name="ConsultarAluno"/>
+		</transaction>
+		<transaction name="CancelarTrancamentoDeAluno" fp="3">
+			<ftr name="Aluno"/>
+			<depends name="IncluirNovoAluno"/>
+			<depends name="ConsultarAluno"/>
+			<depends name="InformarTrancamentoDeAluno"/>
+		</transaction>
+		<transaction name="RemoverTrancamentoDeAluno" fp="3">
+			<ftr name="Aluno"/>
+			<depends name="IncluirNovoAluno"/>
+			<depends name="ConsultarAluno"/>
+			<depends name="InformarTrancamentoDeAluno"/>
+		</transaction>
+	</group>
+
+	<group name="Bolsa">
+		<transaction name="IncluirBolsaParaAluno" fp="3">
+			<ftr name="Aluno"/>
+			<depends name="IncluirNovoAluno"/>
+			<depends name="ConsultarAluno"/>
+		</transaction>
+		<transaction name="AlterarBolsaDeAluno" fp="3">
+			<ftr name="Aluno"/>
+			<depends name="IncluirBolsaParaAluno"/>
+			<depends name="ConsultarBolsasDeAluno"/>
+		</transaction>
+		<transaction name="ConsultarBolsasDeAluno" fp="3">
+			<ftr name="Aluno"/>
+			<depends name="IncluirBolsaParaAluno"/>
+		</transaction>
+		<transaction name="RemoverBolsaParaAluno" fp="3">
+			<ftr name="Aluno"/>
+			<depends name="IncluirBolsaParaAluno"/>
+			<depends name="ConsultarBolsasDeAluno"/>
+		</transaction>
+	</group>
+
+	<group name="Professor">
+		<transaction name="IncluirNovoProfessor" fp="4">
+			<ftr name="Professor"/>
+			<ftr name="Area"/>
+			<depends name="IncluirNovaArea"/>
+		</transaction>
+		<transaction name="AlterarProfessor" fp="4">
+			<ftr name="Professor"/>
+			<ftr name="Area"/>
+			<depends name="IncluirNovoProfessor"/>
+			<depends name="ConsultarProfessor"/>
+		</transaction>
+		<transaction name="ConsultarProfessor" fp="4">
+			<ftr name="Professor"/>
+			<ftr name="Area"/>
+			<depends name="IncluirNovoProfessor"/>
+		</transaction>
+		<transaction name="RemoverProfessor" fp="3">
+			<ftr name="Professor"/>
+			<depends name="IncluirNovoProfessor"/>
+			<depends name="ConsultarProfessor"/>
+		</transaction>
+	</group>
+
+	<group name="Área">
+		<transaction name="IncluirNovaArea" fp="3">
+			<ftr name="Area"/>
+		</transaction>
+		<transaction name="AlterarArea" fp="3">
+			<ftr name="Area"/>
+			<depends name="IncluirNovaArea"/>
+			<depends name="ConsultarArea"/>
+		</transaction>
+		<transaction name="ConsultarArea" fp="3">
+			<ftr name="Area"/>
+			<depends name="IncluirNovaArea"/>
+		</transaction>
+		<transaction name="RemoverArea" fp="3">
+			<ftr name="Area"/>
+			<depends name="IncluirNovaArea"/>
+			<depends name="ConsultarArea"/>
+		</transaction>
+	</group>
+
+	<group name="Linha">
+		<transaction name="IncluirNovaLinha" fp="3">
+			<ftr name="Area"/>
+			<depends name="IncluirNovaArea"/>
+		</transaction>
+		<transaction name="AlterarLinha" fp="3">
+			<ftr name="Area"/>
+			<depends name="IncluirNovaLinha"/>
+			<depends name="ConsultarLinha"/>
+		</transaction>
+		<transaction name="ConsultarLinha" fp="3">
+			<ftr name="Area"/>
+			<depends name="IncluirNovaLinha"/>
+		</transaction>
+		<transaction name="RemoverLinha" fp="3">
+			<ftr name="Area"/>
+			<depends name="ConsultarLinha"/>
+		</transaction>
+	</group>
+
+	<group name="Usuário">
+		<transaction name="IncluirUsuario" fp="3">
+			<ftr name="Usuario"/>
+		</transaction>
+		<transaction name="AlterarUsuario" fp="3">
+			<ftr name="Usuario"/>
+			<depends name="IncluirUsuario"/>
+			<depends name="ConsultarUsuario"/>
+		</transaction>
+		<transaction name="ConsultarUsuario" fp="3">
+			<ftr name="Usuario"/>
+			<depends name="IncluirUsuario"/>
+		</transaction>
+		<transaction name="RemoverUsuario" fp="3">
+			<ftr name="Usuario"/>
+			<depends name="IncluirUsuario"/>
+			<depends name="ConsultarUsuario"/>
+		</transaction>
+	</group>
+
+	<group name="Disciplina">
+		<transaction name="IncluirNovaDisciplina" fp="3">
+			<ftr name="Disciplina"/>
+		</transaction>
+		<transaction name="AlterarDisciplina" fp="3">
+			<ftr name="Disciplina"/>
+			<depends name="IncluirNovaDisciplina"/>
+			<depends name="ConsultarDisciplina"/>
+		</transaction>
+		<transaction name="ConsultarDisciplina" fp="3">
+			<ftr name="Disciplina"/>
+			<depends name="IncluirNovaDisciplina"/>
+		</transaction>
+		<transaction name="RemoverDisciplina" fp="3">
+			<ftr name="Disciplina"/>
+			<depends name="IncluirNovaDisciplina"/>
+			<depends name="ConsultarDisciplina"/>
+		</transaction>
+	</group>
+
+	<group name="Turma">
+		<transaction name="IncluirNovaTurma" fp="4">
+			<ftr name="Turma"/>
+			<ftr name="Professor"/>
+			<depends name="IncluirNovaArea"/>
+			<depends name="IncluirNovoProfessor"/>
+		</transaction>
+		<transaction name="AlterarTurma" fp="4">
+			<ftr name="Turma"/>
+			<ftr name="Professor"/>
+			<depends name="IncluirNovaTurma"/>
+			<depends name="ConsultarTurma"/>
+		</transaction>
+		<transaction name="ConsultarTurma" fp="4">
+			<ftr name="Turma"/>
+			<ftr name="Professor"/>
+			<depends name="IncluirNovaTurma"/>
+		</transaction>
+		<transaction name="RemoverTurma" fp="3">
+			<ftr name="Turma"/>
+			<ftr name="Disciplina"/>
+			<depends name="IncluirNovaTurma"/>
+			<depends name="ConsultarTurma"/>
+		</transaction>
+	</group>
+
+	<group name="Inscrição">
+		<transaction name="RealizarInscricaoEmTurma" fp="4">
+			<ftr name="Inscricao"/>
+			<ftr name="Aluno"/>
+			<depends name="IncluirNovaTurma"/>
+			<depends name="IncluirNovoAluno"/>
+			<depends name="IncluirNovaDisciplina"/>
+		</transaction>
+		<transaction name="ConsultarInscricaoEmTurma" fp="4">
+			<ftr name="Inscricao"/>
+			<ftr name="Aluno"/>
+			<depends name="RealizarInscricaoEmTurma"/>
+		</transaction>
+		<transaction name="CancelarInscricaoEmTurma" fp="4">
+			<ftr name="Inscricao"/>
+			<ftr name="Aluno"/>
+			<depends name="CancelarInscricaoEmTurma"/>
+			<depends name="RealizarInscricaoEmTurma"/>
+		</transaction>
+		<transaction name="GeracaoDeComprovanteDeInscricao" fp="7">
+			<ftr name="Inscricao"/>
+			<ftr name="Aluno"/>
+			<ftr name="Disciplina"/>
+			<ftr name="Turma"/>
+			<depends name="RealizarInscricaoEmTurma"/>
+			<depends name="IncluirNovaTurma"/>
+			<depends name="IncluirNovoAluno"/>
+			<depends name="IncluirNovaDisciplina"/>
+		</transaction>
+	</group>
 </system>

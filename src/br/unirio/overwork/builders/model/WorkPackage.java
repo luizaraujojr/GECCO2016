@@ -18,76 +18,53 @@ public class WorkPackage
 	private @Getter String name;
 	
 	/**
-	 * List of requirements within the work package
+	 * Number of function points
 	 */
-	private List<Requirement> requirements;
+	private @Getter int functionPoints;
+	
+	/**
+	 * List of dependencies to other work packages
+	 */
+	private List<WorkPackage> dependencies;
 
+	/**
+	 * List of components within the work package
+	 */
+	private List<String> components;
+	
 	/**
 	 * Initializes the work package
 	 */
 	public WorkPackage(String name)
 	{
 		this.name = name;
-		this.requirements = new ArrayList<Requirement>();
-	}
-	
-	/**
-	 * Counts the number of requirements in the work package
-	 */
-	public int countRequirements()
-	{
-		return requirements.size();
-	}
-	
-	/**
-	 * Returns a requirement, given its index
-	 */
-	public Requirement getRequirementIndex(int index)
-	{
-		return requirements.get(index);
-	}
-	
-	/**
-	 * Returns a requirement, given its name
-	 */
-	public Requirement getRequirementName(String name)
-	{
-		for (Requirement r : requirements)
-			if (r.getName().compareToIgnoreCase(name) == 0)
-				return r;
-		
-		return null;
+		this.functionPoints = 0;
+		this.dependencies = new ArrayList<WorkPackage>();
+		this.components = new ArrayList<String>();
 	}
 
 	/**
-	 * Adds a requirement to the work package
+	 * Adds a dependency to a work package
 	 */
-	public Requirement addRequirement(String name, int functionPoints)
+	public void addDependency(WorkPackage wp)
 	{
-		Requirement requirement = new Requirement(name, functionPoints);
-		this.requirements.add(requirement);
-		return requirement;
+		dependencies.add(wp);
+	}
+
+	/**
+	 * Adds a component to the work package
+	 */
+	public void addComponent(String name, int fp)
+	{
+		this.components.add(name);
+		this.functionPoints += fp;
 	}
 	
 	/**
-	 * Adds a requirement to the work package
+	 * Returns all components from the work package
 	 */
-	public Requirement addRequirement(Requirement requirement)
+	public Iterable<String> getComponents()
 	{
-		this.requirements.add(requirement);
-		return requirement;
-	}
-	
-	/**
-	 * Calculates the number of function points in the work package
-	 */
-	public int calculateFunctionPoints()
-	{
-		int soma = 0;
-		
-		for (Requirement r : requirements)
-			soma += r.getFunctionPoints();
-		
-		return soma;
+		return components;
 	}
 }

@@ -2,6 +2,7 @@ package br.unirio.overwork.builders.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import br.unirio.overwork.builders.model.SoftwareSystem;
 import br.unirio.overwork.builders.model.WorkPackage;
 import br.unirio.overwork.model.base.Activity;
@@ -76,31 +77,26 @@ public class SoftwareSystemProjectBuilder
 	public Project execute()
 	{
 		Project project = new Project();
-		Developer developer = new Developer("Developer", 60);
 		project.setName("Test");
+
+		Developer developer = new Developer("Developer", 60);
 		project.addDeveloper(developer);
-		project.addDeveloper(developer);
-		project.addDeveloper(developer);
-		project.addDeveloper(developer);
-		project.addDeveloper(developer);
+//		project.addDeveloper(developer);
+//		project.addDeveloper(developer);
+//		project.addDeveloper(developer);
+//		project.addDeveloper(developer);
 
 		double totalFunctionPoints = 0;
 		
 		for (WorkPackage wp : softwareSystem.getWorkPackages())
-			totalFunctionPoints += wp.calculateFunctionPoints();
-
-		for (WorkPackage pacote : softwareSystem.getWorkPackages())
-			totalFunctionPoints += pacote.calculateFunctionPoints();
+			totalFunctionPoints += wp.getFunctionPoints();
 		
-		Configuration configuration = Configuration.getConfigurationForFunctionPoints(totalFunctionPoints);
-		
+		Configuration configuration = Configuration.getConfigurationForFunctionPoints(totalFunctionPoints);		
 		double errorCorrectionEffort = configuration.getTestingEffort() * Constants.DAYS_IN_MONTH / configuration.getAverageProductivity() / 4.0;
 		
 		for (WorkPackage wp : softwareSystem.getWorkPackages())
-
-		for (WorkPackage pacote : softwareSystem.getWorkPackages())
 		{
-			double functionPoints = wp.calculateFunctionPoints();
+			double functionPoints = wp.getFunctionPoints();
 			
 			double effortRequirement = functionPoints * configuration.getRequirementsEffort() * (Constants.DAYS_IN_MONTH / configuration.getAverageProductivity());
 			double errorsRequirement = functionPoints;
@@ -125,6 +121,8 @@ public class SoftwareSystemProjectBuilder
 			Activity testes = new AtivityTesting(project, "Testes " + wp.getName(), errorCorrectionEffort)
 				.addPrecedent(codificacao)
 				.setDeveloper(developer);
+			
+			// TODO: Adicionar as dependências entre as tarefas de mesmo tipo em função das depeências de work packages
 
 			project.addActivity(requirements);
 			project.addActivity(design);

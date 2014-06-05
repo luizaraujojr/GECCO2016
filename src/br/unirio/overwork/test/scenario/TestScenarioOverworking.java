@@ -17,55 +17,55 @@ public class TestScenarioOverworking extends TestCase
 		
 		WorkPackage wp1 = system.addWorkPackage("Usuários");
 
-		wp1.addRequirement("usuario", 7);
-		wp1.addRequirement("Cadastro de usuário", 3);
-		wp1.addRequirement("Lista de usuários ", 4);
-		wp1.addRequirement("Consulta de usuário", 4);
+		wp1.addComponent("usuario", 7);
+		wp1.addComponent("Cadastro de usuário", 3);
+		wp1.addComponent("Lista de usuários ", 4);
+		wp1.addComponent("Consulta de usuário", 4);
 
 		WorkPackage wp2 = system.addWorkPackage("Professores");
 
-		wp2.addRequirement("professor", 7);
-		wp2.addRequirement("Cadastro de professor", 4);
-		wp2.addRequirement("Lista de professores", 4);
-		wp2.addRequirement("Consulta de professor", 5);
+		wp2.addComponent("professor", 7);
+		wp2.addComponent("Cadastro de professor", 4);
+		wp2.addComponent("Lista de professores", 4);
+		wp2.addComponent("Consulta de professor", 5);
 		
 		WorkPackage wp3 = system.addWorkPackage("Áreas");
 
-		wp3.addRequirement("area", 7);
-		wp3.addRequirement("Cadastro de área", 4);
-		wp3.addRequirement("Lista de áreas", 4);
-		wp3.addRequirement("Lista de sub-áreas", 4);
-		wp3.addRequirement("Consulta de área", 4);
+		wp3.addComponent("area", 7);
+		wp3.addComponent("Cadastro de área", 4);
+		wp3.addComponent("Lista de áreas", 4);
+		wp3.addComponent("Lista de sub-áreas", 4);
+		wp3.addComponent("Consulta de área", 4);
 		
 		WorkPackage wp4 = system.addWorkPackage("Aluno");
 
-		wp4.addRequirement("aluno", 10);
-		wp4.addRequirement("Cadastro de aluno", 6);
-		wp4.addRequirement("Consulta de aluno", 7);	
+		wp4.addComponent("aluno", 10);
+		wp4.addComponent("Cadastro de aluno", 6);
+		wp4.addComponent("Consulta de aluno", 7);	
 
 		WorkPackage wp5 = system.addWorkPackage("Disciplinas");
 
-		wp5.addRequirement("disciplina", 7);
-		wp5.addRequirement("Cadastro de disciplina", 4);
-		wp5.addRequirement("Lista de disciplinas", 4);
-		wp5.addRequirement("Consulta de disciplina", 5);
+		wp5.addComponent("disciplina", 7);
+		wp5.addComponent("Cadastro de disciplina", 4);
+		wp5.addComponent("Lista de disciplinas", 4);
+		wp5.addComponent("Consulta de disciplina", 5);
 		
 		WorkPackage wp6 = system.addWorkPackage("Turmas");
 
-		wp6.addRequirement("turma", 7);
-		wp6.addRequirement("turmasolicitada", 7);
-		wp6.addRequirement("Cadastro de turma", 6);
-		wp6.addRequirement("Cadastro de turma solicitada", 6);
-		wp6.addRequirement("Lista de turmas", 4);
-		wp6.addRequirement("Consulta de turma", 7);
-		wp6.addRequirement("Lista de turmas solicitadas", 4);
+		wp6.addComponent("turma", 7);
+		wp6.addComponent("turmasolicitada", 7);
+		wp6.addComponent("Cadastro de turma", 6);
+		wp6.addComponent("Cadastro de turma solicitada", 6);
+		wp6.addComponent("Lista de turmas", 4);
+		wp6.addComponent("Consulta de turma", 7);
+		wp6.addComponent("Lista de turmas solicitadas", 4);
 		
 		WorkPackage wp7 = system.addWorkPackage("Inscrições");
 
-		wp7.addRequirement("inscricao", 7);
-		wp7.addRequirement("Cadastro de inscrição", 6);
-		wp7.addRequirement("Consulta de inscrição", 7);
-		wp7.addRequirement("Geração de comprovante", 7);
+		wp7.addComponent("inscricao", 7);
+		wp7.addComponent("Cadastro de inscrição", 6);
+		wp7.addComponent("Consulta de inscrição", 7);
+		wp7.addComponent("Geração de comprovante", 7);
 			
 		SoftwareSystemProjectBuilder builder = new SoftwareSystemProjectBuilder();
 		

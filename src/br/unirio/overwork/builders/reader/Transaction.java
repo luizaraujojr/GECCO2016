@@ -1,4 +1,4 @@
-package br.unirio.overwork.builders.model;
+package br.unirio.overwork.builders.reader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,32 +6,72 @@ import java.util.List;
 import lombok.Getter;
 
 /**
- * Class that represents a requirement in a work package 
+ * Class that represents a transaction function 
  * 
  * @author Marcio Barros
  */
-public class Requirement
+class Transaction
 {
+	/**
+	 * Transaction name
+	 */
 	private @Getter String name;
-	
+
+	/**
+	 * Number of function points
+	 */
 	private @Getter int functionPoints;
 	
-	private List<Requirement> dependences;
+	/**
+	 * List of file references
+	 */
+	private List<String> fileReferences;
+	
+	/**
+	 * List of dependent transactions
+	 */
+	private List<String> transactionDependencies;
 
-	public Requirement(String name, int functionPoints)
+	/**
+	 * Initializes a transaction
+	 */
+	public Transaction(String name, int functionPoints)
 	{
 		this.name = name;
 		this.functionPoints = functionPoints;
-		this.dependences = new ArrayList<Requirement>();
+		this.fileReferences = new ArrayList<String>();
+		this.transactionDependencies = new ArrayList<String>();
 	}
 	
-	public void addDependence(Requirement r)
+	/**
+	 * Adds a file reference to a transaction
+	 */
+	public void addFileReference(String name)
 	{
-		this.dependences.add(r);
+		this.fileReferences.add(name);
 	}
 	
-	public Iterable<Requirement> getDependencies()
+	/**
+	 * Returns all files referenced by a transaction
+	 */
+	public Iterable<String> getFileReferences()
 	{
-		return dependences;
+		return fileReferences;
+	}
+	
+	/**
+	 * Adds a transaction upon which the current transaction depends
+	 */
+	public void addTransacionDependency(String name)
+	{
+		this.transactionDependencies.add(name);
+	}
+	
+	/**
+	 * Returns all transactions upon which the transaction depends
+	 */
+	public Iterable<String> getTransactionDependencies()
+	{
+		return transactionDependencies;
 	}
 }

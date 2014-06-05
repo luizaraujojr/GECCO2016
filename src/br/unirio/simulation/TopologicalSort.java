@@ -8,7 +8,7 @@ import java.util.List;
  * 
  * @author Marcio Barros
  */
-abstract class TopologicalSort<T>
+public abstract class TopologicalSort<T>
 {
 	/**
 	 * Performs the topological sort
@@ -29,7 +29,7 @@ abstract class TopologicalSort<T>
 			for (int i = source.size()-1; i >= 0; i--)
 			{
 				T item = source.get(i);
-				List<T> dependees = getDependencies(item);
+				List<T> dependees = getDependencies(items, item);
 				boolean dependeesResolved = true;
 				
 				if (dependees != null)
@@ -61,5 +61,5 @@ abstract class TopologicalSort<T>
 	/**
 	 * Abstract methos to return the dependencies of a given object
 	 */
-	protected abstract List<T> getDependencies(T item);
+	protected abstract List<T> getDependencies(List<T> items, T item);
 }

@@ -222,7 +222,7 @@ public class SimulationEngine
 class OrdenadorTopologicoSimulacao extends TopologicalSort<SimulationObject>
 {
 	@Override
-	protected List<SimulationObject> getDependencies(SimulationObject item)
+	protected List<SimulationObject> getDependencies(List<SimulationObject> items, SimulationObject item)
 	{
 		return item.getDependencies();
 	}

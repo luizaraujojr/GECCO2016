@@ -1,484 +1,520 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <system>
 	<name>OPMET</name>
-<data fp="7" name="ALERTAS"/>
-<data fp="10" name="LOCALIDADE"/>
-<data fp="10" name="FIR"/>
-<data fp="15" name="SINOTICA"/>
-<data fp="7" name="AREA"/>
-<data fp="7" name="LOCALIDADE_GRUPO"/>
-<data fp="7" name="FIR_GRUPO"/>
-<data fp="7" name="PAIS"/>
-<data fp="7" name="SINOTICO_GRUPO"/>
-<data fp="7" name="REGIAO"/>
-<data fp="7" name="GRUPO_ENDERECO"/>
-<data fp="7" name="USUARIO_ESTRANGEIRO"/>
-<data fp="7" name="REMETENTE"/>
-<data fp="7" name="AVISO_AUTOMATICA"/>
-<data fp="5" name="ESTADO_OPERACIONAL"/>
-<data fp="5" name="CONFIGURACAO"/>
-<data fp="7" name="WAFS"/>
-<data fp="7" name="USUARIO"/>
-<data fp="7" name="LOG"/>
-<data fp="5" name="MSG_ENVIADAS_OUTROS"/>
-<data fp="5" name="RQM"/>
-<data fp="5" name="QTD_RECEBIDAS"/>
-<data fp="5" name="QTD_RECEBIDAS"/>
+	<data name="ALERTAS" fp="7" />
+	<data name="LOCALIDADE" fp="10" />
+	<data name="FIR" fp="10"/>
+	<data name="SINOTICA" fp="15" />
+	<data fp="7" name="AREA"/>
+	<data fp="7" name="LOCALIDADE_GRUPO"/>
+	<data fp="7" name="FIR_GRUPO"/>
+	<data fp="7" name="PAIS"/>
+	<data fp="7" name="SINOTICO_GRUPO"/>
+	<data fp="7" name="REGIAO"/>
+	<data fp="7" name="GRUPO_ENDERECO"/>
+	<data fp="7" name="USUARIO_ESTRANGEIRO"/>
+	<data fp="7" name="REMETENTE"/>
+	<data fp="7" name="AVISO_AUTOMATICO"/>
+	<data fp="5" name="ESTADO_OPERACIONAL"/>
+	<data fp="5" name="CONFIGURACAO"/>
+	<data fp="7" name="WAFS"/>
+	<data fp="7" name="USUARIO"/>
+	<data fp="7" name="LOG"/>
+	<data fp="5" name="MSG_ENVIADAS_OUTROS"/>
+	<data fp="5" name="RQM"/>
+	<data fp="5" name="QTD_RECEBIDAS"/>
 
-<transaction fp= "4" name="SENHA ALTERAR">
-	<depends name="USUARIO"/>
-</transaction>
+	<group name="USUARIO">
+		<transaction fp= "4" name="SENHA ALTERAR">
+			<ftr name="USUARIO"/>
+		</transaction>
+		<transaction fp= "3" name="USUARIO DO SISTEMA - CONSULTAR">
+			<ftr name="USUARIO"/>
+		</transaction>
+		<transaction fp= "3" name="USUARIO DO SISTEMA - INCLUIR">
+			<ftr name="USUARIO"/>
+		</transaction>
+		<transaction fp= "3" name="USUARIO DO SISTEMA - MODIFICAR">
+			<ftr name="USUARIO"/>
+		</transaction>
+		<transaction fp= "3" name="USUARIO DO SISTEMA - EXCLUIR">
+			<ftr name="USUARIO"/>
+		</transaction>
+	</group>
+	<group name="Mensagens">
+		<transaction fp= "4" name="MENSAGENS METEOROLOGICAS INDIVIDUAL - CONSULTAR">
+			<ftr name="FIR"/>
+			<ftr name="LOCALIDADE"/>
+			<ftr name="SINOTICA"/>
+		</transaction>
+		<transaction fp= "4" name="MENSAGENS METEOROLOGICAS POR LOCALIDADE - CONSULTAR">
+			<ftr name="FIR"/>
+			<ftr name="LOCALIDADE"/>
+			<ftr name="SINOTICA"/>
+		</transaction>
+		<transaction fp= "4" name="MENSAGENS METEOROLOGICAS POR FAIXA - CONSULTAR">
+			<ftr name="FIR"/>
+			<ftr name="LOCALIDADE"/>
+		</transaction>
+		<transaction fp= "4" name="MENSAGENS ATIVAS NO BANCO - LISTAR">
+			<ftr name="FIR"/>
+			<ftr name="LOCALIDADE"/>
+			<ftr name="SINOTICA"/>
+		</transaction>
+		<transaction fp= "4" name="MENSAGENS AUSENTES - CONSULTAR">
+			<ftr name="FIR"/>
+			<ftr name="LOCALIDADE"/>
+			<ftr name="SINOTICA"/>
+		</transaction>
+		<transaction fp= "4" name="MENSAGENS METEOROLOGICAS NO BANCO OPMET MODERNIZADO -INCLUIR">
+			<ftr name="FIR"/>
+			<ftr name="LOCALIDADE"/>
+			<ftr name="SINOTICA"/>
+		</transaction>
+		<transaction fp= "6" name="MENSAGENS METEOROLOGICAS NO BANCO OPMET MODERNIZADO - MODIFICAR">
+			<ftr name="FIR"/>
+			<ftr name="LOCALIDADE"/>
+			<ftr name="SINOTICA"/>
+		</transaction>
+		<transaction fp= "4" name="MENSAGENS METEOROLOGICAS NO BANCO OPMET MODERNIZADO - EXCLUIR">
+			<ftr name="FIR"/>
+			<ftr name="LOCALIDADE"/>
+			<ftr name="SINOTICA"/>
+		</transaction>
+		<transaction fp= "4" name="MENSAGENS ERRADAS ENVIADAS AO BANCO OPMET MODERNIZADO - CORRIGIR">
+			<ftr name="QTD_RECEBIDAS"/>
+		</transaction>
+		<transaction fp= "3" name="MENSAGENS DE CONSULTAS A OUTROS BANCOS - EDITAR">
+			<ftr name="MSG_ENVIADAS_OUTROS"/>
+		</transaction>
+	</group>
+	<group name="Localidade">
+		<transaction fp= "4" name="LOCALIDADE - CONSULTAR">
+			<ftr name="LOCALIDADE"/>
+			<ftr name="SINOTICA"/>
+		</transaction>
+		<transaction fp= "6" name="LOCALIDADE - INCLUIR">
+			<ftr name="LOCALIDADE"/>
+			<ftr name="SINOTICA"/>
+		</transaction>
+		<transaction fp= "6" name="LOCALIDADE - MODIFICAR">
+			<ftr name="LOCALIDADE"/>
+			<ftr name="SINOTICA"/>
+		</transaction>
+		<transaction fp= "3" name="LOCALIDADE EXCLUIR">
+			<ftr name="LOCALIDADE"/>
+		</transaction>
+		<transaction fp= "3" name="LISTAR (LOCALIDADE)">
+			<ftr name="LOCALIDADE"/>
+		</transaction>
+	</group>
+	<group name="FIR">
+		<transaction fp= "3" name="FIR - CONSULTAR">
+			<ftr name="FIR"/>
+		</transaction>
+		<transaction fp= "3" name="FIR - INCLUIR">
+			<ftr name="FIR"/>
+		</transaction>
+		<transaction fp= "3" name="FIR - MODIFICAR">
+			<ftr name="FIR"/>
+		</transaction>
+		<transaction fp= "3" name="FIR - EXCLUIR">
+			<ftr name="FIR"/>
+		</transaction>
+		<transaction fp= "3" name="LISTAR (FIR)">
+			<ftr name="FIR"/>
+		</transaction>
+	</group>
+	<group name="Sinotica">
+		<transaction fp= "3" name="ESTACAO SINOTICA - CONSULTAR">
+			<ftr name="SINOTICA"/>
+		</transaction>
+		<transaction fp= "4" name="ESTACAO SINOTICA - INCLUIR">
+			<ftr name="SINOTICA"/>
+		</transaction>
+		<transaction fp= "4" name="ESTACAO SINOTICA - MODIFICAR">
+			<ftr name="SINOTICA"/>
+		</transaction>
+		<transaction fp= "3" name="ESTACAO SINOTICA - EXCLUIR">
+			<ftr name="SINOTICA"/>
+		</transaction>
+		<transaction fp= "3" name="LISTAR (ESTACAO SINOTICA)">
+			<ftr name="SINOTICA"/>
+		</transaction>
+	</group>
+	<group name="Area">
+		<transaction fp= "3" name="AREA - CONSULTAR">
+			<ftr name="AREA"/>
+		</transaction>
+		<transaction fp= "3" name="AREA - INCLUIR">
+			<ftr name="AREA"/>
+		</transaction>
+		<transaction fp= "3" name="AREA - MODIFICAR">
+			<ftr name="AREA"/>
+		</transaction>
+		<transaction fp= "3" name="AREA - EXCLUIR">
+			<ftr name="AREA"/>
+		</transaction>
+		<transaction fp= "3" name="LISTAR (AREA)">
+			<ftr name="AREA"/>
+		</transaction>
+	</group>
+	<group name="Localidade_grupo">
+		<transaction fp= "3" name="GRUPO DE LOCALIDADE - CONSULTAR">
+			<ftr name="LOCALIDADE_GRUPO"/>
+		</transaction>
+		<transaction fp= "3" name="GRUPO DE LOCALIDADE - INCLUIR">
+			<ftr name="LOCALIDADE_GRUPO"/>
+		</transaction>
+		<transaction fp= "3" name="GRUPO DE LOCALIDADE - MODIFICAR">
+			<ftr name="LOCALIDADE_GRUPO"/>
+		</transaction>
+		<transaction fp= "3" name="GRUPO DE LOCALIDADE - EXCLUIR">
+			<ftr name="LOCALIDADE_GRUPO"/>
+		</transaction>
+		<transaction fp= "3" name="LISTAR (GRUPO LOCALIDADE)">
+			<ftr name="LOCALIDADE_GRUPO"/>
+		</transaction>
+	</group>
+	<group name="GRUPO FIR">
+		<transaction fp= "3" name="GRUPO FIR - CONSULTAR">
+			<ftr name="FIR_GRUPO"/>
+		</transaction>
+		<transaction fp= "3" name="GRUPO FIR - INCLUIR">
+			<ftr name="FIR_GRUPO"/>
+		</transaction>
+		<transaction fp= "3" name="GRUPO FIR - MODIFICAR">
+			<ftr name="FIR_GRUPO"/>
+		</transaction>
+		<transaction fp= "3" name="GRUPO FIR - EXCLUIR">
+			<ftr name="FIR_GRUPO"/>
+		</transaction>
 
-<transaction fp= "4" name="SISTEMA ALERTAS EXIBIR">
-	<depends name="ALERTAS"/>
-</transaction>
-
-<transaction fp= "4" name="MENSAGENS METEOROLOGICAS INDIVIDUAL - CONSULTAR">
-	<depends name="FIR"/>
-	<depends name="LOCALIDADE"/>
-	<depends name="SINOTICA"/>
-</transaction>
-
-<transaction fp= "4" name="MENSAGENS METEOROLOGICAS POR LOCALIDADE - CONSULTAR">
-	<depends name="FIR"/>
-	<depends name="LOCALIDADE"/>
-	<depends name="SINOTICA"/>
-</transaction>
-<transaction fp= "4" name="MENSAGENS METEOROLOGICAS POR FAIXA - CONSULTAR">
-	<depends name="FIR"/>
-	<depends name="LOCALIDADE"/>
-</transaction>
-<transaction fp= "4" name="MENSAGENS ATIVAS NO BANCO - LISTAR">
-	<depends name="FIR"/>
-	<depends name="LOCALIDADE"/>
-	<depends name="SINOTICA"/>
-</transaction>
-<transaction fp= "4" name="MENSAGENS AUSENTES - CONSULTAR">
-	<depends name="FIR"/>
-	<depends name="LOCALIDADE"/>
-	<depends name="SINOTICA"/>
-</transaction>
-<transaction fp= "4" name="MENSAGENS METEOROLOGICAS NO BANCO OPMET MODERNIZADO -INCLUIR">
-	<depends name="FIR"/>
-	<depends name="LOCALIDADE"/>
-	<depends name="SINOTICA"/>
-</transaction>
-<transaction fp= "6" name="MENSAGENS METEOROLOGICAS NO BANCO OPMET MODERNIZADO - MODIFICAR">
-	<depends name="FIR"/>
-	<depends name="LOCALIDADE"/>
-	<depends name="SINOTICA"/>
-</transaction>
-<transaction fp= "4" name="MENSAGENS METEOROLOGICAS NO BANCO OPMET MODERNIZADO - EXCLUIR">
-	<depends name="FIR"/>
-	<depends name="LOCALIDADE"/>
-	<depends name="SINOTICA"/>
-</transaction>
-<transaction fp= "4" name="MENSAGENS ERRADAS ENVIADAS AO BANCO OPMET MODERNIZADO - CORRIGIR">
-	<depends name="QTD RECEBIDAS"/>
-</transaction>
-<transaction fp= "3" name="MENSAGENS DE CONSULTAS A OUTROS BANCOS - EDITAR">
-	<depends name="MSG_ENVIADAS_OUTROS"/>
-</transaction>
-<transaction fp= "4" name="LOCALIDADE - CONSULTAR">
-	<depends name="LOCALIDADE"/>
-	<depends name="SINOTICA"/>
-</transaction>
-<transaction fp= "6" name="LOCALIDADE - INCLUIR">
-	<depends name="LOCALIDADE"/>
-	<depends name="SINOTICA"/>
-</transaction>
-<transaction fp= "6" name="LOCALIDADE - MODIFICAR">
-	<depends name="LOCALIDADE"/>
-	<depends name="SINOTICA"/>
-</transaction>
-<transaction fp= "3" name="LOCALIDADE EXCLUIR">
-	<depends name="LOCALIDADE"/>
-</transaction>
-<transaction fp= "3" name="FIR - CONSULTAR">
-	<depends name="FIR"/>
-</transaction>
-<transaction fp= "3" name="FIR - INCLUIR">
-	<depends name="FIR"/>
-</transaction>
-<transaction fp= "3" name="FIR - MODIFICAR">
-	<depends name="FIR"/>
-</transaction>
-<transaction fp= "3" name="FIR - EXCLUIR">
-	<depends name="FIR"/>
-</transaction>
-<transaction fp= "3" name="ESTACAO SINOTICA - CONSULTAR">
-	<depends name="SINOTICA"/>
-</transaction>
-<transaction fp= "4" name="ESTACAO SINOTICA - INCLUIR">
-	<depends name="SINOTICA"/>
-</transaction>
-<transaction fp= "4" name="ESTACAO SINOTICA - MODIFICAR">
-	<depends name="SINOTICA"/>
-</transaction>
-<transaction fp= "3" name="ESTACAO SINOTICA - EXCLUIR">
-	<depends name="SINOTICA"/>
-</transaction>
-<transaction fp= "3" name="AREA - CONSULTAR">
-	<depends name="AREA"/>
-</transaction>
-<transaction fp= "3" name="AREA - INCLUIR">
-	<depends name="AREA"/>
-</transaction>
-<transaction fp= "3" name="AREA - MODIFICAR">
-	<depends name="AREA"/>
-</transaction>
-<transaction fp= "3" name="AREA - EXCLUIR">
-	<depends name="AREA"/>
-</transaction>
-<transaction fp= "3" name="GRUPO DE LOCALIDADE - CONSULTAR">
-	<depends name="LOCALIADDE_GRUPO"/>
-</transaction>
-<transaction fp= "3" name="GRUPO DE LOCALIDADE - INCLUIR">
-	<depends name="LOCALIADDE_GRUPO"/>
-</transaction>
-<transaction fp= "3" name="GRUPO DE LOCALIDADE - MODIFICAR">
-	<depends name="LOCALIADDE_GRUPO"/>
-</transaction>
-<transaction fp= "3" name="GRUPO DE LOCALIDADE - EXCLUIR">
-	<depends name="LOCALIADDE_GRUPO"/>
-</transaction>
-<transaction fp= "3" name="GRUPO FIR - CONSULTAR">
-	<depends name="FIR_GRUPO"/>
-</transaction>
-<transaction fp= "3" name="GRUPO FIR - INCLUIR">
-	<depends name="FIR_GRUPO"/>
-</transaction>
-<transaction fp= "3" name="GRUPO FIR - MODIFICAR">
-	<depends name="FIR_GRUPO"/>
-</transaction>
-<transaction fp= "3" name="GRUPO FIR - EXCLUIR">
-	<depends name="FIR_GRUPO"/>
-</transaction>
-<transaction fp= "3" name="GRUPO DE ESTACOES SINOTICAS - CONSULTAR">
-	<depends name="SINOTICA_GRUPO"/>
-</transaction>
-<transaction fp= "3" name="GRUPO DE ESTACOES SINOTICAS -  INCLUIR">
-	<depends name="SINOTICA_GRUPO"/>
-</transaction>
-<transaction fp= "3" name="GRUPO DE ESTACOES SINOTICAS -  MODIFICAR">
-	<depends name="SINOTICA_GRUPO"/>
-</transaction>
-<transaction fp= "3" name="GRUPO DE ESTACOES SINOTICAS -  EXCLUIR">
-	<depends name="SINOTICA_GRUPO"/>
-</transaction>
-<transaction fp= "3" name="GRUPO DE ENDERECOS - CONSULTAR">
-	<depends name="GRUPO_ENDERECO"/>
-</transaction>
-<transaction fp= "3" name="GRUPO DE ENDERECOS - INCLUIR">
-	<depends name="GRUPO_ENDERECO"/>
-</transaction>
-<transaction fp= "3" name="GRUPO DE ENDERECOS - MODIFICAR">
-	<depends name="GRUPO_ENDERECO"/>
-</transaction>
-<transaction fp= "3" name="GRUPO DE ENDERECOS - EXCLUIR">
-	<depends name="GRUPO_ENDERECO"/>
-</transaction>
-<transaction fp= "3" name="REGIAO - CONSULTA">
-	<depends name="REGIAO"/>
-</transaction>
-<transaction fp= "3" name="REGIAO - INCLUIR">
-	<depends name="REGIAO"/>
-</transaction>
-<transaction fp= "3" name="REGIAO - MODIFICAR">
-	<depends name="REGIAO"/>
-</transaction>
-<transaction fp= "3" name="REGIAO EXCLUIR">
-	<depends name="REGIAO"/>
-</transaction>
-<transaction fp= "3" name="PAIS - CONSULTAR">
-	<depends name="PAIS"/>
-</transaction>
-<transaction fp= "3" name="PAIS - INCLUIR">
-	<depends name="PAIS"/>
-</transaction>
-<transaction fp= "3" name="PAIS - MODIFCAR">
-	<depends name="PAIS"/>
-</transaction>
-<transaction fp= "3" name="PAIS - EXCLUIR">
-	<depends name="PAIS"/>
-</transaction>
-<transaction fp= "3" name="REMETENTE - CONSULTAR">
-	<depends name="REMETENTE"/>
-</transaction>
-<transaction fp= "3" name="REMETENTE - INCLUIR">
-	<depends name="REMETENTE"/>
-</transaction>
-<transaction fp= "3" name="REMETENTE - MODIFICAR">
-	<depends name="REMETENTE"/>
-</transaction>
-<transaction fp= "3" name="REMETENTE - EXCLUIR">
-	<depends name="REMETENTE"/>
-</transaction>
-<transaction fp= "6" name="AVISO AUTOMATICO - CONSULTAR">
-	<depends name="AVISO_AUTOMATICO"/>
-	<depends name="AREA"/>
-	<depends name="SINOTICA"/>
-	<depends name="GRUPO_ENDERECO"/>
-</transaction>
-<transaction fp= "3" name="AVISO AUTOMATICO - INCLUIR">
-	<depends name="AVISO_AUTOMATICO"/>
-</transaction>
-<transaction fp= "3" name="AVISO AUTOMATICO - MODIFICAR">
-	<depends name="AVISO_AUTOMATICO"/>
-</transaction>
-<transaction fp= "3" name="AVISO AUTOMATICO - EXCLUIR">
-	<depends name="AVISO_AUTOMATICO"/>
-</transaction>
-<transaction fp= "3" name="ASSOCIACAO DE REMETENTES - CONSULTAR">
-	<depends name="REMETENTE"/>
-</transaction>
-<transaction fp= "3" name="ASSOCIACAO DE REMETENTES -  INCLUIR">
-	<depends name="REMETENTE"/>
-</transaction>
-<transaction fp= "3" name="ASSOCIACAO DE REMETENTES -  MODIFICAR">
-	<depends name="REMETENTE"/>
-</transaction>
-<transaction fp= "3" name="ASSOCIACAO DE REMETENTES -  EXCLUIR">
-	<depends name="REMETENTE"/>
-</transaction>
-<transaction fp= "3" name="ASSOCIACAO DE LOCALIDADES - CONSULTAR">
-	<depends name="LOCALIDADE"/>
-</transaction>
-<transaction fp= "3" name="ASSOCIACAO LOCALIDADES - INCLUIR">
-	<depends name="LOCALIDADE"/>
-</transaction>
-<transaction fp= "3" name="ASSOCIACAO LOCALIDADES - MODIFICAR">
-	<depends name="LOCALIDADE"/>
-</transaction>
-<transaction fp= "3" name="ASSOCIACAO LOCALIDADES - EXCLUIR">
-	<depends name="LOCALIDADE"/>
-</transaction>
-<transaction fp= "3" name="ASSOCIACAO DE ESTACOES SINOTICAS - CONSULTAR">
-	<depends name="SINOTICA"/>
-</transaction>
-<transaction fp= "3" name="ASSOCIACAO DE ESTACOES SINOTICAS - INCLUIR">
-	<depends name="SINOTICA"/>
-</transaction>
-<transaction fp= "3" name="ASSOCIACAO DE ESTACOES SINOTICAS - MODIFICAR">
-	<depends name="SINOTICA"/>
-</transaction>
-<transaction fp= "3" name="ASSOCIACAO DE ESTACOES SINOTICAS - EXCLUIR">
-	<depends name="SINOTICA"/>
-</transaction>
-<transaction fp= "3" name="REMETENTE AFTN - AMHS - CONSULTAR">
-	<depends name="REMETENTE"/>
-</transaction>
-<transaction fp= "3" name="REMETENTE AFTN - AMHS - INCLUIR">
-	<depends name="REMETENTE"/>
-</transaction>
-<transaction fp= "3" name="REMETENTE AFTN - AMHS - MODIFICAR">
-	<depends name="REMETENTE"/>
-</transaction>
-<transaction fp= "3" name="REMETENTE AFTN - AMHS - EXCLUIR">
-	<depends name="REMETENTE"/>
-</transaction>
-<transaction fp= "3" name="ESTADOS OPERACIONAIS - VISUALIZAR">
-	<depends name="ESTADO_OPERACIONAL"/>
-</transaction>
-<transaction fp= "3" name="GERENCIADOR DE RELATORIOS - VISUALIZAR">
-	<depends name="USUARIO"/>
-</transaction>
-<transaction fp= "3" name="CONFIGURACAO - CONSULTA">
-	<depends name="CONFIGURACAO"/>
-</transaction>
-<transaction fp= "3" name="CONFIGURACAO - MODIFICAR">
-	<depends name="CONFIGURACAO"/>
-</transaction>
-<transaction fp= "4" name="RELATORIO DE ATIVIDADE DOS USUARIOS DO SISTEMA - CONSULTA">
-	<depends name="USUARIO"/>
-	<depends name="LOG"/>
-</transaction>
-<transaction fp= "3" name="INDICADOR WAFS - CONSULTAR">
-	<depends name="WAFS"/>
-</transaction>
-<transaction fp= "3" name="INDICADOR WAFS - INCLUIR">
-	<depends name="WAFS"/>
-</transaction>
-<transaction fp= "3" name="INDICADOR WAFS - MODIFICAR">
-	<depends name="WAFS"/>
-</transaction>
-<transaction fp= "3" name="INDICADOR WAFS - EXCLUIR">
-	<depends name="WAFS"/>
-</transaction>
-<transaction fp= "3" name="USUARIO DO SISTEMA - CONSULTAR">
-	<depends name="USUARIO"/>
-</transaction>
-<transaction fp= "3" name="USUARIO DO SISTEMA - INCLUIR">
-	<depends name="USUARIO"/>
-</transaction>
-<transaction fp= "3" name="USUARIO DO SISTEMA - MODIFICAR">
-	<depends name="USUARIO"/>
-</transaction>
-<transaction fp= "3" name="USUARIO DO SISTEMA - EXCLUIR">
-	<depends name="USUARIO"/>
-</transaction>
-<transaction fp= "3" name="RELATORIO DE IMPRESSAO DE CADASTROS">
-	<depends name="REGIAO"/>
-	<depends name="USUARIO_ESTANGEIRO"/>
-</transaction>
-<transaction fp= "5" name="RELATORIO DE MENSAGENS AUSENTES OU INCLUIDAS COM ATRASO">
-	<depends name="SINOTICA"/>
-	<depends name="LOCALIDADE"/>
-	<depends name="FIR"/>
-</transaction>
-<transaction fp= "6" name="RELATORIO DE MENSAGENS ERRADAS">
-	<depends name="LOG"/>
-	<depends name="ASSOCIACAO_REMETENTE"/>
-</transaction>
-<transaction fp= "5" name="RELATORIO DE SITUACAO GERAL">
-	<depends name="SINOTICA"/>
-	<depends name="LOCALIDADE"/>
-	<depends name="FIR"/>
-</transaction>
-<transaction fp= "6" name="RELATORIO DE MENSAGENS INSERIDAS">
-	<depends name="AREA"/>
-	<depends name="SINOTICA"/>
-	<depends name="LOCALIDADE"/>
-	<depends name="FIR"/>
-</transaction>
-<transaction fp= "3" name="RELATORIO DE MENSAGENS ENVIADAS A OUTROS BANCO">
-	<depends name="ENVIADA_OUTROS"/>
-</transaction>
-<transaction fp= "4" name="RELATORIO DE MENSAGENS RQM">
-	<depends name="REMETENTE"/>
-	<depends name="RQM"/>
-</transaction>
-<transaction fp= "5" name="RELATORIO DE QUANTIDADE DE MENSAGENS PROCESSADAS">
-	<depends name="USUARIO_ESTRANGEIRO"/>
-	<depends name="REGIAO"/>
-	<depends name="QTD_RECEBIDAS"/>
-</transaction>
-<transaction fp= "4" name="RELATORIOS ESTATISTICO DE MENSAGENS METEOROLOGICAS OPERACIONAIS.">
-	<depends name="USUARIO_ESTRANGEIRO"/>
-	<depends name="REGIAO"/>
-</transaction>
-<transaction fp= "5" name="RELATORIO ESTATISTICO DIARIO OPERACIONAL RECEBIDO SEM CONSOLIDACAO ">
-	<depends name="USUARIO_ESTRANGEIRO"/>
-	<depends name="LOCALIDADE"/>
-	<depends name="FIR"/>
-</transaction>
-<transaction fp= "5" name="RELATORIO ESTATISTICO DIARIO OPERACIONAL RECEBIDO CONSOLIDADO POR PAIS">
-	<depends name="USUARIO_ESTRANGEIRO"/>
-	<depends name="SINOTICA"/>
-	<depends name="FIR"/>
-</transaction>
-<transaction fp= "5" name=" RELATORIO ESTATISTICO DIARIO OPERACIONAL TRANSMITIDO SEM CONSOLIDACAO">
-	<depends name="USUARIO_ESTRANGEIRO"/>
-	<depends name="SINOTICA"/>
-	<depends name="FIR"/>
-</transaction>
-<transaction fp= "7" name="RELATORIO ESTATISTICO RESUMIDO OPERACIONAL RECEBIDO SEM CONSOLIDACAO">
-	<depends name="USUARIO_ESTRANGEIRO"/>
-	<depends name="SINOTICA"/>
-	<depends name="FIR"/>
-</transaction>
-<transaction fp= "4" name=" RELATORIO ESTATISTICO RESUMIDO OPERACIONAL TRANSMITIDO SEM CONSOLIDACAO">
-	<depends name="USUARIO_ESTRANGEIRO"/>
-	<depends name="SINOTICA"/>
-	<depends name="FIR"/>
-</transaction>
-<transaction fp= "4" name=" RELATORIO ESTATISTICO RESUMIDO OPERACIONAL TRANSMITIDO CONSOLIDADO POR REGIAO">
-	<depends name="USUARIO_ESTRANGEIRO"/>
-	<depends name="SINOTICA"/>
-	<depends name="FIR"/>
-</transaction>
-<transaction fp= "7" name="RELATORIO ESTATISTICO DETALHADO OPERACIONAL RECEBIDO SEM CONSOLIDACAO">
-	<depends name="USUARIO_ESTRANGEIRO"/>
-	<depends name="SINOTICA"/>
-	<depends name="FIR"/>
-</transaction>
-<transaction fp= "7" name="RELATORIO ESTATISTICO DETALHADO OPERACIONAL RECEBIDO CONSOLIDADO POR PAIS">
-	<depends name="USUARIO_ESTRANGEIRO"/>
-	<depends name="SINOTICA"/>
-	<depends name="FIR"/>
-</transaction>
-<transaction fp= "7" name="RELATORIO ESTATISTICO DETALHADO OPERACIONAL TRANSMITIDO SEM CONSOLIDACAO">
-	<depends name="USUARIO_ESTRANGEIRO"/>
-	<depends name="SINOTICA"/>
-	<depends name="FIR"/>
-</transaction>
-<transaction fp= "7" name="RELATORIO ESTATISTICO DETALHADO OPERACIONAL TRANSMITIDO CONSOLIDADO POR REGIAO">
-	<depends name="USUARIO_ESTRANGEIRO"/>
-	<depends name="SINOTICA"/>
-	<depends name="FIR"/>
-</transaction>
-<transaction fp= "3" name="RELATORIO ESTATISITICO DE MENSAGENS SINOTICAS">
-	<depends name="SINOTICA"/>
-</transaction>
-<transaction fp= "5" name="RELATORIO ESTATISTICO DIARIO SINOTICO RECEBIDO SEM CONSOLIDACAO">
-	<depends name="USUARIO_ESTRANGEIRO"/>
-	<depends name="SINOTICA"/>
-</transaction>
-<transaction fp= "4" name="RELATORIO ESTATISTICO DIARIO SINOTICO RECEBIDO CONSOLIDADO POR PAIS">
-	<depends name="USUARIO_ESTRANGEIRO"/>
-	<depends name="SINOTICA"/>
-</transaction>
-<transaction fp= "4" name="RELATORIO ESTATISTICO DIARIO SINOTICO TRANSMITIDO SEM CONSOLIDACAO">
-	<depends name="USUARIO_ESTRANGEIRO"/>
-	<depends name="SINOTICA"/>
-</transaction>
-<transaction fp= "5" name="RELATORIO ESTATISTICO DIARIO SINOTICO TRANSMITIDO CONSOLIDADO POR REGIAO">
-	<depends name="SINOTICA"/>
-	<depends name="USUARIO_ESTRANGEIRO"/>
-</transaction>
-<transaction fp= "7" name="RELATORIO ESTATISTICO DETALHADO SINOTICO RECEBIDO SEM CONSOLIDACAO">
-	<depends name="SINOTICA"/>
-	<depends name="USUARIO_ESTRANGEIRO"/>
-</transaction>
-<transaction fp= "7" name=" RELATORIO ESTATISTICO DETALHADO SINOTICO RECEBIDO CONSOLIDADO POR PAIS">
-	<depends name="SINOTICA"/>
-	<depends name="USUARIO_ESTRANGEIRO"/>
-</transaction>
-<transaction fp= "7" name="RELATORIO ESTATISTICO DETALHADO SINOTICO TRANSMITIDO SEM CONSOLIDACAO">
-	<depends name="SINOTICA"/>
-	<depends name="USUARIO_ESTRANGEIRO"/>
-</transaction>
-<transaction fp= "7" name="RELATORIO ESTATISTICO DETALHADO SINOTICO TRANSMITIDO CONSOLIDADO POR REGIAO">
-	<depends name="SINOTICA"/>
-	<depends name="USUARIO_ESTRANGEIRO"/>
-</transaction>
-<transaction fp= "3" name="LISTAR (FIR)">
-	<depends name="LOCALIDADE"/>
-</transaction>
-<transaction fp= "3" name="LISTAR (ESTACAO SINOTICA)">
-	<depends name="LOCALIDADE"/>
-</transaction>
-<transaction fp= "3" name="LISTAR (LOCALIDADE)">
-	<depends name="LOCALIDADE"/>
-</transaction>
-<transaction fp= "3" name="LISTAR (REGIAO)">
-	<depends name="REGIAO"/>
-</transaction>
-<transaction fp= "3" name="LISTAR (INDICADOR GEOGRAFICO)">
-	<depends name="USUARIO_ESTRANGEIRO"/>
-</transaction>
-<transaction fp= "3" name="LISTAR (GRUPO FIR)">
-	<depends name="FIR_GRUPO"/>
-</transaction>
-<transaction fp= "3" name="LISTAR (GRUPO LOCALIDADE)">
-	<depends name="GRUPO_LOCALIDADE_GRUPO"/>
-</transaction>
-<transaction fp= "3" name="LISTAR (GRUPO ESTACAO SINOTICA)">
-	<depends name="GRUPO_SINOTICO"/>
-</transaction>
-<transaction fp= "3" name="LISTAR (GRUPO ENDERECOS)">
-	<depends name="GRUPO_ENDERECO"/>
-</transaction>
-<transaction fp= "3" name="LISTAR (AREA)">
-	<depends name="AREA"/>
-</transaction>
-<transaction fp= "3" name="LISTAR (AVISO)">
-	<depends name="AVISO_AUTOMATICO"/>
-</transaction>
-<transaction fp= "3" name="LISTAR (COMPILADOR)">
-	<depends name="AVISO_AUTOMATICO"/>
-</transaction>
-<transaction fp= "3" name="LISTAR (ENDERECO AFTN)">
-	<depends name="AVISO_AUTOMATICO"/>
-</transaction>
-</system>
+		<transaction fp= "3" name="LISTAR (GRUPO FIR)">
+			<ftr name="FIR_GRUPO"/>
+		</transaction>
+	</group>
+	<group name="GRUPO DE ESTACOES SINOTICAS">
+		<transaction fp= "3" name="GRUPO DE ESTACOES SINOTICAS - CONSULTAR">
+			<ftr name="SINOTICO_GRUPO"/>
+		</transaction>
+		<transaction fp= "3" name="GRUPO DE ESTACOES SINOTICAS -  INCLUIR">
+			<ftr name="SINOTICO_GRUPO"/>
+		</transaction>
+		<transaction fp= "3" name="GRUPO DE ESTACOES SINOTICAS -  MODIFICAR">
+			<ftr name="SINOTICO_GRUPO"/>
+		</transaction>
+		<transaction fp= "3" name="GRUPO DE ESTACOES SINOTICAS -  EXCLUIR">
+			<ftr name="SINOTICO_GRUPO"/>
+		</transaction>
+		<transaction fp= "3" name="LISTAR (GRUPO ESTACAO SINOTICA)">
+			<ftr name="SINOTICO_GRUPO"/>
+		</transaction>
+	</group>
+	<group name="Grupo de Endereços">
+		<transaction fp= "3" name="GRUPO DE ENDERECOS - CONSULTAR">
+			<ftr name="GRUPO_ENDERECO"/>
+		</transaction>
+		<transaction fp= "3" name="GRUPO DE ENDERECOS - INCLUIR">
+			<ftr name="GRUPO_ENDERECO"/>
+		</transaction>
+		<transaction fp= "3" name="GRUPO DE ENDERECOS - MODIFICAR">
+			<ftr name="GRUPO_ENDERECO"/>
+		</transaction>
+		<transaction fp= "3" name="GRUPO DE ENDERECOS - EXCLUIR">
+			<ftr name="GRUPO_ENDERECO"/>
+		</transaction>
+		<transaction fp= "3" name="LISTAR (GRUPO ENDERECOS)">
+			<ftr name="GRUPO_ENDERECO"/>
+		</transaction>
+	</group>
+	<group name="Região">
+		<transaction fp= "3" name="REGIAO - CONSULTA">
+			<ftr name="REGIAO"/>
+		</transaction>
+		<transaction fp= "3" name="REGIAO - INCLUIR">
+			<ftr name="REGIAO"/>
+		</transaction>
+		<transaction fp= "3" name="REGIAO - MODIFICAR">
+			<ftr name="REGIAO"/>
+		</transaction>
+		<transaction fp= "3" name="REGIAO EXCLUIR">
+			<ftr name="REGIAO"/>
+		</transaction>
+		<transaction fp= "3" name="LISTAR (REGIAO)">
+			<ftr name="REGIAO"/>
+		</transaction>
+	</group>
+	<group name="País">
+		<transaction fp= "3" name="PAIS - CONSULTAR">
+			<ftr name="PAIS"/>
+		</transaction>
+		<transaction fp= "3" name="PAIS - INCLUIR">
+			<ftr name="PAIS"/>
+		</transaction>
+		<transaction fp= "3" name="PAIS - MODIFCAR">
+			<ftr name="PAIS"/>
+		</transaction>
+		<transaction fp= "3" name="PAIS - EXCLUIR">
+			<ftr name="PAIS"/>
+		</transaction>
+	</group>
+	<group name="Remetente">
+		<transaction fp= "3" name="REMETENTE - CONSULTAR">
+			<ftr name="REMETENTE"/>
+		</transaction>
+		<transaction fp= "3" name="REMETENTE - INCLUIR">
+			<ftr name="REMETENTE"/>
+		</transaction>
+		<transaction fp= "3" name="REMETENTE - MODIFICAR">
+			<ftr name="REMETENTE"/>
+		</transaction>
+		<transaction fp= "3" name="REMETENTE - EXCLUIR">
+			<ftr name="REMETENTE"/>
+		</transaction>
+	</group>
+	<group name="Aviso_Automatico">
+		<transaction fp= "6" name="AVISO AUTOMATICO - CONSULTAR">
+			<ftr name="AVISO_AUTOMATICO"/>
+			<ftr name="AREA"/>
+			<ftr name="SINOTICA"/>
+			<ftr name="GRUPO_ENDERECO"/>
+		</transaction>
+		<transaction fp= "3" name="AVISO AUTOMATICO - INCLUIR">
+			<ftr name="AVISO_AUTOMATICO"/>
+		</transaction>
+		<transaction fp= "3" name="AVISO AUTOMATICO - MODIFICAR">
+			<ftr name="AVISO_AUTOMATICO"/>
+		</transaction>
+		<transaction fp= "3" name="AVISO AUTOMATICO - EXCLUIR">
+			<ftr name="AVISO_AUTOMATICO"/>
+		</transaction>
+		<transaction fp= "3" name="LISTAR (AVISO)">
+			<ftr name="AVISO_AUTOMATICO"/>
+		</transaction>
+		<transaction fp= "3" name="LISTAR (COMPILADOR)">
+			<ftr name="AVISO_AUTOMATICO"/>
+		</transaction>
+	</group>
+	<group name="ASSOCIACAO_REMETENTES">
+		<transaction fp= "3" name="ASSOCIACAO DE REMETENTES - CONSULTAR">
+			<ftr name="REMETENTE"/>
+		</transaction>
+		<transaction fp= "3" name="ASSOCIACAO DE REMETENTES -  INCLUIR">
+			<ftr name="REMETENTE"/>
+		</transaction>
+		<transaction fp= "3" name="ASSOCIACAO DE REMETENTES -  MODIFICAR">
+			<ftr name="REMETENTE"/>
+		</transaction>
+		<transaction fp= "3" name="ASSOCIACAO DE REMETENTES -  EXCLUIR">
+			<ftr name="REMETENTE"/>
+		</transaction>
+	</group>
+	<group name="ASSOCIACAO_LOCALIDADES">
+		<transaction fp= "3" name="ASSOCIACAO DE LOCALIDADES - CONSULTAR">
+			<ftr name="LOCALIDADE"/>
+		</transaction>
+		<transaction fp= "3" name="ASSOCIACAO LOCALIDADES - INCLUIR">
+			<ftr name="LOCALIDADE"/>
+		</transaction>
+		<transaction fp= "3" name="ASSOCIACAO LOCALIDADES - MODIFICAR">
+			<ftr name="LOCALIDADE"/>
+		</transaction>
+		<transaction fp= "3" name="ASSOCIACAO LOCALIDADES - EXCLUIR">
+			<ftr name="LOCALIDADE"/>
+		</transaction>
+	</group>
+	<group name="ASSOCIACAO_ESTACOES_SINOTICAS">
+		<transaction fp= "3" name="ASSOCIACAO DE ESTACOES SINOTICAS - CONSULTAR">
+			<ftr name="SINOTICA"/>
+		</transaction>
+		<transaction fp= "3" name="ASSOCIACAO DE ESTACOES SINOTICAS - INCLUIR">
+			<ftr name="SINOTICA"/>
+		</transaction>
+		<transaction fp= "3" name="ASSOCIACAO DE ESTACOES SINOTICAS - MODIFICAR">
+			<ftr name="SINOTICA"/>
+		</transaction>
+		<transaction fp= "3" name="ASSOCIACAO DE ESTACOES SINOTICAS - EXCLUIR">
+			<ftr name="SINOTICA"/>
+		</transaction>
+	</group>
+	<group name="REMETENTE AFTN">
+		<transaction fp= "3" name="REMETENTE AFTN - AMHS - CONSULTAR">
+			<ftr name="REMETENTE"/>
+		</transaction>
+		<transaction fp= "3" name="REMETENTE AFTN - AMHS - INCLUIR">
+			<ftr name="REMETENTE"/>
+		</transaction>
+		<transaction fp= "3" name="REMETENTE AFTN - AMHS - MODIFICAR">
+			<ftr name="REMETENTE"/>
+		</transaction>
+		<transaction fp= "3" name="REMETENTE AFTN - AMHS - EXCLUIR">
+			<ftr name="REMETENTE"/>
+		</transaction>
+		<transaction fp= "3" name="LISTAR (ENDERECO AFTN)">
+			<ftr name="AVISO_AUTOMATICO"/>
+		</transaction>
+	</group>		
+	<group name="Administração">
+		<transaction fp= "3" name="CONFIGURACAO - CONSULTA">
+			<ftr name="CONFIGURACAO"/>
+		</transaction>
+		<transaction fp= "3" name="CONFIGURACAO - MODIFICAR">
+			<ftr name="CONFIGURACAO"/>
+		</transaction>
+		<transaction fp= "3" name="ESTADOS OPERACIONAIS - VISUALIZAR">
+			<ftr name="ESTADO_OPERACIONAL"/>
+		</transaction>
+		<transaction fp= "4" name="SISTEMA ALERTAS EXIBIR">
+	<ftr name="ALERTAS"/>
+</transaction>
+	</group>	
+	<group name="WAFS">
+		<transaction fp= "3" name="INDICADOR WAFS - CONSULTAR">
+			<ftr name="WAFS"/>
+		</transaction>
+		<transaction fp= "3" name="INDICADOR WAFS - INCLUIR">
+			<ftr name="WAFS"/>
+		</transaction>
+		<transaction fp= "3" name="INDICADOR WAFS - MODIFICAR">
+			<ftr name="WAFS"/>
+		</transaction>
+		<transaction fp= "3" name="INDICADOR WAFS - EXCLUIR">
+			<ftr name="WAFS"/>
+		</transaction>
+	</group>
+	<group name="Relatório">
+		<transaction fp= "3" name="GERENCIADOR DE RELATORIOS - VISUALIZAR">
+			<ftr name="USUARIO"/>
+		</transaction>
+		<transaction fp= "4" name="RELATORIO DE ATIVIDADE DOS USUARIOS DO SISTEMA - CONSULTA">
+			<ftr name="USUARIO"/>
+			<ftr name="LOG"/>
+		</transaction>
+		<transaction fp= "3" name="RELATORIO DE IMPRESSAO DE CADASTROS">
+			<ftr name="REGIAO"/>
+			<ftr name="USUARIO_ESTRANGEIRO"/>
+		</transaction>
+		<transaction fp= "5" name="RELATORIO DE MENSAGENS AUSENTES OU INCLUIDAS COM ATRASO">
+			<ftr name="SINOTICA"/>
+			<ftr name="LOCALIDADE"/>
+			<ftr name="FIR"/>
+		</transaction>
+		<transaction fp= "6" name="RELATORIO DE MENSAGENS ERRADAS">
+			<ftr name="LOG"/>
+			<ftr name="REMETENTE"/>
+		</transaction>
+		<transaction fp= "5" name="RELATORIO DE SITUACAO GERAL">
+			<ftr name="SINOTICA"/>
+			<ftr name="LOCALIDADE"/>
+			<ftr name="FIR"/>
+		</transaction>
+		<transaction fp= "6" name="RELATORIO DE MENSAGENS INSERIDAS">
+			<ftr name="AREA"/>
+			<ftr name="SINOTICA"/>
+			<ftr name="LOCALIDADE"/>
+			<ftr name="FIR"/>
+		</transaction>
+		<transaction fp= "3" name="RELATORIO DE MENSAGENS ENVIADAS A OUTROS BANCO">
+			<ftr name="MSG_ENVIADAS_OUTROS"/>
+		</transaction>
+		<transaction fp= "4" name="RELATORIO DE MENSAGENS RQM">
+			<ftr name="REMETENTE"/>
+			<ftr name="RQM"/>
+		</transaction>
+		<transaction fp= "5" name="RELATORIO DE QUANTIDADE DE MENSAGENS PROCESSADAS">
+			<ftr name="USUARIO_ESTRANGEIRO"/>
+			<ftr name="REGIAO"/>
+			<ftr name="QTD_RECEBIDAS"/>
+		</transaction>
+		<transaction fp= "4" name="RELATORIOS ESTATISTICO DE MENSAGENS METEOROLOGICAS OPERACIONAIS.">
+			<ftr name="USUARIO_ESTRANGEIRO"/>
+			<ftr name="REGIAO"/>
+		</transaction>
+		<transaction fp= "5" name="RELATORIO ESTATISTICO DIARIO OPERACIONAL RECEBIDO SEM CONSOLIDACAO ">
+			<ftr name="USUARIO_ESTRANGEIRO"/>
+			<ftr name="LOCALIDADE"/>
+			<ftr name="FIR"/>
+		</transaction>
+		<transaction fp= "5" name="RELATORIO ESTATISTICO DIARIO OPERACIONAL RECEBIDO CONSOLIDADO POR PAIS">
+			<ftr name="USUARIO_ESTRANGEIRO"/>
+			<ftr name="SINOTICA"/>
+			<ftr name="FIR"/>
+		</transaction>
+		<transaction fp= "5" name=" RELATORIO ESTATISTICO DIARIO OPERACIONAL TRANSMITIDO SEM CONSOLIDACAO">
+			<ftr name="USUARIO_ESTRANGEIRO"/>
+			<ftr name="SINOTICA"/>
+			<ftr name="FIR"/>
+		</transaction>
+		<transaction fp= "7" name="RELATORIO ESTATISTICO RESUMIDO OPERACIONAL RECEBIDO SEM CONSOLIDACAO">
+			<ftr name="USUARIO_ESTRANGEIRO"/>
+			<ftr name="SINOTICA"/>
+			<ftr name="FIR"/>
+		</transaction>
+		<transaction fp= "4" name=" RELATORIO ESTATISTICO RESUMIDO OPERACIONAL TRANSMITIDO SEM CONSOLIDACAO">
+			<ftr name="USUARIO_ESTRANGEIRO"/>
+			<ftr name="SINOTICA"/>
+			<ftr name="FIR"/>
+		</transaction>
+		<transaction fp= "4" name=" RELATORIO ESTATISTICO RESUMIDO OPERACIONAL TRANSMITIDO CONSOLIDADO POR REGIAO">
+			<ftr name="USUARIO_ESTRANGEIRO"/>
+			<ftr name="SINOTICA"/>
+			<ftr name="FIR"/>
+		</transaction>
+		<transaction fp= "7" name="RELATORIO ESTATISTICO DETALHADO OPERACIONAL RECEBIDO SEM CONSOLIDACAO">
+			<ftr name="USUARIO_ESTRANGEIRO"/>
+			<ftr name="SINOTICA"/>
+			<ftr name="FIR"/>
+		</transaction>
+		<transaction fp= "7" name="RELATORIO ESTATISTICO DETALHADO OPERACIONAL RECEBIDO CONSOLIDADO POR PAIS">
+			<ftr name="USUARIO_ESTRANGEIRO"/>
+			<ftr name="SINOTICA"/>
+			<ftr name="FIR"/>
+		</transaction>
+		<transaction fp= "7" name="RELATORIO ESTATISTICO DETALHADO OPERACIONAL TRANSMITIDO SEM CONSOLIDACAO">
+			<ftr name="USUARIO_ESTRANGEIRO"/>
+			<ftr name="SINOTICA"/>
+			<ftr name="FIR"/>
+		</transaction>
+		<transaction fp= "7" name="RELATORIO ESTATISTICO DETALHADO OPERACIONAL TRANSMITIDO CONSOLIDADO POR REGIAO">
+			<ftr name="USUARIO_ESTRANGEIRO"/>
+			<ftr name="SINOTICA"/>
+			<ftr name="FIR"/>
+		</transaction>
+		<transaction fp= "3" name="RELATORIO ESTATISITICO DE MENSAGENS SINOTICAS">
+			<ftr name="SINOTICA"/>
+		</transaction>
+		<transaction fp= "5" name="RELATORIO ESTATISTICO DIARIO SINOTICO RECEBIDO SEM CONSOLIDACAO">
+			<ftr name="USUARIO_ESTRANGEIRO"/>
+			<ftr name="SINOTICA"/>
+		</transaction>
+		<transaction fp= "4" name="RELATORIO ESTATISTICO DIARIO SINOTICO RECEBIDO CONSOLIDADO POR PAIS">
+			<ftr name="USUARIO_ESTRANGEIRO"/>
+			<ftr name="SINOTICA"/>
+		</transaction>
+		<transaction fp= "4" name="RELATORIO ESTATISTICO DIARIO SINOTICO TRANSMITIDO SEM CONSOLIDACAO">
+			<ftr name="USUARIO_ESTRANGEIRO"/>
+			<ftr name="SINOTICA"/>
+		</transaction>
+		<transaction fp= "5" name="RELATORIO ESTATISTICO DIARIO SINOTICO TRANSMITIDO CONSOLIDADO POR REGIAO">
+			<ftr name="SINOTICA"/>
+			<ftr name="USUARIO_ESTRANGEIRO"/>
+		</transaction>
+		<transaction fp= "7" name="RELATORIO ESTATISTICO DETALHADO SINOTICO RECEBIDO SEM CONSOLIDACAO">
+			<ftr name="SINOTICA"/>
+			<ftr name="USUARIO_ESTRANGEIRO"/>
+		</transaction>
+		<transaction fp= "7" name=" RELATORIO ESTATISTICO DETALHADO SINOTICO RECEBIDO CONSOLIDADO POR PAIS">
+			<ftr name="SINOTICA"/>
+			<ftr name="USUARIO_ESTRANGEIRO"/>
+		</transaction>
+		<transaction fp= "7" name="RELATORIO ESTATISTICO DETALHADO SINOTICO TRANSMITIDO SEM CONSOLIDACAO">
+			<ftr name="SINOTICA"/>
+			<ftr name="USUARIO_ESTRANGEIRO"/>
+		</transaction>
+		<transaction fp= "7" name="RELATORIO ESTATISTICO DETALHADO SINOTICO TRANSMITIDO CONSOLIDADO POR REGIAO">
+			<ftr name="SINOTICA"/>
+			<ftr name="USUARIO_ESTRANGEIRO"/>
+		</transaction>
+	</group>
+</system>		

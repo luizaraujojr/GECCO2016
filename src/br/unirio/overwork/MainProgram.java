@@ -1,9 +1,12 @@
 package br.unirio.overwork;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Vector;
 
 import unirio.experiments.multiobjective.analyzer.ExperimentAnalyzer;
 import br.unirio.optimization.experiment.RandomSearchExperiment;
+import br.unirio.optimization.resultInterpretation.ResultInterpreter;
 import br.unirio.overwork.builders.controller.SoftwareSystemProjectBuilder;
 import br.unirio.overwork.builders.model.SoftwareSystem;
 import br.unirio.overwork.builders.model.WorkPackage;
@@ -12,16 +15,17 @@ import br.unirio.overwork.model.base.Project;
 
 public class MainProgram
 {
-	protected static final int CYCLES = 5;
-	protected static final int MAXEVALUATIONS = 1000;
+	protected static final int CYCLES = 1;
+	protected static final int MAXEVALUATIONS = 100;
 	protected static String[] instanceFiles =
 	{
-//	 		"data/instances/ACAD/functions-point.xml",
-//	 		"data/instances/BOLS/functions-point.xml",
-//	 		"data/instances/PARM/functions-point.xml",
-//	 		"data/instances/PSOA/functions-point.xml",
 		"data/overworking/ACAD.xml"
-		//"data/instances/OPMET/functions-point.xml"
+//		"data/overworking/BOLS.xml",
+//		"data/overworking/OPMET.xml",
+//		"data/overworking/PARM.xml",
+//		"data/overworking/PSOA.xml",
+//		"data/overworking/WEBAMHS.xml",
+//		"data/overworking/WEBMET.xml"
 	};
 	
 	public static final void main(String[] args) throws Exception
@@ -54,13 +58,19 @@ public class MainProgram
 //		
 //		ExperimentAnalyzer analyzer2 = new ExperimentAnalyzer();
 //		analyzer2.analyze("hc", "saida hc.txt", instances.size(), CYCLES, 3);
+		SimpleDateFormat sdf1 = new SimpleDateFormat("ddMMyyyy_hhmmss");
 		
+		String filename = "data/result/ouput_datetime" + sdf1.format(new Date()) +"_eval"+ MAXEVALUATIONS + "_cycles"+ CYCLES + "_rs.txt";
 		RandomSearchExperiment rs = new RandomSearchExperiment();
 		rs.setMaxEvaluations(MAXEVALUATIONS);
-		rs.runCycles("saida rs.txt", instances, CYCLES);
+		rs.runCycles(filename, instances, CYCLES);
 		
-		ExperimentAnalyzer analyzer1 = new ExperimentAnalyzer();
-		analyzer1.analyze("rs", "saida rs.txt", instances.size(), CYCLES, 3);
+//		ExperimentAnalyzer analyzer1 = new ExperimentAnalyzer();
+//		analyzer1.analyze("rs",filename, instances.size(), CYCLES, 3);
+
+		ResultInterpreter interpreter = new ResultInterpreter();
+		interpreter.analyze(filename, instances, CYCLES, 3);
+//		
 		
 //		NSGAIIExperiment hsgaii2 = new NSGAIIExperiment();
 //		hsgaii2.setMaxEvaluations(MAXEVALUATIONS);

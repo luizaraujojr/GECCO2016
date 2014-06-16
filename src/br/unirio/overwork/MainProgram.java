@@ -15,6 +15,7 @@ import br.unirio.overwork.model.base.Project;
 
 public class MainProgram
 {
+	
 	protected static final int CYCLES = 1;
 	protected static final int MAXEVALUATIONS = 100;
 	protected static String[] instanceFiles =
@@ -36,7 +37,7 @@ public class MainProgram
 	}
 		
 	public static void run(String[] instancesFiles) throws Exception
-	{
+	{		
 		//creating the instance vector
 		Vector<Project> instances = new Vector<Project>();
 		
@@ -45,7 +46,8 @@ public class MainProgram
 			{
 				//loading the project information
 				Project project = new Project ();
-				project = loadInstance(instancesFiles[i]);
+				//project = loadInstance(instancesFiles[i]);
+				project = createProject();
 				
 				//population the project vector
 				instances.add(project);

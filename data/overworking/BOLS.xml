@@ -41,235 +41,245 @@
 	<data name="DF0037" fp="7"/>
 	<data name="DF0038" fp="7"/>
 	<data name="DF0039" fp="7"/>
-	<transaction name="TF0000" fp="3">
-		<ftr name="DF0000"/>
-	</transaction>
-	<transaction name="TF0001" fp="6">
-		<ftr name="DF0002"/>
-		<ftr name="DF0003"/>
-		<ftr name="DF0000"/>
-	</transaction>
-	<transaction name="TF0002" fp="5">
-		<ftr name="DF0002"/>
-		<ftr name="DF0000"/>
-	</transaction>
-	<transaction name="TF0003" fp="7">
-		<ftr name="DF0002"/>
-		<ftr name="DF0000"/>
-		<ftr name="DF0006"/>
-		<ftr name="DF0007"/>
-	</transaction>
-	<transaction name="TF0004" fp="6">
-		<ftr name="DF0002"/>
-		<ftr name="DF0000"/>
-		<ftr name="DF0006"/>
-	</transaction>
-	<transaction name="TF0005" fp="6">
-		<ftr name="DF0002"/>
-		<ftr name="DF0000"/>
-		<ftr name="DF0006"/>
-		<ftr name="DF0007"/>
-	</transaction>
-	<transaction name="TF0006" fp="6">
-		<ftr name="DF0002"/>
-		<ftr name="DF0000"/>
-		<ftr name="DF0006"/>
-	</transaction>
-	<transaction name="TF0007" fp="6">
-		<ftr name="DF0002"/>
-		<ftr name="DF0000"/>
-		<ftr name="DF0006"/>
-		<ftr name="DF0007"/>
-	</transaction>
-	<transaction name="TF0008" fp="6">
-		<ftr name="DF0002"/>
-		<ftr name="DF0000"/>
-		<ftr name="DF0006"/>
-		<ftr name="DF0007"/>
-	</transaction>
-	<transaction name="TF0009" fp="6">
-		<ftr name="DF0002"/>
-		<ftr name="DF0000"/>
-		<ftr name="DF0006"/>
-		<ftr name="DF0007"/>
-	</transaction>
-	<transaction name="TF0010" fp="6">
-		<ftr name="DF0002"/>
-		<ftr name="DF0000"/>
-		<ftr name="DF0006"/>
-		<ftr name="DF0007"/>
-	</transaction>
-	<transaction name="TF0011" fp="4">
-		<ftr name="DF0000"/>
-		<ftr name="DF0008"/>
-	</transaction>
-	<transaction name="TF0012" fp="4">
-		<ftr name="DF0000"/>
-		<ftr name="DF0008"/>
-	</transaction>
-	<transaction name="TF0013" fp="4">
-		<ftr name="DF0000"/>
-		<ftr name="DF0008"/>
-	</transaction>
-	<transaction name="TF0014" fp="3">
-		<ftr name="DF0000"/>
-	</transaction>
-	<transaction name="TF0015" fp="4">
-		<ftr name="DF0002"/>
-		<ftr name="DF0000"/>
-	</transaction>
-	<transaction name="TF0016" fp="4">
-		<ftr name="DF0002"/>
-		<ftr name="DF0000"/>
-	</transaction>
-	<transaction name="TF0017" fp="4">
-		<ftr name="DF0002"/>
-		<ftr name="DF0000"/>
-	</transaction>
-	<transaction name="TF0018" fp="4">
-		<ftr name="DF0002"/>
-		<ftr name="DF0000"/>
-	</transaction>
-	<transaction name="TF0019" fp="4">
-		<ftr name="DF0002"/>
-		<ftr name="DF0000"/>
-	</transaction>
-	<transaction name="TF0020" fp="4">
-		<ftr name="DF0002"/>
-		<ftr name="DF0009"/>
-	</transaction>
-	<transaction name="TF0021" fp="4">
-		<ftr name="DF0002"/>
-		<ftr name="DF0010"/>
-	</transaction>
-	<transaction name="TF0022" fp="6">
-		<ftr name="DF0002"/>
-		<ftr name="DF0000"/>
-		<ftr name="DF0009"/>
-	</transaction>
-	<transaction name="TF0023" fp="6">
-		<ftr name="DF0002"/>
-		<ftr name="DF0000"/>
-		<ftr name="DF0010"/>
-		<ftr name="DF0009"/>
-	</transaction>
-	<transaction name="TF0024" fp="6">
-		<ftr name="DF0002"/>
-		<ftr name="DF0000"/>
-		<ftr name="DF0010"/>
-	</transaction>
-	<transaction name="TF0025" fp="6">
-		<ftr name="DF0002"/>
-		<ftr name="DF0000"/>
-		<ftr name="DF0010"/>
-	</transaction>
-	<transaction name="TF0026" fp="3">
-		<ftr name="DF0002"/>
-	</transaction>
-	<transaction name="TF0027" fp="3">
-		<ftr name="DF0002"/>
-	</transaction>
-	<transaction name="TF0028" fp="6">
-		<ftr name="DF0002"/>
-		<ftr name="DF0000"/>
-	</transaction>
-	<transaction name="TF0029" fp="3">
-		<ftr name="DF0002"/>
-		<ftr name="DF0000"/>
-	</transaction>
-	<transaction name="TF0030" fp="3">
-		<ftr name="DF0002"/>
-		<ftr name="DF0000"/>
-	</transaction>
+	
+	<group name="DF0000">
+	
+		<transaction name="TF0000" fp="3">
+			<ftr name="DF0000"/>
+		</transaction>
+		<transaction name="TF0011" fp="4">
+			<ftr name="DF0000"/>
+			<ftr name="DF0008"/>
+		</transaction>
+		<transaction name="TF0012" fp="4">
+			<ftr name="DF0000"/>
+			<ftr name="DF0008"/>
+		</transaction>
+		<transaction name="TF0013" fp="4">
+			<ftr name="DF0000"/>
+			<ftr name="DF0008"/>
+		</transaction>
+		<transaction name="TF0014" fp="3">
+			<ftr name="DF0000"/>
+		</transaction>
+		
+	</group> 	
+	<group name="DF0002">
+		<transaction name="TF0001" fp="6">
+			<ftr name="DF0002"/>
+			<ftr name="DF0003"/>
+			<ftr name="DF0000"/>
+		</transaction>
+		<transaction name="TF0002" fp="5">
+			<ftr name="DF0002"/>
+			<ftr name="DF0000"/>
+		</transaction>
+		<transaction name="TF0003" fp="7">
+			<ftr name="DF0002"/>
+			<ftr name="DF0000"/>
+			<ftr name="DF0006"/>
+			<ftr name="DF0007"/>
+		</transaction>
+		<transaction name="TF0004" fp="6">
+			<ftr name="DF0002"/>
+			<ftr name="DF0000"/>
+			<ftr name="DF0006"/>
+		</transaction>
+		<transaction name="TF0005" fp="6">
+			<ftr name="DF0002"/>
+			<ftr name="DF0000"/>
+			<ftr name="DF0006"/>
+			<ftr name="DF0007"/>
+		</transaction>
+		<transaction name="TF0006" fp="6">
+			<ftr name="DF0002"/>
+			<ftr name="DF0000"/>
+			<ftr name="DF0006"/>
+		</transaction>
+		<transaction name="TF0007" fp="6">
+			<ftr name="DF0002"/>
+			<ftr name="DF0000"/>
+			<ftr name="DF0006"/>
+			<ftr name="DF0007"/>
+		</transaction>
+		<transaction name="TF0008" fp="6">
+			<ftr name="DF0002"/>
+			<ftr name="DF0000"/>
+			<ftr name="DF0006"/>
+			<ftr name="DF0007"/>
+		</transaction>
+		<transaction name="TF0009" fp="6">
+			<ftr name="DF0002"/>
+			<ftr name="DF0000"/>
+			<ftr name="DF0006"/>
+			<ftr name="DF0007"/>
+		</transaction>
+		<transaction name="TF0010" fp="6">
+			<ftr name="DF0002"/>
+			<ftr name="DF0000"/>
+			<ftr name="DF0006"/>
+			<ftr name="DF0007"/>
+		</transaction>
+		<transaction name="TF0015" fp="4">
+			<ftr name="DF0002"/>
+			<ftr name="DF0000"/>
+		</transaction>
+		<transaction name="TF0016" fp="4">
+			<ftr name="DF0002"/>
+			<ftr name="DF0000"/>
+		</transaction>
+		<transaction name="TF0017" fp="4">
+			<ftr name="DF0002"/>
+			<ftr name="DF0000"/>
+		</transaction>
+		<transaction name="TF0018" fp="4">
+			<ftr name="DF0002"/>
+			<ftr name="DF0000"/>
+		</transaction>
+		<transaction name="TF0019" fp="4">
+			<ftr name="DF0002"/>
+			<ftr name="DF0000"/>
+		</transaction>
+		<transaction name="TF0020" fp="4">
+			<ftr name="DF0002"/>
+			<ftr name="DF0009"/>
+		</transaction>
+		<transaction name="TF0021" fp="4">
+			<ftr name="DF0002"/>
+			<ftr name="DF0010"/>
+		</transaction>
+		<transaction name="TF0022" fp="6">
+			<ftr name="DF0002"/>
+			<ftr name="DF0000"/>
+			<ftr name="DF0009"/>
+		</transaction>
+		<transaction name="TF0023" fp="6">
+			<ftr name="DF0002"/>
+			<ftr name="DF0000"/>
+			<ftr name="DF0010"/>
+			<ftr name="DF0009"/>
+		</transaction>
+		<transaction name="TF0024" fp="6">
+			<ftr name="DF0002"/>
+			<ftr name="DF0000"/>
+			<ftr name="DF0010"/>
+		</transaction>
+		<transaction name="TF0025" fp="6">
+			<ftr name="DF0002"/>
+			<ftr name="DF0000"/>
+			<ftr name="DF0010"/>
+		</transaction>
+		<transaction name="TF0026" fp="3">
+			<ftr name="DF0002"/>
+		</transaction>
+		<transaction name="TF0027" fp="3">
+			<ftr name="DF0002"/>
+		</transaction>	
+		<transaction name="TF0028" fp="6">
+			<ftr name="DF0002"/>
+			<ftr name="DF0000"/>
+		</transaction>
+		<transaction name="TF0029" fp="3">
+			<ftr name="DF0002"/>
+			<ftr name="DF0000"/>
+		</transaction>
+		<transaction name="TF0030" fp="3">
+			<ftr name="DF0002"/>
+			<ftr name="DF0000"/>
+		</transaction>
+		<transaction name="TF0033" fp="3">
+			<ftr name="DF0002"/>
+		</transaction>
+		<transaction name="TF0034" fp="4">
+			<ftr name="DF0002"/>
+		</transaction>
+		<transaction name="TF0035" fp="3">
+			<ftr name="DF0002"/>
+		</transaction>
+		<transaction name="TF0036" fp="3">
+			<ftr name="DF0002"/>
+		</transaction>
+		<transaction name="TF0037" fp="3">
+			<ftr name="DF0002"/>
+		</transaction>
+		<transaction name="TF0038" fp="3">
+			<ftr name="DF0002"/>
+		</transaction>
+		<transaction name="TF0039" fp="3">
+			<ftr name="DF0002"/>
+		</transaction>
+		<transaction name="TF0040" fp="3">
+			<ftr name="DF0002"/>
+		</transaction>
+		<transaction name="TF0041" fp="3">
+			<ftr name="DF0002"/>
+		</transaction>
+		<transaction name="TF0042" fp="3">
+			<ftr name="DF0002"/>
+		</transaction>
+		<transaction name="TF0043" fp="3">
+			<ftr name="DF0002"/>
+		</transaction>
+		<transaction name="TF0044" fp="3">
+			<ftr name="DF0002"/>
+		</transaction>
+		<transaction name="TF0045" fp="3">
+			<ftr name="DF0002"/>
+		</transaction>
+		<transaction name="TF0046" fp="3">
+			<ftr name="DF0002"/>
+		</transaction>
+		<transaction name="TF0047" fp="3">
+			<ftr name="DF0002"/>
+		</transaction>
+		<transaction name="TF0048" fp="3">
+			<ftr name="DF0002"/>
+		</transaction>
+		<transaction name="TF0049" fp="3">
+			<ftr name="DF0002"/>
+		</transaction>
+		<transaction name="TF0050" fp="3">
+			<ftr name="DF0002"/>
+		</transaction>
+		<transaction name="TF0051" fp="3">
+			<ftr name="DF0002"/>
+		</transaction>
+		<transaction name="TF0052" fp="3">
+			<ftr name="DF0002"/>
+		</transaction>
+		<transaction name="TF0053" fp="3">
+			<ftr name="DF0002"/>
+		</transaction>
+		<transaction name="TF0054" fp="3">
+			<ftr name="DF0002"/>
+		</transaction>
+		<transaction name="TF0055" fp="3">
+			<ftr name="DF0002"/>
+		</transaction>
+		<transaction name="TF0056" fp="3">
+			<ftr name="DF0002"/>
+		</transaction>
+		<transaction name="TF0057" fp="3">
+			<ftr name="DF0002"/>
+			<ftr name="DF0000"/>
+		</transaction>
+		<transaction name="TF0058" fp="3">
+			<ftr name="DF0002"/>
+		</transaction>
+		<transaction name="TF0059" fp="3">
+			<ftr name="DF0002"/>
+		</transaction>
+	</group> 	
+	<group name="DF0003">
 	<transaction name="TF0031" fp="4">
 		<ftr name="DF0003"/>
 		<ftr name="DF0004"/>
 	</transaction>
 	<transaction name="TF0032" fp="3">
 		<ftr name="DF0003"/>
-	</transaction>
-	<transaction name="TF0033" fp="3">
-		<ftr name="DF0002"/>
-	</transaction>
-	<transaction name="TF0034" fp="4">
-		<ftr name="DF0002"/>
-	</transaction>
-	<transaction name="TF0035" fp="3">
-		<ftr name="DF0002"/>
-	</transaction>
-	<transaction name="TF0036" fp="3">
-		<ftr name="DF0002"/>
-	</transaction>
-	<transaction name="TF0037" fp="3">
-		<ftr name="DF0002"/>
-	</transaction>
-	<transaction name="TF0038" fp="3">
-		<ftr name="DF0002"/>
-	</transaction>
-	<transaction name="TF0039" fp="3">
-		<ftr name="DF0002"/>
-	</transaction>
-	<transaction name="TF0040" fp="3">
-		<ftr name="DF0002"/>
-	</transaction>
-	<transaction name="TF0041" fp="3">
-		<ftr name="DF0002"/>
-	</transaction>
-	<transaction name="TF0042" fp="3">
-		<ftr name="DF0002"/>
-	</transaction>
-	<transaction name="TF0043" fp="3">
-		<ftr name="DF0002"/>
-	</transaction>
-	<transaction name="TF0044" fp="3">
-		<ftr name="DF0002"/>
-	</transaction>
-	<transaction name="TF0045" fp="3">
-		<ftr name="DF0002"/>
-	</transaction>
-	<transaction name="TF0046" fp="3">
-		<ftr name="DF0002"/>
-	</transaction>
-	<transaction name="TF0047" fp="3">
-		<ftr name="DF0002"/>
-	</transaction>
-	<transaction name="TF0048" fp="3">
-		<ftr name="DF0002"/>
-	</transaction>
-	<transaction name="TF0049" fp="3">
-		<ftr name="DF0002"/>
-	</transaction>
-	<transaction name="TF0050" fp="3">
-		<ftr name="DF0002"/>
-	</transaction>
-	<transaction name="TF0051" fp="3">
-		<ftr name="DF0002"/>
-	</transaction>
-	<transaction name="TF0052" fp="3">
-		<ftr name="DF0002"/>
-	</transaction>
-	<transaction name="TF0053" fp="3">
-		<ftr name="DF0002"/>
-	</transaction>
-	<transaction name="TF0054" fp="3">
-		<ftr name="DF0002"/>
-	</transaction>
-	<transaction name="TF0055" fp="3">
-		<ftr name="DF0002"/>
-	</transaction>
-	<transaction name="TF0056" fp="3">
-		<ftr name="DF0002"/>
-	</transaction>
-	<transaction name="TF0057" fp="3">
-		<ftr name="DF0002"/>
-		<ftr name="DF0000"/>
-	</transaction>
-	<transaction name="TF0058" fp="3">
-		<ftr name="DF0002"/>
-	</transaction>
-	<transaction name="TF0059" fp="3">
-		<ftr name="DF0002"/>
-	</transaction>
+	</transaction>		
+	</group>
+	<group name="DF0003">
 	<transaction name="TF0060" fp="3">
 		<ftr name="DF0005"/>
 	</transaction>

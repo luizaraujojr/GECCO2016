@@ -67,4 +67,12 @@ public class WorkPackage
 	{
 		return components;
 	}
+	
+	/**
+	 * Returns all dependencies from the work package
+	 */
+	public Iterable<WorkPackage> getDependencies()
+	{
+		return dependencies;
+	}
 }

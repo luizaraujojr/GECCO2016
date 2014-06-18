@@ -33,17 +33,17 @@ public class ResultInterpreter
 		Scanner scanner = new Scanner(new FileInputStream(path));
 		
 		try
-		{			
+		{		
+			FileOutputStream fos = new FileOutputStream(path+"_interpretation.txt");
+			OutputStreamWriter bw = new OutputStreamWriter(fos);
+			
 			for (int i = 0; i < instances.size(); i++){
-				FileOutputStream fos = new FileOutputStream(path+"_interpretation");
-				OutputStreamWriter bw = new OutputStreamWriter(fos);
-				
 				PublishInstance(i, bw);
 				ResultReader rr = new ResultReader(); 
 				rr.readInstance(pps, instances.get(i),  i, cycleCount, scanner);
 		
-				PublishProjectActivities(pps, bw);				
-			}
+				PublishProjectActivities(pps, bw);	
+			}			
 		}
 		finally
 		{
@@ -69,7 +69,6 @@ public class ResultInterpreter
 			println(bw, "");
 		}
 		pps.clear();
-		bw.close();
 	}
 	
 	public void print(Writer bw, String s) throws IOException

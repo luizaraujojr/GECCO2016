@@ -59,7 +59,7 @@ public abstract class TopologicalSort<T>
 	}
 	
 	/**
-	 * Abstract methos to return the dependencies of a given object
+	 * Abstract method to return the dependencies of a given object
 	 */
 	protected abstract List<T> getDependencies(List<T> items, T item);
 }

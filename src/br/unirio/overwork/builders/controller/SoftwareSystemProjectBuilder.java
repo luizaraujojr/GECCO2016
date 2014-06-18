@@ -42,18 +42,18 @@ public class SoftwareSystemProjectBuilder
 	 */
 	public WorkPackage addWorkPackage(String nome)
 	{
-		WorkPackage pt = new WorkPackage(nome);
-		this.workPackages.add(pt);
-		return pt;
+		WorkPackage workPackage = new WorkPackage(nome);
+		this.workPackages.add(workPackage);
+		return workPackage;
 	}	
 	
 	/**
 	 * Adds a software system to the project
 	 * @return 
 	 */
-	public void addSoftwareSystem(SoftwareSystem ss)
+	public void addSoftwareSystem(SoftwareSystem softwareSystem)
 	{
-		this.softwareSystem = ss;
+		this.softwareSystem = softwareSystem;
 	}
 	
 	
@@ -111,6 +111,7 @@ public class SoftwareSystemProjectBuilder
 				.addPrecedent(requirements)
 				.setDeveloper(developer);
 			
+			
 			double effortCoding = functionPoints * configuration.getCodingEffort() * (Constants.DAYS_IN_MONTH / configuration.getAverageProductivity());
 			double errorsCoding = functionPoints;
 
@@ -128,8 +129,35 @@ public class SoftwareSystemProjectBuilder
 			project.addActivity(design);
 			project.addActivity(codificacao);
 			project.addActivity(testes);
+			
 		}
 		
+		/*
+		 * Including the dependencies
+		 */
+		for (WorkPackage wp : softwareSystem.getWorkPackages())
+		{							
+			Activity r = project.getActivity("Requisitos " + wp.getName());
+			Activity p = project.getActivity("Projeto " + wp.getName());
+			Activity c = project.getActivity("Codificacao " + wp.getName());
+			Activity t = project.getActivity("Testes " + wp.getName());
+			
+			for (WorkPackage dependencyWorkPackage : wp.getDependencies())
+			{
+				Activity r1 = project.getActivity("Requisitos " + dependencyWorkPackage.getName());
+				r.addPrecedent(r1);
+				
+				Activity p1 = project.getActivity("Projeto " + dependencyWorkPackage.getName());
+				p.addPrecedent(p1);
+				
+				Activity c1 = project.getActivity("Codificacao " + dependencyWorkPackage.getName());
+				c.addPrecedent(c1);
+				
+				Activity t1 = project.getActivity("Testes " + dependencyWorkPackage.getName());
+				t.addPrecedent(t1);
+			}
+		}
+				
 		return project;
 	}
 }

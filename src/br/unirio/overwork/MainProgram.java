@@ -46,8 +46,8 @@ public class MainProgram
 			{
 				//loading the project information
 				Project project = new Project ();
-				//project = loadInstance(instancesFiles[i]);
-				project = createProject();
+				project = loadInstance(instancesFiles[i]);
+				//project = createProject();
 				
 				//population the project vector
 				instances.add(project);

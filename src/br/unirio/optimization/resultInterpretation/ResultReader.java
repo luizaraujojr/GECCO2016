@@ -64,20 +64,6 @@ public class ResultReader
 		return result;
 	}
 	
-	private int parseInteger (String s) throws ExperimentFileReaderException
-	{
-		try
-		{
-			return Integer.parseInt(s);
-		}
-		catch(Exception e)
-		{
-			throwException ("invalid integer value");
-		}
-		
-		return 0;
-	}
-	
 	private void throwException (String message) throws ExperimentFileReaderException
 	{
 		throw new ExperimentFileReaderException(currentLineNumber, message);
@@ -164,8 +150,6 @@ public class ResultReader
 		
 		if (position <= 0)
 			throwException("expected execution time in miliseconds");
-		
-		int executionTime = parseInteger(line.substring(0, position));
 		
 		line = line.substring(position + 3);
 		

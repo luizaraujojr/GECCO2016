@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Vector;
 
 import unirio.experiments.multiobjective.analyzer.ExperimentAnalyzer;
+import br.unirio.optimization.experiment.NSGAIIExperiment;
 import br.unirio.optimization.experiment.RandomSearchExperiment;
 import br.unirio.optimization.resultInterpretation.ResultInterpreter;
 import br.unirio.overwork.builders.controller.SoftwareSystemProjectBuilder;
@@ -16,24 +17,22 @@ import br.unirio.overwork.model.base.Project;
 public class MainProgram
 {
 	
-	protected static final int CYCLES = 1;
-	protected static final int MAXEVALUATIONS = 100;
+	protected static final int CYCLES = 100;
+	protected static final int MAXEVALUATIONS = 5000;
 	protected static String[] instanceFiles =
 	{
-		"data/overworking/ACAD.xml"
+		"data/overworking/ACAD.xml",
 //		"data/overworking/BOLS.xml",
-//		"data/overworking/OPMET.xml",
-//		"data/overworking/PARM.xml",
-//		"data/overworking/PSOA.xml",
-//		"data/overworking/WEBAMHS.xml",
-//		"data/overworking/WEBMET.xml"
+		"data/overworking/OPMET.xml",
+		"data/overworking/PARM.xml",
+		"data/overworking/PSOA.xml",
+		"data/overworking/WEBAMHS.xml",
+		"data/overworking/WEBMET.xml"
 	};
 	
 	public static final void main(String[] args) throws Exception
 	{
-//		for (int i = 0; i < instanceFiles.length; i++)
-//			if (instanceFiles[i].length() > 0)
-				run(instanceFiles);
+		run(instanceFiles);
 	}
 		
 	public static void run(String[] instancesFiles) throws Exception
@@ -53,13 +52,6 @@ public class MainProgram
 				instances.add(project);
 			}			
 		
-		
-//		HillClimbingExperiment hc = new HillClimbingExperiment();
-//		hc.setMaxEvaluations(MAXEVALUATIONS);
-//		hc.runCycles("saida hc.txt", instances, CYCLES);
-//		
-//		ExperimentAnalyzer analyzer2 = new ExperimentAnalyzer();
-//		analyzer2.analyze("hc", "saida hc.txt", instances.size(), CYCLES, 3);
 		SimpleDateFormat sdf1 = new SimpleDateFormat("ddMMyyyy_hhmmss");
 		
 		String filename = "data/result/ouput_datetime" + sdf1.format(new Date()) +"_eval"+ MAXEVALUATIONS + "_cycles"+ CYCLES + "_rs.txt";
@@ -67,26 +59,28 @@ public class MainProgram
 		rs.setMaxEvaluations(MAXEVALUATIONS);
 		rs.runCycles(filename, instances, CYCLES);
 		
-//		ExperimentAnalyzer analyzer1 = new ExperimentAnalyzer();
-//		analyzer1.analyze("rs",filename, instances.size(), CYCLES, 3);
+		ExperimentAnalyzer analyzer1 = new ExperimentAnalyzer();
+		analyzer1.analyze("rs",filename, instances.size(), CYCLES, 3);
 
-		ResultInterpreter interpreter = new ResultInterpreter();
-		interpreter.analyze(filename, instances, CYCLES, 3);
-//		
+		ResultInterpreter interpreterRS = new ResultInterpreter();
+		interpreterRS.analyze(filename, instances, CYCLES, 3);
 		
-//		NSGAIIExperiment hsgaii2 = new NSGAIIExperiment();
-//		hsgaii2.setMaxEvaluations(MAXEVALUATIONS);
-//		hsgaii2.runCycles("saida nsgaii.txt", instances, CYCLES);
-//		
-//		ExperimentAnalyzer analyzer3 = new ExperimentAnalyzer();
-//		analyzer3.analyze("NSGAII", "saida nsgaii.txt", instances.size(), CYCLES, 3);	       	
+		filename = "data/result/ouput_datetime" + sdf1.format(new Date()) +"_eval"+ MAXEVALUATIONS + "_cycles"+ CYCLES + "_nsga.txt";
+		NSGAIIExperiment hsgaii2 = new NSGAIIExperiment();
+		hsgaii2.setMaxEvaluations(MAXEVALUATIONS);
+		hsgaii2.runCycles(filename, instances, CYCLES);
+		
+		ExperimentAnalyzer analyzer2 = new ExperimentAnalyzer();
+		analyzer2.analyze("nsgaii",filename, instances.size(), CYCLES, 3);
+		
+		ResultInterpreter interpreterNSGA = new ResultInterpreter();
+		interpreterNSGA.analyze(filename, instances, CYCLES, 3);
 	}
 	
 	public static Project loadInstance(String instancia) throws Exception
 	{
 		Reader reader = new Reader();
 		SoftwareSystem ss = reader.run(instancia);
-//		new Publisher().run(ss);
 		SoftwareSystemProjectBuilder builder = new SoftwareSystemProjectBuilder();
 		builder.addSoftwareSystem(ss);
 		return builder.execute();   

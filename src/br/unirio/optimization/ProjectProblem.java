@@ -113,7 +113,7 @@ public ProjectProblem(Project project) throws ClassNotFoundException
 //	}
 	
 	/**
-	 * Runs the simulations with jmetal
+	 * Runs the simulations
 	 */
 	public void runSimulation(Solution solution) throws JMException
 	{
@@ -143,37 +143,6 @@ public ProjectProblem(Project project) throws ClassNotFoundException
 			simulator.run();
 	}
 
-	/**
-	 * Runs the simulations
-	 */
-//	public void runSimulation(ProjectSolution solution) throws JMException
-//	{
-//		SimulationEngine simulator = new SimulationEngine();
-//
-//		for (Developer developer : project.getDevelopers())
-//			simulator.addResource(developer.getEffort());
-//		
-//		simulator.addSimulationObjects(project.getActivities());
-//		
-//		for (int i = 0; i < project.getActivitiesCount(); i++)
-//		{
-//			ScenarioOverworking scenarioOverworking = new ScenarioOverworking(solution.getActivityOverworkAllocation(i) * 0.5 + 7.5);
-//			scenarioOverworking.connect(project.getActivity(i));
-//		}
-//				
-//		try 
-//		{
-//			simulator.init();
-//		} 
-//		catch (Exception e) 
-//		{
-//			throw new JMException(e.getMessage());
-//		}
-//		
-//		while (!project.isConcluded())
-//			simulator.run();
-//	}
-	
 	/**
 	 * Prints out the information for the title of the results
 	 */

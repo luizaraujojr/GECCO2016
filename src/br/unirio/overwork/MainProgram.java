@@ -17,17 +17,17 @@ import br.unirio.overwork.model.base.Project;
 public class MainProgram
 {
 	
-	protected static final int CYCLES = 100;
+	protected static final int CYCLES = 30;
 	protected static final int MAXEVALUATIONS = 5000;
 	protected static String[] instanceFiles =
 	{
-		"data/overworking/ACAD.xml",
+//		"data/overworking/ACAD.xml",
 //		"data/overworking/BOLS.xml",
-		"data/overworking/OPMET.xml",
-		"data/overworking/PARM.xml",
-		"data/overworking/PSOA.xml",
-		"data/overworking/WEBAMHS.xml",
-		"data/overworking/WEBMET.xml"
+//		"data/overworking/OPMET.xml",
+//		"data/overworking/PARM.xml",
+		"data/overworking/PSOA.xml"
+//		"data/overworking/WEBAMHS.xml",
+//		"data/overworking/WEBMET.xml"
 	};
 	
 	public static final void main(String[] args) throws Exception
@@ -65,12 +65,13 @@ public class MainProgram
 		ResultInterpreter interpreterRS = new ResultInterpreter();
 		interpreterRS.analyze(filename, instances, CYCLES, 3);
 		
+		//String 
 		filename = "data/result/ouput_datetime" + sdf1.format(new Date()) +"_eval"+ MAXEVALUATIONS + "_cycles"+ CYCLES + "_nsga.txt";
 		NSGAIIExperiment hsgaii2 = new NSGAIIExperiment();
 		hsgaii2.setMaxEvaluations(MAXEVALUATIONS);
 		hsgaii2.runCycles(filename, instances, CYCLES);
 		
-		ExperimentAnalyzer analyzer2 = new ExperimentAnalyzer();
+ 		ExperimentAnalyzer analyzer2 = new ExperimentAnalyzer();
 		analyzer2.analyze("nsgaii",filename, instances.size(), CYCLES, 3);
 		
 		ResultInterpreter interpreterNSGA = new ResultInterpreter();

@@ -77,7 +77,7 @@ public class SoftwareSystemProjectBuilder
 	public Project execute()
 	{
 		Project project = new Project();
-		project.setName("Test");
+		project.setName(softwareSystem.getName());
 
 		Developer developer = new Developer("Developer", 60);
 		project.addDeveloper(developer);
@@ -138,23 +138,23 @@ public class SoftwareSystemProjectBuilder
 		for (WorkPackage wp : softwareSystem.getWorkPackages())
 		{							
 			Activity r = project.getActivity("Requisitos " + wp.getName());
-			Activity p = project.getActivity("Projeto " + wp.getName());
-			Activity c = project.getActivity("Codificacao " + wp.getName());
-			Activity t = project.getActivity("Testes " + wp.getName());
+//			Activity p = project.getActivity("Projeto " + wp.getName());
+//			Activity c = project.getActivity("Codificacao " + wp.getName());
+//			Activity t = project.getActivity("Testes " + wp.getName());
 			
 			for (WorkPackage dependencyWorkPackage : wp.getDependencies())
 			{
 				Activity r1 = project.getActivity("Requisitos " + dependencyWorkPackage.getName());
 				r.addPrecedent(r1);
 				
-				Activity p1 = project.getActivity("Projeto " + dependencyWorkPackage.getName());
-				p.addPrecedent(p1);
-				
-				Activity c1 = project.getActivity("Codificacao " + dependencyWorkPackage.getName());
-				c.addPrecedent(c1);
-				
-				Activity t1 = project.getActivity("Testes " + dependencyWorkPackage.getName());
-				t.addPrecedent(t1);
+//				Activity p1 = project.getActivity("Projeto " + dependencyWorkPackage.getName());
+//				p.addPrecedent(p1);
+//				
+//				Activity c1 = project.getActivity("Codificacao " + dependencyWorkPackage.getName());
+//				c.addPrecedent(c1);
+//				
+//				Activity t1 = project.getActivity("Testes " + dependencyWorkPackage.getName());
+//				t.addPrecedent(t1);
 			}
 		}
 				

@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Vector;
 
 import unirio.experiments.multiobjective.analyzer.ExperimentAnalyzer;
+import unirio.experiments.multiobjective.reader.ExperimentFileReaderException;
 import br.unirio.optimization.experiment.NSGAIIExperiment;
 import br.unirio.optimization.experiment.RandomSearchExperiment;
 import br.unirio.optimization.resultInterpretation.ResultInterpreter;
@@ -17,7 +18,7 @@ import br.unirio.overwork.model.base.Project;
 public class MainProgram
 {
 	
-	protected static final int CYCLES = 30;
+	protected static final int CYCLES = 10;
 	protected static final int MAXEVALUATIONS = 5000;
 	protected static String[] instanceFiles =
 	{
@@ -54,6 +55,29 @@ public class MainProgram
 		
 		SimpleDateFormat sdf1 = new SimpleDateFormat("ddMMyyyy_hhmmss");
 		
+		runRandomSearchExperiment(instances, sdf1);
+		
+		//runNSGAIIExperiment(instances, sdf1);
+	}
+
+	private static void runNSGAIIExperiment(Vector<Project> instances,
+			SimpleDateFormat sdf1) throws Exception,
+			ExperimentFileReaderException {
+		String filename = "data/result/ouput_datetime" + sdf1.format(new Date()) +"_eval"+ MAXEVALUATIONS + "_cycles"+ CYCLES + "_nsga.txt";
+		NSGAIIExperiment hsgaii2 = new NSGAIIExperiment();
+		hsgaii2.setMaxEvaluations(MAXEVALUATIONS);
+		hsgaii2.runCycles(filename, instances, CYCLES);
+		
+ 		ExperimentAnalyzer analyzer2 = new ExperimentAnalyzer();
+		analyzer2.analyze("nsgaii",filename, instances.size(), CYCLES, 3);
+		
+		ResultInterpreter interpreterNSGA = new ResultInterpreter();
+		interpreterNSGA.analyze(filename, instances, CYCLES, 3);
+	}
+
+	private static void runRandomSearchExperiment(Vector<Project> instances,
+			SimpleDateFormat sdf1) throws Exception,
+			ExperimentFileReaderException {
 		String filename = "data/result/ouput_datetime" + sdf1.format(new Date()) +"_eval"+ MAXEVALUATIONS + "_cycles"+ CYCLES + "_rs.txt";
 		RandomSearchExperiment rs = new RandomSearchExperiment();
 		rs.setMaxEvaluations(MAXEVALUATIONS);
@@ -64,18 +88,6 @@ public class MainProgram
 
 		ResultInterpreter interpreterRS = new ResultInterpreter();
 		interpreterRS.analyze(filename, instances, CYCLES, 3);
-		
-		//String 
-		filename = "data/result/ouput_datetime" + sdf1.format(new Date()) +"_eval"+ MAXEVALUATIONS + "_cycles"+ CYCLES + "_nsga.txt";
-		NSGAIIExperiment hsgaii2 = new NSGAIIExperiment();
-		hsgaii2.setMaxEvaluations(MAXEVALUATIONS);
-		hsgaii2.runCycles(filename, instances, CYCLES);
-		
- 		ExperimentAnalyzer analyzer2 = new ExperimentAnalyzer();
-		analyzer2.analyze("nsgaii",filename, instances.size(), CYCLES, 3);
-		
-		ResultInterpreter interpreterNSGA = new ResultInterpreter();
-		interpreterNSGA.analyze(filename, instances, CYCLES, 3);
 	}
 	
 	public static Project loadInstance(String instancia) throws Exception

@@ -7,7 +7,6 @@ import jmetal.base.Solution;
 import jmetal.base.solutionType.IntSolutionType;
 import jmetal.util.JMException;
 import lombok.Getter;
-import lombok.Setter;
 import br.unirio.overwork.model.base.Developer;
 import br.unirio.overwork.model.base.Project;
 import br.unirio.overwork.model.scenarios.ScenarioOverworking;
@@ -19,58 +18,30 @@ import br.unirio.simulation.SimulationEngine;
  * @author Luiz Araujo Jr
  */
 
-public class ProjectProblem extends Problem {
-
+public class ProjectProblem extends Problem 
+{
 	private int evaluations;
 	
-	private @Getter @Setter Project project;
-	private @Getter @Setter String instanceName;
-	private @Getter @Setter int maxEvaluations;
+	private @Getter Project project;
 	
 	/**
 	 * Creates a new project problem for the jmetal framework
 	 */
-	public ProjectProblem(Project project, int maxEvaluations) throws ClassNotFoundException
-	
+	public ProjectProblem(Project project) throws ClassNotFoundException	
 	{	
 		this.project = project;
 		this.evaluations = 0;
-		this.maxEvaluations = maxEvaluations;
 
 		numberOfObjectives_ = 3;
 		numberOfVariables_ = project.getActivitiesCount();
 		solutionType_ = new IntSolutionType(this);
 		length_ = new int[numberOfVariables_];
 		length_[0] =  1;
-		
 
-		double[] lLimit= new double [numberOfVariables_];
+		double[] lLimit = new double [numberOfVariables_];
 		Arrays.fill(lLimit, 1.0);
-		double[] uLimit= new double [numberOfVariables_];
-		Arrays.fill(uLimit, 9.0);
 		
-		lowerLimit_ = lLimit;
-		upperLimit_ = uLimit;
-	}
-
-	/**
-	 * Creates a new project problem
-	 */
-public ProjectProblem(Project project) throws ClassNotFoundException
-	
-	{	
-		this.project = project;
-		this.evaluations = 0;
-		
-		numberOfObjectives_ = 3;
-		numberOfVariables_ = project.getActivitiesCount();
-		solutionType_ = new IntSolutionType(this);
-		length_ = new int[numberOfVariables_];
-		length_[0] =  1;
-		
-		double[] lLimit= new double [numberOfVariables_];
-		Arrays.fill(lLimit, 1.0);
-		double[] uLimit= new double [numberOfVariables_];
+		double[] uLimit = new double [numberOfVariables_];
 		Arrays.fill(uLimit, 9.0);
 		
 		lowerLimit_ = lLimit;
@@ -88,29 +59,8 @@ public ProjectProblem(Project project) throws ClassNotFoundException
 		solution.setObjective(1, project.getMakespan());
 		solution.setObjective(2, project.getCost());
 		solution.setLocation(evaluations);
-		
 		evaluations++;
 	}
-	
-	/**
-	 * Complete evaluate the allocation
-	 */
-//	public void evaluate(Solution solution, int cycle, long initTime) throws JMException
-//	{
-//		runSimulation(solution);
-//		solution.setObjective(0, project.getOverworking());
-//		solution.setObjective(1, project.getMakespan());
-//		solution.setObjective(2, project.getCost());
-////		solution.setCost(project.getCost());
-////		solution.setMakespan(project.getMakespan());
-////		solution.setOverwork(project.getOverworking());
-//		solution.setLocation(evaluations);
-//		solution.setCycle(cycle);
-//		solution.setExecutionTime(System.currentTimeMillis() - initTime);
-//		
-//		
-//		evaluations++;
-//	}
 	
 	/**
 	 * Runs the simulations
@@ -126,7 +76,8 @@ public ProjectProblem(Project project) throws ClassNotFoundException
 				
 		for (int i = 0; i < project.getActivitiesCount(); i++)
 		{
-			ScenarioOverworking scenarioOverworking = new ScenarioOverworking( solution.getDecisionVariables()[i].getValue() * 0.5 + 7.5);
+			double hours = solution.getDecisionVariables()[i].getValue() * 0.5 + 7.5;
+			ScenarioOverworking scenarioOverworking = new ScenarioOverworking(hours);
 			scenarioOverworking.connect(project.getActivity(i));
 		}
 				
@@ -152,4 +103,3 @@ public ProjectProblem(Project project) throws ClassNotFoundException
 		System.out.println("cycle" + "; " + "executionTime" + "; " + "Overworking" + "; " + "Makespan" + "; " + "Cost"+ "; " + "Location"+ "; Activities");
 	}
 }
-

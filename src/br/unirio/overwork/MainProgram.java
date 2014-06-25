@@ -18,7 +18,7 @@ public class MainProgram
 {
 	protected static final int CYCLES = 10;
 
-	protected static final int MAXEVALUATIONS = 100;
+	protected static final int MAXEVALUATIONS = 5000;
 	
 	protected static String[] instanceFiles =
 	{

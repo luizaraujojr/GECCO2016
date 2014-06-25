@@ -198,6 +198,7 @@ public abstract class Activity extends SimulationObject
 		consumeEffort(effortUsed * effortAdjustment);
 
 		this.consumedEffort = true;
+<<<<<<< HEAD
 		
 		this.cost += effortUsed * developer.getHourlyCost(); 
 
@@ -209,6 +210,19 @@ public abstract class Activity extends SimulationObject
 		
 		if (this.getworkPerformed()+effortUsed > alocatedOvertimeDailyWorkHours){			
 			adjustedDailyWorkingHours = (adjustedDailyWorkingHours + effortUsed) - (alocatedOvertimeDailyWorkHours * (int) ((this.getworkPerformed()+effortUsed) / alocatedOvertimeDailyWorkHours));
+=======
+		this.cost += effortUsed * 8.0 * developer.getHourlyCost(); 
+
+		if (this.effortMultiplier > 1.0)
+		{
+			this.overworkHours += effortUsed * (effortMultiplier - 1.0)/* * 8.0*/;
+			
+			if (this.effortMultiplier > 1.25)
+				this.cost += effortUsed * 8.0 * ((this.effortMultiplier - 1.25) * 1.25 + 0.25 * 1.20) * developer.getHourlyCost(); 
+			
+			else if (this.effortMultiplier > 1.0)
+				this.cost += effortUsed * 8.0 * ((this.effortMultiplier - 1.0) * 1.20) * developer.getHourlyCost(); 
+>>>>>>> origin/master
 		}
 		
 		if (adjustedDailyWorkingHours > normalDailyWorkHours){

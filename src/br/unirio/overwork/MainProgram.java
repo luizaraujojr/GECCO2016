@@ -18,8 +18,8 @@ import br.unirio.overwork.model.base.Project;
 public class MainProgram
 {
 	
-	protected static final int CYCLES = 10;
-	protected static final int MAXEVALUATIONS = 5000;
+	protected static final int CYCLES = 1;
+	protected static final int MAXEVALUATIONS = 30;
 	protected static String[] instanceFiles =
 	{
 //		"data/overworking/ACAD.xml",

@@ -126,7 +126,7 @@ public ProjectProblem(Project project) throws ClassNotFoundException
 				
 		for (int i = 0; i < project.getActivitiesCount(); i++)
 		{
-			ScenarioOverworking scenarioOverworking = new ScenarioOverworking( solution.getDecisionVariables()[i].getValue() * 0.5 + 7.5);
+			ScenarioOverworking scenarioOverworking = new ScenarioOverworking(solution.getDecisionVariables()[i].getValue() * 0.5 + 7.5);
 			scenarioOverworking.connect(project.getActivity(i));
 		}
 				

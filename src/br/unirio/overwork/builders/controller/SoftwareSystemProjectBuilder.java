@@ -123,13 +123,10 @@ public class SoftwareSystemProjectBuilder
 				.addPrecedent(codificacao)
 				.setDeveloper(developer);
 			
-			// TODO: Adicionar as dependências entre as tarefas de mesmo tipo em função das depeências de work packages
-
 			project.addActivity(requirements);
 			project.addActivity(design);
 			project.addActivity(codificacao);
 			project.addActivity(testes);
-			
 		}
 		
 		/*

@@ -12,12 +12,12 @@ public class ActivityDevelopment extends Activity
 	/**
 	 * Work required to perform the activity
 	 */
-	private @Getter double workRequired;
+	private double workRequired;
 
 	/**
 	 * Work performed as part of the activity so far
 	 */
-	private @Getter double workPerformed;
+	private double workPerformed;
 	
 	/**
 	 * Number of errors expected to be generated during the activity
@@ -73,6 +73,25 @@ public class ActivityDevelopment extends Activity
 	{
 		return workRequired - workPerformed;
 	}
+	
+	/**
+	 * Returns the effort required to complete the activity
+	 */
+	@Override
+	public double getworkPerformed()
+	{
+		return workPerformed;
+	}
+
+	/**
+	 * Returns the effort required to complete the activity
+	 */
+	@Override
+	public double getworkRequired()
+	{
+		return workRequired;
+	}
+
 
 	/**
 	 * Consumes an amount of effort in the activity

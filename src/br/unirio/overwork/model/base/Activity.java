@@ -202,13 +202,13 @@ public abstract class Activity extends SimulationObject
 
 		if (this.effortMultiplier > 1.0)
 		{
-			this.overworkHours += effortUsed * (effortMultiplier - 1.0) * 8.0;
+			this.overworkHours += effortUsed * (effortMultiplier - 1.0)/* * 8.0*/;
 			
 			if (this.effortMultiplier > 1.25)
-				this.cost += (effortUsed * 8.0 * (this.effortMultiplier - 1.25) * 1.25 + effortUsed * 8.0 * 0.25 * 1.20) * developer.getHourlyCost(); 
+				this.cost += effortUsed * 8.0 * ((this.effortMultiplier - 1.25) * 1.25 + 0.25 * 1.20) * developer.getHourlyCost(); 
 			
 			else if (this.effortMultiplier > 1.0)
-				this.cost += (effortUsed * 8.0 * (this.effortMultiplier - 1.0) * 1.20) * developer.getHourlyCost(); 
+				this.cost += effortUsed * 8.0 * ((this.effortMultiplier - 1.0) * 1.20) * developer.getHourlyCost(); 
 		}
 		
 		remainingWork = getRemainingWork();

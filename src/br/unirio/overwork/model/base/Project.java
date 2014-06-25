@@ -163,7 +163,6 @@ public class Project
 		
 		for (Activity activity : activities)
 			overworking += activity.getOverworkHours();
-		
 
 		return overworking;
 	}

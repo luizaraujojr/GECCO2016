@@ -176,74 +176,6 @@ public abstract class Activity extends SimulationObject
 	 * Method executed when the activity's life-cycle is running
 	 */
 	@Override
-	public boolean step()
-	{
-		double remainingWork = getRemainingWork();
-
-		if (remainingWork < 0.001)
-			return false;
-		
-		double effortAvailable = developer.getEffort().available();
-		
-		if (effortAvailable <= 0.0)
-			return true;
-
-		double effortAdjustment = this.productivity; //* this.effortMultiplier;
-		double effortUsed = Math.min(effortAvailable, remainingWork);// / effortAdjustment);
-		
-		if (startExecutionTime < 0.0) 
-			startExecutionTime = getCurrentSimulationTime();
-		
-		developer.getEffort().consume(effortUsed);
-		consumeEffort(effortUsed * effortAdjustment);
-
-		this.consumedEffort = true;
-<<<<<<< HEAD
-		
-		this.cost += effortUsed * developer.getHourlyCost(); 
-
-		double normalDailyWorkHours = 8.0;
-		double extralOvertimeDailyWorkHours = 10.0;
-		double alocatedOvertimeDailyWorkHours = effortMultiplier * 8.0;
-		
-		double adjustedDailyWorkingHours = this.getworkPerformed();
-		
-		if (this.getworkPerformed()+effortUsed > alocatedOvertimeDailyWorkHours){			
-			adjustedDailyWorkingHours = (adjustedDailyWorkingHours + effortUsed) - (alocatedOvertimeDailyWorkHours * (int) ((this.getworkPerformed()+effortUsed) / alocatedOvertimeDailyWorkHours));
-=======
-		this.cost += effortUsed * 8.0 * developer.getHourlyCost(); 
-
-		if (this.effortMultiplier > 1.0)
-		{
-			this.overworkHours += effortUsed * (effortMultiplier - 1.0)/* * 8.0*/;
-			
-			if (this.effortMultiplier > 1.25)
-				this.cost += effortUsed * 8.0 * ((this.effortMultiplier - 1.25) * 1.25 + 0.25 * 1.20) * developer.getHourlyCost(); 
-			
-			else if (this.effortMultiplier > 1.0)
-				this.cost += effortUsed * 8.0 * ((this.effortMultiplier - 1.0) * 1.20) * developer.getHourlyCost(); 
->>>>>>> origin/master
-		}
-		
-		if (adjustedDailyWorkingHours > normalDailyWorkHours){
-			this.overworkHours += effortUsed;
-			/*
-			 * Increasing the cost of the developer hour because the number of working hours exceed 8
-			 */
-			this.cost += effortUsed * developer.getHourlyCost() * 0.2;
-			if (adjustedDailyWorkingHours > extralOvertimeDailyWorkHours){
-				/*
-				 * Increasing the cost of the developer hour because the number of working hours exceed 10
-				 */
-				this.cost += effortUsed * developer.getHourlyCost() * 0.5;
-			}			
-		}
-					
-		remainingWork = getRemainingWork();
-		return remainingWork >= 0.001;
-	}
-	
-	
 //	public boolean step()
 //	{
 //		double remainingWork = getRemainingWork();
@@ -256,8 +188,8 @@ public abstract class Activity extends SimulationObject
 //		if (effortAvailable <= 0.0)
 //			return true;
 //
-//		double effortAdjustment = this.productivity * this.effortMultiplier;
-//		double effortUsed = Math.min(effortAvailable, remainingWork / effortAdjustment);
+//		double effortAdjustment = this.productivity; //* this.effortMultiplier;
+//		double effortUsed = Math.min(effortAvailable, remainingWork);// / effortAdjustment);
 //		
 //		if (startExecutionTime < 0.0) 
 //			startExecutionTime = getCurrentSimulationTime();
@@ -266,26 +198,92 @@ public abstract class Activity extends SimulationObject
 //		consumeEffort(effortUsed * effortAdjustment);
 //
 //		this.consumedEffort = true;
+//<<<<<<< HEAD
+//		
+//		this.cost += effortUsed * developer.getHourlyCost(); 
+//
+//		double normalDailyWorkHours = 8.0;
+//		double extralOvertimeDailyWorkHours = 10.0;
+//		double alocatedOvertimeDailyWorkHours = effortMultiplier * 8.0;
+//		
+//		double adjustedDailyWorkingHours = this.getworkPerformed();
+//		
+//		if (this.getworkPerformed()+effortUsed > alocatedOvertimeDailyWorkHours){			
+//			adjustedDailyWorkingHours = (adjustedDailyWorkingHours + effortUsed) - (alocatedOvertimeDailyWorkHours * (int) ((this.getworkPerformed()+effortUsed) / alocatedOvertimeDailyWorkHours));
+//=======
 //		this.cost += effortUsed * 8.0 * developer.getHourlyCost(); 
 //
 //		if (this.effortMultiplier > 1.0)
 //		{
-//			if (remainingWork/8.0 > 0){
-//				effortMultiplier*8.0
-//			}
-//			this.overworkHours += effortUsed * (effortMultiplier - 1.0) * 8.0;
+//			this.overworkHours += effortUsed * (effortMultiplier - 1.0)/* * 8.0*/;
 //			
 //			if (this.effortMultiplier > 1.25)
-//				this.cost += (effortUsed * 8.0 * (this.effortMultiplier - 1.25) * 1.25 + effortUsed * 8.0 * 0.25 * 1.20) * developer.getHourlyCost(); 
+//				this.cost += effortUsed * 8.0 * ((this.effortMultiplier - 1.25) * 1.25 + 0.25 * 1.20) * developer.getHourlyCost(); 
 //			
 //			else if (this.effortMultiplier > 1.0)
-//				this.cost += (effortUsed * 8.0 * (this.effortMultiplier - 1.0) * 1.20) * developer.getHourlyCost(); 
+//				this.cost += effortUsed * 8.0 * ((this.effortMultiplier - 1.0) * 1.20) * developer.getHourlyCost(); 
+//>>>>>>> origin/master
 //		}
 //		
+//		if (adjustedDailyWorkingHours > normalDailyWorkHours){
+//			this.overworkHours += effortUsed;
+//			/*
+//			 * Increasing the cost of the developer hour because the number of working hours exceed 8
+//			 */
+//			this.cost += effortUsed * developer.getHourlyCost() * 0.2;
+//			if (adjustedDailyWorkingHours > extralOvertimeDailyWorkHours){
+//				/*
+//				 * Increasing the cost of the developer hour because the number of working hours exceed 10
+//				 */
+//				this.cost += effortUsed * developer.getHourlyCost() * 0.5;
+//			}			
+//		}
+//					
 //		remainingWork = getRemainingWork();
 //		return remainingWork >= 0.001;
 //	}
-//
+	
+	
+	public boolean step()
+	{
+		double remainingWork = getRemainingWork();
+
+		if (remainingWork < 0.001)
+			return false;
+		
+		double effortAvailable = developer.getEffort().available();
+		
+		if (effortAvailable <= 0.0)
+			return true;
+
+		double effortAdjustment = this.productivity * this.effortMultiplier;
+		double effortUsed = Math.min(effortAvailable, remainingWork / effortAdjustment);
+		
+		if (startExecutionTime < 0.0) 
+			startExecutionTime = getCurrentSimulationTime();
+		
+		developer.getEffort().consume(effortUsed);
+		consumeEffort(effortUsed * effortAdjustment);
+
+		this.consumedEffort = true;
+		this.cost += effortUsed * 8.0 * developer.getHourlyCost(); 
+
+		if (this.effortMultiplier > 1.0)
+		{
+			this.overworkHours += effortUsed * (effortMultiplier - 1.0)/* * 8.0*/;
+			
+			if (this.effortMultiplier > 1.25)
+		 
+				this.cost += effortUsed * 8.0 * ((this.effortMultiplier - 1.25) * 1.25 + 0.25 * 1.20) * developer.getHourlyCost(); 
+			
+			else if (this.effortMultiplier > 1.0) 
+				this.cost += effortUsed * 8.0 * ((this.effortMultiplier - 1.0) * 1.20) * developer.getHourlyCost(); 
+		}
+				
+		remainingWork = getRemainingWork();
+		return remainingWork >= 0.001;
+	}
+
 	
 	/**
 	 * Returns the amount of work to be performed

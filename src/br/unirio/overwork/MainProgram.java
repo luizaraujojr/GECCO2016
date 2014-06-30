@@ -6,6 +6,7 @@ import java.util.Vector;
 
 import unirio.experiments.multiobjective.analyzer.ExperimentAnalyzer;
 import unirio.experiments.multiobjective.reader.ExperimentFileReaderException;
+import br.unirio.optimization.experiment.ManualExperiment;
 import br.unirio.optimization.experiment.NSGAIIExperiment;
 import br.unirio.optimization.experiment.RandomSearchExperiment;
 import br.unirio.optimization.resultInterpretation.ResultInterpreter;
@@ -24,13 +25,13 @@ public class MainProgram
 
 	protected static String[] instanceFiles =
 	{
-//		"data/overworking/ACAD.xml",
+		"data/overworking/ACAD.xml",
 //		"data/overworking/BOLS.xml",
-//		"data/overworking/OPMET.xml",
-//		"data/overworking/PARM.xml",
-		"data/overworking/PSOA.xml"
-//		"data/overworking/WEBAMHS.xml",
-//		"data/overworking/WEBMET.xml"
+		"data/overworking/OPMET.xml",
+		"data/overworking/PARM.xml",
+		"data/overworking/PSOA.xml",
+		"data/overworking/WEBAMHS.xml",
+		"data/overworking/WEBMET.xml"
 	};
 	
 	public static final void main(String[] args) throws Exception
@@ -52,9 +53,26 @@ public class MainProgram
 		
 //		instances.add(createOneDayProject());
 		
-		//runRandomSearchExperiment(instances);
-		runNSGAIIExperiment(instances);
+		runManualExperiment(instances, 9);
+//		runRandomSearchExperiment(instances);
+//		runNSGAIIExperiment(instances);
 	}
+	
+	protected static void runManualExperiment(Vector<Project> instances, int value) throws Exception, ExperimentFileReaderException 
+	{
+		SimpleDateFormat sdf1 = new SimpleDateFormat("ddMMyyyy_hhmmss");
+		String filename = "data/result/ouput_datetime" + sdf1.format(new Date()) + "_val" + value + "_cycles" + CYCLES + "_manual.txt";
+
+		ManualExperiment m = new ManualExperiment(value);
+		m.runCycles(filename, instances, 1);
+		
+		ExperimentAnalyzer analyzer1 = new ExperimentAnalyzer();
+		analyzer1.analyze("manual", filename, instances.size(), 1, 3);
+
+		ResultInterpreter interpreterManual = new ResultInterpreter();
+		interpreterManual.analyze(filename, instances, 1, 3);
+	}
+	
 
 	protected static void runNSGAIIExperiment(Vector<Project> instances) throws Exception, ExperimentFileReaderException 
 	{

@@ -22,18 +22,18 @@ import br.unirio.overwork.model.base.Project;
 
 public class MainProgram
 {
-	protected static final int CYCLES = 10;
-	protected static final int MAXEVALUATIONS = 50;
+	protected static final int CYCLES = 30;
+	protected static final int MAXEVALUATIONS = 5000;
 
 	protected static String[] instanceFiles =
 	{
-		"data/overworking/ACAD.xml"
+		"data/overworking/ACAD.xml",
 //		"data/overworking/BOLS.xml",
-//		"data/overworking/OPMET.xml",
-//		"data/overworking/PARM.xml",
-//		"data/overworking/PSOA.xml",
-//		"data/overworking/WEBAMHS.xml",
-//		"data/overworking/WEBMET.xml"
+		"data/overworking/OPMET.xml",
+		"data/overworking/PARM.xml",
+		"data/overworking/PSOA.xml",
+		"data/overworking/WEBAMHS.xml",
+		"data/overworking/WEBMET.xml"
 	};
 	
 	public static final void main(String[] args) throws Exception
@@ -62,7 +62,7 @@ public class MainProgram
 //		runManualExperiment(instances, 9);
 		String file1 = runRandomSearchExperiment(instances);
 		String file2 = runNSGAIIExperiment(instances);
-		runDominanceAnalysis(instances, file1, file2);
+//		runDominanceAnalysis(instances, file1, file2);
 	}
 	
 	private static void runDominanceAnalysis(Vector<Project> instances, String f1, String f2) throws Exception {
@@ -208,8 +208,8 @@ public class MainProgram
 		Reader reader = new Reader();
 		SoftwareSystem ss = reader.run(instancia);
 		SoftwareSystemProjectBuilder builder = new SoftwareSystemProjectBuilder();
-		builder.addSoftwareSystem(ss);
-		return builder.execute();
+		//builder.addSoftwareSystem(ss);
+		return builder.execute(ss);
 	}
 	
 	protected static Project createOneDayProject() throws Exception

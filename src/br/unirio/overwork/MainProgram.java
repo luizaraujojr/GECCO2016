@@ -22,8 +22,8 @@ import br.unirio.overwork.model.base.Project;
 
 public class MainProgram
 {
-	protected static final int CYCLES = 30;
-	protected static final int MAXEVALUATIONS = 5000;
+//	protected static final int CYCLES = 30;
+//	protected static final int MAXEVALUATIONS = 5000;
 
 	protected static String[] instanceFiles =
 	{
@@ -38,10 +38,13 @@ public class MainProgram
 	
 	public static final void main(String[] args) throws Exception
 	{
-		run(instanceFiles);
+		run(instanceFiles, 30, 5000);
+		run(instanceFiles, 30, 10000);
+		run(instanceFiles, 30, 20000);
+		//run(instanceFiles, 3, 50);
 	}
 		
-	public static void run(String[] instancesFiles) throws Exception
+	public static void run(String[] instancesFiles, int cycles, int maxevaluations) throws Exception
 	{		
 		//Locale locale = new Locale("hr", "HR");
 		
@@ -59,102 +62,23 @@ public class MainProgram
 		
 //		instances.add(createOneDayProject());
 		
-//		runManualExperiment(instances, 9);
-		String file1 = runRandomSearchExperiment(instances);
-		String file2 = runNSGAIIExperiment(instances);
+//		runManualExperiment(instances, 9, cycles, maxevaluations);
+		String file1 = runRandomSearchExperiment(instances, cycles, maxevaluations);
+		String file2 = runNSGAIIExperiment(instances, cycles, maxevaluations);
 //		runDominanceAnalysis(instances, file1, file2);
 	}
 	
-	private static void runDominanceAnalysis(Vector<Project> instances, String f1, String f2) throws Exception {
-		
-		ObjectivesComparator comparator = new ObjectivesComparator();
-		comparator.analyze(f1, f2, instances, CYCLES, 3);
-		
-		
-//		Objective o11 = new Objective("",10);
-//		Objective o12 = new Objective("",20);
-//		Objective o13 = new Objective("",30);
+//	private static void runDominanceAnalysis(Vector<Project> instances, String f1, String f2) throws Exception {
 //		
-//		Objective o14 = new Objective("",40);
-//		Objective o15 = new Objective("",50);
-//		Objective o16 = new Objective("",60);
-//		
-//		Solution s11 = new Solution();
-//		Solution s12 = new Solution();
-//		
-//		s11.addObjective(o11);
-//		s11.addObjective(o12);
-//		s11.addObjective(o13);
-//		
-//		s12.addObjective(o14);
-//		s12.addObjective(o15);
-//		s12.addObjective(o16);
-//		
-//		ArrayList<Solution> solutions1 = new ArrayList<Solution>();
-//		solutions1.add(s11);
-//		solutions1.add(s12);
-//		
-//		Objective o21 = new Objective("",10);
-//		Objective o22 = new Objective("",20);
-//		Objective o23 = new Objective("",30);
-//		
-//		Objective o24 = new Objective("",40);
-//		Objective o25 = new Objective("",50);
-//		Objective o26 = new Objective("",60);
-//		
-//		Solution s21 = new Solution();
-//		Solution s22 = new Solution();
-//		s21.addObjective(o24);
-//		s21.addObjective(o25);
-//		s21.addObjective(o26);
-//		
-//		s22.addObjective(o21);
-//		s22.addObjective(o22);
-//		s22.addObjective(o23);
-//		
-//		ArrayList<Solution> solutions2 = new ArrayList<Solution>();
-//		solutions2.add(s21);
-//		solutions2.add(s22);
-//		
-//		for (Solution sol1 : solutions1)
-//		{
-//			for (Solution sol2 : solutions2)
-//			{
-//				for (int i = 0; i < sol1.countObjectives(); i++)
-//				{					
-//					Objective ob1 = new Objective(sol1.getObjective(i).getName(),sol1.getObjective(i).getValue());
-//					Objective ob2 = new Objective(sol2.getObjective(i).getName(),sol2.getObjective(i).getValue());
-//				
-//					if (sol1.getObjective(i).getValue() > sol2.getObjective(i).getValue()){
-//						sol2.getObjective(i).addBigger(ob1);							
-//						sol1.getObjective(i).addSmaller(ob2);
-//					}
-//
-//					if (sol2.getObjective(i).getValue() > sol1.getObjective(i).getValue()){
-//						sol1.getObjective(i).addBigger(ob2);							
-//						sol2.getObjective(i).addSmaller(ob1);
-//					}
-//					
-////					if (ob1.getValue() > ob2.getValue()){
-////						ob2.addBigger(ob1);							
-////						ob1.addSmaller(ob2);
-////					}
-////					if (ob1.getValue() < ob2.getValue()){
-////						ob1.addBigger(ob2);
-////						ob2.addSmaller(ob1);
-////					}
-//				}
-//			}
-//		}
-//		System.out.println("aaaa");
-		
-	}
+//		ObjectivesComparator comparator = new ObjectivesComparator();
+//		comparator.analyze(f1, f2, instances, CYCLES, 3);		
+//	}
 
 		
-	protected static String runManualExperiment(Vector<Project> instances, int value) throws Exception, ExperimentFileReaderException 
+	protected static String runManualExperiment(Vector<Project> instances, int value, int cycles, int maxevaluations) throws Exception, ExperimentFileReaderException 
 	{
 		SimpleDateFormat sdf1 = new SimpleDateFormat("ddMMyyyy_hhmmss");
-		String filename = "data/result/ouput_datetime" + sdf1.format(new Date()) + "_val" + value + "_cycles" + CYCLES + "_manual.txt";
+		String filename = "data/result/ouput_datetime" + sdf1.format(new Date()) + "_val" + value + "_cycles" + cycles + "_manual.txt";
 
 		ManualExperiment m = new ManualExperiment(value);
 		m.runCycles(filename, instances, 1);
@@ -169,36 +93,36 @@ public class MainProgram
 	}
 	
 
-	protected static String runNSGAIIExperiment(Vector<Project> instances) throws Exception, ExperimentFileReaderException 
+	protected static String runNSGAIIExperiment(Vector<Project> instances, int cycles, int maxevaluations) throws Exception, ExperimentFileReaderException 
 	{
 		SimpleDateFormat sdf1 = new SimpleDateFormat("ddMMyyyy_hhmmss");
-		String filename = "data/result/ouput_datetime" + sdf1.format(new Date()) + "_eval" + MAXEVALUATIONS + "_cycles"+ CYCLES + "_nsga.txt";
+		String filename = "data/result/ouput_datetime" + sdf1.format(new Date()) + "_eval" + maxevaluations + "_cycles"+ cycles + "_nsga.txt";
 		
-		NSGAIIExperiment nsgaii2 = new NSGAIIExperiment(MAXEVALUATIONS);
-		nsgaii2 .runCycles(filename, instances, CYCLES);
+		NSGAIIExperiment nsgaii2 = new NSGAIIExperiment(maxevaluations);
+		nsgaii2 .runCycles(filename, instances, cycles);
 		
  		ExperimentAnalyzer analyzer2 = new ExperimentAnalyzer();
-		analyzer2.analyze("nsgaii",filename, instances.size(), CYCLES, 3);
+		analyzer2.analyze("nsgaii",filename, instances.size(), cycles, 3);
 		
 		ResultInterpreter interpreterNSGA = new ResultInterpreter();
-		interpreterNSGA.analyze(filename, instances, CYCLES, 3);
+		interpreterNSGA.analyze(filename, instances, cycles, 3);
 		
 		return filename;
 	}
 
-	protected static String runRandomSearchExperiment(Vector<Project> instances) throws Exception, ExperimentFileReaderException 
+	protected static String runRandomSearchExperiment(Vector<Project> instances, int cycles, int maxevaluations) throws Exception, ExperimentFileReaderException 
 	{
 		SimpleDateFormat sdf1 = new SimpleDateFormat("ddMMyyyy_hhmmss");
-		String filename = "data/result/ouput_datetime" + sdf1.format(new Date()) + "_eval" + MAXEVALUATIONS + "_cycles" + CYCLES + "_rs.txt";
+		String filename = "data/result/ouput_datetime" + sdf1.format(new Date()) + "_eval" + maxevaluations + "_cycles" + cycles + "_rs.txt";
 
-		RandomSearchExperiment rs = new RandomSearchExperiment(MAXEVALUATIONS);
-		rs.runCycles(filename, instances, CYCLES);
+		RandomSearchExperiment rs = new RandomSearchExperiment(maxevaluations);
+		rs.runCycles(filename, instances, cycles);
 		
 		ExperimentAnalyzer analyzer1 = new ExperimentAnalyzer();
-		analyzer1.analyze("rs", filename, instances.size(), CYCLES, 3);
+		analyzer1.analyze("rs", filename, instances.size(), cycles, 3);
 
 		ResultInterpreter interpreterRS = new ResultInterpreter();
-		interpreterRS.analyze(filename, instances, CYCLES, 3);
+		interpreterRS.analyze(filename, instances, cycles, 3);
 		
 		return filename;
 	}

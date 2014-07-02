@@ -1,8 +1,5 @@
 package br.unirio.overwork.builders.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import br.unirio.overwork.builders.model.SoftwareSystem;
 import br.unirio.overwork.builders.model.WorkPackage;
 import br.unirio.overwork.model.base.Activity;
@@ -18,73 +15,16 @@ import br.unirio.overwork.model.base.Project;
  */
 public class SoftwareSystemProjectBuilder
 {
-
-	/**
-	 * Software System
-	 */
-	private SoftwareSystem softwareSystem;
-	
-	/**
-	 * List of work packages comprising the project
-	 */
-	private List<WorkPackage> workPackages;
-	
-	/**
-	 * Initializes the project builder
-	 */
-	public SoftwareSystemProjectBuilder()
-	{
-		this.workPackages = new ArrayList<WorkPackage>();
-	}
-	
-	/**
-	 * Adds a work package to the project
-	 */
-	public WorkPackage addWorkPackage(String nome)
-	{
-		WorkPackage workPackage = new WorkPackage(nome);
-		this.workPackages.add(workPackage);
-		return workPackage;
-	}	
-	
-	/**
-	 * Adds a software system to the project
-	 * @return 
-	 */
-	public void addSoftwareSystem(SoftwareSystem softwareSystem)
-	{
-		this.softwareSystem = softwareSystem;
-	}
-	
-	
-	public WorkPackage getWorkPackagebyName(String name)
-	{
-		for (WorkPackage wp : this.workPackages)
-		{
-//			System.out.println(wp.getName());
-//			System.out.println(name);
-			if (wp.getName().equals(name))
-			{
-				return wp;
-			}
-		}
-		return null;
-	}
-
 	/**
 	 * Executes the project generation procedure
 	 */
-	public Project execute()
+	public Project execute(SoftwareSystem softwareSystem)
 	{
 		Project project = new Project();
 		project.setName(softwareSystem.getName());
 
 		Developer developer = new Developer("Developer", 60);
 		project.addDeveloper(developer);
-//		project.addDeveloper(developer);
-//		project.addDeveloper(developer);
-//		project.addDeveloper(developer);
-//		project.addDeveloper(developer);
 
 		double totalFunctionPoints = 0;
 		
@@ -98,11 +38,13 @@ public class SoftwareSystemProjectBuilder
 		{
 			double functionPoints = wp.getFunctionPoints();
 			
+			
 			double effortRequirement = functionPoints * configuration.getRequirementsEffort() * (Constants.DAYS_IN_MONTH / configuration.getAverageProductivity());
 			double errorsRequirement = functionPoints;
 			
 			Activity requirements = new ActivityDevelopment(project, "Requisitos " + wp.getName(), effortRequirement, errorsRequirement, 0.0)
 				.setDeveloper(developer);
+			
 			
 			double effortDesign = functionPoints * configuration.getDesignEffort() * (Constants.DAYS_IN_MONTH / configuration.getAverageProductivity());
 			double errorsDesign = functionPoints;
@@ -119,6 +61,7 @@ public class SoftwareSystemProjectBuilder
 				.addPrecedent(design)
 				.setDeveloper(developer);
 
+			
 			Activity testes = new AtivityTesting(project, "Testes " + wp.getName(), errorCorrectionEffort)
 				.addPrecedent(codificacao)
 				.setDeveloper(developer);

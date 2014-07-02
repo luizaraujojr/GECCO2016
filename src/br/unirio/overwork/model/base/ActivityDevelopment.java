@@ -1,6 +1,5 @@
 package br.unirio.overwork.model.base;
 
-import lombok.Getter;
 
 /**
  * Class that represents a development activity
@@ -73,25 +72,6 @@ public class ActivityDevelopment extends Activity
 	{
 		return workRequired - workPerformed;
 	}
-	
-	/**
-	 * Returns the effort required to complete the activity
-	 */
-	@Override
-	public double getworkPerformed()
-	{
-		return workPerformed;
-	}
-
-	/**
-	 * Returns the effort required to complete the activity
-	 */
-	@Override
-	public double getworkRequired()
-	{
-		return workRequired;
-	}
-
 
 	/**
 	 * Consumes an amount of effort in the activity

@@ -64,7 +64,7 @@ public class ResultInterpreter
 			println(bw, pp.getProject().getName());
 			println(bw, "");
 			for (Activity a :  pp.getProject().getActivities()){
-				println(bw, a.getName() + TAB + a.getStartingTime() + TAB + a.getFinishingTime() + TAB + a.getErrors()  + TAB + a.getOverworkHours());	
+				println(bw, a.getName() + TAB + a.getStartExecutionTime() + TAB + a.getFinishingTime() + TAB + a.getErrors()  + TAB + a.getOverworkHours());	
 			}
 			println(bw, "");
 		}

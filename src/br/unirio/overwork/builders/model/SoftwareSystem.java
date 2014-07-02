@@ -77,15 +77,13 @@ public class SoftwareSystem
 		return wp;
 	}
 	
-	
-	/** verificar com o márcio
+	/**
 	 * Adds a work package to the system
 	 */
 	public void addWorkPackage(WorkPackage wp)
 	{
 		this.workPackages.add(wp);
 	}
-	
 	
 	/**
 	 * Calculates the number of function points in the system

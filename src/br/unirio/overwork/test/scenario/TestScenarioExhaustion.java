@@ -17,21 +17,18 @@ public class TestScenarioExhaustion extends TestCase
 		SoftwareSystem system = new SoftwareSystem("Projeto de teste");
 		
 		WorkPackage wp1 = system.addWorkPackage("Usuários");
-
 		wp1.addComponent("usuario", 7);
 		wp1.addComponent("Cadastro de usuário", 3);
 		wp1.addComponent("Lista de usuários ", 4);
 		wp1.addComponent("Consulta de usuário", 4);
 
 		WorkPackage wp2 = system.addWorkPackage("Professores");
-
 		wp2.addComponent("professor", 7);
 		wp2.addComponent("Cadastro de professor", 4);
 		wp2.addComponent("Lista de professores", 4);
 		wp2.addComponent("Consulta de professor", 5);
 		
 		WorkPackage wp3 = system.addWorkPackage("Áreas");
-
 		wp3.addComponent("area", 7);
 		wp3.addComponent("Cadastro de área", 4);
 		wp3.addComponent("Lista de áreas", 4);
@@ -39,20 +36,17 @@ public class TestScenarioExhaustion extends TestCase
 		wp3.addComponent("Consulta de área", 4);
 		
 		WorkPackage wp4 = system.addWorkPackage("Aluno");
-
 		wp4.addComponent("aluno", 10);
 		wp4.addComponent("Cadastro de aluno", 6);
 		wp4.addComponent("Consulta de aluno", 7);	
 
 		WorkPackage wp5 = system.addWorkPackage("Disciplinas");
-
 		wp5.addComponent("disciplina", 7);
 		wp5.addComponent("Cadastro de disciplina", 4);
 		wp5.addComponent("Lista de disciplinas", 4);
 		wp5.addComponent("Consulta de disciplina", 5);
 		
 		WorkPackage wp6 = system.addWorkPackage("Turmas");
-
 		wp6.addComponent("turma", 7);
 		wp6.addComponent("turmasolicitada", 7);
 		wp6.addComponent("Cadastro de turma", 6);
@@ -62,17 +56,13 @@ public class TestScenarioExhaustion extends TestCase
 		wp6.addComponent("Lista de turmas solicitadas", 4);
 		
 		WorkPackage wp7 = system.addWorkPackage("Inscrições");
-
 		wp7.addComponent("inscricao", 7);
 		wp7.addComponent("Cadastro de inscrição", 6);
 		wp7.addComponent("Consulta de inscrição", 7);
 		wp7.addComponent("Geração de comprovante", 7);
 			
 		SoftwareSystemProjectBuilder builder = new SoftwareSystemProjectBuilder();
-		
-		builder.addSoftwareSystem(system);
-		
-		return builder.execute();
+		return builder.execute(system);
 	}
 
 	public void testAll() throws Exception

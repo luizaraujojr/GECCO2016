@@ -27,11 +27,11 @@ public class MainProgram
 	{
 		"data/overworking/ACAD.xml",
 //		"data/overworking/BOLS.xml",
-		"data/overworking/OPMET.xml",
-		"data/overworking/PARM.xml",
-		"data/overworking/PSOA.xml",
-		"data/overworking/WEBAMHS.xml",
-		"data/overworking/WEBMET.xml"
+//		"data/overworking/OPMET.xml",
+//		"data/overworking/PARM.xml",
+//		"data/overworking/PSOA.xml",
+//		"data/overworking/WEBAMHS.xml",
+//		"data/overworking/WEBMET.xml"
 	};
 	
 	public static final void main(String[] args) throws Exception
@@ -53,7 +53,8 @@ public class MainProgram
 		
 //		instances.add(createOneDayProject());
 		
-		runManualExperiment(instances, 9);
+		runManualExperiment(instances, 1);
+//		runManualExperiment(instances, 9);
 //		runRandomSearchExperiment(instances);
 //		runNSGAIIExperiment(instances);
 	}
@@ -109,8 +110,7 @@ public class MainProgram
 		Reader reader = new Reader();
 		SoftwareSystem ss = reader.run(instancia);
 		SoftwareSystemProjectBuilder builder = new SoftwareSystemProjectBuilder();
-		builder.addSoftwareSystem(ss);
-		return builder.execute();
+		return builder.execute(ss);
 	}
 	
 	protected static Project createOneDayProject() throws Exception

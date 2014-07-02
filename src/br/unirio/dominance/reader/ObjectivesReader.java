@@ -1,4 +1,4 @@
-package br.unirio.optimization.resultInterpretation;
+package br.unirio.dominance.reader;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,36 +14,40 @@ import unirio.experiments.multiobjective.reader.ExperimentFileReaderException;
 import br.unirio.optimization.ProjectProblem;
 import br.unirio.overwork.model.base.Project;
 
-public class ResultReader
+public class ObjectivesReader
 {
 	static final String TAB = "\t";
 	static final String LINE_SEPARATOR = System.getProperty("line.separator");
 	
 	private int currentLineNumber;
 	
-	public ArrayList <ProjectProblem> execute (InputStream stream, Vector<Project> instances, int cycleCount, int objectiveCount) throws Exception
+	public ArrayList <Solution> execute (InputStream stream, Vector<Project> instances, int cycleCount, int objectiveCount) throws Exception
 	{
 		currentLineNumber = 0;
 		Scanner scanner = new Scanner(stream);
 		
-		ArrayList <ProjectProblem> pps = new ArrayList <ProjectProblem>();
+		//ArrayList <ProjectProblem> pps = new ArrayList <ProjectProblem>();
+		
+		ArrayList <Solution> solutions = new ArrayList <Solution>();
 		
 		try
 		{			
 			for (int i = 0; i < instances.size(); i++){					
+				solutions.clear();
 				//ArrayList <ProjectProblem> pps1 =  new ArrayList <ProjectProblem>();
-				readInstance(pps, instances.get(i),  i, cycleCount, scanner);
+				readInstance(solutions, instances.get(i),  i, cycleCount, scanner);
 				// verificar como organizar para varias instâncias e definir onde colocar o publish dos resultados.
 				
-				pps.clear();				
+				//;				
 			}
-			return pps;
+			return solutions;
 		}
 		finally
 		{
 			scanner.close();
 		}
 	}
+	
 
 	private String readLine (Scanner scanner)
 	{
@@ -57,17 +61,17 @@ public class ResultReader
 		throw new ExperimentFileReaderException(currentLineNumber, message);
 	}
 
-	void readInstance (ArrayList <ProjectProblem> pps, Project project, int instanceCount, int cycleCount, Scanner scanner) throws Exception
+	void readInstance (List <Solution> solutions, Project project, int instanceCount, int cycleCount, Scanner scanner) throws Exception
 	{
 		checkInstanceHeader (instanceCount, scanner);
 		
 		for (int i = 0; i < cycleCount; i++)
 			checkCycle (i, 3, scanner);
 
-		readParetoFrontier(pps, project, 3, scanner);
+		readParetoFrontier(solutions, project, 3, scanner);
 	}
 	
-	private void readParetoFrontier(List <ProjectProblem> pps, Project project, int objectiveCount, Scanner scanner) throws ExperimentFileReaderException, Exception
+	private void readParetoFrontier(List <Solution> solutions, Project project, int objectiveCount, Scanner scanner) throws ExperimentFileReaderException, Exception
 	{
 		String firstHeaderLine = readLine(scanner);
 		
@@ -79,7 +83,7 @@ public class ResultReader
 
 		if (isPresented)
 		{
-			readParetoFrontierValues(pps, project, objectiveCount, scanner);
+			readParetoFrontierValues(solutions, project, objectiveCount, scanner);
 		}
 		else
 		{
@@ -152,30 +156,34 @@ public class ResultReader
 			throwException("expected number of best solutions");
 	}
 
-	private void readParetoFrontierValues(List <ProjectProblem> pps, Project project, int objectiveCount, Scanner scanner) throws ExperimentFileReaderException, ClassNotFoundException, NumberFormatException, JMException
+	private void readParetoFrontierValues(List <Solution> solutions, Project project, int objectiveCount, Scanner scanner) throws ExperimentFileReaderException, ClassNotFoundException, NumberFormatException, JMException
 	{		
 		String s = readLine(scanner);
 		
 		while (s.length() > 0)
 		{	
-			int initialPosition = s.indexOf("[") +1;
-			int finalPosition = s.indexOf("]");
+			s.replaceAll(",", ".");
+			
+			int initialPosition = 0;
+			int finalPosition = s.indexOf("[") - 3;
 			
 			s = s.substring(initialPosition, finalPosition);
+			
 			ProjectProblem projectProblem =  new ProjectProblem(project);
 			Solution solution = new Solution(projectProblem);
 			
 			//s = "9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9";
 			//s = "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0";
 			
-			String extractedValues[] = s.split(" ");			
+			String extractedValues[] = s.split(";");			
 			
 			for (int i = 0; i < extractedValues.length; i++){
-				solution.getDecisionVariables()[i].setValue(Double.parseDouble(extractedValues[i]));
+				//solution.getDecisionVariables()[i].setValue(Double.parseDouble(extractedValues[i]));
+				solution.setObjective(i, Double.parseDouble(extractedValues[i]));
 			}			
 			
-			projectProblem.evaluate(solution);
-			pps.add(projectProblem);			
+			//projectProblem.evaluate(solution);
+			solutions.add(solution);			
 			
 			s = (scanner.hasNextLine()) ? readLine(scanner) : "";
 		}

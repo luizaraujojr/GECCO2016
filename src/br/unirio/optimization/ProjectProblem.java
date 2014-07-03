@@ -117,6 +117,9 @@ public ProjectProblem(Project project) throws ClassNotFoundException
 	 */
 	public void runSimulation(Solution solution) throws JMException
 	{
+		Solution s = new Solution();
+		s= solution;
+		
 		SimulationEngine simulator = new SimulationEngine();
 
 		for (Developer developer : project.getDevelopers())
@@ -126,7 +129,7 @@ public ProjectProblem(Project project) throws ClassNotFoundException
 				
 		for (int i = 0; i < project.getActivitiesCount(); i++)
 		{
-			ScenarioOverworking scenarioOverworking = new ScenarioOverworking(solution.getDecisionVariables()[i].getValue() * 0.5 + 7.5);
+			ScenarioOverworking scenarioOverworking = new ScenarioOverworking(s.getDecisionVariables()[i].getValue() * 0.5 + 7.5);
 			scenarioOverworking.connect(project.getActivity(i));
 		}
 				

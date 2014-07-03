@@ -5,15 +5,11 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Vector;
 
-//import unirio.experiments.multiobjective.analyzer.ExperimentAnalyzer;
-//import unirio.experiments.multiobjective.analyzer.MultiExperimentAnalyzer;
-import unirio.experiments.multiobjective.model.ExperimentResult;
-import unirio.experiments.multiobjective.reader.ExperimentFileReader;
+import unirio.experiments.multiobjective.analyzer.ExperimentAnalyzer;
 import unirio.experiments.multiobjective.reader.ExperimentFileReaderException;
 import br.unirio.optimization.experiment.ManualExperiment;
 import br.unirio.optimization.experiment.NSGAIIExperiment;
 import br.unirio.optimization.experiment.RandomSearchExperiment;
-import br.unirio.optimization.resultInterpretation.ResultInterpreter;
 import br.unirio.overwork.builders.controller.SoftwareSystemProjectBuilder;
 import br.unirio.overwork.builders.model.SoftwareSystem;
 import br.unirio.overwork.builders.reader.Reader;
@@ -21,6 +17,8 @@ import br.unirio.overwork.model.base.Activity;
 import br.unirio.overwork.model.base.ActivityDevelopment;
 import br.unirio.overwork.model.base.Developer;
 import br.unirio.overwork.model.base.Project;
+//import unirio.experiments.multiobjective.analyzer.ExperimentAnalyzer;
+//import unirio.experiments.multiobjective.analyzer.MultiExperimentAnalyzer;
 
 public class MainProgram
 {
@@ -31,10 +29,10 @@ public class MainProgram
 	{
 		"data/overworking/ACAD.xml",
 //		"data/overworking/BOLS.xml",
-//		"data/overworking/OPMET.xml",
-//		"data/overworking/PARM.xml"
-//		"data/overworking/PSOA.xml",
-//		"data/overworking/WEBAMHS.xml",
+		"data/overworking/OPMET.xml",
+		"data/overworking/PARM.xml",
+		"data/overworking/PSOA.xml",
+		"data/overworking/WEBAMHS.xml",
 		"data/overworking/WEBMET.xml"
 	};
 	
@@ -44,7 +42,7 @@ public class MainProgram
 		{
 	        public void run(){
 	        	try {
-					run1(instanceFiles, 5, 1500);
+					run1(instanceFiles, 50, 5000);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -55,7 +53,7 @@ public class MainProgram
 		  new Thread("2"){
 		    public void run(){
 		    	try {
-					run1(instanceFiles, 7, 2000);
+					run1(instanceFiles, 50, 10000);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -74,7 +72,7 @@ public class MainProgram
 //	        }
 //	      }.start();
 		
-	      run1(instanceFiles, 5, 500);
+//	      run1(instanceFiles, 5, 500);
 //	      run1(instanceFiles, 3, 10);
 //	      run1(instanceFiles, 3, 20);
 
@@ -104,38 +102,38 @@ public class MainProgram
 //		instances.add(createOneDayProject());
 			
 //		runManualExperiment(instances, 9, cycles, maxevaluations);
-		String file1 = runRandomSearchExperiment(instances, cycles, maxevaluations);
-		String file2 = runNSGAIIExperiment(instances, cycles, maxevaluations);
+//		String file1 = runRandomSearchExperiment(instances, cycles, maxevaluations);
+//		String file2 = runNSGAIIExperiment(instances, cycles, maxevaluations);
 //		runDominanceAnalysis(instances, file1, file2);
 		
 		
 //		runManualExperiment(instances, 9, cycles, maxevaluations);
 		
-		new Thread("a")
-		{
-	        public void run(){
-	        	try {
-	        		String file1 = runRandomSearchExperiment(instances, cycles, maxevaluations);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-	        }
-	    }.start();
+//		new Thread("a")
+//		{
+//	        public void run(){
+//	        	try {
+//	        		String file1 = runRandomSearchExperiment(instances, cycles, maxevaluations);
+//				} catch (Exception e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//	        }
+//	    }.start();
+//		
+//		  new Thread("b"){
+//		    public void run(){
+//		    	try {
+//		    		String file2 = runNSGAIIExperiment(instances, cycles, maxevaluations);
+//				} catch (Exception e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//		    }
+//		  }.start();
 		
-		  new Thread("b"){
-		    public void run(){
-		    	try {
-		    		String file2 = runNSGAIIExperiment(instances, cycles, maxevaluations);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-		    }
-		  }.start();
-		
-//		String file1 = runRandomSearchExperiment(instances, cycles, maxevaluations);
-//		String file2 = runNSGAIIExperiment(instances, cycles, maxevaluations);
+		String file1 = runRandomSearchExperiment(instances, cycles, maxevaluations);
+		String file2 = runNSGAIIExperiment(instances, cycles, maxevaluations);
 //		runDominanceAnalysis(instances, file1, file2);		
 	}
 

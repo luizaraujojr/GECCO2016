@@ -29,28 +29,62 @@ public class MainProgram
 	{
 		"data/overworking/ACAD.xml",
 //		"data/overworking/BOLS.xml",
-		"data/overworking/OPMET.xml",
-		"data/overworking/PARM.xml",
-		"data/overworking/PSOA.xml",
-		"data/overworking/WEBAMHS.xml",
+//		"data/overworking/OPMET.xml",
+//		"data/overworking/PARM.xml"
+//		"data/overworking/PSOA.xml",
+//		"data/overworking/WEBAMHS.xml",
 		"data/overworking/WEBMET.xml"
 	};
 	
 	public static final void main(String[] args) throws Exception
 	{
-		run(instanceFiles, 30, 5000);
-		run(instanceFiles, 30, 10000);
-		run(instanceFiles, 30, 20000);
+		new Thread("1")
+		{
+	        public void run(){
+	        	try {
+					run1(instanceFiles, 5, 1500);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	        }
+	    }.start();
+		
+		  new Thread("2"){
+		    public void run(){
+		    	try {
+					run1(instanceFiles, 7, 2000);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		    }
+		  }.start();
+//		
+//      new Thread("3"){
+//	        public void run(){
+//	        	try {
+//					run1(instanceFiles, 3, 200);
+//				} catch (Exception e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//	        }
+//	      }.start();
+		
+	      run1(instanceFiles, 5, 500);
+//	      run1(instanceFiles, 3, 10);
+//	      run1(instanceFiles, 3, 20);
 		//run(instanceFiles, 3, 50);
 	}
 		
-	public static void run(String[] instancesFiles, int cycles, int maxevaluations) throws Exception
+	public static void run1(String[] instancesFiles, final int cycles, final int maxevaluations) throws Exception
 	{		
 		//Locale locale = new Locale("hr", "HR");
 		
 		Locale.setDefault(new Locale("en", "US"));
 		
-		Vector<Project> instances = new Vector<Project>();
+		final Vector<Project> instances = new Vector<Project>();
 		
 		for (int i = 0; i < instancesFiles.length; i++)
 			if (instancesFiles[i].length() > 0)
@@ -63,8 +97,33 @@ public class MainProgram
 //		instances.add(createOneDayProject());
 		
 //		runManualExperiment(instances, 9, cycles, maxevaluations);
-		String file1 = runRandomSearchExperiment(instances, cycles, maxevaluations);
-		String file2 = runNSGAIIExperiment(instances, cycles, maxevaluations);
+	
+		new Thread("a")
+		{
+	        public void run(){
+	        	try {
+	        		String file1 = runRandomSearchExperiment(instances, cycles, maxevaluations);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	        }
+	    }.start();
+		
+		  new Thread("b"){
+		    public void run(){
+		    	try {
+		    		String file2 = runNSGAIIExperiment(instances, cycles, maxevaluations);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		    }
+		  }.start();
+		
+		
+//		String file1 = runRandomSearchExperiment(instances, cycles, maxevaluations);
+//		String file2 = runNSGAIIExperiment(instances, cycles, maxevaluations);
 //		runDominanceAnalysis(instances, file1, file2);
 	}
 	
@@ -86,8 +145,8 @@ public class MainProgram
 		ExperimentAnalyzer analyzer1 = new ExperimentAnalyzer();
 		analyzer1.analyze("manual", filename, instances.size(), 1, 3);
 
-		ResultInterpreter interpreterManual = new ResultInterpreter();
-		interpreterManual.analyze(filename, instances, 1, 3);
+//		ResultInterpreter interpreterManual = new ResultInterpreter();
+//		interpreterManual.analyze(filename, instances, 1, 3);
 		
 		return filename;
 	}
@@ -104,8 +163,8 @@ public class MainProgram
  		ExperimentAnalyzer analyzer2 = new ExperimentAnalyzer();
 		analyzer2.analyze("nsgaii",filename, instances.size(), cycles, 3);
 		
-		ResultInterpreter interpreterNSGA = new ResultInterpreter();
-		interpreterNSGA.analyze(filename, instances, cycles, 3);
+//		ResultInterpreter interpreterNSGA = new ResultInterpreter();
+//		interpreterNSGA.analyze(filename, instances, cycles, 3);
 		
 		return filename;
 	}
@@ -121,8 +180,8 @@ public class MainProgram
 		ExperimentAnalyzer analyzer1 = new ExperimentAnalyzer();
 		analyzer1.analyze("rs", filename, instances.size(), cycles, 3);
 
-		ResultInterpreter interpreterRS = new ResultInterpreter();
-		interpreterRS.analyze(filename, instances, cycles, 3);
+//		ResultInterpreter interpreterRS = new ResultInterpreter();
+//		interpreterRS.analyze(filename, instances, cycles, 3);
 		
 		return filename;
 	}

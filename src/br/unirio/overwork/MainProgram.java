@@ -60,17 +60,17 @@ public class MainProgram
 				}
 		    }
 		  }.start();
-//		
-//      new Thread("3"){
-//	        public void run(){
-//	        	try {
-//					run1(instanceFiles, 3, 200);
-//				} catch (Exception e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//	        }
-//	      }.start();
+		
+      new Thread("3"){
+	        public void run(){
+	        	try {
+					run1(instanceFiles, 50, 20000);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	        }
+	      }.start();
 		
 //	      run1(instanceFiles, 5, 500);
 //	      run1(instanceFiles, 3, 10);
@@ -97,7 +97,8 @@ public class MainProgram
 	{		
 		//Locale locale = new Locale("hr", "HR");
 		Locale.setDefault(new Locale("en", "US"));
-		final Vector<Project> instances = loadInstances(instancesFiles);
+		final Vector<Project> instances1 = loadInstances(instancesFiles);
+		final Vector<Project> instances2 = loadInstances(instancesFiles);
 		
 //		instances.add(createOneDayProject());
 			
@@ -109,31 +110,31 @@ public class MainProgram
 		
 //		runManualExperiment(instances, 9, cycles, maxevaluations);
 		
-//		new Thread("a")
-//		{
-//	        public void run(){
-//	        	try {
-//	        		String file1 = runRandomSearchExperiment(instances, cycles, maxevaluations);
-//				} catch (Exception e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//	        }
-//	    }.start();
-//		
-//		  new Thread("b"){
-//		    public void run(){
-//		    	try {
-//		    		String file2 = runNSGAIIExperiment(instances, cycles, maxevaluations);
-//				} catch (Exception e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//		    }
-//		  }.start();
+		new Thread("a")
+		{
+	        public void run(){
+	        	try {
+	        		String file1 = runRandomSearchExperiment(instances1, cycles, maxevaluations);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	        }
+	    }.start();
 		
-		String file1 = runRandomSearchExperiment(instances, cycles, maxevaluations);
-		String file2 = runNSGAIIExperiment(instances, cycles, maxevaluations);
+		  new Thread("b"){
+		    public void run(){
+		    	try {
+		    		String file2 = runNSGAIIExperiment(instances2, cycles, maxevaluations);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		    }
+		  }.start();
+		
+//		String file1 = runRandomSearchExperiment(instances, cycles, maxevaluations);
+//		String file2 = runNSGAIIExperiment(instances, cycles, maxevaluations);
 //		runDominanceAnalysis(instances, file1, file2);		
 	}
 
@@ -164,7 +165,7 @@ public class MainProgram
 	protected static String runManualExperiment(Vector<Project> instances, int value, int cycles, int maxevaluations) throws Exception, ExperimentFileReaderException 
 	{
 		SimpleDateFormat sdf1 = new SimpleDateFormat("ddMMyyyy_hhmmss");
-		String filename = "data/result/ouput_datetime" + sdf1.format(new Date()) + "_val" + value + "_cycles" + cycles + "_manual.txt";
+		String filename = "data/result/" + sdf1.format(new Date()) + "_v" + maxevaluations + "_c" + cycles +  "_manual.txt";
 
 		ManualExperiment m = new ManualExperiment(value);
 		m.runCycles(filename, instances, 1);
@@ -182,7 +183,7 @@ public class MainProgram
 	protected static String runNSGAIIExperiment(Vector<Project> instances, int cycles, int maxevaluations) throws Exception, ExperimentFileReaderException 
 	{
 		SimpleDateFormat sdf1 = new SimpleDateFormat("ddMMyyyy_hhmmss");
-		String filename = "data/result/ouput_datetime" + sdf1.format(new Date()) + "_eval" + maxevaluations + "_cycles"+ cycles + "_nsga.txt";
+		String filename = "data/result/" + sdf1.format(new Date()) + "_v" + maxevaluations + "_c" + cycles +  "_nsga.txt";
 		
 		NSGAIIExperiment nsgaii2 = new NSGAIIExperiment(maxevaluations);
 		nsgaii2 .runCycles(filename, instances, cycles);
@@ -199,7 +200,7 @@ public class MainProgram
 	protected static String runRandomSearchExperiment(Vector<Project> instances, int cycles, int maxevaluations) throws Exception, ExperimentFileReaderException 
 	{
 		SimpleDateFormat sdf1 = new SimpleDateFormat("ddMMyyyy_hhmmss");
-		String filename = "data/result/ouput_datetime" + sdf1.format(new Date()) + "_eval" + maxevaluations + "_cycles" + cycles + "_rs.txt";
+		String filename = "data/result/" + sdf1.format(new Date()) + "_v" + maxevaluations + "_c" + cycles + "_rs.txt";
 
 		RandomSearchExperiment rs = new RandomSearchExperiment(maxevaluations);
 		rs.runCycles(filename, instances, cycles);

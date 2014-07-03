@@ -5,9 +5,11 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Vector;
 
-import unirio.experiments.multiobjective.analyzer.ExperimentAnalyzer;
+//import unirio.experiments.multiobjective.analyzer.ExperimentAnalyzer;
+//import unirio.experiments.multiobjective.analyzer.MultiExperimentAnalyzer;
+import unirio.experiments.multiobjective.model.ExperimentResult;
+import unirio.experiments.multiobjective.reader.ExperimentFileReader;
 import unirio.experiments.multiobjective.reader.ExperimentFileReaderException;
-import br.unirio.dominance.reader.ObjectivesComparator;
 import br.unirio.optimization.experiment.ManualExperiment;
 import br.unirio.optimization.experiment.NSGAIIExperiment;
 import br.unirio.optimization.experiment.RandomSearchExperiment;
@@ -75,29 +77,40 @@ public class MainProgram
 	      run1(instanceFiles, 5, 500);
 //	      run1(instanceFiles, 3, 10);
 //	      run1(instanceFiles, 3, 20);
+
+//		ExperimentFileReader reader = new ExperimentFileReader();
+//		ExperimentResult configNSGA = reader.execute("nsga20k", "data/result/20k/ouput_datetime28062014_114012_eval20000_cycles30_nsga.txt", 6, 30, 3);
+//		ExperimentResult configRS = reader.execute("rs20k", "data/result/20k/ouput_datetime27062014_093455_eval20000_cycles30_rs.txt", 6, 30, 3);
+//
+//		MultiExperimentAnalyzer analyzer = new MultiExperimentAnalyzer();
+//		analyzer.addExperimentResult(configNSGA);
+//		analyzer.addExperimentResult(configRS);
+//		analyzer.analyzeInstanceFrontiers();
+
+		
+//		run(instanceFiles, 30, 5000);
+//		run(instanceFiles, 30, 10000);
+//		run(instanceFiles, 30, 20000);
+
 		//run(instanceFiles, 3, 50);
 	}
 		
 	public static void run1(String[] instancesFiles, final int cycles, final int maxevaluations) throws Exception
 	{		
 		//Locale locale = new Locale("hr", "HR");
-		
 		Locale.setDefault(new Locale("en", "US"));
-		
-		final Vector<Project> instances = new Vector<Project>();
-		
-		for (int i = 0; i < instancesFiles.length; i++)
-			if (instancesFiles[i].length() > 0)
-			{
-				Project project = new Project ();
-				project = loadInstance(instancesFiles[i]);
-				instances.add(project);
-			}
+		final Vector<Project> instances = loadInstances(instancesFiles);
 		
 //		instances.add(createOneDayProject());
+			
+//		runManualExperiment(instances, 9, cycles, maxevaluations);
+		String file1 = runRandomSearchExperiment(instances, cycles, maxevaluations);
+		String file2 = runNSGAIIExperiment(instances, cycles, maxevaluations);
+//		runDominanceAnalysis(instances, file1, file2);
+		
 		
 //		runManualExperiment(instances, 9, cycles, maxevaluations);
-	
+		
 		new Thread("a")
 		{
 	        public void run(){
@@ -121,10 +134,26 @@ public class MainProgram
 		    }
 		  }.start();
 		
-		
 //		String file1 = runRandomSearchExperiment(instances, cycles, maxevaluations);
 //		String file2 = runNSGAIIExperiment(instances, cycles, maxevaluations);
-//		runDominanceAnalysis(instances, file1, file2);
+//		runDominanceAnalysis(instances, file1, file2);		
+	}
+
+	private static Vector<Project> loadInstances(String[] instancesFiles) throws Exception
+	{
+		Vector<Project> instances = new Vector<Project>();
+		
+		for (int i = 0; i < instancesFiles.length; i++)
+			if (instancesFiles[i].length() > 0)
+			{
+				Project project = new Project ();
+				project = loadInstance(instancesFiles[i]);
+				instances.add(project);
+			}
+		
+//		instances.add(createOneDayProject());
+
+		return instances;
 	}
 	
 //	private static void runDominanceAnalysis(Vector<Project> instances, String f1, String f2) throws Exception {

@@ -6,6 +6,9 @@ import java.util.Locale;
 import java.util.Vector;
 
 import unirio.experiments.multiobjective.analyzer.ExperimentAnalyzer;
+import unirio.experiments.multiobjective.analyzer.MultiExperimentAnalyzer;
+import unirio.experiments.multiobjective.model.ExperimentResult;
+import unirio.experiments.multiobjective.reader.ExperimentFileReader;
 import unirio.experiments.multiobjective.reader.ExperimentFileReaderException;
 import br.unirio.optimization.experiment.ManualExperiment;
 import br.unirio.optimization.experiment.NSGAIIExperiment;
@@ -17,99 +20,121 @@ import br.unirio.overwork.model.base.Activity;
 import br.unirio.overwork.model.base.ActivityDevelopment;
 import br.unirio.overwork.model.base.Developer;
 import br.unirio.overwork.model.base.Project;
-//import unirio.experiments.multiobjective.analyzer.ExperimentAnalyzer;
-//import unirio.experiments.multiobjective.analyzer.MultiExperimentAnalyzer;
 
 public class MainProgram
 {
-//	protected static final int CYCLES = 30;
-//	protected static final int MAXEVALUATIONS = 5000;
 
 	protected static String[] instanceFiles =
 	{
-		"data/overworking/ACAD.xml",
+		"data/overworking/ACAD.xml"
 //		"data/overworking/BOLS.xml",
-		"data/overworking/OPMET.xml",
-		"data/overworking/PARM.xml",
-		"data/overworking/PSOA.xml",
-		"data/overworking/WEBAMHS.xml",
-		"data/overworking/WEBMET.xml"
+//		"data/overworking/OPMET.xml",
+//		"data/overworking/PARM.xml",
+//		"data/overworking/PSOA.xml",
+//		"data/overworking/WEBAMHS.xml",
+//		"data/overworking/WEBMET.xml"
 	};
+	
+	protected static String[] instanceFiles1 =	{"data/overworking/ACAD.xml"};
+		
+	protected static String[] instanceFiles2 =	{"data/overworking/OPMET.xml"};
+	
+	protected static String[] instanceFiles3 =	{"data/overworking/PARM.xml"};
+	
+	protected static String[] instanceFiles4 =	{"data/overworking/PSOA.xml"};
+	
+	protected static String[] instanceFiles5 =	{"data/overworking/WEBAMHS.xml"};
+	
+	protected static String[] instanceFiles6 =	{"data/overworking/WEBMET.xml"};
+	
 	
 	public static final void main(String[] args) throws Exception
 	{
-		new Thread("1")
+		runExperimentThread("1", instanceFiles1, 50, 50000);
+		runExperimentThread("2", instanceFiles2, 50, 50000);
+		runExperimentThread("3", instanceFiles3, 50, 50000);
+		runExperimentThread("4", instanceFiles4, 50, 50000);
+		
+		//runExperimentAnalysis();
+	}
+
+	@SuppressWarnings("unused")
+	private static void runExperimentAnalysis()
+			throws ExperimentFileReaderException, Exception {
+		String path = "C:/Users/luizaraujo/Downloads/resultados 01245/";
+		ExperimentFileReader reader = new ExperimentFileReader();
+		ExperimentResult configNSGA5 = reader.execute("nsga5k", path + "03072014_121632_v5000_c50_nsga.txt", 5, 50, 3);
+		ExperimentResult configNSGA10 = reader.execute("nsga10k", path + "03072014_121632_v10000_c50_nsga.txt", 5, 50, 3);
+		ExperimentResult configNSGA20 = reader.execute("nsga20k", path + "03072014_121632_v20000_c50_nsga.txt", 5, 50, 3);
+		ExperimentResult configNSGA50 = reader.execute("nsga50k", path + "09072014_112842_v50000_c50_nsga.txt", 5, 50, 3);
+//		ExperimentResult configNSGA100 = reader.execute("nsga100k", "data/result/04072014_085441_v100000_c50_nsga - Copy - Copy.txt", 1, 50, 3);
+		
+		ExperimentResult configRS5 = reader.execute("rs5k", path + "03072014_121632_v5000_c50_rs.txt", 5, 50, 3);
+		ExperimentResult configRS10 = reader.execute("rs10k", path + "03072014_121632_v10000_c50_rs.txt", 5, 50, 3);
+		ExperimentResult configRS20 = reader.execute("rs20k", path + "03072014_121632_v20000_c50_rs.txt", 5, 50, 3);
+		ExperimentResult configRS50 = reader.execute("RS50k", path + "09072014_112842_v50000_c50_rs.txt", 5, 50, 3);
+//		ExperimentResult configRS100 = reader.execute("RS100k", "data/result/04072014_085441_v100000_c50_RS - Copy - Copy.txt", 1, 50, 3);
+		
+		ExperimentResult configRS = reader.execute("rs20k", "data/result/20k/ouput_datetime27062014_093455_eval20000_cycles30_rs.txt", 6, 30, 3);
+
+		MultiExperimentAnalyzer analyzer = new MultiExperimentAnalyzer();
+		analyzer.addExperimentResult(configNSGA5);
+		analyzer.addExperimentResult(configNSGA10);
+		analyzer.addExperimentResult(configNSGA20);
+		analyzer.addExperimentResult(configNSGA50);
+//		analyzer.addExperimentResult(configNSGA100);
+		analyzer.addExperimentResult(configRS5);
+		analyzer.addExperimentResult(configRS10);
+		analyzer.addExperimentResult(configRS20);
+		analyzer.addExperimentResult(configRS50);
+//		analyzer.addExperimentResult(configRS100);
+		
+		analyzer.analyzeInstanceFrontiers();
+	}
+
+	private static void runExperimentThread(String name, final String[] ifile, final int cycles, final int eval) {
+		new Thread(name)
 		{
 	        public void run(){
 	        	try {
-					run1(instanceFiles, 50, 5000);
+					run1(ifile, cycles, eval);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 	        }
 	    }.start();
+	}
 		
-		  new Thread("2"){
+	public static void run1(String[] instancesFiles, final int cycles, final int maxevaluations) throws Exception
+	{		
+		Locale.setDefault(new Locale("en", "US"));
+		final Vector<Project> instances1 = loadInstances(instancesFiles);
+		final Vector<Project> instances2 = loadInstances(instancesFiles);		
+		
+//		runManualExperiment(instances, 9, cycles, maxevaluations);
+		
+		runRandomSearchExperimentThread(cycles, maxevaluations, instances1);
+		
+		runNSGAIIExperimentThread(cycles, maxevaluations, instances2);
+	}
+
+	private static void runNSGAIIExperimentThread(final int cycles,
+			final int maxevaluations, final Vector<Project> instances2) {
+		new Thread("b"){
 		    public void run(){
 		    	try {
-					run1(instanceFiles, 50, 10000);
+		    		String file2 = runNSGAIIExperiment(instances2, cycles, maxevaluations);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 		    }
 		  }.start();
-		
-      new Thread("3"){
-	        public void run(){
-	        	try {
-					run1(instanceFiles, 50, 20000);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-	        }
-	      }.start();
-		
-//	      run1(instanceFiles, 5, 500);
-//	      run1(instanceFiles, 3, 10);
-//	      run1(instanceFiles, 3, 20);
-
-//		ExperimentFileReader reader = new ExperimentFileReader();
-//		ExperimentResult configNSGA = reader.execute("nsga20k", "data/result/20k/ouput_datetime28062014_114012_eval20000_cycles30_nsga.txt", 6, 30, 3);
-//		ExperimentResult configRS = reader.execute("rs20k", "data/result/20k/ouput_datetime27062014_093455_eval20000_cycles30_rs.txt", 6, 30, 3);
-//
-//		MultiExperimentAnalyzer analyzer = new MultiExperimentAnalyzer();
-//		analyzer.addExperimentResult(configNSGA);
-//		analyzer.addExperimentResult(configRS);
-//		analyzer.analyzeInstanceFrontiers();
-
-		
-//		run(instanceFiles, 30, 5000);
-//		run(instanceFiles, 30, 10000);
-//		run(instanceFiles, 30, 20000);
-
-		//run(instanceFiles, 3, 50);
 	}
-		
-	public static void run1(String[] instancesFiles, final int cycles, final int maxevaluations) throws Exception
-	{		
-		//Locale locale = new Locale("hr", "HR");
-		Locale.setDefault(new Locale("en", "US"));
-		final Vector<Project> instances1 = loadInstances(instancesFiles);
-		final Vector<Project> instances2 = loadInstances(instancesFiles);
-		
-//		instances.add(createOneDayProject());
-			
-//		runManualExperiment(instances, 9, cycles, maxevaluations);
-//		String file1 = runRandomSearchExperiment(instances, cycles, maxevaluations);
-//		String file2 = runNSGAIIExperiment(instances, cycles, maxevaluations);
-//		runDominanceAnalysis(instances, file1, file2);
-		
-		
-//		runManualExperiment(instances, 9, cycles, maxevaluations);
-		
+
+	private static void runRandomSearchExperimentThread(final int cycles,
+			final int maxevaluations, final Vector<Project> instances1) {
 		new Thread("a")
 		{
 	        public void run(){
@@ -121,21 +146,6 @@ public class MainProgram
 				}
 	        }
 	    }.start();
-		
-		  new Thread("b"){
-		    public void run(){
-		    	try {
-		    		String file2 = runNSGAIIExperiment(instances2, cycles, maxevaluations);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-		    }
-		  }.start();
-		
-//		String file1 = runRandomSearchExperiment(instances, cycles, maxevaluations);
-//		String file2 = runNSGAIIExperiment(instances, cycles, maxevaluations);
-//		runDominanceAnalysis(instances, file1, file2);		
 	}
 
 	private static Vector<Project> loadInstances(String[] instancesFiles) throws Exception
@@ -154,17 +164,10 @@ public class MainProgram
 
 		return instances;
 	}
-	
-//	private static void runDominanceAnalysis(Vector<Project> instances, String f1, String f2) throws Exception {
-//		
-//		ObjectivesComparator comparator = new ObjectivesComparator();
-//		comparator.analyze(f1, f2, instances, CYCLES, 3);		
-//	}
-
 		
 	protected static String runManualExperiment(Vector<Project> instances, int value, int cycles, int maxevaluations) throws Exception, ExperimentFileReaderException 
 	{
-		SimpleDateFormat sdf1 = new SimpleDateFormat("ddMMyyyy_hhmmss");
+		SimpleDateFormat sdf1 = new SimpleDateFormat("ddMMyyyy_HHmmss");
 		String filename = "data/result/" + sdf1.format(new Date()) + "_v" + maxevaluations + "_c" + cycles +  "_manual.txt";
 
 		ManualExperiment m = new ManualExperiment(value);
@@ -182,11 +185,11 @@ public class MainProgram
 
 	protected static String runNSGAIIExperiment(Vector<Project> instances, int cycles, int maxevaluations) throws Exception, ExperimentFileReaderException 
 	{
-		SimpleDateFormat sdf1 = new SimpleDateFormat("ddMMyyyy_hhmmss");
+		SimpleDateFormat sdf1 = new SimpleDateFormat("ddMMyyyy_HHmmss");
 		String filename = "data/result/" + sdf1.format(new Date()) + "_v" + maxevaluations + "_c" + cycles +  "_nsga.txt";
 		
 		NSGAIIExperiment nsgaii2 = new NSGAIIExperiment(maxevaluations);
-		nsgaii2 .runCycles(filename, instances, cycles);
+		nsgaii2.runCycles(filename, instances, cycles);
 		
  		ExperimentAnalyzer analyzer2 = new ExperimentAnalyzer();
 		analyzer2.analyze("nsgaii",filename, instances.size(), cycles, 3);
@@ -199,7 +202,7 @@ public class MainProgram
 
 	protected static String runRandomSearchExperiment(Vector<Project> instances, int cycles, int maxevaluations) throws Exception, ExperimentFileReaderException 
 	{
-		SimpleDateFormat sdf1 = new SimpleDateFormat("ddMMyyyy_hhmmss");
+		SimpleDateFormat sdf1 = new SimpleDateFormat("ddMMyyyy_HHmmss");
 		String filename = "data/result/" + sdf1.format(new Date()) + "_v" + maxevaluations + "_c" + cycles + "_rs.txt";
 
 		RandomSearchExperiment rs = new RandomSearchExperiment(maxevaluations);

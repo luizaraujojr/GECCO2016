@@ -186,7 +186,7 @@ public class MainProgram
 	protected static String runNSGAIIExperiment(Vector<Project> instances, int cycles, int maxevaluations) throws Exception, ExperimentFileReaderException 
 	{
 		SimpleDateFormat sdf1 = new SimpleDateFormat("ddMMyyyy_HHmmss");
-		String filename = "data/result/" + sdf1.format(new Date()) + "_v" + maxevaluations + "_c" + cycles +  "_nsga.txt";
+		String filename = "data/result/" + sdf1.format(new Date()) + "_v" + maxevaluations + "_c" + cycles +  "_nsga_" + instances.get(0).getName()+ "_pop8x.txt";
 		
 		NSGAIIExperiment nsgaii2 = new NSGAIIExperiment(maxevaluations);
 		nsgaii2.runCycles(filename, instances, cycles);

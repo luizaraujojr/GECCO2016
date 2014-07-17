@@ -26,13 +26,13 @@ public class MainProgram
 
 	protected static String[] instanceFiles =
 	{
-		"data/overworking/ACAD.xml"
+		"data/overworking/ACAD.xml",
 //		"data/overworking/BOLS.xml",
-//		"data/overworking/OPMET.xml",
-//		"data/overworking/PARM.xml",
-//		"data/overworking/PSOA.xml",
-//		"data/overworking/WEBAMHS.xml",
-//		"data/overworking/WEBMET.xml"
+		"data/overworking/OPMET.xml",
+		"data/overworking/PARM.xml",
+		"data/overworking/PSOA.xml",
+		"data/overworking/WEBAMHS.xml",
+		"data/overworking/WEBMET.xml"
 	};
 	
 	protected static String[] instanceFiles1 =	{"data/overworking/ACAD.xml"};
@@ -50,44 +50,71 @@ public class MainProgram
 	
 	public static final void main(String[] args) throws Exception
 	{
-		runExperimentThread("1", instanceFiles1, 50, 50000);
-		runExperimentThread("2", instanceFiles2, 50, 50000);
-		runExperimentThread("3", instanceFiles3, 50, 50000);
-		runExperimentThread("4", instanceFiles4, 50, 50000);
-		
-		//runExperimentAnalysis();
+		runExperimentThread("1", instanceFiles, 0, 99);
+	
+//		runExperimentAnalysis();
+//		runMultiExperimentAnalysis();		
 	}
 
 	@SuppressWarnings("unused")
 	private static void runExperimentAnalysis()
 			throws ExperimentFileReaderException, Exception {
-		String path = "C:/Users/luizaraujo/Downloads/resultados 01245/";
+//		new ExperimentAnalyzer().analyze("rs5k","C:/workspace/Hector/data/result/RS/5K/rs5k.txt", instanceFiles.length, 50, 3);
+//		new ExperimentAnalyzer().analyze("rs10k","C:/workspace/Hector/data/result/RS/10K/rs10k.txt", instanceFiles.length, 50, 3);
+//		new ExperimentAnalyzer().analyze("rs20k","C:/workspace/Hector/data/result/RS/20K/rs20k.txt", instanceFiles.length, 50, 3);
+//		new ExperimentAnalyzer().analyze("rs50k","C:/workspace/Hector/data/result/RS/50K/rs50k.txt", instanceFiles.length, 50, 3);
+		
+//		new ExperimentAnalyzer().analyze("nsga5k2x","C:/workspace/Hector/data/result/NSGA/5K/nsga5k2x.txt", instanceFiles.length, 50, 3);
+//		new ExperimentAnalyzer().analyze("nsga10k2x","C:/workspace/Hector/data/result/NSGA/10K/nsga10k2x.txt", instanceFiles.length, 50, 3);
+		new ExperimentAnalyzer().analyze("nsga20k2x","C:/workspace/Hector/data/result/NSGA/20K/nsga20k2x.txt", instanceFiles.length, 50, 3);
+//		new ExperimentAnalyzer().analyze("nsga50k2x","C:/workspace/Hector/data/result/NSGA/50K/2x/nsga50k2x.txt", instanceFiles.length, 50, 3);
+		
+//		new ExperimentAnalyzer().analyze("nsga5k4x","C:/workspace/Hector/data/result/NSGA/5K/4x/nsga5k4x.txt", instanceFiles.length, 50, 3);
+//		new ExperimentAnalyzer().analyze("nsga10k4x","C:/workspace/Hector/data/result/NSGA/10K/4x/nsga10k4x.txt", instanceFiles.length, 50, 3);
+//		new ExperimentAnalyzer().analyze("nsga20k4x","C:/workspace/Hector/data/result/NSGA/20K/4x/nsga20k4x.txt", instanceFiles.length, 50, 3);
+//		new ExperimentAnalyzer().analyze("nsga50k4x","C:/workspace/Hector/data/result/NSGA/50K/4x/nsga50k4x.txt", instanceFiles.length, 50, 3);
+		
+//		new ExperimentAnalyzer().analyze("nsga5k8x","C:/workspace/Hector/data/result/NSGA/5K/8x/nsga5k8x.txt", instanceFiles.length, 50, 3);
+//		new ExperimentAnalyzer().analyze("nsga10k8x","C:/workspace/Hector/data/result/NSGA/10K/8x/nsga10k8x.txt", instanceFiles.length, 50, 3);
+//		new ExperimentAnalyzer().analyze("nsga20k8x","C:/workspace/Hector/data/result/NSGA/20K/8x/nsga20k8x.txt", instanceFiles.length, 50, 3);
+//		new ExperimentAnalyzer().analyze("nsga50k8x","C:/workspace/Hector/data/result/NSGA/50K/8x/nsga50k8x.txt", instanceFiles.length, 50, 3);
+		
+//		new ExperimentAnalyzer().analyze("nsga50k16x","C:/workspace/Hector/data/result/NSGA/50K/16x/nsga50k16x.txt", instanceFiles.length, 50, 3);		
+	}
+	
+	@SuppressWarnings("unused")
+	private static void runMultiExperimentAnalysis()
+			throws ExperimentFileReaderException, Exception {
+		String path = "C:/workspace/Hector/data/result/";
 		ExperimentFileReader reader = new ExperimentFileReader();
-		ExperimentResult configNSGA5 = reader.execute("nsga5k", path + "03072014_121632_v5000_c50_nsga.txt", 5, 50, 3);
-		ExperimentResult configNSGA10 = reader.execute("nsga10k", path + "03072014_121632_v10000_c50_nsga.txt", 5, 50, 3);
-		ExperimentResult configNSGA20 = reader.execute("nsga20k", path + "03072014_121632_v20000_c50_nsga.txt", 5, 50, 3);
-		ExperimentResult configNSGA50 = reader.execute("nsga50k", path + "09072014_112842_v50000_c50_nsga.txt", 5, 50, 3);
-//		ExperimentResult configNSGA100 = reader.execute("nsga100k", "data/result/04072014_085441_v100000_c50_nsga - Copy - Copy.txt", 1, 50, 3);
+//		ExperimentResult configNSGA05k2x = reader.execute("nsga05k2x", path + "nsga/5k/nsga05k2x.txt", 6, 50, 3);
+//		ExperimentResult configNSGA10k2x = reader.execute("nsga10k2x", path + "nsga/10k/nsga10k2x.txt", 6, 50, 3);
+//		ExperimentResult configNSGA20k2x = reader.execute("nsga20k2x", path + "nsga/20k/nsga20k2x.txt", 6, 50, 3);
+		ExperimentResult configNSGA50k2x = reader.execute("nsga50k2x", path + "nsga/50k/2x/nsga50k2x.txt", 6, 50, 3);
 		
-		ExperimentResult configRS5 = reader.execute("rs5k", path + "03072014_121632_v5000_c50_rs.txt", 5, 50, 3);
-		ExperimentResult configRS10 = reader.execute("rs10k", path + "03072014_121632_v10000_c50_rs.txt", 5, 50, 3);
-		ExperimentResult configRS20 = reader.execute("rs20k", path + "03072014_121632_v20000_c50_rs.txt", 5, 50, 3);
-		ExperimentResult configRS50 = reader.execute("RS50k", path + "09072014_112842_v50000_c50_rs.txt", 5, 50, 3);
-//		ExperimentResult configRS100 = reader.execute("RS100k", "data/result/04072014_085441_v100000_c50_RS - Copy - Copy.txt", 1, 50, 3);
+		ExperimentResult configNSGA50k4x = reader.execute("nsga50k4x", path + "nsga/50k/4x/nsga50k4x.txt", 6, 50, 3);
 		
-		ExperimentResult configRS = reader.execute("rs20k", "data/result/20k/ouput_datetime27062014_093455_eval20000_cycles30_rs.txt", 6, 30, 3);
+		ExperimentResult configNSGA50k8x = reader.execute("nsga50k8x", path + "nsga/50k/8x/nsga50k8x.txt", 6, 50, 3);
+
+//		ExperimentResult configRS5 = reader.execute("rs5k", path + "rs/5k/rs5k.txt", 5, 50, 3);
+//		ExperimentResult configRS10 = reader.execute("rs10k", path + "rs/5k/rs10k.txt", 5, 50, 3);
+//		ExperimentResult configRS20 = reader.execute("rs20k", path + "rs/5k/rs20k.txt", 5, 50, 3);
+//		ExperimentResult configRS50 = reader.execute("RS50k", path + "rs/5k/rs50k.txt", 5, 50, 3);
 
 		MultiExperimentAnalyzer analyzer = new MultiExperimentAnalyzer();
-		analyzer.addExperimentResult(configNSGA5);
-		analyzer.addExperimentResult(configNSGA10);
-		analyzer.addExperimentResult(configNSGA20);
-		analyzer.addExperimentResult(configNSGA50);
-//		analyzer.addExperimentResult(configNSGA100);
-		analyzer.addExperimentResult(configRS5);
-		analyzer.addExperimentResult(configRS10);
-		analyzer.addExperimentResult(configRS20);
-		analyzer.addExperimentResult(configRS50);
-//		analyzer.addExperimentResult(configRS100);
+//		analyzer.addExperimentResult(configNSGA05k2x);
+//		analyzer.addExperimentResult(configNSGA10k2x);
+//		analyzer.addExperimentResult(configNSGA20k2x);
+		analyzer.addExperimentResult(configNSGA50k2x);
+		
+		analyzer.addExperimentResult(configNSGA50k4x);
+		
+		analyzer.addExperimentResult(configNSGA50k8x);
+//				
+//		analyzer.addExperimentResult(configRS5);
+//		analyzer.addExperimentResult(configRS10);
+//		analyzer.addExperimentResult(configRS20);
+//		analyzer.addExperimentResult(configRS50);
 		
 		analyzer.analyzeInstanceFrontiers();
 	}
@@ -108,15 +135,15 @@ public class MainProgram
 		
 	public static void run1(String[] instancesFiles, final int cycles, final int maxevaluations) throws Exception
 	{		
-		Locale.setDefault(new Locale("en", "US"));
+		Locale.setDefault(new Locale("pt", "BR"));
 		final Vector<Project> instances1 = loadInstances(instancesFiles);
 		final Vector<Project> instances2 = loadInstances(instancesFiles);		
 		
-//		runManualExperiment(instances, 9, cycles, maxevaluations);
+		runManualExperiment(instances1, maxevaluations, cycles);
 		
-		runRandomSearchExperimentThread(cycles, maxevaluations, instances1);
+//		runRandomSearchExperimentThread(cycles, maxevaluations, instances1);
 		
-		runNSGAIIExperimentThread(cycles, maxevaluations, instances2);
+//		runNSGAIIExperimentThread(cycles, maxevaluations, instances2);
 	}
 
 	private static void runNSGAIIExperimentThread(final int cycles,
@@ -165,12 +192,15 @@ public class MainProgram
 		return instances;
 	}
 		
-	protected static String runManualExperiment(Vector<Project> instances, int value, int cycles, int maxevaluations) throws Exception, ExperimentFileReaderException 
+	/*
+	 * Remember to change the file, coping the values from the cycle to the pareto front.
+	 */
+	protected static String runManualExperiment(Vector<Project> instances, int type, int cycles) throws Exception, ExperimentFileReaderException 
 	{
 		SimpleDateFormat sdf1 = new SimpleDateFormat("ddMMyyyy_HHmmss");
-		String filename = "data/result/" + sdf1.format(new Date()) + "_v" + maxevaluations + "_c" + cycles +  "_manual.txt";
+		String filename = "data/result/" + sdf1.format(new Date()) + "_v" + type + "_c" + cycles +  "_manual.txt";
 
-		ManualExperiment m = new ManualExperiment(value);
+		ManualExperiment m = new ManualExperiment(type);
 		m.runCycles(filename, instances, 1);
 		
 		ExperimentAnalyzer analyzer1 = new ExperimentAnalyzer();

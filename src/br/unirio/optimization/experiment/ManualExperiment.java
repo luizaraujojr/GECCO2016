@@ -10,7 +10,7 @@ import br.unirio.overwork.model.base.Project;
  * 
  * @author Luiz Araujo Jr
  */
-public class ManualExperiment  extends Experiment<Project>
+public class ManualExperiment extends Experiment<Project>
 {
 	private int value;
 		

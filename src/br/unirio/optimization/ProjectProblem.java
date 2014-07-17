@@ -23,7 +23,7 @@ public class ProjectProblem extends Problem {
 
 	private int evaluations;
 	
-	private @Getter @Setter Project project;
+	public @Getter @Setter Project project;
 	private @Getter @Setter String instanceName;
 	private @Getter @Setter int maxEvaluations;
 	

@@ -1,0 +1,75 @@
+## change the file replacing the character # for the character i
+## remove the repetitive title of result analysis
+
+# Load data
+data <- read.table(file="C:/workspace/Hector/data/result/Analysis/stopCriteria/data_detalhado_stop.txt", header=TRUE);
+
+# Separate sequence config and instances
+unique_configuration <- unique(as.character(data$config));
+unique_instances <- unique(data$inst);
+
+# Create matrices to hold values
+#mean_time <- matrix(nrow=length(unique_instances), ncol=length(unique_configuration), dimnames=list(unique_instances, unique_configuration));
+mean_solution <- matrix(nrow=length(unique_instances), ncol=length(unique_configuration), dimnames=list(unique_instances, unique_configuration));
+mean_hv <- matrix(nrow=length(unique_instances), ncol=length(unique_configuration), dimnames=list(unique_instances, unique_configuration));
+mean_gd <- matrix(nrow=length(unique_instances), ncol=length(unique_configuration), dimnames=list(unique_instances, unique_configuration));
+
+#sd_time <- matrix(nrow=length(unique_instances), ncol=length(unique_configuration), dimnames=list(unique_instances, unique_configuration));
+sd_solution <- matrix(nrow=length(unique_instances), ncol=length(unique_configuration), dimnames=list(unique_instances, unique_configuration));
+sd_hv <- matrix(nrow=length(unique_instances), ncol=length(unique_configuration), dimnames=list(unique_instances, unique_configuration));
+sd_gd <- matrix(nrow=length(unique_instances), ncol=length(unique_configuration), dimnames=list(unique_instances, unique_configuration));
+
+# Fill out matrices with means and standard deviation
+for (config_ in unique_configuration )
+{
+	for (instances_ in unique_instances)
+	{
+		newdata <- subset(data, inst == instances_ & config == config_);
+		mean_solution [instances_, config_] <- mean(newdata$best);
+		mean_hv [instances_, config_] <- mean(newdata$hv);
+		#mean_time [instances_, config_] <- mean(newdata$time);
+		mean_gd [instances_, config_] <- mean(newdata$gd);
+		
+		sd_solution [instances_, config_] <- sd(newdata$best);
+		sd_hv [instances_, config_] <- sd(newdata$hv);
+		#sd_time [instances_, config_] <- sd(newdata$time);
+		sd_gd [instances_, config_] <- sd(newdata$gd);
+	}
+}
+
+mean_hv;
+mean_solution;
+mean_gd;
+
+sd_hv;
+sd_solution;
+sd_gd;
+
+
+
+
+#############################revisar
+# Calculate statistics
+StatisticAnalysis <- matrix(nrow=length(unique_instances), ncol=6, dimnames=list(unique_instances, c("es_2x-4x", "es_2x-8x", "es_2x-best", "pv_4x", "pv_8x", "pv_best")));
+
+for (instancia_ in unique_instances)
+{	
+	nsga50k2x <- subset(data, inst == instancia_ & config == 'nsga50k2x')$hv;
+	nsga50k4x <- subset(data, inst == instancia_ & config == 'nsga50k4x')$hv;
+	nsga50k8x<- subset(data, inst == instancia_ & config == 'nsga50k8x')$hv;
+	
+	bestHV <- c();
+	for (i in 1: max(length(nsga50k4x), length(nsga50k8x)))
+	bestHV <- append(bestHV, max(nsga50k4x[i], nsga50k8x[i]));
+
+	StatisticAnalysis[instancia_, 'es_2x-4x'] <- (sum(rank(c(nsga50k2x,nsga50k4x))[seq_along(nsga50k2x)])/length(nsga50k2x)-(length(nsga50k2x)+1) / 2)  / length(nsga50k4x);
+	StatisticAnalysis[instancia_, 'es_2x-8x'] <- (sum(rank(c(nsga50k2x,nsga50k8x))[seq_along(nsga50k2x)])/length(nsga50k2x)-(length(nsga50k2x)+1) / 2)  / length(nsga50k8x);
+	StatisticAnalysis[instancia_, 'es_2x-best'] <- (sum(rank(c(nsga50k2x,bestHV))[seq_along(nsga50k2x)])/length(nsga50k2x)-(length(nsga50k2x)+1) / 2)  / length(bestHV);
+
+	StatisticAnalysis[instancia_, 'pv_4x'] <- wilcox.test(nsga50k2x, nsga50k4x )$p.value
+	StatisticAnalysis[instancia_, 'pv_8x'] <- wilcox.test(nsga50k2x, nsga50k8x )$p.value
+	StatisticAnalysis[instancia_, 'pv_best'] <- wilcox.test(nsga50k2x, bestHV)$p.value
+}
+
+tatisticAnalysis;
+

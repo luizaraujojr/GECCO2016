@@ -18,54 +18,16 @@ public abstract class Activity extends SimulationObject
 {
 	static final String TAB = "\t";
 	
-	// the actual cost of the task
-	private @Setter double CPMcost;
-    // the cost of the task along the critical path
-    private @Getter @Setter double criticalCost;
-    // a name for the task for printing
-    public String name;
-    // the earliest start
-    private @Getter @Setter double earlyStart;
-    // the earliest finish
-    private @Getter @Setter double earlyFinish;
-    // the latest start
-    private @Getter @Setter double latestStart;
-    // the latest finish
-    private @Getter @Setter double latestFinish;
-    
-    
-    public double getCPMcost()
-    {
-		return getFinishingTime() - getStartExecutionTime();
-    }
-    
-
-    public String[] toStringArray() {
-        String criticalCond = earlyStart == latestStart ? "Yes" : "No";
-        String[] toString = { getName()+TAB,  getStartExecutionTime() + TAB, getFinishingTime() + TAB, earlyStart + TAB, earlyFinish + TAB, latestStart + TAB, latestFinish + TAB,
-                latestStart - earlyStart + TAB, criticalCond };
-        return toString;
-    }
-
-    public boolean isDependent(Activity t) {
-        // is t a direct dependency?
-        if (precedences.contains(t)) {
-            return true;
-        }
-        // is t an indirect dependency
-        for (Activity dep : precedences) {
-            if (dep.isDependent(t)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    
-    
-    
+	/**
+	 * Number of connected activities that occur before a activity  
+	 */
+	private @Getter @Setter int predecessorCount;
 	
-	
+	/**
+	 * Number of connected activities that occur after a activity 
+	 */
+	private @Getter @Setter int sucessorCount;
+    	
 	/**
 	 * Project holding the activity
 	 */

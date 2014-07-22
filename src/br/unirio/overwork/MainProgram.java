@@ -50,9 +50,9 @@ public class MainProgram
 	
 	public static final void main(String[] args) throws Exception
 	{
-//		runExperimentThread("1", instanceFiles, 0, 99);
+		runExperimentThread("1", instanceFiles, 99, 99);
 	
-		runExperimentAnalysis();
+//		runExperimentAnalysis();
 //		runMultiExperimentAnalysis();		
 	}
 
@@ -64,22 +64,22 @@ public class MainProgram
 //		new ExperimentAnalyzer().analyze("rs20k","C:/workspace/Hector/data/result/RS/20K/rs20k.txt", instanceFiles.length, 50, 3);
 //		new ExperimentAnalyzer().analyze("rs50k","C:/workspace/Hector/data/result/RS/50K/rs50k.txt", instanceFiles.length, 50, 3);
 		
-//		new ExperimentAnalyzer().analyze("nsga5k2x","C:/workspace/Hector/data/result/NSGA/5K/nsga5k2x.txt", instanceFiles.length, 50, 3);
-//		new ExperimentAnalyzer().analyze("nsga10k2x","C:/workspace/Hector/data/result/NSGA/10K/nsga10k2x.txt", instanceFiles.length, 50, 3);
-//		new ExperimentAnalyzer().analyze("nsga20k2x","C:/workspace/Hector/data/result/NSGA/20K/nsga20k2x.txt", instanceFiles.length, 50, 3);
+		new ExperimentAnalyzer().analyze("nsga5k2x","C:/workspace/Hector/data/result/NSGA/5K/nsga5k2x.txt", instanceFiles.length, 50, 3);
+		new ExperimentAnalyzer().analyze("nsga10k2x","C:/workspace/Hector/data/result/NSGA/10K/nsga10k2x.txt", instanceFiles.length, 50, 3);
+		new ExperimentAnalyzer().analyze("nsga20k2x","C:/workspace/Hector/data/result/NSGA/20K/nsga20k2x.txt", instanceFiles.length, 50, 3);
 		new ExperimentAnalyzer().analyze("nsga50k2x","C:/workspace/Hector/data/result/NSGA/50K/2x/nsga50k2x.txt", instanceFiles.length, 50, 3);
 		
 //		new ExperimentAnalyzer().analyze("nsga5k4x","C:/workspace/Hector/data/result/NSGA/5K/4x/nsga5k4x.txt", instanceFiles.length, 50, 3);
 //		new ExperimentAnalyzer().analyze("nsga10k4x","C:/workspace/Hector/data/result/NSGA/10K/4x/nsga10k4x.txt", instanceFiles.length, 50, 3);
 //		new ExperimentAnalyzer().analyze("nsga20k4x","C:/workspace/Hector/data/result/NSGA/20K/4x/nsga20k4x.txt", instanceFiles.length, 50, 3);
-		new ExperimentAnalyzer().analyze("nsga50k4x","C:/workspace/Hector/data/result/NSGA/50K/4x/nsga50k4x.txt", instanceFiles.length, 50, 3);
+//		new ExperimentAnalyzer().analyze("nsga50k4x","C:/workspace/Hector/data/result/NSGA/50K/4x/nsga50k4x.txt", instanceFiles.length, 50, 3);
 		
 //		new ExperimentAnalyzer().analyze("nsga5k8x","C:/workspace/Hector/data/result/NSGA/5K/8x/nsga5k8x.txt", instanceFiles.length, 50, 3);
 //		new ExperimentAnalyzer().analyze("nsga10k8x","C:/workspace/Hector/data/result/NSGA/10K/8x/nsga10k8x.txt", instanceFiles.length, 50, 3);
 //		new ExperimentAnalyzer().analyze("nsga20k8x","C:/workspace/Hector/data/result/NSGA/20K/8x/nsga20k8x.txt", instanceFiles.length, 50, 3);
-		new ExperimentAnalyzer().analyze("nsga50k8x","C:/workspace/Hector/data/result/NSGA/50K/8x/nsga50k8x.txt", instanceFiles.length, 50, 3);
+//		new ExperimentAnalyzer().analyze("nsga50k8x","C:/workspace/Hector/data/result/NSGA/50K/8x/nsga50k8x.txt", instanceFiles.length, 50, 3);
 		
-		new ExperimentAnalyzer().analyze("nsga50k16x","C:/workspace/Hector/data/result/NSGA/50K/16x/nsga50k16x.txt", instanceFiles.length, 50, 3);		
+//		new ExperimentAnalyzer().analyze("nsga50k16x","C:/workspace/Hector/data/result/NSGA/50K/16x/nsga50k16x.txt", instanceFiles.length, 50, 3);		
 	}
 	
 	@SuppressWarnings("unused")
@@ -96,10 +96,10 @@ public class MainProgram
 //		
 //		ExperimentResult configNSGA50k8x = reader.execute("nsga50k8x", path + "nsga/50k/8x/nsga50k8x.txt", 6, 50, 3);
 
-		ExperimentResult configRS5 = reader.execute("rs5k", path + "rs/5k/rs5k.txt", 6, 50, 3);
-		ExperimentResult configRS10 = reader.execute("rs10k", path + "rs/10k/rs10k.txt", 6, 50, 3);
-		ExperimentResult configRS20 = reader.execute("rs20k", path + "rs/20k/rs20k.txt", 6, 50, 3);
-		ExperimentResult configRS50 = reader.execute("rs50k", path + "rs/50k/rs50k.txt", 6, 50, 3);
+//		ExperimentResult configRS5 = reader.execute("rs5k", path + "rs/5k/rs5k.txt", 6, 50, 3);
+//		ExperimentResult configRS10 = reader.execute("rs10k", path + "rs/10k/rs10k.txt", 6, 50, 3);
+//		ExperimentResult configRS20 = reader.execute("rs20k", path + "rs/20k/rs20k.txt", 6, 50, 3);
+//		ExperimentResult configRS50 = reader.execute("rs50k", path + "rs/50k/rs50k.txt", 6, 50, 3);
 
 		MultiExperimentAnalyzer analyzer = new MultiExperimentAnalyzer();
 		analyzer.addExperimentResult(configNSGA05k2x);
@@ -111,10 +111,10 @@ public class MainProgram
 //		
 //		analyzer.addExperimentResult(configNSGA50k8x);
 //				
-		analyzer.addExperimentResult(configRS5);
-		analyzer.addExperimentResult(configRS10);
-		analyzer.addExperimentResult(configRS20);
-		analyzer.addExperimentResult(configRS50);
+//		analyzer.addExperimentResult(configRS5);
+//		analyzer.addExperimentResult(configRS10);
+//		analyzer.addExperimentResult(configRS20);
+//		analyzer.addExperimentResult(configRS50);
 //		
 		analyzer.analyzeInstanceFrontiers();
 	}
@@ -139,7 +139,7 @@ public class MainProgram
 		final Vector<Project> instances1 = loadInstances(instancesFiles);
 		final Vector<Project> instances2 = loadInstances(instancesFiles);		
 		
-//		runManualExperiment(instances1, maxevaluations, cycles);
+		runManualExperiment(instances1, maxevaluations, cycles);
 		
 //		runRandomSearchExperimentThread(cycles, maxevaluations, instances1);
 		

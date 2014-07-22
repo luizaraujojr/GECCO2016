@@ -184,7 +184,7 @@ public class ManualSolution extends Algorithm
 			}
 		}
 				
-		Iterable<Activity> a =  this.problem_.getProject().getActivities();
+		//Iterable<Activity> a =  this.problem_.getProject().getActivities();
 	    			    
 	    List<Activity> ordenado = new ArrayList<Activity>();
 		

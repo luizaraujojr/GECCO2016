@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.Vector;
 
 import jmetal.base.Solution;
@@ -132,14 +131,14 @@ public class ObjectivesComparator
 		return ss1;
 	}
 
-	private void PublishInstance(int i, OutputStreamWriter bw)	throws IOException {
+	protected void PublishInstance(int i, OutputStreamWriter bw)	throws IOException {
 		println(bw, "=============================================================");
 		println(bw, "Instance #" + i);
 		println(bw, "=============================================================");
 		println(bw, "");
 	}
 	
-	private void PublishProjectActivities(ArrayList<ProjectProblem> pps, OutputStreamWriter bw) throws IOException {
+	protected void PublishProjectActivities(ArrayList<ProjectProblem> pps, OutputStreamWriter bw) throws IOException {
 		for (ProjectProblem pp :  pps){
 			println(bw, "=============================================================");
 			println(bw, pp.getProject().getName());

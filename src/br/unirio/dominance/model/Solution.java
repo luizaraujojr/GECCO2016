@@ -3,8 +3,6 @@ package br.unirio.dominance.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.unirio.overwork.builders.model.WorkPackage;
-
 /**
  * Class that represents a solution
  * 

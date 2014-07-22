@@ -1,79 +1,65 @@
 ##################################################
-#####   Defining the Population Multiplier   #####
+#####   Comparing to Random Search           #####
 ##################################################
 
-## change the file replacing the character # for the character i
-## remove the repetitive title of result analysis
+# Calculating the Effect Size of Varga & Delaney (A12)
+vargha.delaney <- function(r1, r2) {
+	m <- length(r1);
+	n <- length(r2);
+	return ((sum(rank(c(r1, r2))[seq_along(r1)]) / m - (m + 1) / 2) / n);
+}
 
 # Load data - micro do Marcio
-data <- read.table(file="/Users/Marcio/Desktop/Codigos/Hector/data/result/Analysis/populationSize/data.txt", header=TRUE);
+data <- read.table(file="/Users/Marcio/Desktop/Codigos/Hector/data/result/Analysis/random/data.txt", header=TRUE);
 
 # Load data - micro do Luiz
-# data <- read.table(file="C:/workspace/Hector/data/result/Analysis/populationSize/data.txt", header=TRUE);
+# data <- read.table(file="C:/workspace/Hector/data/result/Analysis/random/data.txt", header=TRUE);
 
 # Separate sequence configuration and instances
-unique_configurations <- unique(as.character(data$config));
-unique_instances <- unique(data$inst);
+configs <- unique(as.character(data$config));
+instances <- unique(data$inst);
 
 # Create matrices to hold mean and stdev values
-mean_solution <- matrix(nrow=length(unique_instances), ncol=length(unique_configurations), dimnames=list(unique_instances, unique_configurations));
-mean_hv <- matrix(nrow=length(unique_instances), ncol=length(unique_configurations), dimnames=list(unique_instances, unique_configurations));
-mean_gd <- matrix(nrow=length(unique_instances), ncol=length(unique_configurations), dimnames=list(unique_instances, unique_configurations));
-sd_solution <- matrix(nrow=length(unique_instances), ncol=length(unique_configurations), dimnames=list(unique_instances, unique_configurations));
-sd_hv <- matrix(nrow=length(unique_instances), ncol=length(unique_configurations), dimnames=list(unique_instances, unique_configurations));
-sd_gd <- matrix(nrow=length(unique_instances), ncol=length(unique_configurations), dimnames=list(unique_instances, unique_configurations));
+mean_ic <- matrix(nrow=length(instances), ncol=length(configs), dimnames=list(instances, configs));
+mean_hv <- matrix(nrow=length(instances), ncol=length(configs), dimnames=list(instances, configs));
+mean_gd <- matrix(nrow=length(instances), ncol=length(configs), dimnames=list(instances, configs));
+sd_ic <- matrix(nrow=length(instances), ncol=length(configs), dimnames=list(instances, configs));
+sd_hv <- matrix(nrow=length(instances), ncol=length(configs), dimnames=list(instances, configs));
+sd_gd <- matrix(nrow=length(instances), ncol=length(configs), dimnames=list(instances, configs));
 
 # Fill out matrices with means and standard deviation
-for (config_ in unique_configurations)
+for (config_ in configs)
 {
-	for (instances_ in unique_instances)
+	for (instances_ in instances)
 	{
 		newdata <- subset(data, inst == instances_ & config == config_);
 
-		mean_solution [instances_, config_] <- mean(newdata$best);
-		mean_hv [instances_, config_] <- mean(newdata$hv);
-		mean_gd [instances_, config_] <- mean(newdata$gd);
+		mean_ic[instances_, config_] <- mean(newdata$best);
+		mean_hv[instances_, config_] <- mean(newdata$hv);
+		mean_gd[instances_, config_] <- mean(newdata$gd);
 		
-		sd_solution [instances_, config_] <- sd(newdata$best);
-		sd_hv [instances_, config_] <- sd(newdata$hv);
-		sd_gd [instances_, config_] <- sd(newdata$gd);
+		sd_ic[instances_, config_] <- sd(newdata$best);
+		sd_hv[instances_, config_] <- sd(newdata$hv);
+		sd_gd[instances_, config_] <- sd(newdata$gd);
 	}
 }
+
+# Statistics
+statNames <- c("ic_pv", "ic_es", "gd_pv", "gd_es", "hv_pv", "hv_es");
+stats <- matrix(nrow=length(instances), ncol=length(statNames), dimnames=list(instances, statNames));
 
 # Inference tests on an instance basis
-for (instance_ in unique_instances)
+for (instance_ in instances)
 {
-	instanceData_ <- subset(data, inst == instance_);
+	rs <- subset(data, inst == instance_ & config == "rs50k");
+	ga <- subset(data, inst == instance_ & config == "nsga50k2x");
 
-	pv <- kruskal.test(gd~config, data=instanceData_)$p.value;
-	print(paste("p-Value for", instance_, "=", pv, sep=" "));
-
-	wt <- pairwise.wilcox.test(instanceData_$gd, instanceData_$config, p.adj="bonferroni", exact=F)$p.value;
-	
-	rownames <- names(wt[,1]);
-	colnames <- names(wt[1,]);
-	
-	for (i in 1:2) 
-	{
-		for (j in 1:i)
-		{
-			if (wt[i,j] < 0.05)
-			{
-				print(paste("There exist differences between", rownames[i], "and", colnames[j], sep=" "));
-			}
-		}
-	}
-	
-	print("");
+	stats[instance_, "ic_pv"] <- wilcox.test(rs$best, ga$best)$p.value;
+	stats[instance_, "ic_es"] <- vargha.delaney(ga$best, rs$best);
+	stats[instance_, "gd_pv"] <- wilcox.test(rs$gd, ga$gd)$p.value;
+	stats[instance_, "gd_es"] <- vargha.delaney(ga$gd, rs$gd);
+	stats[instance_, "hv_pv"] <- wilcox.test(rs$hv, ga$hv)$p.value;
+	stats[instance_, "hv_es"] <- vargha.delaney(ga$hv, rs$hv);
 }
 
-# Best configuration for each instance
-names <- names(mean_gd[1,]);
-
-for (instance_ in unique_instances)
-{
-	instanceIndex <- match(instance_, unique_instances);
-	instanceGD <- mean_gd[instanceIndex,];
-	best <- match(min(instanceGD), instanceGD);
-	print(paste("The best configuration for instance", instance_, "is", names[best], sep=" "));
-}
+stats;

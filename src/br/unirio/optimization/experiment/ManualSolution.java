@@ -33,6 +33,7 @@ public class ManualSolution extends Algorithm
 		this.problem_ = problem;
 	}
 
+	
 	/**	
 	 * Runs the Manual input algorithm.
 	 * 
@@ -69,44 +70,45 @@ public class ManualSolution extends Algorithm
 				}
 				break;
 			case 50: 
-			//	Create the initial solutionSet
-				newSolution = new Solution(problem_);
-				for (int j=0; j< newSolution.getDecisionVariables().length;j++) {
-					if (this.problem_.getProject().getActivity(j).getName().substring(0,6).equalsIgnoreCase("Codifi")) {
-						newSolution.getDecisionVariables()[j].setValue(9);
+				for (int i=1; i<= 9;i++) {
+					newSolution = new Solution(problem_);
+					for (int j=0; j< newSolution.getDecisionVariables().length;j++) {
+						if (this.problem_.getProject().getActivity(j).getName().substring(0,6).equalsIgnoreCase("Codifi")) {
+							newSolution.getDecisionVariables()[j].setValue(i);
+						}
+						else if (this.problem_.getProject().getActivity(j).getName().substring(0,6).equalsIgnoreCase("Testes")) {
+							newSolution.getDecisionVariables()[j].setValue(i);
+						}	
+						else newSolution.getDecisionVariables()[j].setValue(1);
 					}
-					else if (this.problem_.getProject().getActivity(j).getName().substring(0,6).equalsIgnoreCase("Testes")) {
-						newSolution.getDecisionVariables()[j].setValue(9);
-					}	
-					else newSolution.getDecisionVariables()[j].setValue(1);
+					problem_.evaluate(newSolution);
+					ndl.add(newSolution);
 				}
-				problem_.evaluate(newSolution);
-				ndl.add(newSolution);				
 				break;
 			case 99:
-//				Create the initial solutionSet
-				newSolution = new Solution(problem_);
-				
 				Iterable<Activity> a =  this.problem_.getProject().getActivities();
 			    
 			    List<Activity> criticalPath = new ArrayList<Activity>();
 				
 			    criticalPath = UpdateCriticalPath(this.problem_.getProject().getActivities());
-			    
-			    for (int j=0; j< newSolution.getDecisionVariables().length;j++) {
-			    	if (criticalPath.contains (this.problem_.getProject().getActivity(j)))
-			    	{
-			    		newSolution.getDecisionVariables()[j].setValue(9);	
-			    	}
-			    	else{
-			    		newSolution.getDecisionVariables()[j].setValue(1);
-			    	}
-			    		
+				
+			    for (int i=1; i<= 9;i++) {
+					newSolution = new Solution(problem_);
+							    
+				    for (int j=0; j< newSolution.getDecisionVariables().length;j++) {
+				    	if (criticalPath.contains (this.problem_.getProject().getActivity(j)))
+				    	{
+				    		newSolution.getDecisionVariables()[j].setValue(i);	
+				    	}
+				    	else{
+				    		newSolution.getDecisionVariables()[j].setValue(1);
+				    	}
+				    		
+					}
+				    problem_.evaluate(newSolution);			      	
+				    ndl.add(newSolution);				
 				}
-			   			    
-			    problem_.evaluate(newSolution);			      
-			    				
-				ndl.add(newSolution);				
+
 				break;
 				
 			case 1 : case 2 : case 3 : case 4 : case 5 : case 6 : case 7 : case 8 : case 9:
@@ -123,6 +125,7 @@ public class ManualSolution extends Algorithm
 	}
 
 	private List<Activity> UpdateCriticalPath( Iterable<Activity> act) {
+
 		
 		for (Activity a : act)
 		{
@@ -210,6 +213,7 @@ public class ManualSolution extends Algorithm
 			
 		return ordenado;
 	}
+	
 	private Activity getMostCritical( List<Activity> ordenado, Iterable<Activity> base) {
 		Activity aux = null;
 		

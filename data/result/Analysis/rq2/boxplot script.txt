@@ -1,0 +1,19 @@
+# Load data
+	data <- read.table(file="C:/workspace/Hector/data/result/Analysis/rq2/data.txt", header=TRUE);
+	configs <- unique(as.character(data$config));
+	data$config <- factor(data$config,configs);
+
+	# Separate sequence generators and instances
+	configs <- unique(as.character(data$config));
+	instances <- unique(data$inst);
+	indicator_ <- 'gd';
+
+	windows(7.3, 10.9);
+	par(mfrow=c(3,2), mai=c(0.05, 0.2, 0.2, 0.1), mgp=c(3, 0.5, 0), cex.main=0.8, font.main=1, cex.axis=0.7, xaxt="n", yaxt="n");
+	#par(mar=c(.5,.4,.4,.2)) 
+
+	for (instancia_ in instances)
+	{
+		subdata <- subset(data, inst == instancia_);
+		boxplot(hv~config, data=subdata, main=instancia_, outline=FALSE);
+	}

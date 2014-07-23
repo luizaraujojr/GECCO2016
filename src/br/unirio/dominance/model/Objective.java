@@ -3,7 +3,6 @@ package br.unirio.dominance.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.unirio.overwork.builders.model.WorkPackage;
 import lombok.Getter;
 import lombok.Setter;
 

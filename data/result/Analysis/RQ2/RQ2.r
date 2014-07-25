@@ -9,6 +9,9 @@ vargha.delaney <- function(r1, r2) {
 	return ((sum(rank(c(r1, r2))[seq_along(r1)]) / m - (m + 1) / 2) / n);
 }
 
+# limpa todas as variaveis
+rm(list = ls());
+
 # Load data - micro do Marcio
 data <- read.table(file="/Users/Marcio/Desktop/Codigos/Hector/data/result/Analysis/rq2/data.txt", header=TRUE);
 

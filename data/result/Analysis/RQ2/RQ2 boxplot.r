@@ -3,19 +3,15 @@
 #data <- read.table(file="/Users/Marcio/Desktop/Codigos/Hector/data/result/Analysis/rq2/data.txt", header=TRUE);
 
 # Load data - micro do Luiz
-data <- read.table(file="C:/workspace/Hector/data/result/Analysis/rq2/data.txt", header=TRUE);
+ data <- read.table(file="C:/workspace/Hector/data/result/Analysis/rq2/data.txt", header=TRUE);
 
-configs <- unique(as.character(data$config));
-data$config <- factor(data$config,configs);
-
-# Separate sequence generators and instances
+ # Separate sequence configuration and instances
 configs <- unique(as.character(data$config));
 instances <- unique(data$inst);
+data$config <- factor(data$config,configs);
 
 instanceCodelist <- c("I0", "I1", "I2", "I3", "I4", "I5");
 instanceNamelist <- c("ACAD", "PSOA", "PARM", "OPMET", "WEBMET", "WEBAMHS");
-#estrategyCodelist <- c("nsga502x", "SecondHalf", "CPM", "Margarine");
-#estrategyNamelist <- c("NS", "SH", "CP", "MG");
 
 windows(16, 3.3);
 par(mfrow=c(1,6), mai=c(0.5, 0.2, 0.2, 0.1), mgp=c(3, 0.5, 0), cex.main=0.8);

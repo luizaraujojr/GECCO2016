@@ -116,3 +116,32 @@ for (instance_ in instances)
 gd_stats;
 hv_stats;
 best_stats;
+
+
+# Inference tests on an instance basis
+for (instance_ in unique_instances)
+{
+	instanceData_ <- subset(data, inst == instance_);
+
+	pv <- kruskal.test(gd~config, data=instanceData_)$p.value;
+	print(paste("p-Value for", instance_, "=", pv, sep=" "));
+
+	wt <- pairwise.wilcox.test(instanceData_$gd, instanceData_$config, p.adj="bonferroni", exact=F)$p.value;
+	print(paste("priwise p-Value for", instance_, "=", wt, sep=" "));
+	
+	rownames <- names(wt[,1]);
+	colnames <- names(wt[1,]);
+	
+	for (i in 1:2) 
+	{
+		for (j in 1:i)
+		{
+			if (wt[i,j] < 0.05)
+			{
+				print(paste("There exist differences between", rownames[i], "and", colnames[j], sep=" "));
+			}
+		}
+	}
+	
+	print("");
+}

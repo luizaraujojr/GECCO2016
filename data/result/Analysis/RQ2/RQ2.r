@@ -54,7 +54,7 @@ best_statNames <- c("ic-cpm-nsga", "ic-sh-nsga", "ic-mar-nsga");
 
 gd_stats <- matrix(nrow=length(instances), ncol=length(gd_statNames), dimnames=list(instances, gd_statNames));
 hv_stats <- matrix(nrow=length(instances), ncol=length(hv_statNames), dimnames=list(instances, hv_statNames));
-best_stats <- matrix(nrow=length(instances), ncol=length(best_statNames), dimnames=list(instances, best_statNames));
+ic_stats <- matrix(nrow=length(instances), ncol=length(best_statNames), dimnames=list(instances, best_statNames));
 
 # Inference tests on an instance basis
 for (instance_ in instances)
@@ -80,7 +80,7 @@ for (instance_ in instances)
 
 gd_stats;
 hv_stats;
-best_stats;
+ic_stats;
 
 
 # Inference tests on an instance basis

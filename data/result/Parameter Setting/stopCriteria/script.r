@@ -6,10 +6,10 @@
 ## remove the repetitive title of result analysis
 
 # Load data - micro do Marcio
-#data <- read.table(file="/Users/Marcio/Desktop/Codigos/Hector/data/result/Analysis/stopCriteria/data.txt", header=TRUE);
+#data <- read.table(file="/Users/Marcio/Desktop/Codigos/Hector/data/result/Parameter Setting/stopCriteria/data.txt", header=TRUE);
 
 # Load data - micro do Luiz
- data <- read.table(file="C:/workspace/Hector/data/result/Analysis/stopCriteria/data.txt", header=TRUE);
+ data <- read.table(file="C:/workspace/Hector/data/result/Parameter Setting/stopCriteria/data.txt", header=TRUE);
 
 # Separate sequence config and instances
 unique_configuration <- unique(as.character(data$config));

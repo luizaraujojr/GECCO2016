@@ -2,15 +2,15 @@
 #####   Calculating the Effect Size          #####
 ##################################################
 
+# limpa todas as variaveis
+rm(list = ls());
+
 # Calculating the Effect Size of Varga & Delaney (A12)
 vargha.delaney <- function(r1, r2) {
 	m <- length(r1);
 	n <- length(r2);
 	return ((sum(rank(c(r1, r2))[seq_along(r1)]) / m - (m + 1) / 2) / n);
 }
-
-# limpa todas as variaveis
-rm(list = ls());
 
 # Load data - micro do Marcio
 data <- read.table(file="/Users/Marcio/Desktop/Codigos/Hector/data/result/Analysis/rq2/data.txt", header=TRUE);
@@ -48,9 +48,9 @@ for (config_ in configs)
 }
 
 # Statistics
-gd_statNames <- c("gd_mar-cpm", "gd_mar-sh", "gd_mar-nsga", "gd_sh-cpm", "gd_sh-nsga", "gd_sh-mar", "gd_cpm-mar", "gd_cpm-nsga", "gd_cpm-sh","gd_nsga-mar", "gd_nsga-cpm", "gd_nsga-sh");
-hv_statNames <- c("hv_mar-cpm", "hv_mar-sh", "hv_mar-nsga", "hv_sh-cpm", "hv_sh-nsga", "hv_sh-mar", "hv_cpm-mar", "hv_cpm-nsga", "hv_cpm-sh","hv_nsga-mar", "hv_nsga-cpm", "hv_nsga-sh");
-best_statNames <- c("best_mar-cpm", "best_mar-sh", "best_mar-nsga", "best_sh-cpm", "best_sh-nsga", "best_sh-mar", "best_cpm-mar", "best_cpm-nsga", "best_cpm-sh","best_nsga-mar", "best_nsga-cpm", "best_nsga-sh");
+gd_statNames <- c("gd-cpm-nsga", "gd-sh-nsga", "gd-mar-nsga");
+hv_statNames <- c("hv-cpm-nsga", "hv-sh-nsga", "hv-mar-nsga");
+best_statNames <- c("ic-cpm-nsga", "ic-sh-nsga", "ic-mar-nsga");
 
 gd_stats <- matrix(nrow=length(instances), ncol=length(gd_statNames), dimnames=list(instances, gd_statNames));
 hv_stats <- matrix(nrow=length(instances), ncol=length(hv_statNames), dimnames=list(instances, hv_statNames));
@@ -65,55 +65,17 @@ for (instance_ in instances)
 	SecondHalf <- subset(data, inst == instance_ & config == "SH");
 	nsga <- subset(data, inst == instance_ & config == "GA");
 
-	gd_stats[instance_, "gd_mar-cpm"] <- vargha.delaney(margarine$gd, CPM$gd);
-	gd_stats[instance_, "gd_mar-sh"] <- vargha.delaney(margarine$gd, SecondHalf$gd);
-	gd_stats[instance_, "gd_mar-nsga"] <- vargha.delaney(margarine$gd, nsga$gd);
+	gd_stats[instance_, "gd-cpm-nsga"] <- vargha.delaney(CPM$gd, nsga$gd);
+	gd_stats[instance_, "gd-sh-nsga"] <- vargha.delaney(SecondHalf$gd, nsga$gd);
+	gd_stats[instance_, "gd-mar-nsga"] <- vargha.delaney(margarine$gd, nsga$gd);
 	
-	gd_stats[instance_, "gd_sh-cpm"] <- vargha.delaney(SecondHalf$gd, CPM$gd);
-	gd_stats[instance_, "gd_sh-nsga"] <- vargha.delaney(SecondHalf$gd, nsga$gd);
-	gd_stats[instance_, "gd_sh-mar"] <- vargha.delaney(SecondHalf$gd, margarine$gd);
+	hv_stats[instance_, "hv-cpm-nsga"] <- vargha.delaney(CPM$hv, nsga$hv);
+	hv_stats[instance_, "hv-sh-nsga"] <- vargha.delaney(SecondHalf$hv, nsga$hv);
+	hv_stats[instance_, "hv-mar-nsga"] <- vargha.delaney(margarine$hv, nsga$hv);
 	
-	gd_stats[instance_, "gd_cpm-mar"] <- vargha.delaney(CPM$gd, margarine$gd);
-	gd_stats[instance_, "gd_cpm-nsga"] <- vargha.delaney(CPM$gd, nsga$gd);
-	gd_stats[instance_, "gd_cpm-sh"] <- vargha.delaney(CPM$gd, SecondHalf$gd);
-	
-	gd_stats[instance_, "gd_nsga-mar"] <- vargha.delaney(nsga$gd, margarine$gd);
-	gd_stats[instance_, "gd_nsga-cpm"] <- vargha.delaney(nsga$gd, CPM$gd);
-	gd_stats[instance_, "gd_nsga-sh"] <- vargha.delaney(nsga$gd, SecondHalf$gd);
-		
-	
-	hv_stats[instance_, "hv_mar-cpm"] <- vargha.delaney(margarine$hv, CPM$hv);
-	hv_stats[instance_, "hv_mar-sh"] <- vargha.delaney(margarine$hv, SecondHalf$hv);
-	hv_stats[instance_, "hv_mar-nsga"] <- vargha.delaney(margarine$hv, nsga$hv);
-	
-	hv_stats[instance_, "hv_sh-cpm"] <- vargha.delaney(SecondHalf$hv, CPM$hv);
-	hv_stats[instance_, "hv_sh-nsga"] <- vargha.delaney(SecondHalf$hv, nsga$hv);
-	hv_stats[instance_, "hv_sh-mar"] <- vargha.delaney(SecondHalf$hv, margarine$hv);
-	
-	hv_stats[instance_, "hv_cpm-mar"] <- vargha.delaney(CPM$hv, margarine$hv);
-	hv_stats[instance_, "hv_cpm-nsga"] <- vargha.delaney(CPM$hv, nsga$hv);
-	hv_stats[instance_, "hv_cpm-sh"] <- vargha.delaney(CPM$hv, SecondHalf$hv);
-	
-	hv_stats[instance_, "hv_nsga-mar"] <- vargha.delaney(nsga$hv, margarine$hv);
-	hv_stats[instance_, "hv_nsga-cpm"] <- vargha.delaney(nsga$hv, CPM$hv);
-	hv_stats[instance_, "hv_nsga-sh"] <- vargha.delaney(nsga$hv, SecondHalf$hv);
-	
-	
-	best_stats[instance_, "best_mar-cpm"] <- vargha.delaney(margarine$best, CPM$best);
-	best_stats[instance_, "best_mar-sh"] <- vargha.delaney(margarine$best, SecondHalf$best);
-	best_stats[instance_, "best_mar-nsga"] <- vargha.delaney(margarine$best, nsga$best);
-	
-	best_stats[instance_, "best_sh-cpm"] <- vargha.delaney(SecondHalf$best, CPM$best);
-	best_stats[instance_, "best_sh-nsga"] <- vargha.delaney(SecondHalf$best, nsga$best);
-	best_stats[instance_, "best_sh-mar"] <- vargha.delaney(SecondHalf$best, margarine$best);
-	
-	best_stats[instance_, "best_cpm-mar"] <- vargha.delaney(CPM$best, margarine$best);
-	best_stats[instance_, "best_cpm-nsga"] <- vargha.delaney(CPM$best, nsga$best);
-	best_stats[instance_, "best_cpm-sh"] <- vargha.delaney(CPM$best, SecondHalf$best);
-	
-	best_stats[instance_, "best_nsga-mar"] <- vargha.delaney(nsga$best, margarine$best);
-	best_stats[instance_, "best_nsga-cpm"] <- vargha.delaney(nsga$best, CPM$best);
-	best_stats[instance_, "best_nsga-sh"] <- vargha.delaney(nsga$best, SecondHalf$best);
+	ic_stats[instance_, "ic-cpm-nsga"] <- vargha.delaney(CPM$best, nsga$best);
+	ic_stats[instance_, "ic-sh-nsga"] <- vargha.delaney(SecondHalf$best, nsga$best);
+	ic_stats[instance_, "ic-mar-nsga"] <- vargha.delaney(margarine$best, nsga$best);
 }
 
 gd_stats;

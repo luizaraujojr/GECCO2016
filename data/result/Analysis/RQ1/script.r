@@ -10,10 +10,10 @@ vargha.delaney <- function(r1, r2) {
 }
 
 # Load data - micro do Marcio
-#data <- read.table(file="/Users/Marcio/Desktop/Codigos/Hector/data/result/Analysis/random/data.txt", header=TRUE);
+#data <- read.table(file="/Users/Marcio/Desktop/Codigos/Hector/data/result/Analysis/rq1/data.txt", header=TRUE);
 
 # Load data - micro do Luiz
- data <- read.table(file="C:/workspace/Hector/data/result/Analysis/random/data.txt", header=TRUE);
+ data <- read.table(file="C:/workspace/Hector/data/result/Analysis/RQ1/data.txt", header=TRUE);
 
 # Separate sequence configuration and instances
 configs <- unique(as.character(data$config));

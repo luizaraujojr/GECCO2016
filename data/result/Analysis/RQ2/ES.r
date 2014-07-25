@@ -1,5 +1,5 @@
 ##################################################
-#####   Comparing to Random Search           #####
+#####   Calculating the Effect Size          #####
 ##################################################
 
 # Calculating the Effect Size of Varga & Delaney (A12)
@@ -57,10 +57,10 @@ best_stats <- matrix(nrow=length(instances), ncol=length(best_statNames), dimnam
 for (instance_ in instances)
 {
  
-	margarine <- subset(data, inst == instance_ & config == "margarine");
+	margarine <- subset(data, inst == instance_ & config == "MAR");
 	CPM <- subset(data, inst == instance_ & config == "CPM");
-	SecondHalf <- subset(data, inst == instance_ & config == "SecondHalf");
-	nsga <- subset(data, inst == instance_ & config == "nsga50k2x");
+	SecondHalf <- subset(data, inst == instance_ & config == "SH");
+	nsga <- subset(data, inst == instance_ & config == "GA");
 
 	gd_stats[instance_, "gd_mar-cpm"] <- vargha.delaney(margarine$gd, CPM$gd);
 	gd_stats[instance_, "gd_mar-sh"] <- vargha.delaney(margarine$gd, SecondHalf$gd);
@@ -113,4 +113,6 @@ for (instance_ in instances)
 	best_stats[instance_, "best_nsga-sh"] <- vargha.delaney(nsga$best, SecondHalf$best);
 }
 
-stats;
+gd_stats;
+hv_stats;
+best_stats;

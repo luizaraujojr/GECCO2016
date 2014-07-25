@@ -10,10 +10,10 @@ vargha.delaney <- function(r1, r2) {
 }
 
 # Load data - micro do Marcio
-#data <- read.table(file="/Users/Marcio/Desktop/Codigos/Hector/data/result/Analysis/rq2/data.txt", header=TRUE);
+data <- read.table(file="/Users/Marcio/Desktop/Codigos/Hector/data/result/Analysis/rq2/data.txt", header=TRUE);
 
 # Load data - micro do Luiz
- data <- read.table(file="C:/workspace/Hector/data/result/Analysis/rq2/data.txt", header=TRUE);
+# data <- read.table(file="C:/workspace/Hector/data/result/Analysis/rq2/data.txt", header=TRUE);
 
 # Separate sequence configuration and instances
 configs <- unique(as.character(data$config));
@@ -119,29 +119,26 @@ best_stats;
 
 
 # Inference tests on an instance basis
-for (instance_ in unique_instances)
+for (instance_ in instances)
 {
 	instanceData_ <- subset(data, inst == instance_);
 
 	pv <- kruskal.test(gd~config, data=instanceData_)$p.value;
-	print(paste("p-Value for", instance_, "=", pv, sep=" "));
+	print(paste("p-Value for KW:", instance_, "=", pv, sep=" "));
 
-	wt <- pairwise.wilcox.test(instanceData_$gd, instanceData_$config, p.adj="bonferroni", exact=F)$p.value;
-	print(paste("priwise p-Value for", instance_, "=", wt, sep=" "));
+	ga <- subset(instanceData_, config == "GA");
+	mar <- subset(instanceData_, config == "MAR");
+	sh <- subset(instanceData_, config == "SH");
+	cpm <- subset(instanceData_, config == "CPM");
 	
-	rownames <- names(wt[,1]);
-	colnames <- names(wt[1,]);
-	
-	for (i in 1:2) 
-	{
-		for (j in 1:i)
-		{
-			if (wt[i,j] < 0.05)
-			{
-				print(paste("There exist differences between", rownames[i], "and", colnames[j], sep=" "));
-			}
-		}
-	}
+	pv <- wilcox.test(ga$gd, mu=mar$gd[1])$p.value;
+	print(paste("p-Value for Wilcox:", instance_, "(GA,MAR)=", pv, sep=" "));
+
+	pv <- wilcox.test(ga$gd, mu=sh$gd[1])$p.value;
+	print(paste("p-Value for Wilcox:", instance_, "(GA,SH)=", pv, sep=" "));
+
+	pv <- wilcox.test(ga$gd, mu=cpm$gd[1])$p.value;
+	print(paste("p-Value for Wilcox:", instance_, "(GA,CPM)=", pv, sep=" "));
 	
 	print("");
 }

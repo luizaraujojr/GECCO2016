@@ -48,8 +48,13 @@ plot.my.chart <- function(xo, yo, xe, ye, xc, yc, xm, ym, xs, ys, xTitle, yTitle
 	lines(xe, ye, type="p", col="blue", cex=0.5, pch=1);
 
 	lines(xc, yc, type="p", col="black", pch=3);
+	#text(xc, yc, "C");
+
 	lines(xm, ym, type="p", col="black", pch=4);
+	#text(xm, ym, "M");
+
 	lines(xs, ys, type="p", col="black", pch=8);
+	#text(xs, ys, "S");
 }
 
 # Plot 3D faces for all instances

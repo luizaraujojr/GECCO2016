@@ -55,7 +55,7 @@ ic_statNames <- c("ic-cpm-nsga", "ic-sh-nsga", "ic-mar-nsga");
 
 gd_stats <- matrix(nrow=length(instances), ncol=length(gd_statNames), dimnames=list(instances, gd_statNames));
 hv_stats <- matrix(nrow=length(instances), ncol=length(hv_statNames), dimnames=list(instances, hv_statNames));
-ic_stats <- matrix(nrow=length(instances), ncol=length(ic_statNames), dimnames=list(instances, ic_statNames));
+ic_stats <- matrix(nrow=length(instances), ncol=length(best_statNames), dimnames=list(instances, best_statNames));
 
 for (instance_ in instances)
 {

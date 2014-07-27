@@ -13,8 +13,8 @@ data$config <- factor(data$config,configs);
 instanceCodelist <- c("I0", "I1", "I2", "I3", "I4", "I5");
 instanceNamelist <- c("ACAD", "PSOA", "PARM", "OPMET", "WEBMET", "WEBAMHS");
 
-windows(16, 3.3);
-par(mfrow=c(1,6), mai=c(0.5, 0.2, 0.2, 0.1), mgp=c(3, 0.5, 0), cex.main=0.8);
+windows(10, 1.5);
+par(mfrow=c(1,6), mai=c(0.2, 0.2, 0.2, 0.1), mgp=c(3, 0.5, 0), cex.main=0.8);
 
 for (instancia_ in instances)
 {

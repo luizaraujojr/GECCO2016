@@ -9,8 +9,10 @@ margarine <- read.table(file="/Users/Marcio/Desktop/Codigos/Hector/data/result/A
 sh <- read.table(file="/Users/Marcio/Desktop/Codigos/Hector/data/result/Analysis/rq4/secondhalf.txt", header=TRUE);
 
 # Separate instances
-instances <- c("I0", "I5", "I4", "I3", "I1", "I2");
-instanceNames <- c("ACAD", "WMET", "WAMS", "PSOA", "OMET", "PARM");
+#instances <- c("I0", "I5", "I4", "I3", "I1", "I2");
+instances <- c("I0", "I2");
+#instanceNames <- c("ACAD", "WMET", "WAMS", "PSOA", "OMET", "PARM");
+instanceNames <- c("ACAD", "PARM");
 
 # Creates and fills the correlation matrices
 # - interesting fact: noh and mks have extremelly high correlation - thus, noh is not necessarily required in the optimization
@@ -61,8 +63,10 @@ plot.my.chart <- function(xo, yo, xe, ye, xc, yc, xm, ym, xs, ys, xTitle, yTitle
 }
 
 # Plot 3D faces for all instances
-pdf("c:/Users/Marcio/Desktop/faces-3d.pdf", width=10, height=16)
-par(mfrow=c(6, 3))
+#pdf("c:/Users/Marcio/Desktop/faces-3d.pdf", width=10, height=16)
+windows(10, 4);
+par(mfrow=c(2, 3))
+#par(mfrow=c(6, 3))
 par(mar=c(3,3,1,1)+0.1,mgp=c(2,1,0))
 
 for (instance_ in instances)
@@ -97,7 +101,7 @@ for (instance_ in instances)
 				  "Overtime (hours)", "Cost (1000$)", instanceName);
 }
 
-dev.off();
+#dev.off();
 
 # Plots a 3D chart - requires installing the rgl package (see menu option Pacakges >> Install Packages)
 #library(rgl);

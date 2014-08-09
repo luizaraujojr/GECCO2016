@@ -9,7 +9,7 @@
 #data <- read.table(file="/Users/Marcio/Desktop/Codigos/Hector/data/result/Parameter Setting/stopCriteria/data.txt", header=TRUE);
 
 # Load data - micro do Luiz
- data <- read.table(file="C:/Users/luiz/Documents/GitHub/Hector/data/result/Parameter Setting/stopCriteria/data.txt", header=TRUE);
+ data <- read.table(file="C:/Users/luiz/Documents/GitHub/Hector/data/result/Parameter Setting/stopCriteria/data 5 - 100k.txt", header=TRUE);
 
 # Separate sequence config and instances
 unique_configuration <- unique(as.character(data$config));
@@ -78,3 +78,4 @@ for (instance_ in unique_instances)
 	best <- match(min(instanceGD), instanceGD);
 	print(paste("The best configuration for instance", instance_, "is", names[best], sep=" "));
 }
+

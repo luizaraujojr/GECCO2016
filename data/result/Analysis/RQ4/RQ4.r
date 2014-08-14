@@ -82,18 +82,18 @@ for (instance_ in instances)
 				  dataSH$mks, dataSH$cst / 1000, 
 				  "Makespan (days)", "Cost (1000$)", instanceName);
 				  
-	plot.my.chart(dataOT$noh, dataOT$mks, 
-				  dataNE$noh, dataNE$mks, 
-				  dataCPM$noh, dataCPM$mks, 
-				  dataMAR$noh, dataMAR$mks, 
-				  dataSH$noh, dataSH$mks, 
+	plot.my.chart(dataOT$noh * 8, dataOT$mks, 
+				  dataNE$noh * 8, dataNE$mks, 
+				  dataCPM$noh * 8, dataCPM$mks, 
+				  dataMAR$noh * 8, dataMAR$mks, 
+				  dataSH$noh * 8, dataSH$mks, 
 				  "Overtime (hours)", "Makespan (days)", instanceName);
 				  
-	plot.my.chart(dataOT$noh, dataOT$cst / 1000, 
-				  dataNE$noh, dataNE$cst / 1000, 
-				  dataCPM$noh, dataCPM$cst / 1000, 
-				  dataMAR$noh, dataMAR$cst / 1000, 
-				  dataSH$noh, dataSH$cst / 1000, 
+	plot.my.chart(dataOT$noh * 8, dataOT$cst / 1000, 
+				  dataNE$noh * 8, dataNE$cst / 1000, 
+				  dataCPM$noh * 8, dataCPM$cst / 1000, 
+				  dataMAR$noh * 8, dataMAR$cst / 1000, 
+				  dataSH$noh * 8, dataSH$cst / 1000, 
 				  "Overtime (hours)", "Cost (1000$)", instanceName);
 }
 
@@ -102,4 +102,4 @@ dev.off();
 # Plots a 3D chart - requires installing the rgl package (see menu option Pacakges >> Install Packages)
 #library(rgl);
 #newdata <- subset(gaOvertime, inst == instance_);
-#plot3d(newdata$noh,newdata$mks,newdata$cst, col="red");
+#plot3d(newdata$noh * 8,newdata$mks,newdata$cst, col="red");

@@ -14,7 +14,7 @@ public class ScenarioOverworking extends Scenario<Activity>
 	/**
 	 * Table depicting the increase/decrease on error generation rates
 	 */
-	private static double[] ERROR_GENERATION_FACTOR = {0.90, 0.94, 1.00, 1.05, 1.14, 1.24, 1.36, 1.50};
+	private static double[] ERROR_GENERATION_FACTOR = {1.00, 1.05, 1.14, 1.24, 1.36, 1.50};
 
 	/**
 	 * Number of hours worked per day

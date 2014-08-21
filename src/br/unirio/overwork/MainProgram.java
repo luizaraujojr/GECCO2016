@@ -57,11 +57,11 @@ public class MainProgram
 	public static final void main(String[] args) throws Exception
 	{
 //		runExperimentThread("1", instanceFiles, 99, 99);
-//		runExperimentThread("1", instanceFiles12, 50, 15000);
+		runExperimentThread("1", instanceFiles12, 50, 150);
 //		runExperimentThread("2", instanceFiles34, 50, 15000);
 //		runExperimentThread("3", instanceFiles56, 50, 15000);
 	
-		runExperimentAnalysis();
+//		runExperimentAnalysis();
 //		runMultiExperimentAnalysis();		
 	}
 

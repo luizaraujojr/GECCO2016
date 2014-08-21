@@ -1,0 +1,20 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: Article.aux
+The style file: IEEEtran.bst
+Database file #1: Article.bib
+A bad cross reference---entry "Madachy:1996"
+refers to entry "conf/icse/1996", which doesn't exist
+A bad cross reference---entry "Antoniol:2004"
+refers to entry "conf/metrics/2004", which doesn't exist
+A bad cross reference---entry "Rodriguez:2011"
+refers to entry "conf/gecco/2011", which doesn't exist
+Warning--I didn't find a database entry for "demarco:1987"
+Warning--I didn't find a database entry for "conf/icse/1996"
+Warning--I didn't find a database entry for "conf/gecco/2011"
+Warning--I didn't find a database entry for "conf/metrics/2004"
+-- IEEEtran.bst version 1.13 (2008/09/30) by Michael Shell.
+-- http://www.michaelshell.org/tex/ieeetran/bibtex/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+Warning--missing school in Tvedt:1996
+
+Done.
+(There were 3 error messages)

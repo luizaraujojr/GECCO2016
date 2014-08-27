@@ -14,9 +14,13 @@ public class MainProgram
 		//analyzeStopCriteria();
 		//analyzePopulationSize();
 		//analyzeRandomSearch();
-		analyzeOMS();
+		//analyzeOMS();
+		analyzeNoError();
 	}
 
+	/**
+	 * Gera os dados referentes ao tunning do critério de parada
+	 */
 	protected static void analyzeStopCriteria() throws ExperimentFileReaderException, Exception
 	{
 		ExperimentFileReader reader = new ExperimentFileReader();
@@ -28,33 +32,54 @@ public class MainProgram
 		analyzer.analyzeCycleFrontiers();
 	}
 
+	/**
+	 * Gera os dados referentes ao tunning do tamanho da população
+	 */
 	protected static void analyzePopulationSize() throws ExperimentFileReaderException, Exception
 	{
 		ExperimentFileReader reader = new ExperimentFileReader();
 		MultiExperimentAnalyzer analyzer = new MultiExperimentAnalyzer();
-		analyzer.addExperimentResult(reader.execute("nsga50k2x", "data/result/NSGA/50K/2X/nsga50k2x.txt", 6, 50, 3));
-		analyzer.addExperimentResult(reader.execute("nsga50k4x", "data/result/NSGA/50K/4X/nsga50k4x.txt", 6, 50, 3));
-		analyzer.addExperimentResult(reader.execute("nsga50k8x", "data/result/NSGA/50K/8X/nsga50k8x.txt", 6, 50, 3));
+		analyzer.addExperimentResult(reader.execute("nsga50k2x", "data/result/BaseData/NSGA/50K/2X/nsga50k2x.txt", 6, 50, 3));
+		analyzer.addExperimentResult(reader.execute("nsga50k4x", "data/result/BaseData/NSGA/50K/4X/nsga50k4x.txt", 6, 50, 3));
+		analyzer.addExperimentResult(reader.execute("nsga50k8x", "data/result/BaseData/NSGA/50K/8X/nsga50k8x.txt", 6, 50, 3));
 		analyzer.analyzeCycleFrontiers();
 	}
 
+	/**
+	 * Gera os dados referentes à RQ1
+	 */
 	protected static void analyzeRandomSearch() throws ExperimentFileReaderException, Exception
 	{
 		ExperimentFileReader reader = new ExperimentFileReader();
 		MultiExperimentAnalyzer analyzer = new MultiExperimentAnalyzer();
-		analyzer.addExperimentResult(reader.execute("nsga50k2x", "data/result/NSGA/50K/2X/nsga50k2x.txt", 6, 50, 3));
-		analyzer.addExperimentResult(reader.execute("rs50k", "data/result/RS/50K/rs50k.txt", 6, 50, 3));
+		analyzer.addExperimentResult(reader.execute("nsga50k2x", "data/result/BaseData/NSGA/50K/2X/nsga50k2x.txt", 6, 50, 3));
+		analyzer.addExperimentResult(reader.execute("rs50k", "data/result/BaseData/RS/50K/rs50k.txt", 6, 50, 3));
 		analyzer.analyzeCycleFrontiers();
 	}
 
+	/**
+	 * Gera os dados referentes à RQ2
+	 */
 	protected static void analyzeOMS() throws ExperimentFileReaderException, Exception
 	{
 		ExperimentFileReader reader = new ExperimentFileReader();
 		MultiExperimentAnalyzer analyzer = new MultiExperimentAnalyzer();
-		analyzer.addExperimentResult(reader.execute("GA", "data/result/NSGA/50K/2X/nsga50k2x.txt", 6, 50, 3));
-		analyzer.addExperimentResult(reader.execute("MAR", "data/result/OMS/Margarine/Margarine.txt", 6, 1, 3));
-		analyzer.addExperimentResult(reader.execute("SH", "data/result/OMS/SecondHalf/SecondHalf.txt", 6, 1, 3));
-		analyzer.addExperimentResult(reader.execute("CPM", "data/result/OMS/CPM/CPM.txt", 6, 1, 3));
+		analyzer.addExperimentResult(reader.execute("GA", "data/result/BaseData/NSGA/50K/2X/nsga50k2x.txt", 6, 50, 3));
+		analyzer.addExperimentResult(reader.execute("MAR", "data/result/BaseData/OMS/Margarine/Margarine.txt", 6, 1, 3));
+		analyzer.addExperimentResult(reader.execute("SH", "data/result/BaseData/OMS/SecondHalf/SecondHalf.txt", 6, 1, 3));
+		analyzer.addExperimentResult(reader.execute("CPM", "data/result/BaseData/OMS/CPM/CPM.txt", 6, 1, 3));
+		analyzer.analyzeCycleFrontiers();
+	}
+
+	/**
+	 * Gera os dados referentes à RQ3
+	 */
+	protected static void analyzeNoError() throws ExperimentFileReaderException, Exception
+	{
+		ExperimentFileReader reader = new ExperimentFileReader();
+		MultiExperimentAnalyzer analyzer = new MultiExperimentAnalyzer();
+		analyzer.addExperimentResult(reader.execute("NSGANE", "data/result/BaseData/NSGA/50K/2X/nsga50k2xnoError.txt", 6, 50, 3));
+		analyzer.addExperimentResult(reader.execute("NSGA", "data/result/BaseData/NSGA/50K/2X/nsga50k2x.txt", 6, 50, 3));
 		analyzer.analyzeCycleFrontiers();
 	}
 }

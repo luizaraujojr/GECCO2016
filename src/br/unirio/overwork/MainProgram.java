@@ -56,13 +56,17 @@ public class MainProgram
 	
 	public static final void main(String[] args) throws Exception
 	{
-//		runExperimentThread("1", instanceFiles, 99, 99);
-		runExperimentThread("1", instanceFiles12, 50, 150);
+		// 0 margarine
+		// 99 CPM
+		// 50 SH
+		
+//		runExperimentThread("1", instanceFiles, 0, 0);
+//		runExperimentThread("1", instanceFiles12, 50, 150);
 //		runExperimentThread("2", instanceFiles34, 50, 15000);
 //		runExperimentThread("3", instanceFiles56, 50, 15000);
 	
 //		runExperimentAnalysis();
-//		runMultiExperimentAnalysis();		
+		runMultiExperimentAnalysis();		
 	}
 
 	@SuppressWarnings("unused")
@@ -84,9 +88,9 @@ public class MainProgram
 		
 		
 		new ExperimentAnalyzer().analyze("GA",resultPath + "NSGA/50K/2x/nsga50k2xerror1.txt", instanceFiles.length, 50, 3);
-		new ExperimentAnalyzer().analyze("CPM",resultPath + "OMS/CPM/CPM.txt", instanceFiles.length, 1, 3);
-		new ExperimentAnalyzer().analyze("MAR",resultPath + "OMS/Margarine/Margarine.txt", instanceFiles.length, 1, 3);
-		new ExperimentAnalyzer().analyze("SH",resultPath + "OMS/SecondHalf/SecondHalf.txt", instanceFiles.length, 1, 3);
+		new ExperimentAnalyzer().analyze("CPM",resultPath + "OMS/CPM/CPM_error1.txt", instanceFiles.length, 1, 3);
+		new ExperimentAnalyzer().analyze("MAR",resultPath + "OMS/Margarine/Margarine_error1.txt", instanceFiles.length, 1, 3);
+		new ExperimentAnalyzer().analyze("SH",resultPath + "OMS/SecondHalf/SecondHalf_error1.txt", instanceFiles.length, 1, 3);
 		
 //		new ExperimentAnalyzer().analyze("nsga5k4x","C:/workspace/Hector/data/result/NSGA/5K/4x/nsga5k4x.txt", instanceFiles.length, 50, 3);
 //		new ExperimentAnalyzer().analyze("nsga10k4x","C:/workspace/Hector/data/result/NSGA/10K/4x/nsga10k4x.txt", instanceFiles.length, 50, 3);
@@ -104,12 +108,12 @@ public class MainProgram
 	@SuppressWarnings("unused")
 	private static void runMultiExperimentAnalysis()
 			throws ExperimentFileReaderException, Exception {
-		String path = "C:/workspace/Hector/data/result/";
+		String resultPath="C:/Users/luiz/Documents/GitHub/Hector/data/result/BaseData/";
 		ExperimentFileReader reader = new ExperimentFileReader();
-		ExperimentResult configNSGA05k2x = reader.execute("nsga05k2x", path + "nsga/5k/nsga5k2x.txt", 6, 50, 3);
-		ExperimentResult configNSGA10k2x = reader.execute("nsga10k2x", path + "nsga/10k/nsga10k2x.txt", 6, 50, 3);
-		ExperimentResult configNSGA20k2x = reader.execute("nsga20k2x", path + "nsga/20k/nsga20k2x.txt", 6, 50, 3);
-		ExperimentResult configNSGA50k2x = reader.execute("nsga50k2x", path + "nsga/50k/2x/nsga50k2x.txt", 6, 50, 3);
+//		ExperimentResult configNSGA05k2x = reader.execute("nsga05k2x", path + "nsga/5k/nsga5k2x.txt", 6, 50, 3);
+//		ExperimentResult configNSGA10k2x = reader.execute("nsga10k2x", path + "nsga/10k/nsga10k2x.txt", 6, 50, 3);
+//		ExperimentResult configNSGA20k2x = reader.execute("nsga20k2x", path + "nsga/20k/nsga20k2x.txt", 6, 50, 3);
+//		ExperimentResult configNSGA50k2x = reader.execute("nsga50k2x", path + "nsga/50k/2x/nsga50k2x.txt", 6, 50, 3);
 		
 //		ExperimentResult configNSGA50k4x = reader.execute("nsga50k4x", path + "nsga/50k/4x/nsga50k4x.txt", 6, 50, 3);
 //		
@@ -119,12 +123,13 @@ public class MainProgram
 //		ExperimentResult configRS10 = reader.execute("rs10k", path + "rs/10k/rs10k.txt", 6, 50, 3);
 //		ExperimentResult configRS20 = reader.execute("rs20k", path + "rs/20k/rs20k.txt", 6, 50, 3);
 //		ExperimentResult configRS50 = reader.execute("rs50k", path + "rs/50k/rs50k.txt", 6, 50, 3);
+			
 
 		MultiExperimentAnalyzer analyzer = new MultiExperimentAnalyzer();
-		analyzer.addExperimentResult(configNSGA05k2x);
-		analyzer.addExperimentResult(configNSGA10k2x);
-		analyzer.addExperimentResult(configNSGA20k2x);
-		analyzer.addExperimentResult(configNSGA50k2x);
+		analyzer.addExperimentResult(reader.execute("GA",resultPath + "NSGA/50K/2x/nsga50k2xerror1.txt", instanceFiles.length, 50, 3));
+		analyzer.addExperimentResult(reader.execute("CPM",resultPath + "OMS/CPM/CPM_error1.txt", instanceFiles.length, 1, 3));
+		analyzer.addExperimentResult(reader.execute("MAR",resultPath + "OMS/Margarine/Margarine_error1.txt", instanceFiles.length, 1, 3));
+		analyzer.addExperimentResult(reader.execute("SH",resultPath + "OMS/SecondHalf/SecondHalf_error1.txt", instanceFiles.length, 1, 3));
 		
 //		analyzer.addExperimentResult(configNSGA50k4x);
 //		
@@ -158,11 +163,11 @@ public class MainProgram
 		final Vector<Project> instances1 = loadInstances(instancesFiles);
 		final Vector<Project> instances2 = loadInstances(instancesFiles);		
 		
-//		runManualExperiment(instances1, maxevaluations, cycles);
+		runManualExperiment(instances1, maxevaluations, cycles);
 		
-		runRandomSearchExperimentThread(cycles, maxevaluations, instances1);
+//		runRandomSearchExperimentThread(cycles, maxevaluations, instances1);
 		
-		runNSGAIIExperimentThread(cycles, maxevaluations, instances2);
+//		runNSGAIIExperimentThread(cycles, maxevaluations, instances2);
 	}
 
 	private static void runNSGAIIExperimentThread(final int cycles,

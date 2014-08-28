@@ -7,6 +7,7 @@
 
 # Load data - micro do Marcio
 #data <- read.table(file="/Users/Marcio/Desktop/Codigos/Hector/data/result/Parameter Setting/populationSize/data.txt", header=TRUE);
+data <- read.table(file="/Users/marcio.barros/Documents/Hector/data/result/Analysis/ParamPopulation/data.txt", header=TRUE);
 
 # Load data - micro do Luiz
  data <- read.table(file="C:/workspace/Hector/data/result/Parameter Setting/populationSize/data.txt", header=TRUE);

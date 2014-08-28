@@ -1,0 +1,21 @@
+* sempre com tabela de overworking começando com 1
+
+* o ajuste de parametros de critério de parada já pode ser avaliado!
+
+* o ajuste de parâmetros de tamanho da população precisa de novas simulações
+
+  - rodar 150k com 4x e 8x como tamanho de população
+
+* RQ1 precisa de novas simulações
+
+  - rodar RS com 150k
+  
+* RQ2 precisa de novas simulações
+
+  - rodar CPM, MAR e SH com a tabela de overworking começando com 1
+  
+* RQ3 já pode ser avaliado!
+
+* RQ4 ...
+
+

@@ -81,7 +81,9 @@ public class Objective
 		return this.bigger;
 	}
 	
-	
+	/**
+	 * Initializes an objective
+	 */
 	public Objective(String name, double value)
 	{
 		super();

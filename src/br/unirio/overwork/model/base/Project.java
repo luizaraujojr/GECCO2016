@@ -166,4 +166,17 @@ public class Project
 
 		return overworking;
 	}
+
+	/**
+	 * Returns the number of dependencies in the project schedule
+	 */
+	public int getDependencyCount()
+	{
+		int count = 0;
+		
+		for (Activity activity : activities)
+			count += activity.getDependencies().size();
+
+		return count;
+	}
 }

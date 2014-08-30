@@ -60,9 +60,9 @@ public class MainProgram
 //		runExperimentThread("1", instanceFiles12, 50, 150);
 //		runExperimentThread("2", instanceFiles34, 50, 15000);
 //		runExperimentThread("3", instanceFiles56, 50, 15000);
-	
+	showProjectDetails(instanceFiles);
 //		runExperimentAnalysis();
-		runMultiExperimentAnalysis();		
+//		runMultiExperimentAnalysis();		
 	}
 
 	@SuppressWarnings("unused")
@@ -164,17 +164,24 @@ public class MainProgram
 	{		
 		Locale.setDefault(new Locale("pt", "BR"));
 		final Vector<Project> instances1 = loadInstances(instancesFiles);
-		final Vector<Project> instances2 = loadInstances(instancesFiles);		
+//		final Vector<Project> instances2 = loadInstances(instancesFiles);
 		
 		runManualExperiment(instances1, maxevaluations, cycles);
 		
 //		runRandomSearchExperimentThread(cycles, maxevaluations, instances1);
-		
 //		runNSGAIIExperimentThread(cycles, maxevaluations, instances2);
 
 //		runManualExperiment(instances1, maxevaluations, cycles);		
 //		runRandomSearchExperimentThread(cycles, maxevaluations, instances1);
 //		runNSGAIIExperimentThread(cycles, maxevaluations, instances2);
+	}
+	
+	public static void showProjectDetails(String[] instancesFiles) throws Exception
+	{
+		final Vector<Project> instances1 = loadInstances(instancesFiles);
+		
+		for (Project instance : instances1)
+			System.out.println("ACT: " + instance.getActivitiesCount() + "; DEP: " + instance.getDependencyCount());
 	}
 
 	private static void runNSGAIIExperimentThread(final int cycles, final int maxevaluations, final Vector<Project> instances2) 

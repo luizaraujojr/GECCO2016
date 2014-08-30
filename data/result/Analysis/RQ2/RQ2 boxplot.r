@@ -3,7 +3,7 @@ rm(list = ls());
 
 # Load data - micro do Marcio
 # data <- read.table(file="/Users/Marcio/Desktop/Codigos/Hector/data/result/Analysis/rq2/data.txt", header=TRUE);
-data <- read.table(file="/Users/marcio.barros/Documents/Hector/data/result/Analysis/rq2/data.txt", header=TRUE);
+data <- read.table(file="/Users/marcio.barros/Documents/Hector/data/result/Analysis/rq2/data - error2.txt", header=TRUE);
 
 # Load data - micro do Luiz
 # data <- read.table(file="C:/workspace/Hector/data/result/Analysis/rq2/data.txt", header=TRUE);

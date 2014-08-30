@@ -2,8 +2,8 @@
 rm(list = ls());
 
 # Load data - micro do Marcio
-#gaOvertime <- read.table(file="/Users/marcio.barros/Documents/Hector/data/result/Analysis/RQ4/nsga_error1.txt", header=TRUE);
-gaOvertime <- read.table(file="/Users/marcio.barros/Documents/Hector/data/result/Analysis/RQ4/nsga_overtime.txt", header=TRUE);
+gaOvertime <- read.table(file="/Users/marcio.barros/Documents/Hector/data/result/Analysis/RQ4/nsga_error1.txt", header=TRUE);
+#gaOvertime <- read.table(file="/Users/marcio.barros/Documents/Hector/data/result/Analysis/RQ4/nsga_overtime.txt", header=TRUE);
 gaNoError <- read.table(file="/Users/marcio.barros/Documents/Hector/data/result/Analysis/RQ4/nsga_noerror.txt", header=TRUE);
 
 # Separate instances

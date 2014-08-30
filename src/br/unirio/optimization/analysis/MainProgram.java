@@ -14,8 +14,8 @@ public class MainProgram
 		//analyzeStopCriteria();
 		//analyzePopulationSize();
 		//analyzeRandomSearch();
-		//analyzeOMS();
-		analyzeNoError();
+		analyzeOMS();
+		//analyzeNoError();
 	}
 
 	/**
@@ -64,10 +64,10 @@ public class MainProgram
 	{
 		ExperimentFileReader reader = new ExperimentFileReader();
 		MultiExperimentAnalyzer analyzer = new MultiExperimentAnalyzer();
-		analyzer.addExperimentResult(reader.execute("GA", "data/result/BaseData/NSGA/50K/2X/nsga50k2x.txt", 6, 50, 3));
-		analyzer.addExperimentResult(reader.execute("MAR", "data/result/BaseData/OMS/Margarine/Margarine.txt", 6, 1, 3));
-		analyzer.addExperimentResult(reader.execute("SH", "data/result/BaseData/OMS/SecondHalf/SecondHalf.txt", 6, 1, 3));
-		analyzer.addExperimentResult(reader.execute("CPM", "data/result/BaseData/OMS/CPM/CPM.txt", 6, 1, 3));
+		analyzer.addExperimentResult(reader.execute("GA", "data/result/BaseData/NSGA/50K/2X/nsga50k2xerror1.txt", 6, 50, 3));
+		analyzer.addExperimentResult(reader.execute("MAR", "data/result/BaseData/OMS/Margarine/Margarine_error1.txt", 6, 1, 3));
+		analyzer.addExperimentResult(reader.execute("SH", "data/result/BaseData/OMS/SecondHalf/SecondHalf_error1.txt", 6, 1, 3));
+		analyzer.addExperimentResult(reader.execute("CPM", "data/result/BaseData/OMS/CPM/CPM_error1.txt", 6, 1, 3));
 		analyzer.analyzeCycleFrontiers();
 	}
 

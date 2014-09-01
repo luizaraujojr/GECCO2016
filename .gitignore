@@ -220,3 +220,7 @@ pip-log.txt
 .classpath
 .classpath
 *.classpath
+*.aux
+*.bbl
+*.blg
+*.dvi

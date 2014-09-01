@@ -108,7 +108,7 @@ cpm <- subset(data, inst == "I0" & config == "CPM")$hv;
 sh <- subset(data, inst == "I0" & config == "SH")$hv;
 boxplot(subdata$hv, main="Hypervolume", outline=FALSE, ylim=yrange, xlim=c(.8,6.2), cex.lab=0.75);
 text(.9, mar, 'x', cex=1.5);	
-text(1, cpm, '+', cex=1.5);	
+#text(1, cpm, '+', cex=1.5);	
 text(1.1, sh, '*', cex=1.5);
 
 subdata <- subset(data, inst == "I5" & config == "GA");
@@ -176,7 +176,7 @@ cpm <- subset(data, inst == "I0" & config == "CPM")$gd;
 sh <- subset(data, inst == "I0" & config == "SH")$gd;
 boxplot(subdata$gd, main="Generational Distance", outline=FALSE, ylim=yrange, xlim=c(.8,6.2), cex.lab=0.75);
 text(.9, mar, 'x', cex=1.5);	
-text(1, cpm, '+', cex=1.5);	
+#text(1, cpm, '+', cex=1.5);	
 text(1.1, sh, '*', cex=1.5);
 
 subdata <- subset(data, inst == "I5" & config == "GA");

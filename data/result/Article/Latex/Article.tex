@@ -219,9 +219,11 @@ A similar procedure was used to determine the most adequate population size for 
 \section{Analysis and Discussion}
 Below we present results obtained from our experiments to support answering the proposed research questions.
 
+\vspace{3px}
 \noindent
 \textbf{RQ1:} To compare NSGAII to random search (RS), we ran 50 independent optimization cycles for both algorithms using the same stop criteria. NSGAII achieved higher I$_{HV}$, higher I$_{C}$, and lower I$_{GD}$ on all instances compared to RS. Wilcoxon-Mann-Whitney tests applied on an instance basis found significant differences between results produced by the algorithms at 95\% significance level for all quality indicators and all instances. Standardized effect-sizes (non-parametric Vargha-Delaney {\^A}12 test) also indicate that NSGAII produces higher I$_{HV}$ and lower I$_{GD}$ in 100\% of the runs, while producing higher I$_{C}$ for more than 88\% of these runs. Thus, there is strong evidence that NSGAII outperforms RS while searching for solutions for the OPP and that our formulation and parametrization pass the ``sanity check" implied in RQ1.
 
+\vspace{3px}
 \noindent
 \textbf{RQ2:} To address this question we compared our formulation for the OPP with three overtime management strategies (OMS) presented by Ferrucci et al. \cite{Ferrucci:2013} as reference practices from the industry: (i) ``margarine" management (MAR) suggests spreading overtime hours evenly over all activities comprising the schedule; (ii) Critical Path (CPM) suggests loading overtime onto the schedule's critical path to reduce completion time and risk of schedule overrun; and (iii) Second Half (SH) suggests loading overtime onto the later part of the schedule to compensate for delays introduced in early activities. 
 
@@ -233,7 +235,7 @@ On regard on I$_{C}$, SH contributed with more vertices to the reference Pareto 
 
 \begin{figure*}
 \centering
-\includegraphics[width=18cm, height=5cm]{boxplots.pdf}
+\includegraphics[width=18cm, height=5cm]{boxplots2.pdf}
 \caption{Boxplots for I$_{C}$ (left), I$_{HV}$ (middle) and I$_{GD}$ (right) quality indicators for NSGAII (boxplot), MAR ($\times$), SH ($\ast$), and CPM (+). The few solutions found under the second-half OMS are closer to optimal, though NSGAII produces a more diverse set of solutions.}
 \end{figure*}
 
@@ -246,30 +248,30 @@ On regard on I$_{C}$, SH contributed with more vertices to the reference Pareto 
     \toprule
     \textbf{Instance} & \textbf{Config} & \textbf{I$_{C}$} & \textbf{I$_{HV}$} & \textbf{I$_{GD}$} \\
     \midrule
-    \multirow{4}[2]{*}{ACAD} & NSGAII & 0.0193 $\pm$ 0.0211 & \textbf{0.4262 $\pm$ 0.0063} & \textbf{0.0052 $\pm$ 0.0013} \\
-          & MAR   & 0.0085 & 0.1318 & 0.1649 \\
-          & SH    & \textbf{0.0339} & 0.3514 & 0.0153 \\
-          & CPM   & 0.0085 & 0.0071 & 0.0127 \\\hline
-    \multirow{4}[2]{*}{WMET} & NSGAII & 0.0196 $\pm$ 0.0186 & \textbf{0.4196 $\pm$ 0.0051} & \textbf{0.0034 $\pm$ 0.0005} \\
-          & MAR   & 0.0062 & 0.1892 & 0.2612 \\
-          & SH    & 0.0188 & 0.3464 & 0.0125 \\
-          & CPM   & 0.0062 & 0.1502 & 0.0930 \\\hline
-    \multirow{4}[2]{*}{WAMS} & NSGAII & 0.0197 $\pm$ 0.0158 & \textbf{0.4123 $\pm$ 0.0032} & \textbf{0.0028 $\pm$ 0.0003} \\
-          & MAR   & 0.0056 & 0.1900 & 0.2613 \\
-          & SH    & 0.0168 & 0.3470 & 0.0118 \\
-          & CPM   & 0.0056 & 0.1357 & 0.0831 \\\hline
-    \multirow{4}[2]{*}{PSOA} & NSGAII & 0.0194 $\pm$ 0.0141 & \textbf{0.4534 $\pm$ 0.0094} & \textbf{0.0091 $\pm$ 0.0032} \\
-          & MAR   & 0.0094 & 0.0368 & 0.0918 \\
-          & SH    & \textbf{0.0283} & 0.3600 & 0.0439 \\
-          & CPM   & 0.0094 & n/a   & n/a \\\hline
-    \multirow{4}[2]{*}{OMET} & NSGAII & 0.0186 $\pm$ 0.0125 & \textbf{0.3550 $\pm$ 0.0047} & 0.0042 $\pm$ 0.0003 \\
-          & MAR   & 0.0080 & 0.1897 & 0.2557 \\
-          & SH    & \textbf{0.0720} & 0.3469 & \textbf{0.0000} \\
-          & CPM   & 0.0080 & 0.1637 & 0.1079 \\\hline
-    \multirow{4}[2]{*}{PARM} & NSGAII & 0.0173 $\pm$ 0.0162 & 0.2949 $\pm$ 0.0054 & 0.0080 $\pm$ 0.0011 \\
-          & MAR   & 0.0147 & 0.1358 & 0.1108 \\
-          & SH    & \textbf{0.1324} & \textbf{0.3503} & \textbf{0.0000} \\
-          & CPM   & 0.0147 & n/a   & n/a \\
+    \multirow{4}[2]{*}{ACAD} & NSGAII & \textbf{0.0196 $\pm$ 0.0109} & \textbf{0.4999 $\pm$ 0.0037} & \textbf{0.0033 $\pm$ 0.0012} \\
+          & MAR   & 0.0068 & 0.2303 & 0.1782 \\
+          & SH    & 0.0103 & 0.3589 & 0.0457 \\
+          & CPM   & 0.0068 &    n/a &    n/a \\\hline
+    \multirow{4}[2]{*}{WMET} & NSGAII & \textbf{0.0196 $\pm$ 0.0113} & \textbf{0.4859 $\pm$ 0.0029} & \textbf{0.0023 $\pm$ 0.0003} \\
+          & MAR   & 0.0068 & 0.2544 & 0.2394 \\
+          & SH    & 0.0103 & 0.3538 & 0.0390 \\
+          & CPM   & 0.0068 & 0.1913 & 0.1508 \\\hline
+    \multirow{4}[2]{*}{WAMS} & NSGAII & \textbf{0.0196 $\pm$ 0.0096} & \textbf{0.4808 $\pm$ 0.0027} & \textbf{0.0018 $\pm$ 0.0003} \\
+          & MAR   & 0.0069 & 0.2547 & 0.2406 \\
+          & SH    & 0.0103 & 0.3547 & 0.0381 \\
+          & CPM   & 0.0069 & 0.1718 & 0.1502 \\\hline
+    \multirow{4}[2]{*}{PSOA} & NSGAII & \textbf{0.0197 $\pm$ 0.0108} & \textbf{0.3692 $\pm$ 0.0044} & \textbf{0.0047 $\pm$ 0.0016} \\
+          & MAR   & 0.0086 & 0.1589 & 0.1738 \\
+          & SH    & 0.0086 & 0.2425 & 0.1577 \\
+          & CPM   & 0.0086 &    n/a &    n/a \\\hline
+    \multirow{4}[2]{*}{OMET} & NSGAII & \textbf{0.0195 $\pm$ 0.0108} & \textbf{0.4394 $\pm$ 0.0038} & \textbf{0.0022 $\pm$ 0.0002} \\
+          & MAR   & 0.0100 & 0.2562 & 0.2207 \\
+          & SH    & 0.0150 & 0.3579 & 0.0249 \\
+          & CPM   & 0.0100 & 0.2109 & 0.1280 \\\hline
+    \multirow{4}[2]{*}{PARM} & NSGAII & 0.0187 $\pm$ 0.0173 & \textbf{0.3963 $\pm$ 0.0044} & \textbf{0.0047 $\pm$ 0.0008} \\
+          & MAR   & 0.0165 & 0.2308 & 0.1511 \\
+          & SH    & \textbf{0.0496} & 0.3579 & 0.0172 \\
+          & CPM   & 0.0165 & n/a   & n/a \\
     \bottomrule
     \end{tabular}%
 \end{table}%
@@ -278,20 +280,23 @@ On regard on I$_{C}$, SH contributed with more vertices to the reference Pareto 
 \begin{table}[htbp]
   \scriptsize
 	\centering
-  \caption{Effect-size for comparisons between NSGA and each OMS in terms of each quality indicator.}
+  \caption{Effect-size for comparisons between NSGAII and each OMS in terms of each quality indicator.}
     \begin{tabular}{p{0.6cm} p{0.6cm} p{0.65cm} p{0.65cm}p{0.65cm}p{0.65cm}p{0.65cm}p{0.65cm}}
     \toprule
     \textbf{QI} & \textbf{OMS} & \textbf{ACAD} & \textbf{WMET} & \textbf{WAMS} & \textbf{PSOA} & \textbf{OMET} & \textbf{PARM} \\
     \midrule
-    \multirow{3}[1]{*}{I$_{C}$} & MAR   & 67\%  & 75\%  & 83\%  & 71\%  & 78\%  & 50\% \\
-          & SH    & 17\%  & 41\%  & 53\%  & 29\%  & 0\%   & 0\% \\
-          & CPM   & 67\%  & 75\%  & 83\%  & 71\%  & 78\%  & 50\% \\\hline
-    \multirow{3}[2]{*}{I$_{HV}$} & MAR   & 100\% & 100\% & 100\% & 100\% & 100\% & 100\% \\
-          & SH    & 100\% & 100\% & 100\% & 100\% & 96\%  & 0\% \\
-          & CPM   & 100\% & 100\% & 100\% & n/a   & 100\% & n/a \\\hline
-    \multirow{3}[2]{*}{I$_{GD}$} & MAR   & 100\% & 100\% & 100\% & 100\% & 100\% & 100\% \\
-          & SH    & 100\% & 100\% & 100\% & 100\% & 0\%   & 0\% \\
-          & CPM   & 100\% & 100\% & 100\% & n/a   & 100\% & n/a \\
+    \multirow{3}[1]{*}{I$_{C}$} 
+		      & MAR   & 94\%  & 89\%  & 96\%  & 85\%  & 80\%  & 44\% \\
+          & SH    & 84\%  & 81\%  & 88\%  & 85\%  & 60\%  &  7\% \\
+          & CPM   & 94\%  & 89\%  & 96\%  & 85\%  & 80\%  & 44\% \\\hline
+    \multirow{3}[2]{*}{I$_{HV}$} 
+		      & MAR   & 100\% & 100\% & 100\% & 100\% & 100\% & 100\% \\
+          & SH    & 100\% & 100\% & 100\% & 100\% & 100\% & 100\% \\
+          & CPM   &   n/a & 100\% & 100\% &   n/a & 100\% &   n/a \\\hline
+    \multirow{3}[2]{*}{I$_{GD}$} 
+		      & MAR   & 100\% & 100\% & 100\% & 100\% & 100\% & 100\% \\
+          & SH    & 100\% & 100\% & 100\% & 100\% & 100\% & 100\% \\
+          & CPM   &   n/a & 100\% & 100\% &   n/a & 100\% &   n/a \\
     \bottomrule
     \end{tabular}%
 \end{table}%
@@ -300,6 +305,7 @@ The {\^A12} effect-size was calculated for pair-wise comparisons between NSGAII 
 
 Effect-sizes are in agreement with former results indicating that MAR and CPM are not effective overtime management strategies. Moreover, effect-sizes provide additional evidence on the differences between NSGAII and SH: if there is enough time to run the optimization/simulation process, NSGAII can produce Pareto fronts which present more diversity than those resulting from SH, but the latter can quickly provide a good approximation (limited to a few points) for the reference front. Thus, the industry has good reason for concentrating overtime on the second half of project schedules, but it can improve its practices by combining SH with our proposed approach in order to provide more overtime allocation alternatives for the decision maker.
 
+\vspace{3px}
 \noindent
 \textbf{RQ3:} To address this question we compared our approach (NSGAII) with a similar formulation without the increased error generation rates caused by working overtime (NSGA$_{NE}$). We aim to observe if ignoring the increase in error generation rates would change a decision-makers' perceptions on which overtime planning alternative should be selected for a project. Table IV presents summary values for the quality indicators calculated over 50 optimization cycles for each algorithm. All values are presented in the mean $\pm$ standard deviation format. Complete box-plots were suppressed due to space limitations. Bold face values are significantly different compared to the other algorithm, as ascertained by Wilcoxon-Mann-Whitney tests at 95\% confidence level. 
 
@@ -374,6 +380,7 @@ Besides quality indicators, it is interesting to consider the differences observ
 
 Based on the analysis above, we have found evidence that optimizing overtime planning without taking into account an increase in error generation rates due to developers working overtime produces distinct results from an optimization process that considers such an increase. Next, we explore the practical implications of these findings.
 
+\vspace{3px}
 \noindent
 \textbf{Lessons Learned:} Insights for the decision maker are better appreciated in graphical format. Figure II presents 2D projections of pair-wise combinations for the three objectives comprising our formulation for the OPP. Each chart presents the best Pareto front over 50 optimization cycles under NSGAII (circles), the best Pareto front over 50 cycles under NSGA$_{NE}$ (line), and Pareto fronts for CPM (+), MAR ($\times$), and SH ($\ast$). Results are shown for the smallest and the largest instances in our sample (respectively, ACAD and PARM).
 
@@ -395,6 +402,7 @@ Regarding the last question presented above, we observe strong concentration of 
 
 Finally, despite of having different shapes in the objective space, NSGA and NSGA$_{NE}$ present extremely high inverse correlation between the number of overtime hours and project makespan (close to -1.0 Spearman rank-order index). NSGA$_{NE}$ also presents extremely high correlation between all pairs of objectives. This leads to actionable results in the sense that algorithms might not be required to pursue optimal values for all three objectives, but only two of them: minimum makespan is observed in solutions having maximum overtime. In practical terms, discarding one objective reduces the cost of optimization, allowing for more generations to be considered and a more diverse number of solutions to be found on Pareto fronts produced by NSGAII.
 
+\vspace{3px}
 \noindent
 \textbf{Validity Threats:} The design of the experimental study has taken into account potential sources of validity threats, including dealing with the randomness inherent to heuristic algorithms (all heuristic algorithms were executed 50 times before comparisons were made) and selecting proper statistical inference tests and effect-sizes for analysis (non-parametric tests and effect-sizes were used, since the data to be analyzed would not present Gaussian distribution). However, the study is not completely immune to validity threats.
 

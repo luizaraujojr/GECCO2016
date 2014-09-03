@@ -311,23 +311,29 @@ The {\^A12} standardized effect-size was calculated for pair-wise comparisons be
 \begin{table}[htbp]
 	\scriptsize
   \centering
-  \caption{Quality indicators for each instance under our approach (NSGAII) and a model without error dynamics (NSGA$_{NE}$). Pareto fronts for NSGA$_{NE}$ cover a larger part of the search space, leading to smaller $I_{GD}$. Solutions produced under NSGAII tend to concentrate in certain parts of the search space}
+  \caption{Quality indicators for each instance under our approach (NSGAII) and a model without error dynamics (NSGA$_{NE}$). Pareto fronts for NSGA$_{NE}$ cover a larger part of the solution space, leading to smaller $I_{GD}$. Solutions produced under NSGAII tend to concentrate in certain parts of the solution space}
     \begin{tabular}{p{0.8cm}p{1.0cm}ccc}
     \toprule
     \textbf{Instance} & \textbf{Config.} & \textbf{I$_{C}$} & \textbf{I$_{HV}$} & \textbf{I$_{GD}$} \\
     \midrule
-    \multirow{2}[2]{*}{ACAD} & NSGAII & 0.020 $\pm$ 0.022 & \textbf{0.464 $\pm$ 0.009} & 0.0066 $\pm$ 0.002 \\
-          & NSGA$_{NE}$ & \textbf{0.020 $\pm$ 0.004} & 0.333 $\pm$ 0.001 & \textbf{0.0003 $\pm$ 0.0} \\\hline
-    \multirow{2}[2]{*}{WMET} & NSGAII & 0.020 $\pm$ 0.019 & \textbf{0.492 $\pm$ 0.006} & 0.0037 $\pm$ 0.0 \\
-          & NSGA$_{NE}$ & 0.020 $\pm$ 0.003 & 0.334 $\pm$ 0.001 & \textbf{0.0003 $\pm$ 0.0} \\\hline
-    \multirow{2}[2]{*}{WAMS} & NSGAII & 0.020 $\pm$ 0.016 & \textbf{0.479 $\pm$ 0.004} & 0.0032 $\pm$ 0.0 \\
-          & NSGA$_{NE}$ & 0.020 $\pm$ 0.003 & 0.337 $\pm$ 0.001 & \textbf{0.0002 $\pm$ 0.0} \\\hline
-    \multirow{2}[2]{*}{PSOA} & NSGAII & 0.020 $\pm$ 0.014 & \textbf{0.421 $\pm$ 0.014} & 0.0129 $\pm$ 0.004 \\
-          & NSGA$_{NE}$ & 0.020 $\pm$ 0.002 & 0.338 $\pm$ 0.001 & \textbf{0.0001 $\pm$ 0.0} \\\hline
-    \multirow{2}[2]{*}{OMET} & NSGAII & 0.020 $\pm$ 0.014 & \textbf{0.465 $\pm$ 0.006} & 0.0044 $\pm$ 0.0 \\
-          & NSGA$_{NE}$ & 0.020 $\pm$ 0.003 & 0.336 $\pm$ 0.001 & \textbf{0.0001 $\pm$ 0.0} \\\hline
-    \multirow{2}[2]{*}{PARM} & NSGAII & 0.020 $\pm$ 0.019 & \textbf{0.489 $\pm$ 0.011} & 0.0090 $\pm$ 0.001 \\
-          & NSGA$_{NE}$ & \textbf{0.020 $\pm$ 0.003} & 0.338 $\pm$ 0.001 & \textbf{0.0001 $\pm$ 0.0} \\
+    \multirow{2}[2]{*}{ACAD} 
+				  & NSGAII      &         0.020 $\pm$ 0.011  & \textbf{0.530 $\pm$ 0.006} &         0.004 $\pm$ 0.001  \\
+          & NSGA$_{NE}$ &         0.020 $\pm$ 0.004  &         0.333 $\pm$ 0.001  & \textbf{0.001 $\pm$ 0.00}  \\\hline
+    \multirow{2}[2]{*}{WMET} 
+				  & NSGAII      &         0.020 $\pm$ 0.012  & \textbf{0.544 $\pm$ 0.004} &         0.002 $\pm$ 0.001  \\
+          & NSGA$_{NE}$ &         0.020 $\pm$ 0.003  &         0.334 $\pm$ 0.001  & \textbf{0.001 $\pm$ 0.000} \\\hline
+    \multirow{2}[2]{*}{WAMS} 
+				  & NSGAII      &         0.020 $\pm$ 0.010  & \textbf{0.498 $\pm$ 0.003} &         0.002 $\pm$ 0.001  \\
+          & NSGA$_{NE}$ & \textbf{0.020 $\pm$ 0.003} &         0.337 $\pm$ 0.001  & \textbf{0.001 $\pm$ 0.000} \\\hline
+    \multirow{2}[2]{*}{PSOA} 
+				  & NSGAII      &         0.020 $\pm$ 0.011  & \textbf{0.471 $\pm$ 0.006} &         0.004 $\pm$ 0.001  \\
+          & NSGA$_{NE}$ &         0.020 $\pm$ 0.002  &         0.338 $\pm$ 0.001  & \textbf{0.001 $\pm$ 0.000} \\\hline
+    \multirow{2}[2]{*}{OMET} 
+				  & NSGAII      &         0.020 $\pm$ 0.011  & \textbf{0.523 $\pm$ 0.004} &         0.002 $\pm$ 0.001  \\
+          & NSGA$_{NE}$ &         0.020 $\pm$ 0.003  &         0.337 $\pm$ 0.001  & \textbf{0.001 $\pm$ 0.000} \\\hline
+    \multirow{2}[2]{*}{PARM} 
+				  & NSGAII      &         0.020 $\pm$ 0.018  & \textbf{0.462 $\pm$ 0.007} &         0.006 $\pm$ 0.001  \\
+          & NSGA$_{NE}$ & \textbf{0.020 $\pm$ 0.003} &         0.338 $\pm$ 0.001  & \textbf{0.001 $\pm$ 0.000} \\
     \bottomrule
     \end{tabular}%
 \end{table}%
@@ -341,12 +347,12 @@ The {\^A12} standardized effect-size was calculated for pair-wise comparisons be
     \toprule
     \textbf{Instance} & \textbf{I$_{C}$} & \textbf{I$_{HV}$} & \textbf{I$_{GD}$} \\
     \midrule
-    ACAD  & 38\%  & 100\% & 0\% \\
-    WMET  & 40\%  & 100\% & 0\% \\
-    WAMS  & 46\%  & 100\% & 0\% \\
-    PSOA  & 50\%  & 100\% & 0\% \\
-    OMET  & 43\%  & 100\% & 0\% \\
-    PARM  & 38\%  & 100\% & 0\% \\
+    ACAD  &  42\%  & 100\% &   0\% \\
+    WMET  &  44\%  & 100\% &   0\% \\
+    WAMS  &  38\%  & 100\% &   0\% \\
+    PSOA  &  42\%  & 100\% &   0\% \\
+    OMET  &  44\%  & 100\% &   0\% \\
+    PARM  &  43\%  & 100\% &   0\% \\
     \bottomrule
     \end{tabular}%
 \end{table}%
@@ -357,19 +363,19 @@ The {\^A12} standardized effect-size was calculated for pair-wise comparisons be
 \begin{table}[htbp]
 	\scriptsize
   \centering
-  \caption{Average difference in makespan and cost for solutions involving excessive overtime for each instance. data shows that the formulation without overtime error dynamics tends to understimate both cost and makespan for most projects.}
+  \caption{Average difference in makespan and cost for solutions involving excessive overtime for each instance. data shows that the formulation without overtime error dynamics tends to understimate both cost and makespan for most projects}
     \begin{tabular}{rccc}
     \toprule
     \multicolumn{1}{c}{\multirow{2}[2]{*}{\textbf{Instance}}} & \multirow{2}[2]{*}{\textbf{Overtime  Range}} & \multicolumn{2}{c}{\textbf{(NSGA$_{NE}>$NSGAII)}} \\
 
     \multicolumn{1}{c}{} &       & \textbf{Makespan } & \textbf{Cost} \\
         \midrule
-    \multicolumn{1}{l}{ACAD} & 332 - 376 hr & -2\%  & -1\% \\
-    \multicolumn{1}{l}{WMET} & 332 - 372 hr & -4\%  & -3\% \\
-    \multicolumn{1}{l}{WAMS} & 570 - 638 hr & -5\%  & -3\% \\
-    \multicolumn{1}{l}{PSOA} & 1,288 - 1,443 hr & 6\%   & 5\% \\
-    \multicolumn{1}{l}{OMET} & 919 - 1,023 hr & -6\%  & -4\% \\
-    \multicolumn{1}{l}{PARM} & 797 - 884 hr & -5\%  & -3\% \\
+    \multicolumn{1}{l}{ACAD} &   334 -   374 hr & -5.2\% & -3.6\% \\
+    \multicolumn{1}{l}{WMET} &   374 -   414 hr & -8.4\% & -6.4\% \\
+    \multicolumn{1}{l}{WAMS} &   638 -   705 hr & -8.5\% & -5.9\% \\
+    \multicolumn{1}{l}{PSOA} & 1,445 - 1,599 hr & -4.5\% & -2.6\% \\
+    \multicolumn{1}{l}{OMET} & 1,042 - 1,148 hr & -9.2\% & -6.9\% \\
+    \multicolumn{1}{l}{PARM} &   792 -   882 hr & -7.3\% & -5.5\% \\
     \bottomrule
     \end{tabular}%
 \end{table}%

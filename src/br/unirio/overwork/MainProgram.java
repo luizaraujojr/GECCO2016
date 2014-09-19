@@ -60,7 +60,7 @@ public class MainProgram
 //		runExperimentThread("1", instanceFiles12, 50, 150);
 //		runExperimentThread("2", instanceFiles34, 50, 15000);
 //		runExperimentThread("3", instanceFiles56, 50, 15000);
-//	showProjectDetails(instanceFiles);
+//		showProjectDetails(instanceFiles);
 		runExperimentAnalysis();
 //		runMultiExperimentAnalysis();		
 	}
@@ -68,19 +68,22 @@ public class MainProgram
 	@SuppressWarnings("unused")
 	private static void runExperimentAnalysis() throws ExperimentFileReaderException, Exception 
 	{	
-		String resultPath="C:/Users/luiz/Documents/GitHub/Hector/data/result/BaseData/";
+		String resultPath="C:/Users/luiz/Documents/GitHub/Hector/data/result/dissertacao/BaseData/";
 		
 //		new ExperimentAnalyzer().analyze("rs5k","C:/workspace/Hector/data/result/RS/5K/rs5k.txt", instanceFiles.length, 50, 3);
 //		new ExperimentAnalyzer().analyze("rs10k","C:/workspace/Hector/data/result/RS/10K/rs10k.txt", instanceFiles.length, 50, 3);
 //		new ExperimentAnalyzer().analyze("rs20k","C:/workspace/Hector/data/result/RS/20K/rs20k.txt", instanceFiles.length, 50, 3);
 //		new ExperimentAnalyzer().analyze("rs50k","C:/workspace/Hector/data/result/RS/50K/rs50k.txt", instanceFiles.length, 50, 3);
 		
+		
+		//Preparing data to stop parameter
 		new ExperimentAnalyzer().analyze("nsga5k2x",resultPath + "NSGA/5K/nsga_5k_c50_2x_error1.txt", instanceFiles.length, 50, 3);
 		new ExperimentAnalyzer().analyze("nsga10k2x",resultPath + "NSGA/10K/nsga_10k_c50_2x_error1.txt", instanceFiles.length, 50, 3);
+		new ExperimentAnalyzer().analyze("nsga20k2x",resultPath + "NSGA/20K/nsga_20k_c50_2x_error1.txt", instanceFiles.length, 50, 3);
 		new ExperimentAnalyzer().analyze("nsga50k2x",resultPath + "NSGA/50K/nsga_50k_c50_2x_error1.txt", instanceFiles.length, 50, 3);
 		new ExperimentAnalyzer().analyze("nsga100k2x",resultPath + "NSGA/100K/nsga_100k_c50_2x_error1.txt", instanceFiles.length, 50, 3);
 		new ExperimentAnalyzer().analyze("nsga150k2x",resultPath + "NSGA/150K/nsga_150k_c50_2x_error1.txt", instanceFiles.length, 50, 3);
-//		new ExperimentAnalyzer().analyze("nsga20k2x",resultPath + "NSGA/20K/nsga_20k_c50_2x_error1.txt", instanceFiles.length, 50, 3);
+//		
 		
 		
 //		new ExperimentAnalyzer().analyze("GA",resultPath + "NSGA/50K/2x/nsga50k2xerror1.txt", instanceFiles.length, 50, 3);

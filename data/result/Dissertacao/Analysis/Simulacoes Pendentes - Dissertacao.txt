@@ -1,0 +1,25 @@
+* sempre com tabela de overworking começando com 1
+
+* o ajuste de parametros de critério de parada precisa de novas simulações?
+
+  - 150k com overtime >= 1
+  - 100k com overtime >= 1
+  - 50k com overtime >= 1
+  - 20k com overtime >= 1
+  - 10k com overtime >= 1
+  - 5k com overtime >= 1
+
+* o ajuste de parâmetros de tamanho da população precisa de novas simulações
+
+  - rodar 150k com 4x como tamanho de população com overtime >= 1
+  - rodar 150k com 8x como tamanho de população com overtime >= 1
+
+* RQ1 vai depender das análises de população e critério de parada
+
+  - rodar RS com 150k
+  
+* RQ2 vai depender das análises de população e critério de parada
+  
+* RQ3 vai depender das análises de população e critério de parada
+
+* RQ4 vai depender das análises de população e critério de parada

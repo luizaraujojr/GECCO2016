@@ -14,10 +14,11 @@ vargha.delaney <- function(r1, r2) {
 
 # Load data - micro do Marcio
 # data <- read.table(file="/Users/Marcio/Desktop/Codigos/Hector/data/result/Analysis/rq3/data.txt", header=TRUE);
-data <- read.table(file="/Users/marcio.barros/Documents/Hector/data/result/Analysis/RQ3/data - error1.txt", header=TRUE);
+#data <- read.table(file="/Users/marcio.barros/Documents/Hector/data/result/Analysis/RQ3/data - error1.txt", header=TRUE);
 
 # Load data - micro do Luiz
 # data <- read.table(file="C:/workspace/Hector/data/result/Analysis/rq3/data.txt", header=TRUE);
+data <- read.table(file="C:/Users/luiz/Documents/GitHub/Hector/data/result/dissertacao/Analysis/RQ3/data1.txt", header=TRUE);
 
 # Separate sequence configuration and instances
 configs <- unique(as.character(data$config));
@@ -30,11 +31,11 @@ for (instance_ in instances)
 	instanceData_ <- subset(data, inst == instance_);
 	instanceName <- instanceNames[which(instances==instance_)];
 
-	NSGANE <- subset(data, inst == instance_ & config == "NSGANE");
-	NSGA <- subset(data, inst == instance_ & config == "NSGA");
+	nsga150k2xse <- subset(data, inst == instance_ & config == "nsga150k2xse");
+	nsga150k2x <- subset(data, inst == instance_ & config == "nsga150k2x");
 
-	pv <- wilcox.test(NSGA$best, NSGANE$best)$p.value;
-	print(paste("IC: p-Value for Wilcox:", instanceName, "(NSGA,NSGANE)=", pv, sep=" "));
+	pv <- wilcox.test(nsga150k2x$best, nsga150k2xse$best)$p.value;
+	print(paste("IC: p-Value for Wilcox:", instanceName, "(nsga150k2x,nsga150k2xse)=", pv, sep=" "));
 }
 
 # Inference tests on an instance basis (HV)
@@ -43,11 +44,11 @@ for (instance_ in instances)
 	instanceData_ <- subset(data, inst == instance_);
 	instanceName <- instanceNames[which(instances==instance_)];
 
-	NSGANE <- subset(data, inst == instance_ & config == "NSGANE");
-	NSGA <- subset(data, inst == instance_ & config == "NSGA");
+	nsga150k2xse <- subset(data, inst == instance_ & config == "nsga150k2xse");
+	nsga150k2x <- subset(data, inst == instance_ & config == "nsga150k2x");
 
-	pv <- wilcox.test(NSGA$hv, NSGANE$hv)$p.value;
-	print(paste("HV: p-Value for Wilcox:", instanceName, "(NSGA,NSGANE)=", pv, sep=" "));
+	pv <- wilcox.test(nsga150k2x$hv, nsga150k2xse$hv)$p.value;
+	print(paste("HV: p-Value for Wilcox:", instanceName, "(nsga150k2x,nsga150k2xse)=", pv, sep=" "));
 }
 
 # Inference tests on an instance basis (GD)
@@ -56,25 +57,39 @@ for (instance_ in instances)
 	instanceData_ <- subset(data, inst == instance_);
 	instanceName <- instanceNames[which(instances==instance_)];
 
-	NSGANE <- subset(data, inst == instance_ & config == "NSGANE");
-	NSGA <- subset(data, inst == instance_ & config == "NSGA");
+	nsga150k2xse <- subset(data, inst == instance_ & config == "nsga150k2xse");
+	nsga150k2x <- subset(data, inst == instance_ & config == "nsga150k2x");
 
-	pv <- wilcox.test(NSGA$gd, mu=NSGANE$gd[1])$p.value;
-	print(paste("GD: p-Value for Wilcox:", instanceName, "(NSGA,NSGANE)=", pv, sep=" "));
+	pv <- wilcox.test(nsga150k2x$gd, mu=nsga150k2xse$gd[1])$p.value;
+	print(paste("GD: p-Value for Wilcox:", instanceName, "(nsga150k2x,nsga150k2xse)=", pv, sep=" "));
+}
+
+# Inference tests on an instance basis (SP)
+for (instance_ in instances)
+{
+	instanceData_ <- subset(data, inst == instance_);
+	instanceName <- instanceNames[which(instances==instance_)];
+
+	nsga150k2xse <- subset(data, inst == instance_ & config == "nsga150k2xse");
+	nsga150k2x <- subset(data, inst == instance_ & config == "nsga150k2x");
+
+	pv <- wilcox.test(nsga150k2x$gd, mu=nsga150k2xse$gd[1])$p.value;
+	print(paste("SP: p-Value for Wilcox:", instanceName, "(nsga150k2x,nsga150k2xse)=", pv, sep=" "));
 }
 
 # Effect Size tests 
-effectSizeNames <- c("ic", "hv", "gd");
+effectSizeNames <- c("ic", "hv", "gd", "sp");
 effectSize <- matrix(nrow=length(instances), ncol=length(effectSizeNames), dimnames=list(instanceNames, effectSizeNames));
 
 for (instance_ in instances)
 {
 	instanceName <- instanceNames[which(instances==instance_)];
-	NSGA <- subset(data, inst == instance_ & config == "NSGA");
-	NSGANE <- subset(data, inst == instance_ & config == "NSGANE");
-	effectSize[instanceName, "ic"] <- vargha.delaney(NSGA$best, NSGANE$best);
-	effectSize[instanceName, "hv"] <- vargha.delaney(NSGA$hv, NSGANE$hv);
-	effectSize[instanceName, "gd"] <- 1.0 - vargha.delaney(NSGA$gd, NSGANE$gd);
+	nsga150k2x <- subset(data, inst == instance_ & config == "nsga150k2x");
+	nsga150k2xse <- subset(data, inst == instance_ & config == "nsga150k2xse");
+	effectSize[instanceName, "ic"] <- vargha.delaney(nsga150k2x$best, nsga150k2xse$best);
+	effectSize[instanceName, "hv"] <- vargha.delaney(nsga150k2x$hv, nsga150k2xse$hv);
+	effectSize[instanceName, "gd"] <- 1.0 - vargha.delaney(nsga150k2x$gd, nsga150k2xse$gd);
+	effectSize[instanceName, "sp"] <- 1.0 - vargha.delaney(nsga150k2x$sp, nsga150k2xse$sp);
 }
 
 effectSize;
@@ -85,9 +100,11 @@ mean_count <- matrix(nrow=length(instances), ncol=length(configs), dimnames=list
 mean_ic <- matrix(nrow=length(instances), ncol=length(configs), dimnames=list(instanceNames, configs));
 mean_hv <- matrix(nrow=length(instances), ncol=length(configs), dimnames=list(instanceNames, configs));
 mean_gd <- matrix(nrow=length(instances), ncol=length(configs), dimnames=list(instanceNames, configs));
+mean_sp <- matrix(nrow=length(instances), ncol=length(configs), dimnames=list(instanceNames, configs));
 sd_ic <- matrix(nrow=length(instances), ncol=length(configs), dimnames=list(instanceNames, configs));
 sd_hv <- matrix(nrow=length(instances), ncol=length(configs), dimnames=list(instanceNames, configs));
 sd_gd <- matrix(nrow=length(instances), ncol=length(configs), dimnames=list(instanceNames, configs));
+sd_sp <- matrix(nrow=length(instances), ncol=length(configs), dimnames=list(instanceNames, configs));
 
 for (config_ in configs)
 {
@@ -100,17 +117,21 @@ for (config_ in configs)
 		mean_ic[instanceName, config_] <- mean(newdata$best);
 		mean_hv[instanceName, config_] <- mean(newdata$hv);
 		mean_gd[instanceName, config_] <- mean(newdata$gd);
+		mean_sp[instanceName, config_] <- mean(newdata$sp);
 		
 		sd_ic[instanceName, config_] <- sd(newdata$best);
 		sd_hv[instanceName, config_] <- sd(newdata$hv);
 		sd_gd[instanceName, config_] <- sd(newdata$gd);
+		sd_sp[instanceName, config_] <- sd(newdata$sp);
 	}
 }
 
 mean_ic;
 mean_hv;
 mean_gd;
+mean_sp;
 
 sd_ic;
 sd_hv;
 sd_gd;
+sd_sp;
